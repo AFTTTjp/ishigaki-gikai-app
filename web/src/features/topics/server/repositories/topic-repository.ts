@@ -4,7 +4,7 @@ import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/type
 import { normalizeDietSession } from "@/features/bills/server/repositories/bill-repository";
 import type { BillWithContent } from "@/features/bills/shared/types";
 import type { TopicListItem, TopicWithRelatedBills } from "../../shared/types";
-import { findPublishedCouncilActionsByTopicId } from "./council-action-repository";
+import { findPublishedCouncilActionsByTopicId } from "@/features/council-actions/server/repositories/council-action-repository";
 
 type TopicRow = Database["public"]["Tables"]["topics"]["Row"];
 

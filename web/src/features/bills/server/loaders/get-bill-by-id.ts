@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
+import { findPublishedCouncilActionsByBillId } from "@/features/council-actions/server/repositories/council-action-repository";
 import { CACHE_TAGS } from "@/lib/cache-tags";
 import type { BillWithContent } from "../../shared/types";
 import {
@@ -26,14 +27,21 @@ const _getCachedBillById = unstable_cache(
   ): Promise<BillWithContent | null> => {
     // 基本的なbill情報、見解、コンテンツ、タグを並列取得
     // 公開ステータスの議案のみを取得
-    const [bill, miraiStance, billContent, billTags, billMemberVotes] =
-      await Promise.all([
-        findPublishedBillById(id),
-        findMiraiStanceByBillId(id),
-        getBillContentWithDifficulty(id, difficultyLevel),
-        findTagsByBillId(id),
-        findBillMemberVotesByBillId(id),
-      ]);
+    const [
+      bill,
+      miraiStance,
+      billContent,
+      billTags,
+      billMemberVotes,
+      councilActions,
+    ] = await Promise.all([
+      findPublishedBillById(id),
+      findMiraiStanceByBillId(id),
+      getBillContentWithDifficulty(id, difficultyLevel),
+      findTagsByBillId(id),
+      findBillMemberVotesByBillId(id),
+      findPublishedCouncilActionsByBillId(id),
+    ]);
 
     if (!bill) {
       console.error("Failed to fetch bill");
@@ -69,6 +77,7 @@ const _getCachedBillById = unstable_cache(
         ).diet_session
       ),
       bill_member_votes: billMemberVotes,
+      councilActions,
       proposer_member: normalizeProposerMember(
         (
           bill as typeof bill & {
@@ -94,6 +103,6 @@ const _getCachedBillById = unstable_cache(
   ["bill-by-id"],
   {
     revalidate: 600, // 10分（600秒）
-    tags: [CACHE_TAGS.BILLS],
+    tags: [CACHE_TAGS.BILLS, CACHE_TAGS.COUNCIL_ACTIONS],
   }
 );

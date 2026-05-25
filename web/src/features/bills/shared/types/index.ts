@@ -1,4 +1,5 @@
 import type { Database } from "@mirai-gikai/supabase";
+import type { CouncilAction } from "@/features/council-actions/shared/types";
 
 // Database types
 export type Bill = Database["public"]["Tables"]["bills"]["Row"];
@@ -85,6 +86,7 @@ export type BillWithContent = Bill & {
   hasPublicInterview?: boolean;
   bill_member_votes?: BillMemberVote[];
   proposer_member?: BillProposerMember;
+  councilActions?: CouncilAction[];
 };
 
 // タグごとにグループ化された議案

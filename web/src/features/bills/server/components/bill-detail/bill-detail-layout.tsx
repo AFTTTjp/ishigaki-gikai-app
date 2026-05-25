@@ -14,6 +14,7 @@ import {
   type BillWithContent,
 } from "../../../shared/types";
 import { BillShareButtons } from "../share/bill-share-buttons";
+import { BillCouncilActions } from "./bill-council-actions";
 import { BillVoteSection } from "./bill-vote-section";
 import { BillContent } from "./bill-content";
 import { BillDetailHeader } from "./bill-detail-header";
@@ -120,6 +121,12 @@ export async function BillDetailLayout({
       </BillDetailClient>
 
       <Container>
+        {/* 議会のアクション（投票結果の後） */}
+        {bill.councilActions && bill.councilActions.length > 0 && (
+          <div className="my-8">
+            <BillCouncilActions councilActions={bill.councilActions} />
+          </div>
+        )}
         {publicReportsResult.totalCount > 0 && (
           <div className="my-8">
             <BillInterviewOpinionsSection
