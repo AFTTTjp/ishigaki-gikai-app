@@ -4,6 +4,7 @@ import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/type
 import { normalizeDietSession } from "@/features/bills/server/repositories/bill-repository";
 import type { BillWithContent } from "@/features/bills/shared/types";
 import type { TopicListItem, TopicWithRelatedBills } from "../../shared/types";
+import { findPublishedCouncilActionsByTopicId } from "./council-action-repository";
 
 type TopicRow = Database["public"]["Tables"]["topics"]["Row"];
 
@@ -166,24 +167,27 @@ export async function findActiveTopicWithRelatedBills(
     return null;
   }
 
-  const relatedBills = await findRelatedPublishedBillsByTopicId(
-    topic.id,
-    difficultyLevel
-  );
   const supabase = createAdminClient();
-  const { data: updates, error: updatesError } = await supabase
-    .from("topic_updates")
-    .select("*")
-    .eq("topic_id", topic.id)
-    .order("published_at", { ascending: false });
+  const [relatedBills, councilActions, updatesResult] = await Promise.all([
+    findRelatedPublishedBillsByTopicId(topic.id, difficultyLevel),
+    findPublishedCouncilActionsByTopicId(topic.id),
+    supabase
+      .from("topic_updates")
+      .select("*")
+      .eq("topic_id", topic.id)
+      .order("published_at", { ascending: false }),
+  ]);
 
-  if (updatesError) {
-    throw new Error(`Failed to fetch topic updates: ${updatesError.message}`);
+  if (updatesResult.error) {
+    throw new Error(
+      `Failed to fetch topic updates: ${updatesResult.error.message}`
+    );
   }
 
   return {
     ...topic,
     relatedBills,
-    updates: updates ?? [],
+    updates: updatesResult.data ?? [],
+    councilActions,
   };
 }

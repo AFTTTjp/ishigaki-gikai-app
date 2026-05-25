@@ -8,6 +8,7 @@ import { PageChatClient } from "@/features/chat/client/components/page-chat-clie
 import { TopicContent } from "@/features/topics/server/components/topic-content";
 import { TopicDecisions } from "@/features/topics/server/components/topic-decisions";
 import { TopicDiscussionPoints } from "@/features/topics/server/components/topic-discussion-points";
+import { TopicCouncilActions } from "@/features/topics/server/components/topic-council-actions";
 import { TopicRelatedBills } from "@/features/topics/server/components/topic-related-bills";
 import { TopicRelatedLinks } from "@/features/topics/server/components/topic-related-links";
 import { TopicStatusCard } from "@/features/topics/server/components/topic-status-card";
@@ -111,15 +112,18 @@ export default async function TopicDetailPage({
             </section>
           ) : null}
 
-          {/* ⑦ 関連議案一覧 */}
+          {/* ⑦ 議会のアクション */}
+          <TopicCouncilActions councilActions={topic.councilActions} />
+
+          {/* ⑧ 関連議案一覧 */}
           <TopicRelatedBills bills={topic.relatedBills} />
 
-          {/* ⑧ 関連情報・資料 */}
+          {/* ⑨ 関連情報・資料 */}
           <TopicRelatedLinks updates={topic.updates} />
         </div>
       </Container>
 
-      {/* ⑨ チャット */}
+      {/* ⑩ チャット */}
       <PageChatClient
         currentDifficulty={currentDifficulty}
         items={[
