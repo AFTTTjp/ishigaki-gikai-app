@@ -109,8 +109,9 @@ SELECT COUNT(*) FROM council_action_bills WHERE council_action_id = '<id>';
 | PR-2 UI 実装・test 確認前 | test import が必要 | 不要（UIが先） |
 | UI が prod デプロイ済み・公開したい | prod import（status=published） | **必要** |
 
-Revalidation は `REVALIDATE_SECRET` を使った API 呼び出しで実行する。  
-UI 実装後、具体的な手順は `docs/ai/verification.md` の Tier B/C を参照。
+Revalidation は `REVALIDATE_SECRET` を使った API 呼び出しで実行する（`Authorization: Bearer` ヘッダ + `tags` 配列の body）。  
+具体的なコマンド例はワークフロー A の Step 8 を参照。  
+UI 実装後、追加の確認手順は `docs/ai/verification.md` の Tier B/C を参照。
 
 ---
 
@@ -220,25 +221,43 @@ pnpm db:council-actions:import:prod
 
 prod にデータが入ったら ISR キャッシュを破棄する。
 
+**API 仕様**（`web/src/app/api/revalidate/route.ts`）:
+- 認証: HTTP ヘッダ `Authorization: Bearer <REVALIDATE_SECRET>`
+- body: `{"tags": ["<tag1>", "<tag2>", ...]}`（複数形・配列、1リクエストで複数タグ同時可）
+- 成功時: `200 OK` で `{"success": true, "revalidated": true, "tags": [...]}` を返す
+
 ```bash
-# council-actions キャッシュを破棄
+# council-actions / topics / bills を 1 リクエストで一括破棄
 curl -X POST https://<prod-url>/api/revalidate \
   -H "Content-Type: application/json" \
-  -d '{"tag": "council-actions", "secret": "<REVALIDATE_SECRET>"}'
-
-# topics キャッシュを破棄
-curl -X POST https://<prod-url>/api/revalidate \
-  -H "Content-Type: application/json" \
-  -d '{"tag": "topics", "secret": "<REVALIDATE_SECRET>"}'
-
-# bills キャッシュを破棄
-curl -X POST https://<prod-url>/api/revalidate \
-  -H "Content-Type: application/json" \
-  -d '{"tag": "bills", "secret": "<REVALIDATE_SECRET>"}'
+  -H "Authorization: Bearer <REVALIDATE_SECRET>" \
+  -d '{"tags": ["council-actions", "topics", "bills"]}'
 ```
 
-- [ ] 各 tag で `200 OK` が返ること
-- `<prod-url>` と `<REVALIDATE_SECRET>` は `.env.prod.example` を参照して実値に置き換える
+または `.env.prod` から値を読み込んで実行:
+
+```bash
+npx dotenv-cli -e .env.prod -- node -e '
+let base = process.env.PROD_WEB_URL.trim();
+if (!/^https?:\/\//.test(base)) base = "https://" + base;
+fetch(base + "/api/revalidate", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer " + process.env.REVALIDATE_SECRET,
+  },
+  body: JSON.stringify({ tags: ["council-actions", "topics", "bills"] }),
+}).then(async (r) => console.log(r.status, await r.text()));
+'
+```
+
+- [ ] レスポンスが `200 OK` で `revalidated: true` を含むこと
+- [ ] レスポンス body の `tags` 配列に渡したタグが全て含まれていること
+- `<prod-url>` と `<REVALIDATE_SECRET>` は `.env.prod` に設定した値を使う（secrets はチャット・PR 本文・コミットメッセージに貼らない）
+
+> **注**: 旧 API 仕様（`{"tag": "...", "secret": "..."}` を body に入れる方式）は廃止されている。`secret` を body に入れたり `tag` を単数で送ると **401 Unauthorized** を返す。
+
+> **対象タグの選び方**: council_action 公開時は最低限 `council-actions` + `bills` を含める。Topic 詳細にも表示される（= `topic_bills` 経由で紐付く）場合のみ `topics` も追加する。
 
 #### Step 9 — prod UI で表示を確認する
 
