@@ -111,3 +111,210 @@ SELECT COUNT(*) FROM council_action_bills WHERE council_action_id = '<id>';
 
 Revalidation は `REVALIDATE_SECRET` を使った API 呼び出しで実行する。  
 UI 実装後、具体的な手順は `docs/ai/verification.md` の Tier B/C を参照。
+
+---
+
+## 公開ワークフロー
+
+council_action を新規追加・または draft → published に変更して prod UI に反映するまでの安全な手順。
+
+### 原則
+
+- **JSON が source of truth**。DB を直接 UPDATE して公開しない
+- **dry-run 必須**。prod import の前に必ず dry-run で確認する
+- **環境を混同しない**。`.env` / `.env.test` / `.env.prod` を明示してコマンドを実行する
+- **secrets は書かない**。コマンド例に実 URL・API key を記載しない
+- **fuzzy matching 禁止**。`related_bill_names` は `bills.name` と完全一致のみ
+
+---
+
+### ワークフロー A: 新規 council_action を追加して公開する
+
+#### Step 1 — JSON ファイルを作成する
+
+```bash
+# ファイル名: {slug}.council-action.json
+# 配置場所: docs/ishigaki_council_actions/
+```
+
+- `slug` はケバブケース・英数字のみ（例: `ishigaki-old-city-hall-inspection-2026`）
+- `status` は最初 `"draft"` にする
+- `related_bill_names` は `bills.name` の **完全一致** 文字列を記載する
+- スキーマは `council-action.schema.json` を参照
+
+チェックリスト:
+- [ ] `slug` がケバブケース・英数字のみ
+- [ ] `kind` が enum に含まれる値（`advocacy` / `request` / `inspection` / `submission` / `resolution_delivery`）
+- [ ] `action_date` が `YYYY-MM-DD` 形式
+- [ ] `related_bill_names` の文字列が DB の `bills.name` と完全一致することを確認（Supabase Studio または psql で SELECT）
+- [ ] `status: "draft"` で作成
+
+#### Step 2 — local で dry-run する
+
+```bash
+npx dotenv-cli -e .env -- node scripts/import-council-actions.mjs --dry-run
+```
+
+確認ポイント:
+- [ ] バリデーションエラーがないこと
+- [ ] `unmatched` に `related_bill_names` の名称が出ていないこと（bill 照合成功）
+- [ ] 追加予定の slug が `insert` または `upsert` として表示されること
+
+#### Step 3 — local に import する
+
+```bash
+pnpm db:council-actions:import
+```
+
+- [ ] エラーなく完了すること
+- [ ] `SELECT slug, status FROM council_actions;` で `draft` で登録されていること
+
+#### Step 4 — JSON の status を `published` に変更する
+
+```json
+{
+  "status": "published"
+}
+```
+
+- [ ] JSON ファイルを保存したこと
+
+#### Step 5 — local に再 import する（公開状態で検証）
+
+```bash
+pnpm db:council-actions:import
+```
+
+- [ ] local の dev server（`pnpm dev`）でトピック詳細・議案詳細に「議会のアクション」セクションが表示されること
+- [ ] kind バッジ・日付・タイトル・宛先・説明が正しいこと
+- [ ] `status=draft` の別アクションは表示されないこと
+
+#### Step 6 — test 環境で dry-run → import → 確認する
+
+```bash
+# dry-run
+npx dotenv-cli -e .env.test -- node scripts/import-council-actions.mjs --dry-run
+
+# 問題なければ import
+pnpm db:council-actions:import:test
+```
+
+- [ ] dry-run でエラー・unmatched がないこと
+- [ ] import 完了後、Supabase test Studio で `status=published` を確認
+
+#### Step 7 — prod に dry-run → import する ⚠️
+
+```bash
+# dry-run（必須）
+npx dotenv-cli -e .env.prod -- node scripts/import-council-actions.mjs --dry-run
+
+# 内容確認後に本 import
+pnpm db:council-actions:import:prod
+```
+
+- [ ] dry-run のログを必ず読んでから import を実行する
+- [ ] `unmatched` がゼロであること（bill 照合漏れがないこと）
+- [ ] import 完了後、Supabase prod Studio で `status=published` を確認
+
+#### Step 8 — revalidation を実行する
+
+prod にデータが入ったら ISR キャッシュを破棄する。
+
+```bash
+# council-actions キャッシュを破棄
+curl -X POST https://<prod-url>/api/revalidate \
+  -H "Content-Type: application/json" \
+  -d '{"tag": "council-actions", "secret": "<REVALIDATE_SECRET>"}'
+
+# topics キャッシュを破棄
+curl -X POST https://<prod-url>/api/revalidate \
+  -H "Content-Type: application/json" \
+  -d '{"tag": "topics", "secret": "<REVALIDATE_SECRET>"}'
+
+# bills キャッシュを破棄
+curl -X POST https://<prod-url>/api/revalidate \
+  -H "Content-Type: application/json" \
+  -d '{"tag": "bills", "secret": "<REVALIDATE_SECRET>"}'
+```
+
+- [ ] 各 tag で `200 OK` が返ること
+- `<prod-url>` と `<REVALIDATE_SECRET>` は `.env.prod.example` を参照して実値に置き換える
+
+#### Step 9 — prod UI で表示を確認する
+
+- [ ] `/topics/<slug>` の「議会のアクション」セクションにアクションが表示されること（トピックが紐づいている場合）
+- [ ] `/bills/<id>` の「議会のアクション」セクションにアクションが表示されること（議案が紐づいている場合）
+- [ ] kind バッジ・日付・タイトル・宛先・説明・リンクが正しいこと
+- [ ] 0件の議案・トピックではセクションが非表示であること
+
+#### Step 10 — JSON を commit して PR を作成する
+
+```bash
+git add docs/ishigaki_council_actions/<slug>.council-action.json
+git commit -m "content: <アクション名> を追加"
+```
+
+- [ ] secrets（実 URL・service role key 等）が JSON に含まれていないこと
+- [ ] `status: "published"` の状態で commit すること（prod の状態と一致）
+
+---
+
+### ワークフロー B: 既存 council_action を draft → published に変更する
+
+既に DB に `draft` で入っているアクションを公開する場合。
+
+#### Step 1 — JSON の status を変更する
+
+```json
+- "status": "draft"
++ "status": "published"
+```
+
+#### Step 2 — local dry-run → import → 確認
+
+```bash
+npx dotenv-cli -e .env -- node scripts/import-council-actions.mjs --dry-run
+pnpm db:council-actions:import
+```
+
+- [ ] local dev server で表示されること
+
+#### Step 3 — prod dry-run → import → revalidation
+
+```bash
+# dry-run
+npx dotenv-cli -e .env.prod -- node scripts/import-council-actions.mjs --dry-run
+
+# import
+pnpm db:council-actions:import:prod
+
+# revalidation（council-actions / topics / bills の 3 tag）
+# → ワークフロー A Step 8 と同じコマンド
+```
+
+- [ ] prod UI に表示されること
+- [ ] JSON を commit（`status: "published"` 状態で）
+
+---
+
+### rollback 方針
+
+| 状況 | 対応 |
+|---|---|
+| JSON の内容が間違っていた | JSON を修正 → 各環境に再 import → revalidation |
+| 公開を取り消したい（draft に戻す） | JSON の `status` を `"draft"` に変更 → 各環境に再 import → revalidation |
+| bill 照合が間違っていた | `related_bill_names` を修正 → 再 import → revalidation |
+| import スクリプトのバグで DB がおかしくなった | JSON が source of truth なので JSON を基準に再 import で上書きできる |
+
+**DB を直接 UPDATE して修正することは禁止。** 必ず JSON を修正して import し直す。
+
+---
+
+### よくある失敗パターン
+
+| 失敗 | 原因 | 対策 |
+|---|---|---|
+| `unmatched` に bill 名が出る | `related_bill_names` の文字列が `bills.name` と微妙に違う | Supabase Studio で `bills.name` をコピーして完全一致させる |
+| UI に表示されない（prod） | revalidation を忘れた / キャッシュが残っている | `council-actions` + `topics` + `bills` の 3 tag を revalidate する |
+| test 環境のデータが prod に入ってしまった | `.env.test` を使うべきところで `.env.prod` を使った | コマンド実行前に env ファイルのパスを必ず確認する |
+| `status: "draft"` のまま公開した | JSON の status を変え忘れた | dry-run ログで status を必ず確認する |
