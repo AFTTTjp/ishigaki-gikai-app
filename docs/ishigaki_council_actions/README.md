@@ -37,6 +37,14 @@ council_actions
 fuzzy matching（部分一致・類似度照合）は禁止。  
 照合に失敗した bill は `unmatched` としてログ出力され、DB には書き込まれない。
 
+### ⚠️ `council_action_bills` は destructive replace
+
+`scripts/import-council-actions.mjs` は対象 `council_action_id` の `council_action_bills` を **全 DELETE → INSERT** する（line 249-266）。JSON の `related_bill_names` に書かれていない既存関連は import 実行と同時に削除される。
+
+- prod に対しては **dry-run 必須**: `npx dotenv-cli -e .env.prod -- node scripts/import-council-actions.mjs --dry-run`
+- 親テーブル `council_actions` は UPSERT（`onConflict: slug`）なので非破壊だが、junction table の `council_action_bills` は destructive
+- 同パターンは `import-topics-json.mjs` の `topic_bills` / `topic_updates` にもある（詳細は `docs/ishigaki_gikai_topics_dev_set/README_topics_dev_set.md`）
+
 ## status の扱い
 
 | status | 意味 |
