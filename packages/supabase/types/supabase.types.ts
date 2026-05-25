@@ -317,6 +317,96 @@ export type Database = {
           },
         ]
       }
+      council_action_bills: {
+        Row: {
+          bill_id: string
+          council_action_id: string
+          created_at: string
+          id: string
+        }
+        Insert: {
+          bill_id: string
+          council_action_id: string
+          created_at?: string
+          id?: string
+        }
+        Update: {
+          bill_id?: string
+          council_action_id?: string
+          created_at?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "council_action_bills_bill_id_fkey"
+            columns: ["bill_id"]
+            isOneToOne: false
+            referencedRelation: "bills"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "council_action_bills_council_action_id_fkey"
+            columns: ["council_action_id"]
+            isOneToOne: false
+            referencedRelation: "council_actions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      council_actions: {
+        Row: {
+          action_date: string
+          created_at: string
+          description: string
+          destination_body: string | null
+          destination_name: string
+          destination_role: string | null
+          id: string
+          image_url: string | null
+          kind: string
+          official_url: string | null
+          slug: string
+          source_url: string | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          action_date: string
+          created_at?: string
+          description?: string
+          destination_body?: string | null
+          destination_name: string
+          destination_role?: string | null
+          id?: string
+          image_url?: string | null
+          kind: string
+          official_url?: string | null
+          slug: string
+          source_url?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          action_date?: string
+          created_at?: string
+          description?: string
+          destination_body?: string | null
+          destination_name?: string
+          destination_role?: string | null
+          id?: string
+          image_url?: string | null
+          kind?: string
+          official_url?: string | null
+          slug?: string
+          source_url?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       diet_sessions: {
         Row: {
           created_at: string
