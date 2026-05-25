@@ -4,6 +4,8 @@ import type { BillWithContent } from "@/features/bills/shared/types";
 export type Topic = Database["public"]["Tables"]["topics"]["Row"];
 export type TopicBill = Database["public"]["Tables"]["topic_bills"]["Row"];
 export type TopicUpdate = Database["public"]["Tables"]["topic_updates"]["Row"];
+export type CouncilAction =
+  Database["public"]["Tables"]["council_actions"]["Row"];
 
 export type TopicUpdateKind =
   | "news"
@@ -27,4 +29,5 @@ export type TopicListItem = Pick<
 export type TopicWithRelatedBills = Topic & {
   relatedBills: BillWithContent[];
   updates: TopicUpdate[];
+  councilActions: CouncilAction[];
 };
