@@ -3,13 +3,13 @@ import { getCouncilActionKindLabel } from "@/features/council-actions/shared/con
 import type { CouncilAction } from "@/features/council-actions/shared/types";
 import { formatActionDate } from "@/features/council-actions/shared/utils/format-action-date";
 
-interface TopicCouncilActionsProps {
+interface BillCouncilActionsProps {
   councilActions: CouncilAction[];
 }
 
-export function TopicCouncilActions({
+export function BillCouncilActions({
   councilActions,
-}: TopicCouncilActionsProps) {
+}: BillCouncilActionsProps) {
   if (councilActions.length === 0) {
     return null;
   }
@@ -21,7 +21,7 @@ export function TopicCouncilActions({
           議会のアクション
         </h2>
         <p className="text-sm text-slate-500">
-          このテーマに関して、議会が行った要請活動・申し入れ・意見書提出などの活動記録です。
+          この議案に関して、議会が行った要請活動・申し入れ・意見書提出などの活動記録です。
         </p>
       </div>
 

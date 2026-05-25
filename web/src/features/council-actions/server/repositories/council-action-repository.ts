@@ -33,7 +33,31 @@ export async function findPublishedCouncilActionsByTopicId(
     return [];
   }
 
-  // Step 2: bill_ids に紐づく council_action_id を取得
+  return findPublishedCouncilActionsByBillIds(billIds);
+}
+
+/**
+ * bill_id に紐づく published な council_actions を取得する。
+ *
+ * 経路: council_action_bills → council_actions
+ *
+ * status = 'draft' の council_action は除外する。
+ */
+export async function findPublishedCouncilActionsByBillId(
+  billId: string
+): Promise<CouncilAction[]> {
+  return findPublishedCouncilActionsByBillIds([billId]);
+}
+
+/**
+ * 複数の bill_ids に紐づく published な council_actions を取得する（内部共通処理）。
+ */
+async function findPublishedCouncilActionsByBillIds(
+  billIds: string[]
+): Promise<CouncilAction[]> {
+  const supabase = createAdminClient();
+
+  // Step 1: bill_ids に紐づく council_action_id を取得
   const { data: cabRows, error: cabError } = await supabase
     .from("council_action_bills")
     .select("council_action_id")
@@ -52,7 +76,7 @@ export async function findPublishedCouncilActionsByTopicId(
     return [];
   }
 
-  // Step 3: published な council_actions を取得（draft は除外）
+  // Step 2: published な council_actions を取得（draft は除外）
   const { data: actions, error: actionsError } = await supabase
     .from("council_actions")
     .select(
