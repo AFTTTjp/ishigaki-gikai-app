@@ -10,7 +10,7 @@ function printUsage() {
   pnpm revalidate --all
   pnpm revalidate topics
   pnpm revalidate bills topics
-  pnpm revalidate --url https://ishigaki-gikai-app-web.vercel.app topics
+  pnpm revalidate --url https://ishigaki-gikai-app-web-coral.vercel.app topics
 
 Options:
   --all           Revalidate all cache tags
