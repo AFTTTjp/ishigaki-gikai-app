@@ -4,7 +4,7 @@ const isDev = process.env.NODE_ENV === "development";
 
 const nextConfig: NextConfig = {
   experimental: {
-    serverSourceMaps: true,
+    serverSourceMaps: process.env.NODE_ENV !== "production",
   },
   typedRoutes: true,
   turbopack: {
