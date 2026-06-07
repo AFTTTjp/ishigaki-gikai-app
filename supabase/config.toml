@@ -102,6 +102,11 @@ enabled = true
 # The maximum file size allowed (e.g. "5MB", "500KB").
 file_size_limit = "50MiB"
 
+[storage.vector]
+# Free Tier では vector buckets が利用不可（402）のため明示的に無効化。
+# supabase config push が remote との diff を検出して失敗するのを防ぐ。
+enabled = false
+
 # Image transformation API is available to Supabase Pro plan.
 # [storage.image_transformation]
 # enabled = true
