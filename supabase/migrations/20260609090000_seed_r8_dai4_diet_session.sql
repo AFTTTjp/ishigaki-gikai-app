@@ -11,14 +11,16 @@ VALUES (
   'ishigaki-r8-dai4-teireikai',
   '2026-06-08',
   '2026-06-24',
-  false, -- is_active は直後の RPC で原子的に設定する
+  false,
   'https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html'
 )
 ON CONFLICT (slug) DO NOTHING;
 
 -- =====================================================
 -- 2. 当会期をアクティブに設定（他会期は自動で非アクティブ化）
+-- NOTE: set_active_diet_session() RPC を使わず直接 UPDATE する。
+--       prod DB では同 RPC が未適用のため呼び出せない環境があるため。
 -- =====================================================
-SELECT set_active_diet_session(id)
-FROM diet_sessions
-WHERE slug = 'ishigaki-r8-dai4-teireikai';
+UPDATE diet_sessions
+SET is_active = (slug = 'ishigaki-r8-dai4-teireikai')
+WHERE id IS NOT NULL;
