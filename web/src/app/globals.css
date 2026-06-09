@@ -80,9 +80,9 @@
   --color-mirai-border-muted: #bebcbc;
 
   /* Stance semantic colors */
-  --color-stance-for-bg: #ecfcf1;
-  --color-stance-for-badge-start: #e2f6f3;
-  --color-stance-for-badge-end: #eef6e2;
+  --color-stance-for-bg: #e8f3fb;
+  --color-stance-for-badge-start: #d6e5f2;
+  --color-stance-for-badge-end: #e8f3fb;
   --color-stance-against: #c9272a;
   --color-stance-against-light: #d23c3f;
   --color-stance-against-bg: #fff1f1;
