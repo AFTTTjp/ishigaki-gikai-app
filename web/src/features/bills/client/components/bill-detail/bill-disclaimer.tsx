@@ -14,14 +14,25 @@ export function BillDisclaimer() {
           掲載されている議案情報は、議会に提出された議案などの公開情報を基に、AFTTTがAIを活用しながら背景情報を整理したものです。主に議会提出議案を対象としています。
         </p>
         <p className="text-xs leading-relaxed text-mirai-text-note">
-          このサイトは、「チームみらい」が開発する「みらい議会」をもとに AFTTT
-          が運営する非公式サイトです。
+          このサイトは、「チームみらい」が開発する「
+          <Link
+            href={EXTERNAL_LINKS.MIRAI_GIKAI}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2"
+          >
+            みらい議会
+          </Link>
+          」をもとに AFTTT が運営する非公式サイトです。
         </p>
       </div>
 
       {/* 掲載コンテンツについての免責事項 */}
       <div className="space-y-3">
         <h3 className="text-sm font-bold text-black">免責事項</h3>
+        <p className="text-xs leading-relaxed text-mirai-text-note">
+          これは政党チームみらいが運営しているものではありません。
+        </p>
         <p className="text-xs leading-relaxed text-mirai-text-note">
           このサイトは石垣市役所、石垣市議会、およびチームみらいの公式サイトではありません。ご意見や不具合のご連絡は、運営者の
           <Link
