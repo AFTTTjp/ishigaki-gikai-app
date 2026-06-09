@@ -105,8 +105,9 @@
   --color-mirai-progress-fill: #a9e89d;
 
   /* Gradient endpoints */
-  --color-mirai-gradient-start: #64d8c6;
-  --color-mirai-gradient-end: #bcecd3;
+  --color-mirai-gradient-start: #d6e5f2;
+  --color-mirai-gradient-mid: #b7d7ef;
+  --color-mirai-gradient-end: #89c3eb;
 
   /* Topics page background gradient */
   --color-mirai-topics-bg-start: #f7f5ef;
@@ -124,8 +125,8 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #2aa693;
-  --primary-accent: #0f8472;
+  --primary: #89c3eb;
+  --primary-accent: #1a6fa8;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -240,14 +241,19 @@
 @layer components {
   .bg-mirai-gradient {
     background-image: linear-gradient(
-      to bottom right,
-      var(--color-mirai-gradient-start),
-      var(--color-mirai-gradient-end)
+      135deg,
+      var(--color-mirai-gradient-start) 0%,
+      var(--color-mirai-gradient-mid) 50%,
+      var(--color-mirai-gradient-end) 100%
     );
   }
 
   .bg-mirai-light-gradient {
-    background-image: linear-gradient(to bottom, #e2f6f3, #eef6e2);
+    background-image: linear-gradient(
+      to bottom,
+      var(--color-mirai-gradient-start),
+      #eef4fa
+    );
   }
 
   .bg-mirai-white-fade {
