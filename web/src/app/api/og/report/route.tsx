@@ -168,7 +168,7 @@ export async function GET(request: Request) {
               display: "flex",
               fontSize: 32,
               fontWeight: 800,
-              color: "#4f7f98",
+              color: "#0f8472",
               lineHeight: 1.5,
             }}
           >
