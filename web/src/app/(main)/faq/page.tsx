@@ -34,8 +34,16 @@ export default function FaqPage() {
             を活用して背景や論点をわかりやすくまとめています。
           </LegalParagraph>
           <LegalParagraph>
-            このサイトは、「チームみらい」が開発する「みらい議会」をもとに AFTTT
-            が運営する非公式サイトです。
+            このサイトは、「チームみらい」が開発する「
+            <Link
+              href={EXTERNAL_LINKS.MIRAI_GIKAI}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2"
+            >
+              みらい議会
+            </Link>
+            」をもとに AFTTT が運営する非公式サイトです。
           </LegalParagraph>
         </section>
 

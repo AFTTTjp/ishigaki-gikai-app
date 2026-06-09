@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   icons: {
     icon: isDev
       ? "/icons/pwa/icon_dev_192_v3.png"
-      : "/icons/pwa/icon_android_192.png",
+      : "/icons/pwa/favicon-blue.svg",
     apple: "/icons/pwa/icon_ios.png",
   },
   manifest: "/manifest.json",

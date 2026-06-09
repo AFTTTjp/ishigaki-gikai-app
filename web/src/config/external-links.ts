@@ -3,6 +3,7 @@
  */
 export const EXTERNAL_LINKS = {
   AFTTT: "https://afttt.jp/",
+  MIRAI_GIKAI: "https://gikai.team-mir.ai/",
   AFTTT_INSTAGRAM: "https://www.instagram.com/atsushi_fukuzato/",
   OPERATOR_X: "https://x.com/AtsushiFukuzato",
   REPORT: "https://forms.gle/wJXXMt6cv2ZdiCgg6",

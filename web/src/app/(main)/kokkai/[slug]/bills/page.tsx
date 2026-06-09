@@ -46,7 +46,7 @@ export default async function DietSessionBillsPage({ params }: Props) {
           alt={`${session.name}の議案一覧`}
           fill
           priority
-          className="object-cover"
+          className="object-cover object-bottom"
           sizes="100vw"
           quality={85}
         />
