@@ -10,15 +10,15 @@ import { Container } from "@/components/layouts/container";
 import { EXTERNAL_LINKS } from "@/config/external-links";
 
 export const metadata: Metadata = {
-  title: "利用規約 | みらい議会 石垣市議会版",
-  description: "みらい議会 石垣市議会版の利用規約",
+  title: "利用規約 | みらい議会@石垣市",
+  description: "みらい議会@石垣市の利用規約",
 };
 
 export default function TermsPage() {
   return (
     <LegalPageLayout
       title="利用規約"
-      description="みらい議会 石垣市議会版をご利用いただく際の基本的なルールを定めています。"
+      description="みらい議会@石垣市をご利用いただく際の基本的なルールを定めています。"
       className="pt-6 md:pt-12"
     >
       <Container className="space-y-8">

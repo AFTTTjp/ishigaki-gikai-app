@@ -7,6 +7,7 @@ import { routes } from "@/lib/routes";
 import { getDietSessionBySlug } from "@/features/diet-sessions/server/loaders/get-diet-session-by-slug";
 import { getBillsByDietSession } from "@/features/bills/server/loaders/get-bills-by-diet-session";
 import { DietSessionBillList } from "@/features/diet-sessions/client/components/diet-session-bill-list";
+import { DietSessionOverviewSection } from "@/features/diet-sessions/client/components/diet-session-overview-section";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -50,6 +51,9 @@ export default async function DietSessionBillsPage({ params }: Props) {
           quality={85}
         />
       </div>
+
+      {/* 今会期のテーマセクション（全件表示） */}
+      <DietSessionOverviewSection session={session} showAll />
 
       <Container className="py-8">
         <DietSessionBillList session={session} bills={bills} />

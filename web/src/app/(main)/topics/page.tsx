@@ -4,7 +4,7 @@ import { TopicCard } from "@/features/topics/server/components/topic-card";
 import { getTopics } from "@/features/topics/server/loaders/get-topics";
 
 export const metadata: Metadata = {
-  title: "Topics | みらい議会 石垣市議会版",
+  title: "Topics | みらい議会@石垣市",
   description:
     "石垣市議会で扱われるテーマごとに、背景情報と関連議案を整理して確認できます。",
 };

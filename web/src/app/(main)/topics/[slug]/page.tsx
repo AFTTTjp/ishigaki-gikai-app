@@ -35,7 +35,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${topic.title} | Topics | みらい議会 石垣市議会版`,
+    title: `${topic.title} | Topics | みらい議会@石垣市`,
     description: topic.description,
   };
 }

@@ -14,6 +14,7 @@ import type { BillWithContent } from "@/features/bills/shared/types";
 import { getBillDisplayTitle } from "@/features/bills/shared/utils/bill-title";
 import { HomeChatClient } from "@/features/chat/client/components/home-chat-client";
 import { CurrentDietSession } from "@/features/diet-sessions/client/components/current-diet-session";
+import { DietSessionOverviewSection } from "@/features/diet-sessions/client/components/diet-session-overview-section";
 import { getActiveDietSession } from "@/features/diet-sessions/server/loaders/get-active-diet-session";
 import { getCurrentDietSession } from "@/features/diet-sessions/server/loaders/get-current-diet-session";
 import { getAllPreviousDietSessions } from "@/features/diet-sessions/server/loaders/get-previous-diet-session";
@@ -57,6 +58,9 @@ export default async function Home() {
 
       {/* 本日の議会セクション */}
       <CurrentDietSession session={currentSession} />
+
+      {/* 今会期のテーマセクション */}
+      <DietSessionOverviewSection session={currentSession} />
 
       {topics.length > 0 && (
         <div className="bg-mirai-topics-section py-10">

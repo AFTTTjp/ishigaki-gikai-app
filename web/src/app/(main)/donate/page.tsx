@@ -5,7 +5,7 @@ import { EXTERNAL_LINKS } from "@/config/external-links";
 import { routes } from "@/lib/routes";
 
 export const metadata: Metadata = {
-  title: "AFTTT のご案内 | みらい議会 石垣市議会版",
+  title: "AFTTT のご案内 | みらい議会@石垣市",
   description: "本サイトと AFTTT の関係についてのご案内",
 };
 
@@ -22,7 +22,7 @@ export default function DonatePage() {
               AFTTT のご案内
             </h1>
             <p className="max-w-3xl text-[15px] leading-8 text-slate-700">
-              みらい議会 石垣市議会版は、AFTTT
+              みらい議会@石垣市は、AFTTT
               が運営する民間の情報提供サイトです。このサイト上では寄付・支援の受付は行っていません。
             </p>
           </div>

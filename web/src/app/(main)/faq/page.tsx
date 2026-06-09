@@ -10,7 +10,7 @@ import {
 } from "@/components/layouts/legal-page-layout";
 
 export const metadata: Metadata = {
-  title: "よくあるご質問 | みらい議会 石垣市議会版",
+  title: "よくあるご質問 | みらい議会@石垣市",
   description: "石垣市議会版みらい議会についてのよくあるご質問",
 };
 
@@ -27,9 +27,7 @@ export default function FaqPage() {
         </LegalParagraph>
 
         <section className="space-y-4">
-          <LegalSectionTitle>
-            みらい議会 石垣市議会版とは何ですか？
-          </LegalSectionTitle>
+          <LegalSectionTitle>みらい議会@石垣市とは何ですか？</LegalSectionTitle>
           <LegalParagraph>
             石垣市議会に提出された議案や関連情報を、市民のみなさんが読みやすい形で確認できるように整理したサイトです。AFTTT
             が公開情報をもとに構成し、一部で AI

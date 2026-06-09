@@ -29,7 +29,7 @@ export function HeaderClient({ difficultyLevel }: HeaderClientProps) {
               className="flex items-center"
               aria-label="ホーム"
             >
-              <div className="text-xl font-bold">みらい議会 石垣市議会版</div>
+              <div className="text-xl font-bold">みらい議会@石垣市</div>
             </Link>
           </div>
 
