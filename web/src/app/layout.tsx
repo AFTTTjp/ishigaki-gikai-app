@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   description: siteDescription,
   keywords: [siteName, "議案", "政治", "日本", "政策", "解説", "チームみらい"],
   icons: {
-    icon: isDev ? "/icons/pwa/icon_dev_192_v3.png" : "/icons/pwa/favicom.png",
+    icon: isDev ? "/icons/pwa/icon_dev_192_v3.png" : "/icons/pwa/favicon.png",
     apple: "/icons/pwa/icon_ios.png",
   },
   manifest: "/manifest.json",
