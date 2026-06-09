@@ -110,6 +110,9 @@ export async function GET(request: Request) {
       }
     : {};
 
+  // OG画像レンダラー（Satori）はCSS変数非対応のため、globals.cssの
+  // --color-mirai-gradient-start / --color-mirai-gradient-end / --primary-accent
+  // の値を直接記載しています。globals.cssを変更した場合はここも同期すること。
   return new ImageResponse(
     <div
       style={{
@@ -119,7 +122,7 @@ export async function GET(request: Request) {
         alignItems: "center",
         justifyContent: "center",
         backgroundImage:
-          "linear-gradient(177deg, rgb(226, 246, 243) 0%, rgb(238, 246, 226) 100%)",
+          "linear-gradient(177deg, rgb(214, 229, 242) 0%, rgb(237, 245, 252) 100%)",
       }}
     >
       {/* グラデーションborder用ラッパー */}
@@ -130,7 +133,7 @@ export async function GET(request: Request) {
           height: 560,
           borderRadius: 30,
           backgroundImage:
-            "linear-gradient(-30deg, rgb(188, 236, 211) 1%, rgb(100, 216, 198) 99%)",
+            "linear-gradient(-30deg, rgb(183, 215, 239) 1%, rgb(137, 195, 235) 99%)",
           padding: 6,
           position: "relative",
         }}
@@ -168,7 +171,7 @@ export async function GET(request: Request) {
               display: "flex",
               fontSize: 32,
               fontWeight: 800,
-              color: "#0f8472",
+              color: "#1a6fa8",
               lineHeight: 1.5,
             }}
           >
@@ -192,7 +195,7 @@ export async function GET(request: Request) {
             borderBottomLeftRadius: 30,
             borderTopRightRadius: 30,
             backgroundImage:
-              "linear-gradient(-30deg, rgb(188, 236, 211) 1%, rgb(100, 216, 198) 99%)",
+              "linear-gradient(-30deg, rgb(183, 215, 239) 1%, rgb(137, 195, 235) 99%)",
           }}
         >
           <span
