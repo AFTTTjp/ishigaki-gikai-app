@@ -127,7 +127,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${member.name} | 議員名簿 | みらい議会 石垣市議会版`,
+    title: `${member.name} | 議員名簿 | みらい議会@石垣市`,
     description: `${member.name}議員の所属政党、会派、当選回数などの情報です。`,
   };
 }

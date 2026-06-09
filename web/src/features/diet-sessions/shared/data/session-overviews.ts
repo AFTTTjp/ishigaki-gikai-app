@@ -13,6 +13,8 @@ export type SessionScheduleItem = {
 export type SessionOverviewData = {
   summary: string;
   categories: SessionCategory[];
+  /** トップページでの表示件数上限。省略時は全件表示 */
+  topPageCount?: number;
   schedule: SessionScheduleItem[];
   officialUrl: string;
 };
@@ -21,11 +23,11 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
   "ishigaki-r8-dai4-teireikai": {
     summary:
       "令和8年第4回石垣市議会定例会では、宿泊税の使い道に関わる基金条例、火葬場の設置・管理、母子・父子家庭等の医療費助成、下水道や市営住宅に関する条例改正、一般会計補正予算などが審査されます。\n\nまた、学校で使うGIGA端末、救助工作車、高規格救急自動車の取得、基隆市との国際友好都市提携、サンゴレンジャープラスの石垣市事業化を求める請願なども扱われます。",
+    topPageCount: 6,
     categories: [
       {
         title: "宿泊税・観光",
-        description:
-          "宿泊税の使い道に充てるための基金を設置する条例が審査されます。",
+        description: "宿泊税を財源とした基金の設置条例が審査されます。",
         billNumbers: ["議案第36号"],
       },
       {
@@ -71,7 +73,7 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
       {
         title: "ハラスメント第三者委員会",
         description:
-          "ハラスメント調査に関する第三者委員会の設置条例の一部改正が審査されます。",
+          "ハラスメント調査のための第三者委員会に関する条例の一部改正が審査されます。",
         billNumbers: ["議案第52号"],
       },
       {

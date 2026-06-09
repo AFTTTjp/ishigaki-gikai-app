@@ -52,8 +52,8 @@ export default async function DietSessionBillsPage({ params }: Props) {
         />
       </div>
 
-      {/* 今会期のテーマセクション */}
-      <DietSessionOverviewSection session={session} />
+      {/* 今会期のテーマセクション（全件表示） */}
+      <DietSessionOverviewSection session={session} showAll />
 
       <Container className="py-8">
         <DietSessionBillList session={session} bills={bills} />

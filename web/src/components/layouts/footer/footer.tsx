@@ -34,7 +34,7 @@ function FooterLogoSection() {
         aria-label="みらい議会 トップページ"
         className="text-xl font-bold"
       >
-        みらい議会 石垣市議会版
+        みらい議会@石垣市
       </Link>
     </div>
   );

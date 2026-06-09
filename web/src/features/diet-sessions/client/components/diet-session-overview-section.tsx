@@ -7,13 +7,31 @@ import type { DietSession } from "../../shared/types";
 
 type Props = {
   session: DietSession | null;
+  /**
+   * true のとき全カテゴリを表示。
+   * false（デフォルト）のとき overview.topPageCount 件に絞る。
+   */
+  showAll?: boolean;
 };
 
-export function DietSessionOverviewSection({ session }: Props) {
+export function DietSessionOverviewSection({
+  session,
+  showAll = false,
+}: Props) {
   if (!session?.slug) return null;
 
   const overview = SESSION_OVERVIEWS[session.slug];
   if (!overview) return null;
+
+  const categoryLimit =
+    !showAll && overview.topPageCount !== undefined
+      ? overview.topPageCount
+      : undefined;
+  const displayedCategories = categoryLimit
+    ? overview.categories.slice(0, categoryLimit)
+    : overview.categories;
+  const hasMore =
+    categoryLimit !== undefined && overview.categories.length > categoryLimit;
 
   return (
     <section className="bg-white py-8 border-b border-mirai-border">
@@ -42,7 +60,7 @@ export function DietSessionOverviewSection({ session }: Props) {
 
           {/* カテゴリグリッド */}
           <div className="grid grid-cols-1 sm:grid-cols-2 pc:grid-cols-3 gap-3">
-            {overview.categories.map((category) => (
+            {displayedCategories.map((category) => (
               <div
                 key={category.title}
                 className="bg-mirai-surface rounded-lg p-4 flex flex-col gap-2"
@@ -68,6 +86,19 @@ export function DietSessionOverviewSection({ session }: Props) {
               </div>
             ))}
           </div>
+
+          {/* 件数制限時：全件リンク */}
+          {hasMore && (
+            <div className="text-center">
+              <Link
+                href={routes.kokkaiSessionBills(session.slug)}
+                className="text-sm text-primary hover:text-primary-accent transition-colors"
+              >
+                他 {overview.categories.length - (categoryLimit ?? 0)}{" "}
+                件のテーマを見る →
+              </Link>
+            </div>
+          )}
 
           {/* スケジュール + 議案一覧リンク */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-t border-mirai-border pt-4">

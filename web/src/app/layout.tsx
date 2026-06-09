@@ -18,15 +18,15 @@ const lexendGiga = Lexend_Giga({
 });
 
 const isDev = process.env.NODE_ENV === "development";
-const siteTitle = "みらい議会｜石垣市議会版";
+const siteTitle = "みらい議会@石垣市";
 const siteDescription =
   "石垣市議会で今どんな議案が検討されているか、わかりやすく伝えるプラットフォーム";
-const siteName = "みらい議会｜石垣市議会版";
+const siteName = "みらい議会@石垣市";
 const ogImage = {
   url: "/ogp-ishigaki.png",
   width: 1536,
   height: 1024,
-  alt: "みらい議会 石垣市議会版のOGPイメージ",
+  alt: "みらい議会@石垣市のOGPイメージ",
 };
 
 export const metadata: Metadata = {
@@ -73,7 +73,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  themeColor: "#2aa693",
+  themeColor: "#4bb8c8",
 };
 
 export default function RootLayout({
@@ -86,7 +86,7 @@ export default function RootLayout({
       <body
         className={`${notoSansJP.variable} ${lexendGiga.variable} font-sans antialiased bg-mirai-surface-light`}
       >
-        <NextTopLoader showSpinner={false} color="#2aa693" />
+        <NextTopLoader showSpinner={false} color="#4bb8c8" />
         {children}
       </body>
     </html>

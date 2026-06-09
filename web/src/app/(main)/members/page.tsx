@@ -5,7 +5,7 @@ import { PageChatClient } from "@/features/chat/client/components/page-chat-clie
 import { getMembers } from "@/features/members/server/repositories/member-repository";
 
 export const metadata = {
-  title: "議員名簿 | みらい議会 石垣市議会版",
+  title: "議員名簿 | みらい議会@石垣市",
 };
 
 export default async function MembersPage() {
