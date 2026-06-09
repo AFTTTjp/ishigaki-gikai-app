@@ -72,7 +72,7 @@ export function InterviewChatInput({
           className="flex-shrink-0 w-10 h-10 disabled:opacity-50"
         >
           <Image
-            src="/icons/send-button-icon.svg"
+            src="/icons/send-button-icon-v2.svg"
             alt="送信"
             width={40}
             height={40}
