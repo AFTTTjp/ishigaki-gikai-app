@@ -104,10 +104,10 @@
   --color-mirai-progress-track: #d9d9d9;
   --color-mirai-progress-fill: #a9e89d;
 
-  /* Gradient endpoints — 石垣ブランドカラー（海の青緑） */
-  --color-mirai-gradient-start: #6fd4c3;
-  --color-mirai-gradient-mid: #4bb8c8;
-  --color-mirai-gradient-end: #2d7fa3;
+  /* Gradient endpoints — 石垣ブランドカラー（ダスティブルー） */
+  --color-mirai-gradient-start: #a8cfd8;
+  --color-mirai-gradient-mid: #6e9fb6;
+  --color-mirai-gradient-end: #4f7f98;
 
   /* Topics page background gradient */
   --color-mirai-topics-bg-start: #f7f5ef;
@@ -125,8 +125,8 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #4bb8c8;
-  --primary-accent: #2d7fa3;
+  --primary: #6e9fb6;
+  --primary-accent: #4f7f98;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
