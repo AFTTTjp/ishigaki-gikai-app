@@ -6,7 +6,7 @@ export function Hero() {
   return (
     <div className="relative w-full h-[80vh] min-h-[400px] md:h-[70vh]">
       <Image
-        src="/img/hero_background_ishigakicity.jpg"
+        src="/img/hero_background_ishigakicity_blue.png"
         alt="石垣市議会"
         fill
         priority
