@@ -668,7 +668,7 @@ export async function findFeaturedBillsWithContents(
         name,
         slug
       ),
-      bill_contents!inner (
+      bill_contents (
         id,
         bill_id,
         title,
@@ -698,6 +698,29 @@ export async function findFeaturedBillsWithContents(
 
   if (error) {
     console.error("Failed to fetch featured bills:", error);
+    return [];
+  }
+
+  return data ?? [];
+}
+
+/**
+ * 指定の議案IDリストに対して bill_contents を取得（フォールバック用）
+ */
+export async function findBillContentsByBillIds(
+  billIds: string[],
+  difficultyLevel: DifficultyLevelEnum
+) {
+  if (billIds.length === 0) return [];
+  const supabase = createAdminClient();
+  const { data, error } = await supabase
+    .from("bill_contents")
+    .select("*")
+    .in("bill_id", billIds)
+    .eq("difficulty_level", difficultyLevel);
+
+  if (error) {
+    console.error("Failed to fetch bill contents by bill IDs:", error);
     return [];
   }
 

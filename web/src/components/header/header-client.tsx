@@ -5,7 +5,10 @@ import { usePathname } from "next/navigation";
 import { DifficultySelector } from "@/features/bill-difficulty/client/components/difficulty-selector";
 import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
 import { InterviewHeaderActions } from "@/features/interview-session/client/components/interview-header-actions";
-import { isInterviewPage, isMainPage } from "@/lib/page-layout-utils";
+import {
+  isDifficultyTogglePage,
+  isInterviewPage,
+} from "@/lib/page-layout-utils";
 import { routes } from "@/lib/routes";
 import { HamburgerMenu } from "./hamburger-menu";
 
@@ -15,7 +18,7 @@ interface HeaderClientProps {
 
 export function HeaderClient({ difficultyLevel }: HeaderClientProps) {
   const pathname = usePathname();
-  const showDifficultySelector = isMainPage(pathname);
+  const showDifficultySelector = isDifficultyTogglePage(pathname);
   const showInterviewActions = isInterviewPage(pathname);
 
   return (

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   extractBillIdFromPath,
+  isDifficultyTogglePage,
   isInterviewPage,
   isInterviewSection,
   isMainPage,
@@ -43,6 +44,32 @@ describe("isMainPage", () => {
 
   it("returns true for the members page", () => {
     expect(isMainPage("/members")).toBe(true);
+  });
+});
+
+describe("isDifficultyTogglePage", () => {
+  it("returns true for all isMainPage paths", () => {
+    expect(isDifficultyTogglePage("/")).toBe(true);
+    expect(isDifficultyTogglePage("/bills/abc-123")).toBe(true);
+    expect(isDifficultyTogglePage("/topics/some-slug")).toBe(true);
+    expect(isDifficultyTogglePage("/members")).toBe(true);
+  });
+
+  it("returns true for /kokkai/[slug]/bills", () => {
+    expect(
+      isDifficultyTogglePage("/kokkai/ishigaki-r8-dai4-teireikai/bills")
+    ).toBe(true);
+  });
+
+  it("returns false for /kokkai/[slug] (not the bills sub-page)", () => {
+    expect(isDifficultyTogglePage("/kokkai/ishigaki-r8-dai4-teireikai")).toBe(
+      false
+    );
+  });
+
+  it("returns false for unrelated paths", () => {
+    expect(isDifficultyTogglePage("/about")).toBe(false);
+    expect(isDifficultyTogglePage("/bills")).toBe(false);
   });
 });
 
