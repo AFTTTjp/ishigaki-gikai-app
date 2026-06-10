@@ -6,6 +6,17 @@
  * - チャットサイドバー用のオフセットレイアウトを使用
  */
 
+/**
+ * DifficultySelectorを表示するページかどうかを判定
+ * isMainPage に加えて /kokkai/[slug]/bills も含む
+ */
+export function isDifficultyTogglePage(pathname: string): boolean {
+  if (isMainPage(pathname)) return true;
+  // 会議議案一覧ページ（/kokkai/[slug]/bills）
+  if (/\/kokkai\/[^/]+\/bills$/.test(pathname)) return true;
+  return false;
+}
+
 /** メインページ（TOP、議案詳細）かどうかを判定 */
 export function isMainPage(pathname: string): boolean {
   // トップページ
