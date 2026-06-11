@@ -27,7 +27,7 @@ export function BillsByTagSection({ billsByTag }: BillsByTagSectionProps) {
             {/* タグヘッダー */}
             <div className="flex flex-col gap-1.5">
               <h2 className="flex items-center gap-1.5 text-[22px] font-bold leading-[1.48] text-black">
-                {tag.label}
+                <span>{tag.label}</span>
                 {tagIcon ? (
                   <span aria-hidden="true" className="text-[24px] leading-none">
                     {tagIcon}
