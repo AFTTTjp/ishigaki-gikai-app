@@ -256,6 +256,7 @@ async function upsertTopic(supabase, topic, dryRun) {
     title: topic.topic_title,
     description: topic.description,
     content: topic.content,
+    content_hard: topic.content_hard ?? null,
     status: mapTopicStatusToDbStatus(topic.topic_status),
     current_status_label: topic.current_status.label,
     current_status_note: topic.current_status.note,

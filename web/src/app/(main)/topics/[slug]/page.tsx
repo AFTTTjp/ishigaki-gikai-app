@@ -53,6 +53,11 @@ export default async function TopicDetailPage({
     notFound();
   }
 
+  const displayContent =
+    currentDifficulty === "hard" && topic.content_hard
+      ? topic.content_hard
+      : topic.content;
+
   return (
     <div className="container mx-auto max-w-4xl pb-32 md:pb-8">
       {/* ① ヘッダー（概要） */}
@@ -103,12 +108,12 @@ export default async function TopicDetailPage({
           <TopicTimeline updates={topic.updates} />
 
           {/* ⑥ 現時点の整理 */}
-          {topic.content ? (
+          {displayContent ? (
             <section className="space-y-4">
               <h2 className="text-[22px] font-bold text-slate-900">
                 現時点の整理
               </h2>
-              <TopicContent content={topic.content} />
+              <TopicContent content={displayContent} />
             </section>
           ) : null}
 

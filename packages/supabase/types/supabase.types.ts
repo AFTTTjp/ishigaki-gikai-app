@@ -1212,6 +1212,7 @@ export type Database = {
       topics: {
         Row: {
           content: string
+          content_hard: string | null
           created_at: string
           current_status_label: string | null
           current_status_note: string | null
@@ -1225,6 +1226,7 @@ export type Database = {
         }
         Insert: {
           content?: string
+          content_hard?: string | null
           created_at?: string
           current_status_label?: string | null
           current_status_note?: string | null
@@ -1238,6 +1240,7 @@ export type Database = {
         }
         Update: {
           content?: string
+          content_hard?: string | null
           created_at?: string
           current_status_label?: string | null
           current_status_note?: string | null
