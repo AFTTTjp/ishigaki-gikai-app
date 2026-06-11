@@ -20,6 +20,7 @@ export function Footer() {
         <FooterLogoSection />
         <FooterPrimaryLinks />
         <FooterPolicies />
+        <FooterDisclaimer />
         <FooterCopyright />
       </div>
     </footer>
@@ -83,10 +84,18 @@ function FooterPolicies() {
   );
 }
 
+function FooterDisclaimer() {
+  return (
+    <p className="mb-5 text-center text-xs text-mirai-text-subtle">
+      これは政党チームみらいが運営しているものではありません
+    </p>
+  );
+}
+
 function FooterCopyright() {
   return (
     <div className="text-center text-sm font-medium text-slate-800">
-      © 2025 Team Mirai. Built by AFTTT
+      © 2026 みらい議会＠石垣市
     </div>
   );
 }
