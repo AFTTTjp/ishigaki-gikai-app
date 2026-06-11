@@ -20,7 +20,6 @@ export function Footer() {
         <FooterLogoSection />
         <FooterPrimaryLinks />
         <FooterPolicies />
-        <FooterDisclaimer />
         <FooterCopyright />
       </div>
     </footer>
@@ -81,14 +80,6 @@ function FooterPolicies() {
         ))}
       </ul>
     </div>
-  );
-}
-
-function FooterDisclaimer() {
-  return (
-    <p className="mb-5 text-center text-xs text-mirai-text-subtle">
-      これは政党チームみらいが運営しているものではありません
-    </p>
   );
 }
 
