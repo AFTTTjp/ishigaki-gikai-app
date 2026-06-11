@@ -24,6 +24,11 @@ export const primaryLinks: FooterLink[] = [
     external: true,
   },
   {
+    label: "みらい議会（全国版）",
+    href: EXTERNAL_LINKS.MIRAI_GIKAI,
+    external: true,
+  },
+  {
     label: "AFTTTとは",
     href: EXTERNAL_LINKS.AFTTT,
     external: true,
