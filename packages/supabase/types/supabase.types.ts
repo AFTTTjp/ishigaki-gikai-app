@@ -407,6 +407,107 @@ export type Database = {
         }
         Relationships: []
       }
+      general_question_items: {
+        Row: {
+          created_at: string
+          general_question_id: string
+          id: string
+          item_number: number
+          sub_items: string[]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          general_question_id: string
+          id?: string
+          item_number: number
+          sub_items?: string[]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          general_question_id?: string
+          id?: string
+          item_number?: number
+          sub_items?: string[]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "general_question_items_general_question_id_fkey"
+            columns: ["general_question_id"]
+            isOneToOne: false
+            referencedRelation: "general_questions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      general_questions: {
+        Row: {
+          created_at: string
+          diet_session_id: string
+          id: string
+          member_id: string
+          member_name_raw: string | null
+          question_date: string
+          question_number: number
+          seat_type: string
+          slug: string
+          source_kind: string
+          status: string
+          updated_at: string
+          verified_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          diet_session_id: string
+          id?: string
+          member_id: string
+          member_name_raw?: string | null
+          question_date: string
+          question_number: number
+          seat_type: string
+          slug: string
+          source_kind?: string
+          status?: string
+          updated_at?: string
+          verified_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          diet_session_id?: string
+          id?: string
+          member_id?: string
+          member_name_raw?: string | null
+          question_date?: string
+          question_number?: number
+          seat_type?: string
+          slug?: string
+          source_kind?: string
+          status?: string
+          updated_at?: string
+          verified_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "general_questions_diet_session_id_fkey"
+            columns: ["diet_session_id"]
+            isOneToOne: false
+            referencedRelation: "diet_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "general_questions_member_id_fkey"
+            columns: ["member_id"]
+            isOneToOne: false
+            referencedRelation: "members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       diet_sessions: {
         Row: {
           created_at: string
