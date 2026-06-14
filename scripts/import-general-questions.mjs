@@ -20,6 +20,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
 
 const DRY_RUN = process.argv.includes("--dry-run");
+const PROD_CONFIRMED = process.argv.includes("--prod");
 
 // -------------------------------------------------------------------------
 // 環境変数チェック
@@ -43,9 +44,9 @@ console.log("=".repeat(60));
 console.log(`モード    : ${DRY_RUN ? "DRY RUN（挿入なし）" : "実行"}`);
 console.log(`接続先   : ${isLocal ? "ローカル Supabase" : "リモート（本番 or ステージング）"}`);
 
-if (isProd && !DRY_RUN) {
-  console.error("\n⚠️  警告: リモート（本番環境の可能性）への実挿入は現時点では許可されていません。");
-  console.error("   prod import は別途確認を取ってから実行してください。");
+if (isProd && !DRY_RUN && !PROD_CONFIRMED) {
+  console.error("\n⚠️  警告: リモート（本番環境の可能性）への実挿入には --prod フラグが必要です。");
+  console.error("   例: node scripts/import-general-questions.mjs --prod");
   process.exit(1);
 }
 
