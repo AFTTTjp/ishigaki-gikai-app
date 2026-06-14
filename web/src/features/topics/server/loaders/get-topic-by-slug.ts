@@ -28,6 +28,11 @@ const _getCachedTopicBySlug = unstable_cache(
   ["topic-detail"],
   {
     revalidate: 600,
-    tags: [CACHE_TAGS.TOPICS, CACHE_TAGS.BILLS, CACHE_TAGS.COUNCIL_ACTIONS],
+    tags: [
+      CACHE_TAGS.TOPICS,
+      CACHE_TAGS.BILLS,
+      CACHE_TAGS.COUNCIL_ACTIONS,
+      CACHE_TAGS.GENERAL_QUESTIONS,
+    ],
   }
 );

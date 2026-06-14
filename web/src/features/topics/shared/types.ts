@@ -1,6 +1,7 @@
 import type { Database } from "@mirai-gikai/supabase";
 import type { BillWithContent } from "@/features/bills/shared/types";
 import type { CouncilAction } from "@/features/council-actions/shared/types";
+import type { GeneralQuestion } from "@/features/general-questions/shared/types";
 export type { CouncilAction };
 
 export type Topic = Database["public"]["Tables"]["topics"]["Row"];
@@ -26,8 +27,13 @@ export type TopicListItem = Pick<
   relatedBillCount: number;
 };
 
+export type GeneralQuestionForTopic = GeneralQuestion & {
+  diet_session: { slug: string; name: string };
+};
+
 export type TopicWithRelatedBills = Topic & {
   relatedBills: BillWithContent[];
+  relatedGeneralQuestions: GeneralQuestionForTopic[];
   updates: TopicUpdate[];
   councilActions: CouncilAction[];
 };

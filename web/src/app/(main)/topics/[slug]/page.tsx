@@ -6,10 +6,11 @@ import { Container } from "@/components/layouts/container";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { PageChatClient } from "@/features/chat/client/components/page-chat-client";
 import { TopicContent } from "@/features/topics/server/components/topic-content";
+import { TopicCouncilActions } from "@/features/topics/server/components/topic-council-actions";
 import { TopicDecisions } from "@/features/topics/server/components/topic-decisions";
 import { TopicDiscussionPoints } from "@/features/topics/server/components/topic-discussion-points";
-import { TopicCouncilActions } from "@/features/topics/server/components/topic-council-actions";
 import { TopicRelatedBills } from "@/features/topics/server/components/topic-related-bills";
+import { TopicRelatedGeneralQuestions } from "@/features/topics/server/components/topic-related-general-questions";
 import { TopicRelatedLinks } from "@/features/topics/server/components/topic-related-links";
 import { TopicStatusCard } from "@/features/topics/server/components/topic-status-card";
 import { TopicTimeline } from "@/features/topics/server/components/topic-timeline";
@@ -123,12 +124,17 @@ export default async function TopicDetailPage({
           {/* ⑧ 関連議案一覧 */}
           <TopicRelatedBills bills={topic.relatedBills} />
 
-          {/* ⑨ 関連情報・資料 */}
+          {/* ⑨ 関連する一般質問 */}
+          <TopicRelatedGeneralQuestions
+            questions={topic.relatedGeneralQuestions}
+          />
+
+          {/* ⑩ 関連情報・資料 */}
           <TopicRelatedLinks updates={topic.updates} />
         </div>
       </Container>
 
-      {/* ⑩ チャット */}
+      {/* ⑪ チャット */}
       <PageChatClient
         currentDifficulty={currentDifficulty}
         items={[
