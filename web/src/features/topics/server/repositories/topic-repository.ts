@@ -3,8 +3,12 @@ import { createAdminClient, type Database } from "@mirai-gikai/supabase";
 import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
 import { normalizeDietSession } from "@/features/bills/server/repositories/bill-repository";
 import type { BillWithContent } from "@/features/bills/shared/types";
-import type { TopicListItem, TopicWithRelatedBills } from "../../shared/types";
 import { findPublishedCouncilActionsByTopicId } from "@/features/council-actions/server/repositories/council-action-repository";
+import type {
+  GeneralQuestionForTopic,
+  TopicListItem,
+  TopicWithRelatedBills,
+} from "../../shared/types";
 
 type TopicRow = Database["public"]["Tables"]["topics"]["Row"];
 
@@ -158,6 +162,70 @@ export async function findRelatedPublishedBillsByTopicId(
   });
 }
 
+export async function findRelatedPublishedGeneralQuestionsByTopicId(
+  topicId: string
+): Promise<GeneralQuestionForTopic[]> {
+  const supabase = createAdminClient();
+
+  const { data: tgqRows, error: tgqError } = await supabase
+    .from("topic_general_questions")
+    .select("general_question_id")
+    .eq("topic_id", topicId);
+
+  if (tgqError) {
+    throw new Error(
+      `Failed to fetch topic general question relations: ${tgqError.message}`
+    );
+  }
+
+  const gqIds = [...new Set((tgqRows ?? []).map((r) => r.general_question_id))];
+  if (gqIds.length === 0) {
+    return [];
+  }
+
+  const { data, error } = await supabase
+    .from("general_questions")
+    .select(
+      `
+      *,
+      diet_session:diet_sessions ( slug, name ),
+      items:general_question_items (
+        id,
+        general_question_id,
+        item_number,
+        title,
+        sub_items
+      )
+    `
+    )
+    .in("id", gqIds)
+    .eq("status", "published")
+    .order("question_number", { ascending: true });
+
+  if (error) {
+    throw new Error(
+      `Failed to fetch related general questions: ${error.message}`
+    );
+  }
+
+  return (data ?? []).flatMap((row) => {
+    const { diet_session, items, ...rest } = row;
+    const session = Array.isArray(diet_session)
+      ? diet_session[0]
+      : diet_session;
+    if (!session) {
+      return [];
+    }
+    return [
+      {
+        ...rest,
+        diet_session: { slug: session.slug, name: session.name },
+        items: (items ?? []).sort((a, b) => a.item_number - b.item_number),
+      } as GeneralQuestionForTopic,
+    ];
+  });
+}
+
 export async function findActiveTopicWithRelatedBills(
   slug: string,
   difficultyLevel: DifficultyLevelEnum
@@ -168,15 +236,17 @@ export async function findActiveTopicWithRelatedBills(
   }
 
   const supabase = createAdminClient();
-  const [relatedBills, councilActions, updatesResult] = await Promise.all([
-    findRelatedPublishedBillsByTopicId(topic.id, difficultyLevel),
-    findPublishedCouncilActionsByTopicId(topic.id),
-    supabase
-      .from("topic_updates")
-      .select("*")
-      .eq("topic_id", topic.id)
-      .order("published_at", { ascending: false }),
-  ]);
+  const [relatedBills, relatedGeneralQuestions, councilActions, updatesResult] =
+    await Promise.all([
+      findRelatedPublishedBillsByTopicId(topic.id, difficultyLevel),
+      findRelatedPublishedGeneralQuestionsByTopicId(topic.id),
+      findPublishedCouncilActionsByTopicId(topic.id),
+      supabase
+        .from("topic_updates")
+        .select("*")
+        .eq("topic_id", topic.id)
+        .order("published_at", { ascending: false }),
+    ]);
 
   if (updatesResult.error) {
     throw new Error(
@@ -187,6 +257,7 @@ export async function findActiveTopicWithRelatedBills(
   return {
     ...topic,
     relatedBills,
+    relatedGeneralQuestions,
     updates: updatesResult.data ?? [],
     councilActions,
   };

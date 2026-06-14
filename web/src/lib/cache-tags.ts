@@ -5,6 +5,7 @@ export const CACHE_TAGS = {
   BILLS: "bills",
   COUNCIL_ACTIONS: "council-actions",
   DIET_SESSIONS: "diet-sessions",
+  GENERAL_QUESTIONS: "general-questions",
   INTERVIEW_CONFIGS: "interview-configs",
   TOPICS: "topics",
 } as const;
