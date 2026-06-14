@@ -100,7 +100,7 @@ export function DietSessionOverviewSection({
             </div>
           )}
 
-          {/* スケジュール + 議案一覧リンク */}
+          {/* スケジュール + 議案一覧・一般質問リンク */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-t border-mirai-border pt-4">
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2">
@@ -127,12 +127,20 @@ export function DietSessionOverviewSection({
                 ))}
               </div>
             </div>
-            <Link
-              href={routes.kokkaiSessionBills(session.slug)}
-              className="text-sm font-medium text-primary hover:text-primary-accent transition-colors shrink-0"
-            >
-              議案一覧を見る →
-            </Link>
+            <div className="flex flex-col items-start gap-2 shrink-0 sm:items-end">
+              <Link
+                href={routes.kokkaiSessionBills(session.slug)}
+                className="text-sm font-medium text-primary hover:text-primary-accent transition-colors"
+              >
+                議案一覧を見る →
+              </Link>
+              <Link
+                href={routes.generalQuestions()}
+                className="text-sm font-medium text-primary hover:text-primary-accent transition-colors"
+              >
+                一般質問を見る →
+              </Link>
+            </div>
           </div>
         </div>
       </Container>
