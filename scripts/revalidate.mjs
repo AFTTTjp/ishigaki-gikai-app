@@ -1,6 +1,12 @@
+// NOTE: web/src/lib/cache-tags.ts の CACHE_TAGS と必ず同期させること。
+// 新しいキャッシュタグを追加したら、この配列にも追加する。
+// （.mjs から TS を import できないため手動同期。漏れると --all でそのタグが
+//  revalidate されず、本番のキャッシュが古いまま残る。）
 const ALL_TAGS = [
   "bills",
+  "council-actions",
   "diet-sessions",
+  "general-questions",
   "interview-configs",
   "topics",
 ];

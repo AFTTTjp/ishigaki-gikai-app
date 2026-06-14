@@ -22,6 +22,34 @@ cd ../mirai-gikai-<branch-name> && pnpm install --frozen-lockfile
 
 - **目的**: developブランチを常にクリーンに保ち、作業の分離と並列作業を容易にする
 
+#### worktree で `pnpm dev` する場合の環境変数注意
+worktree にコピーした `.env` には import スクリプト用の `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` しか入っておらず、web アプリ用の `NEXT_PUBLIC_SUPABASE_*` が欠けていることがある。その状態で `pnpm dev` すると `NEXT_PUBLIC_SUPABASE_URL が設定されていません` で起動に失敗する。
+
+worktree で web の dev サーバーを起動する場合は、`.env` に以下が含まれているか確認し、なければ追記すること（値はローカル Supabase のデフォルト。`.github/workflows/integration_test.yml` 記載のデモ値と同じ）：
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54421   # supabase/config.toml の [api] port
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<integration_test.yml 記載のローカル demo anon key>
+```
+
+- `SUPABASE_URL`（非公開）はサーバー側 `createAdminClient()` 用、`NEXT_PUBLIC_SUPABASE_URL` はブラウザ側用で **別物**。混同しないこと。
+- import スクリプトしか動かさない worktree では `NEXT_PUBLIC_*` は不要。
+
+### worktree cleanup ルール
+- **直列作業では原則 worktree を増やさない**。PR を1つずつ順番に進める作業では、worktree を毎回作らず同一 worktree をブランチ切り替えで使い回す。worktree は「並列で同時に走らせる時だけ」作る。
+- **作る場合は集約ディレクトリ配下に置く**。`Developer/` 直下にばら撒かず、リポジトリ内の `_worktrees/mirai-gikai/<branch-name>` に集約する：
+  ```bash
+  git worktree add _worktrees/mirai-gikai/<branch-name> -b <branch-name>
+  ```
+  （`_worktrees` は `.gitignore` の `.claude/worktrees` と同様に追跡対象外とすること。）
+- **PR merge 後は cleanup まで完了条件に含める**。merge → `git pull --ff-only origin main` の後、以下まで実施して初めて Done：
+  ```bash
+  git worktree remove _worktrees/mirai-gikai/<branch-name>  # untracked が残るなら --force
+  git branch -d <branch-name>                               # 未マージ拒否で安全。squash merge は warning が出るが正常
+  git worktree prune
+  ```
+- **完了報告に `cleanup needed: yes/no` を必ず入れる**。worktree を残置したまま報告を終える場合は `cleanup needed: yes` と残置パスを明記する。掃除済みなら `cleanup needed: no`。
+
 ### 実装完了後は即PR作成
 実装完了後は「コミットしますか？」等の確認を挟まず、コミット → push → PR作成まで一気に進めること。ユーザーへの確認は不要。
 
@@ -150,6 +178,18 @@ Repository レイヤーの詳細は [docs/repository-layer.md](docs/repository-l
 - スキーマ変更時は `supabase/migrations` のマイグレーションと `packages/supabase/types/supabase.types.ts` の再生成ファイルをセットでコミットします。
 - `pnpm seed` は `admin@example.com / admin123456` を含む検証データを投入するため、開発用途に限定してください。
 - **RLSとアクセスパターン**: マイグレーションでは必ず `alter table <テーブル名> enable row level security;` を記述してRLSを有効化すること。ただし **ポリシーは定義しない**（デフォルト全拒否）。データアクセスはすべて `createAdminClient()`（Service Role Key）経由で行い、認可ロジックはアプリケーション層（Server Actions / Loaders）で実装する。
+
+### prod import の標準手順（必須）
+prod へデータ import（`scripts/import-*.mjs --prod` 等）を行う場合は、必ず以下の順で実施する。**migration 適用前に prod import を実行しないこと**（参照先テーブルが存在せず失敗する）。
+
+1. **接続先確認**: import する `.env` の `SUPABASE_URL` が prod か test かを必ず確認する。
+2. **migration 適用確認**: prod migration は push → `deploy.yml` で自動適用される。import 前に対象 PR の CI が green であることを `gh pr checks <番号>` で確認する。必要なら `supabase migration list --linked` で適用済みを確認する。
+3. **dry-run**: `node scripts/import-xxx.mjs --dry-run --prod` で挿入内容をプレビューする。
+4. **prod import**: `node scripts/import-xxx.mjs --prod` で実行する。
+5. **revalidate**: `pnpm revalidate --all`（または対象タグ指定）で Next.js キャッシュを無効化する。`unstable_cache` は deploy しても自動リセットされない場合があるため、データ変更後は必ず実行する。
+6. **UI確認**: 本番 URL で表示を確認する。古いキャッシュが疑われる場合は `?cb=<timestamp>` を付けてバイパス確認する。
+
+- **キャッシュタグの同期**: 新しいキャッシュタグを追加したら、`web/src/lib/cache-tags.ts` の `CACHE_TAGS` と `scripts/revalidate.mjs` の `ALL_TAGS` の **両方** を更新すること。片方だけだと `pnpm revalidate --all` でそのタグが revalidate されない。
 
 ## ドキュメント作成ルール
 - 要件定義や実装計画をまとめる際は論点を先に洗い出し、不明点を確認してから Markdown で整理します。
