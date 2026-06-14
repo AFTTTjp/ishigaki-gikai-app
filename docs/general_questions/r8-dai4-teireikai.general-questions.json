@@ -9,6 +9,7 @@
       "source_kind": "official",
       "member_id": "141916de-d2b8-406d-9457-ad7057332ff1",
       "member_name_raw": "友寄永三",
+      "topic_slugs": ["ishigaki-old-city-hall"],
       "items": [
         {
           "item_number": 1,
@@ -74,6 +75,7 @@
       "source_kind": "official",
       "member_id": "76d6fcfc-f552-4272-914a-a381aa7a226b",
       "member_name_raw": "後上里厚司",
+      "topic_slugs": ["ishigaki-old-city-hall", "rito-koshien-r8-dai4"],
       "items": [
         {
           "item_number": 1,
@@ -573,6 +575,7 @@
       "source_kind": "official",
       "member_id": "33422421-3897-4b09-81c2-8fb91bfdebfa",
       "member_name_raw": "宮良操",
+      "topic_slugs": ["rito-koshien-r8-dai4"],
       "items": [
         {
           "item_number": 1,
@@ -1022,6 +1025,7 @@
       "source_kind": "official",
       "member_id": "0faca1b2-4ed6-4b71-bff6-39cfb5edca7d",
       "member_name_raw": "長浜信夫",
+      "topic_slugs": ["rito-koshien-r8-dai4"],
       "items": [
         {
           "item_number": 1,

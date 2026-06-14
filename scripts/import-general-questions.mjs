@@ -70,13 +70,39 @@ console.log("");
 if (DRY_RUN) {
   console.log("--- DRY RUN: インポート対象一覧 ---");
   for (const q of questions) {
+    const topicInfo = q.topic_slugs?.length > 0 ? ` [topics: ${q.topic_slugs.join(", ")}]` : "";
     console.log(
-      `  [${q.question_number}] ${q.member_name_raw} (${q.question_date}, ${q.seat_type}) - ${q.items.length}項目`
+      `  [${q.question_number}] ${q.member_name_raw} (${q.question_date}, ${q.seat_type}) - ${q.items.length}項目${topicInfo}`
     );
     for (const item of q.items) {
       console.log(`       ${item.item_number}. ${item.title}`);
       for (const sub of item.sub_items) {
         console.log(`          - ${sub}`);
+      }
+    }
+  }
+  console.log("");
+  // topic_slugs の解決確認（DB接続して slug → id を検証）
+  const allSlugs = [...new Set(questions.flatMap((q) => q.topic_slugs ?? []))];
+  if (allSlugs.length > 0) {
+    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+      auth: { persistSession: false },
+    });
+    const { data: topics, error } = await supabase
+      .from("topics")
+      .select("id, slug")
+      .in("slug", allSlugs);
+    if (error) {
+      console.error("ERROR: topic_slugs 解決失敗:", error.message);
+    } else {
+      const resolved = (topics ?? []).map((t) => t.slug);
+      const missing = allSlugs.filter((s) => !resolved.includes(s));
+      console.log("--- topic_slugs 解決確認 ---");
+      resolved.forEach((s) => console.log(`  ✓ ${s}`));
+      if (missing.length > 0) {
+        missing.forEach((s) => console.error(`  ✗ 未解決: ${s}`));
+      } else {
+        console.log("  全 topic_slugs の解決を確認しました");
       }
     }
   }
@@ -173,7 +199,58 @@ for (const q of questions) {
     }
   }
 
-  console.log(`  OK ${label} (${q.items.length}項目)`);
+  // topic_general_questions 挿入（topic_slugs が指定されている場合のみ）
+  const topicSlugs = q.topic_slugs ?? [];
+  if (topicSlugs.length > 0) {
+    // slug → topic_id を解決
+    const { data: topics, error: topicsError } = await supabase
+      .from("topics")
+      .select("id, slug")
+      .in("slug", topicSlugs);
+
+    if (topicsError) {
+      console.error(`  ERROR ${label} topics lookup: ${topicsError.message}`);
+      errorCount++;
+      continue;
+    }
+
+    const resolvedSlugs = (topics ?? []).map((t) => t.slug);
+    const missingSlugs = topicSlugs.filter((s) => !resolvedSlugs.includes(s));
+    if (missingSlugs.length > 0) {
+      console.error(`  ERROR ${label}: topic_slugs 未解決: ${missingSlugs.join(", ")}`);
+      errorCount++;
+      continue;
+    }
+
+    // 既存レコードを削除して再挿入（冪等）
+    const { error: deleteError } = await supabase
+      .from("topic_general_questions")
+      .delete()
+      .eq("general_question_id", generalQuestionId);
+
+    if (deleteError) {
+      console.error(`  ERROR ${label} topic_general_questions delete: ${deleteError.message}`);
+      errorCount++;
+      continue;
+    }
+
+    const payload = topics.map((t) => ({
+      topic_id: t.id,
+      general_question_id: generalQuestionId,
+    }));
+
+    const { error: tgqError } = await supabase
+      .from("topic_general_questions")
+      .insert(payload);
+
+    if (tgqError) {
+      console.error(`  ERROR ${label} topic_general_questions: ${tgqError.message}`);
+      errorCount++;
+      continue;
+    }
+  }
+
+  console.log(`  OK ${label} (${q.items.length}項目${topicSlugs.length > 0 ? `, topics: ${topicSlugs.join(", ")}` : ""})`);
   successCount++;
 }
 
