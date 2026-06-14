@@ -407,6 +407,72 @@ export type Database = {
         }
         Relationships: []
       }
+      diet_sessions: {
+        Row: {
+          created_at: string
+          end_date: string
+          id: string
+          is_active: boolean
+          name: string
+          shugiin_url: string | null
+          slug: string | null
+          start_date: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          end_date: string
+          id?: string
+          is_active?: boolean
+          name: string
+          shugiin_url?: string | null
+          slug?: string | null
+          start_date: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          end_date?: string
+          id?: string
+          is_active?: boolean
+          name?: string
+          shugiin_url?: string | null
+          slug?: string | null
+          start_date?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      expert_registrations: {
+        Row: {
+          affiliation: string
+          created_at: string
+          email: string
+          id: string
+          name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          affiliation: string
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          affiliation?: string
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       general_question_items: {
         Row: {
           created_at: string
@@ -507,72 +573,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
-      }
-      diet_sessions: {
-        Row: {
-          created_at: string
-          end_date: string
-          id: string
-          is_active: boolean
-          name: string
-          shugiin_url: string | null
-          slug: string | null
-          start_date: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          end_date: string
-          id?: string
-          is_active?: boolean
-          name: string
-          shugiin_url?: string | null
-          slug?: string | null
-          start_date: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          end_date?: string
-          id?: string
-          is_active?: boolean
-          name?: string
-          shugiin_url?: string | null
-          slug?: string | null
-          start_date?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      expert_registrations: {
-        Row: {
-          affiliation: string
-          created_at: string
-          email: string
-          id: string
-          name: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          affiliation: string
-          created_at?: string
-          email: string
-          id?: string
-          name: string
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          affiliation?: string
-          created_at?: string
-          email?: string
-          id?: string
-          name?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
       }
       interview_configs: {
         Row: {
@@ -1250,6 +1250,42 @@ export type Database = {
           },
           {
             foreignKeyName: "topic_bills_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      topic_general_questions: {
+        Row: {
+          created_at: string
+          general_question_id: string
+          id: string
+          topic_id: string
+        }
+        Insert: {
+          created_at?: string
+          general_question_id: string
+          id?: string
+          topic_id: string
+        }
+        Update: {
+          created_at?: string
+          general_question_id?: string
+          id?: string
+          topic_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "topic_general_questions_general_question_id_fkey"
+            columns: ["general_question_id"]
+            isOneToOne: false
+            referencedRelation: "general_questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "topic_general_questions_topic_id_fkey"
             columns: ["topic_id"]
             isOneToOne: false
             referencedRelation: "topics"
