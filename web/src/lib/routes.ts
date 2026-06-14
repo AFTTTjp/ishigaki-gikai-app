@@ -45,4 +45,9 @@ export const routes = {
 
   // ── 議会セッション ────────────────────────────────
   kokkaiSessionBills: (slug: string) => `/kokkai/${slug}/bills` as const,
+
+  // ── 一般質問 ──────────────────────────────────────
+  generalQuestions: () => "/general-questions" as const,
+  generalQuestionsSession: (sessionSlug: string) =>
+    `/general-questions/${sessionSlug}` as const,
 } as const;
