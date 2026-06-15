@@ -1,6 +1,5 @@
 import { LinkButton } from "@/components/top/link-button";
 import { EXTERNAL_LINKS } from "@/config/external-links";
-import { routes } from "@/lib/routes";
 
 /**
  * デスクトップメニュー: アクションボタン（サイドバー内）
