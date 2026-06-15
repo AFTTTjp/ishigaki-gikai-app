@@ -40,6 +40,7 @@ export function getStepState(
  * 発議院に応じてステップ順序を調整する
  */
 export function getOrderedSteps(
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: 上流国会版の発議院別ステップ順序対応のためのプレースホルダ。石垣市議会向け表示では順序を変えない
   originatingHouse: HouseEnum,
   baseSteps: readonly { readonly label: string }[]
 ): { label: string }[] {
