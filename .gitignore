@@ -4,7 +4,12 @@ node_modules
 .DS_Store
 .vscode
 .claude/worktrees
+.claude/launch.json
+.claude/color-comparison.html
 _worktrees
+
+# vercel
+.vercel/
 
 # env files
 .env
