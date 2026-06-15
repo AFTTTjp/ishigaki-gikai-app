@@ -2,7 +2,6 @@ import Link from "next/link";
 import { LinkButton } from "@/components/top/link-button";
 import { EXTERNAL_LINKS } from "@/config/external-links";
 import { routes } from "@/lib/routes";
-import { ManualRuby } from "@/lib/rubyful/manual-ruby";
 
 export function BillDisclaimer() {
   return (

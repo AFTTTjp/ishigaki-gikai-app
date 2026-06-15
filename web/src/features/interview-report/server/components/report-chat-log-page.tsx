@@ -2,7 +2,6 @@ import "server-only";
 
 import { Bot, ChevronLeft, UserRound } from "lucide-react";
 import type { Route } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getBillDisplayTitle } from "@/features/bills/shared/utils/bill-title";
@@ -15,9 +14,7 @@ import { ReactionButtons } from "@/features/report-reaction/client/components/re
 import { getReportReactions } from "@/features/report-reaction/server/loaders/get-report-reactions";
 import { routes } from "@/lib/routes";
 import { getOrigin } from "@/lib/utils/url";
-import { BackToBillButton } from "../../shared/components/back-to-bill-button";
 import { BackToReportButton } from "../../shared/components/back-to-report-button";
-import { IntervieweeInfo } from "../../shared/components/interviewee-info";
 import { OpinionsList } from "../../shared/components/opinions-list";
 import { ReportBreadcrumb } from "../../shared/components/report-breadcrumb";
 import { ReportMetaInfo } from "../../shared/components/report-meta-info";

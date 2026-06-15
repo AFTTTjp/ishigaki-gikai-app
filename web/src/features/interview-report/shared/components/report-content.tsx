@@ -4,7 +4,6 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { SpeechBubble } from "@/components/ui/speech-bubble";
 import { getInterviewChatLogLink } from "@/features/interview-config/shared/utils/interview-links";
-import { ReactionButtonsInline } from "@/features/report-reaction/client/components/reaction-buttons-inline";
 import type { ReportReactionData } from "@/features/report-reaction/shared/types";
 import { ShareArticleButton } from "../../client/components/share-article-button";
 import { BackToBillButton } from "./back-to-bill-button";
