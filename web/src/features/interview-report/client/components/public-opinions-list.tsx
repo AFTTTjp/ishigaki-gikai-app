@@ -86,10 +86,6 @@ type ReactionsRecord = Record<
   { counts: { helpful: number; hmm: number }; userReaction: string | null }
 >;
 
-type ReportWithReactions = PublicInterviewReport & {
-  _reactions: ReactionsRecord;
-};
-
 interface PublicOpinionsListProps {
   billId: string;
   initialReports: PublicInterviewReport[];
