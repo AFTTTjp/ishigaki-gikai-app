@@ -250,7 +250,6 @@ export function SessionDetail({ session, billId }: SessionDetailProps) {
               <CardTitle className="text-lg">モデレーション</CardTitle>
               <RegenerateModerationButton
                 reportId={report.id}
-                sessionId={session.id}
                 billId={billId}
               />
             </CardHeader>
@@ -305,7 +304,6 @@ export function SessionDetail({ session, billId }: SessionDetailProps) {
               <CardTitle className="text-lg">情報充実度</CardTitle>
               <RegenerateContentRichnessButton
                 reportId={report.id}
-                sessionId={session.id}
                 billId={billId}
               />
             </CardHeader>

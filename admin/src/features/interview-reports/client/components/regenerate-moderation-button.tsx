@@ -8,24 +8,18 @@ import { runSingleModerationAction } from "../../server/actions/run-single-moder
 
 interface RegenerateModerationButtonProps {
   reportId: string;
-  sessionId: string;
   billId: string;
 }
 
 export function RegenerateModerationButton({
   reportId,
-  sessionId,
   billId,
 }: RegenerateModerationButtonProps) {
   const [isPending, startTransition] = useTransition();
 
   const handleClick = () => {
     startTransition(async () => {
-      const result = await runSingleModerationAction(
-        reportId,
-        billId,
-        sessionId
-      );
+      const result = await runSingleModerationAction(reportId, billId);
 
       if (result.success) {
         toast.success(`モデレーション再評価完了: スコア ${result.score}`);

@@ -8,13 +8,11 @@ import { runSingleContentRichnessAction } from "../../server/actions/run-single-
 
 interface RegenerateContentRichnessButtonProps {
   reportId: string;
-  sessionId: string;
   billId: string;
 }
 
 export function RegenerateContentRichnessButton({
   reportId,
-  sessionId,
   billId,
 }: RegenerateContentRichnessButtonProps) {
   const [isPending, startTransition] = useTransition();
@@ -22,11 +20,7 @@ export function RegenerateContentRichnessButton({
   const handleClick = () => {
     startTransition(async () => {
       try {
-        const result = await runSingleContentRichnessAction(
-          reportId,
-          billId,
-          sessionId
-        );
+        const result = await runSingleContentRichnessAction(reportId, billId);
 
         if (result.success) {
           toast.success(`情報充実度の再評価完了: 総合スコア ${result.total}`);
