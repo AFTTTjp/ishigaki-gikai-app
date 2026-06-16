@@ -12,8 +12,7 @@ interface SingleContentRichnessResult {
 
 export async function runSingleContentRichnessAction(
   reportId: string,
-  billId: string,
-  sessionId: string
+  billId: string
 ): Promise<SingleContentRichnessResult> {
   await requireAdmin();
 
