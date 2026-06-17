@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layouts/container";
 import { routes } from "@/lib/routes";
+import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { getDietSessionBySlug } from "@/features/diet-sessions/server/loaders/get-diet-session-by-slug";
 import { getBillsByDietSession } from "@/features/bills/server/loaders/get-bills-by-diet-session";
 import { DietSessionBillList } from "@/features/diet-sessions/client/components/diet-session-bill-list";
@@ -39,6 +40,7 @@ export default async function DietSessionBillsPage({ params }: Props) {
   }
 
   const bills = await getBillsByDietSession(session.id);
+  const currentDifficulty = await getDifficultyLevel();
 
   // 会期レポートの関連 Topic を、公開済み（active）のもののみ解決する
   const relatedTopicSlugs = SESSION_OVERVIEWS[slug]?.relatedTopicSlugs ?? [];
@@ -67,6 +69,7 @@ export default async function DietSessionBillsPage({ params }: Props) {
       {/* 会期レポート（現在地・初日の動き・委員会付託） */}
       <DietSessionReportSection
         session={session}
+        currentDifficulty={currentDifficulty}
         relatedTopics={relatedTopics}
       />
 

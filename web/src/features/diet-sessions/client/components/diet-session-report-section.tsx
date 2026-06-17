@@ -1,10 +1,7 @@
-"use client";
-
 import { CalendarClock, ChevronRight, Info, Users } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 import { Container } from "@/components/layouts/container";
-import { Button } from "@/components/ui/button";
+import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
 import { routes } from "@/lib/routes";
 import { SESSION_OVERVIEWS } from "../../shared/data/session-overviews";
 import type { DietSession } from "../../shared/types";
@@ -16,18 +13,17 @@ type RelatedTopic = {
 
 type Props = {
   session: DietSession | null;
+  /** サイト全体の難易度状態（ヘッダーの「説明をもっと詳しく」に連動） */
+  currentDifficulty: DifficultyLevelEnum;
   /** 関連 Topic（公開済みのもののみ、サーバー側で解決して渡す） */
   relatedTopics?: RelatedTopic[];
 };
 
-type ReportMode = "easy" | "detailed";
-
 export function DietSessionReportSection({
   session,
+  currentDifficulty,
   relatedTopics = [],
 }: Props) {
-  const [mode, setMode] = useState<ReportMode>("easy");
-
   if (!session?.slug) return null;
 
   const overview = SESSION_OVERVIEWS[session.slug];
@@ -39,10 +35,11 @@ export function DietSessionReportSection({
     Boolean(overview.reportDetailed);
   if (!hasReport) return null;
 
+  // ヘッダーの「説明をもっと詳しく」（hard）に連動して本文を切り替える
   const body =
-    mode === "easy"
-      ? (overview.reportEasy ?? overview.reportDetailed)
-      : (overview.reportDetailed ?? overview.reportEasy);
+    currentDifficulty === "hard"
+      ? (overview.reportDetailed ?? overview.reportEasy)
+      : (overview.reportEasy ?? overview.reportDetailed);
 
   return (
     <section className="bg-white py-8 border-b border-mirai-border">
@@ -62,29 +59,11 @@ export function DietSessionReportSection({
             </div>
           )}
 
-          {/* 本文（やさしい / くわしい 切替） */}
+          {/* 本文（サイト全体の難易度状態に連動） */}
           {body && (
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center gap-2">
-                <Button
-                  variant={mode === "easy" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setMode("easy")}
-                >
-                  やさしい
-                </Button>
-                <Button
-                  variant={mode === "detailed" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setMode("detailed")}
-                >
-                  くわしい
-                </Button>
-              </div>
-              <p className="text-sm leading-relaxed text-mirai-text-secondary whitespace-pre-line">
-                {body}
-              </p>
-            </div>
+            <p className="text-sm leading-relaxed text-mirai-text-secondary whitespace-pre-line">
+              {body}
+            </p>
           )}
 
           {/* 初日に起きたこと */}
