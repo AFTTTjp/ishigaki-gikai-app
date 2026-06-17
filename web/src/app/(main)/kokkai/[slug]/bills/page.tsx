@@ -8,6 +8,9 @@ import { getDietSessionBySlug } from "@/features/diet-sessions/server/loaders/ge
 import { getBillsByDietSession } from "@/features/bills/server/loaders/get-bills-by-diet-session";
 import { DietSessionBillList } from "@/features/diet-sessions/client/components/diet-session-bill-list";
 import { DietSessionOverviewSection } from "@/features/diet-sessions/client/components/diet-session-overview-section";
+import { DietSessionReportSection } from "@/features/diet-sessions/client/components/diet-session-report-section";
+import { SESSION_OVERVIEWS } from "@/features/diet-sessions/shared/data/session-overviews";
+import { getTopics } from "@/features/topics/server/loaders/get-topics";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -37,6 +40,15 @@ export default async function DietSessionBillsPage({ params }: Props) {
 
   const bills = await getBillsByDietSession(session.id);
 
+  // 会期レポートの関連 Topic を、公開済み（active）のもののみ解決する
+  const relatedTopicSlugs = SESSION_OVERVIEWS[slug]?.relatedTopicSlugs ?? [];
+  const relatedTopics =
+    relatedTopicSlugs.length > 0
+      ? (await getTopics())
+          .filter((topic) => relatedTopicSlugs.includes(topic.slug))
+          .map((topic) => ({ slug: topic.slug, title: topic.title }))
+      : [];
+
   return (
     <div className="bg-mirai-surface-muted">
       {/* ヒーロー画像 */}
@@ -51,6 +63,12 @@ export default async function DietSessionBillsPage({ params }: Props) {
           quality={85}
         />
       </div>
+
+      {/* 会期レポート（現在地・初日の動き・委員会付託） */}
+      <DietSessionReportSection
+        session={session}
+        relatedTopics={relatedTopics}
+      />
 
       {/* 今会期のテーマセクション（全件表示） */}
       <DietSessionOverviewSection session={session} showAll />
