@@ -44,6 +44,7 @@ export const routes = {
   reportChatLog: (reportId: string) => `/report/${reportId}/chat-log` as const,
 
   // ── 議会セッション ────────────────────────────────
+  kokkaiSession: (slug: string) => `/kokkai/${slug}` as const,
   kokkaiSessionBills: (slug: string) => `/kokkai/${slug}/bills` as const,
 
   // ── 一般質問 ──────────────────────────────────────
