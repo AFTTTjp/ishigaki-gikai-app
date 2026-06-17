@@ -22,8 +22,8 @@ export type SessionOverviewData = {
 export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
   "ishigaki-r8-dai4-teireikai": {
     summary:
-      "令和8年第4回石垣市議会定例会では、宿泊税の使い道に関わる基金条例、火葬場の設置・管理、母子・父子家庭等の医療費助成、下水道や市営住宅に関する条例改正、一般会計補正予算などが審査されます。\n\nまた、学校で使うGIGA端末、救助工作車、高規格救急自動車の取得、基隆市との国際友好都市提携、サンゴレンジャープラスの石垣市事業化を求める請願なども扱われます。",
-    topPageCount: 6,
+      "令和8年第4回石垣市議会定例会では、宿泊税の使い道に関わる基金条例、火葬場への指定管理者制度の導入、母子・父子家庭等の医療費助成、下水道の災害時復旧や市営住宅の子育て世帯支援に関する条例改正、一般会計補正予算などが審査されます。\n\nまた、学校で使うGIGA端末、救助工作車、高規格救急自動車の取得、基隆市との国際友好都市提携、サンゴレンジャープラスの石垣市事業化を求める請願なども扱われます。",
+    topPageCount: 7,
     categories: [
       {
         title: "宿泊税・観光",
@@ -32,7 +32,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
       },
       {
         title: "火葬場・暮らしのインフラ",
-        description: "市内の火葬場の設置・管理に関する条例が審査されます。",
+        description:
+          "市の火葬場に指定管理者制度を導入するための設置・管理に関する条例が審査されます。",
         billNumbers: ["議案第37号"],
       },
       {
@@ -42,15 +43,21 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
         billNumbers: ["議案第38号"],
       },
       {
-        title: "下水道・市営住宅",
+        title: "下水道・災害時の復旧",
         description:
-          "下水道使用料と市営住宅に関する条例の一部改正が審査されます。",
-        billNumbers: ["議案第39号", "議案第40号"],
+          "災害など非常時に、他市町村が指定した工事店でも下水道の復旧工事を行えるようにする条例の一部改正が審査されます。",
+        billNumbers: ["議案第39号"],
+      },
+      {
+        title: "市営住宅・子育て世帯支援",
+        description:
+          "子育て世帯向けの期限付き入居制度の新設や、入居選考への点数評価方式の導入を含む市営住宅条例の一部改正が審査されます。",
+        billNumbers: ["議案第40号"],
       },
       {
         title: "奨学基金",
         description:
-          "桃原用昇奨学基金・高等学校奨学基金の廃止に関する条例が審査されます。",
+          "桃原用昇奨学基金・同高等学校奨学基金を新財団へ継承するための特例並びに廃止に関する条例が審査されます。",
         billNumbers: ["議案第41号"],
       },
       {
@@ -73,7 +80,7 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
       {
         title: "ハラスメント第三者委員会",
         description:
-          "ハラスメント調査のための第三者委員会に関する条例の一部改正が審査されます。",
+          "ハラスメント調査のための第三者委員会の委員報酬を見直す条例の一部改正が審査されます。",
         billNumbers: ["議案第52号"],
       },
       {
