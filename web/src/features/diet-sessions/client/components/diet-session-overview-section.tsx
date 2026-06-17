@@ -53,6 +53,15 @@ export function DietSessionOverviewSection({
             </a>
           </div>
 
+          {/* 現在地の一言（トップページのみ。会期ページは会期レポートで表示） */}
+          {!showAll && overview.currentStatus && (
+            <div className="bg-mirai-surface rounded-lg p-4">
+              <p className="text-sm font-semibold text-mirai-text leading-relaxed">
+                {overview.currentStatus}
+              </p>
+            </div>
+          )}
+
           {/* 概要文 */}
           <p className="text-sm leading-relaxed text-mirai-text-secondary whitespace-pre-line">
             {overview.summary}
