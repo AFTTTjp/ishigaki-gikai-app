@@ -22,6 +22,28 @@ export type SessionCommittee = {
   items: string[];
 };
 
+/** 市民目線の論点カード（議案名ではなく「何が議論されているか」） */
+export type SessionKeyPoint = {
+  /** 論点の見出し（例「宿泊税の使い道はどう決まる？」） */
+  title: string;
+  /** カード表面の一言サマリー */
+  oneLine: string;
+  /** やさしい説明（通常時に表示） */
+  easyDescription: string;
+  /** 詳しい説明（「説明をもっと詳しく」ON時に表示） */
+  detailedDescription: string;
+  /** 市民生活との関係 */
+  citizenRelevance: string;
+  /** 現在の状態（例「経済民生委員会で審査中・採決は6/24予定」） */
+  status: string;
+  /** 担当委員会 */
+  committee: string;
+  /** 関連議案番号（表示のみ・リンク化しない） */
+  relatedBills: string[];
+  /** 関連する既存 Topic の slug（無ければ省略。量産しない） */
+  relatedTopicSlugs?: string[];
+};
+
 export type SessionOverviewData = {
   summary: string;
   categories: SessionCategory[];
@@ -40,6 +62,10 @@ export type SessionOverviewData = {
   timeline?: SessionTimelineItem[];
   /** 委員会別の付託一覧 */
   committees?: SessionCommittee[];
+  /** 市民目線の論点カード */
+  keyPoints?: SessionKeyPoint[];
+  /** トップページに出す論点カード数の上限。省略時は全件 */
+  topPageKeyPointCount?: number;
   /** 関連する既存 Topic の slug */
   relatedTopicSlugs?: string[];
   /** 出典・注意書き */
@@ -207,6 +233,106 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
       {
         name: "報告のみ（付託なし）",
         items: ["報告第3〜9号"],
+      },
+    ],
+    topPageKeyPointCount: 4,
+    keyPoints: [
+      {
+        title: "離島甲子園に参加できる？",
+        oneLine:
+          "補正予算に含まれる離島甲子園の参加経費と、宿泊先確保の見通しが議論されています。",
+        easyDescription:
+          "子どもたちが離島甲子園に参加するための費用が、補正予算に含まれています。宿泊先を確保できるかが条件になっています。",
+        detailedDescription:
+          "一般会計補正予算（第1号）に離島甲子園への参加経費が計上されています。当初予算で計上されなかった経緯や、宿泊21人分の確保（今月末が期限）が委員会で議論されています。詳しくは関連トピックをご覧ください。",
+        citizenRelevance:
+          "子どもたちの挑戦機会と、市の予算の使い方に関わります。",
+        status: "総務財政委員会で審査中（採決は6/24予定）",
+        committee: "総務財政委員会",
+        relatedBills: ["議案第42号"],
+        relatedTopicSlugs: ["rito-koshien-r8-dai4"],
+      },
+      {
+        title: "子育て世帯は市営住宅に入りやすくなる？",
+        oneLine:
+          "子育て世帯向けの期限付き入居制度や、入居選考の点数評価方式が議論されています。",
+        easyDescription:
+          "子育て中の世帯が市営住宅に入りやすくなるよう、期限を区切って入居できる制度を新しく作る条例が話し合われています。",
+        detailedDescription:
+          "市営住宅条例を一部改正し、夫婦ともに45歳以下かつ12歳以下の子と同居する世帯を対象に、原則最長10年の期限付き入居制度を新設。あわせて住宅困窮度に応じた点数評価方式を導入します（提案説明より）。",
+        citizenRelevance:
+          "子育て世帯の住まい探し・公平な入居選考に直接関わります。",
+        status: "建設土木委員会で審査中（採決は6/24予定）",
+        committee: "建設土木委員会",
+        relatedBills: ["議案第40号"],
+      },
+      {
+        title: "サンゴを守る活動を市の事業に？",
+        oneLine:
+          "市民から、サンゴ保全活動の市事業化を求める請願が出されています。",
+        easyDescription:
+          "サンゴを守る「サンゴレンジャープラス」の活動を、石垣市の事業にしてほしいという市民からの請願が話し合われています。",
+        detailedDescription:
+          "サンゴレンジャープラスの石垣市事業化を求める請願（請願第2号）が経済民生委員会に付託されました。市民発の請願として審査されます。",
+        citizenRelevance:
+          "石垣の自然環境保全と、市民の声が市政に反映される過程に関わります。",
+        status: "経済民生委員会で審査中（採決は6/24予定）",
+        committee: "経済民生委員会",
+        relatedBills: ["請願第2号"],
+      },
+      {
+        title: "宿泊税の使い道はどう決まる？",
+        oneLine:
+          "観光客から集める宿泊税を「基金」で管理する仕組みが議論されています。",
+        easyDescription:
+          "観光客から集める宿泊税を、観光地の環境整備などに使うため「基金（ためておくお金の箱）」を作る条例が話し合われています。",
+        detailedDescription:
+          "宿泊税条例に基づく税収から必要経費を除いた額を基金に積み立て、観光振興施策のために使えるようにする条例です。施行は令和9年2月1日からの予定（提案説明より）。",
+        citizenRelevance:
+          "観光客の負担で集めたお金が、何に・どう使われるかに関わります。",
+        status: "経済民生委員会で審査中（採決は6/24予定）",
+        committee: "経済民生委員会",
+        relatedBills: ["議案第36号"],
+      },
+      {
+        title: "火葬場の運営を民間に任せて大丈夫？",
+        oneLine:
+          "市の火葬場に「指定管理者制度」を導入し、民間運営にする条例が議論されています。",
+        easyDescription:
+          "市の火葬場の運営を、専門的な民間事業者に任せられるようにする条例（指定管理者制度）が話し合われています。",
+        detailedDescription:
+          "火葬場の設置・管理に関する条例を全部改正し、指定管理者が行う業務範囲などを定めます。施行は令和9年4月1日の予定（提案説明より）。",
+        citizenRelevance:
+          "暮らしに不可欠な施設の安全・衛生・利便が、民間運営で保たれるかに関わります。",
+        status: "経済民生委員会で審査中（採決は6/24予定）",
+        committee: "経済民生委員会",
+        relatedBills: ["議案第37号"],
+      },
+      {
+        title: "台湾・基隆市と友好都市になる？",
+        oneLine: "台湾・基隆市との国際友好都市提携が議論されています。",
+        easyDescription:
+          "石垣市が台湾の基隆（キールン）市と「友好都市」になることが話し合われています。フェリー航路の再開がきっかけです。",
+        detailedDescription:
+          "基隆市との国際友好都市提携について議会に諮るものです。定期フェリー航路の再開を契機に、相互理解と連携強化を図ります。平成26年の北上市との提携の前例を踏まえ、議会の意思を確認します（提案説明より）。",
+        citizenRelevance: "国際交流・往来や、今後の関連予算に関わります。",
+        status: "経済民生委員会で審査中（採決は6/24予定）",
+        committee: "経済民生委員会",
+        relatedBills: ["議案第45号"],
+      },
+      {
+        title: "ハラスメント調査委員の報酬は適切？",
+        oneLine:
+          "第三者委員会の委員報酬を見直す条例が、撤回・再提出を経て議論されています。",
+        easyDescription:
+          "ハラスメントを調査する第三者委員会の委員に支払う報酬を見直す条例が話し合われています。一度出した議案を取り下げ、報酬を見直して出し直したものです。",
+        detailedDescription:
+          "旧・議案第2号を、委員報酬額の見直しを求める委員会意見を受けて撤回し、報酬を見直した議案第52号として再提出。報酬は時給制（弁護士1時間22,000円・その他16,500円）とし、遠隔地加算を設けます（提案説明より）。",
+        citizenRelevance:
+          "中立・専門的な調査体制を確実に確保できるかに関わります。",
+        status: "総務財政委員会で審査中（採決は6/24予定）",
+        committee: "総務財政委員会",
+        relatedBills: ["議案第52号"],
       },
     ],
     relatedTopicSlugs: ["rito-koshien-r8-dai4"],

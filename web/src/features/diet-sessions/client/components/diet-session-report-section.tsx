@@ -1,4 +1,10 @@
-import { CalendarClock, ChevronRight, Info, Users } from "lucide-react";
+import {
+  CalendarClock,
+  ChevronRight,
+  Info,
+  MessagesSquare,
+  Users,
+} from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
 import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
@@ -64,6 +70,80 @@ export function DietSessionReportSection({
             <p className="text-sm leading-relaxed text-mirai-text-secondary whitespace-pre-line">
               {body}
             </p>
+          )}
+
+          {/* 主な論点（市民目線の論点カード・難易度に連動） */}
+          {overview.keyPoints && overview.keyPoints.length > 0 && (
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <MessagesSquare className="h-4 w-4 text-mirai-text-muted shrink-0" />
+                <h3 className="text-sm font-semibold text-mirai-text">
+                  主な論点
+                </h3>
+              </div>
+              <div className="flex flex-col gap-3">
+                {overview.keyPoints.map((keyPoint) => {
+                  const description =
+                    currentDifficulty === "hard"
+                      ? keyPoint.detailedDescription
+                      : keyPoint.easyDescription;
+                  const keyPointTopics = (
+                    keyPoint.relatedTopicSlugs ?? []
+                  ).flatMap((slug) => {
+                    const topic = relatedTopics.find((t) => t.slug === slug);
+                    return topic ? [topic] : [];
+                  });
+                  return (
+                    <div
+                      key={keyPoint.title}
+                      className="bg-mirai-surface rounded-lg p-4 flex flex-col gap-2"
+                    >
+                      <h4 className="text-sm font-bold text-mirai-text leading-snug">
+                        {keyPoint.title}
+                      </h4>
+                      <p className="text-xs font-semibold text-mirai-text-secondary leading-relaxed">
+                        {keyPoint.oneLine}
+                      </p>
+                      <p className="text-sm text-mirai-text-secondary leading-relaxed">
+                        {description}
+                      </p>
+                      <p className="text-xs text-mirai-text-secondary leading-relaxed">
+                        <span className="font-semibold text-mirai-text">
+                          暮らしとの関係：
+                        </span>
+                        {keyPoint.citizenRelevance}
+                      </p>
+                      <div className="flex flex-wrap items-center gap-1">
+                        <span className="text-xs text-mirai-text-muted bg-mirai-surface-muted px-1.5 py-0.5 rounded">
+                          {keyPoint.committee}
+                        </span>
+                        {keyPoint.relatedBills.map((bill) => (
+                          <span
+                            key={bill}
+                            className="text-xs text-mirai-text-muted bg-mirai-surface-muted px-1.5 py-0.5 rounded"
+                          >
+                            {bill}
+                          </span>
+                        ))}
+                      </div>
+                      <p className="text-xs text-mirai-text-muted">
+                        {keyPoint.status}
+                      </p>
+                      {keyPointTopics.map((topic) => (
+                        <Link
+                          key={topic.slug}
+                          href={routes.topicDetail(topic.slug)}
+                          className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-accent transition-colors"
+                        >
+                          {topic.title}
+                          <ChevronRight className="h-4 w-4" />
+                        </Link>
+                      ))}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           )}
 
           {/* 初日に起きたこと */}
