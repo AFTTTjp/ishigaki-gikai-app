@@ -1,3 +1,5 @@
+import type { KeyPointIconName } from "../utils/key-point-icon-names";
+
 export type SessionCategory = {
   title: string;
   description: string;
@@ -48,6 +50,16 @@ export type SessionKeyPoint = {
    * 存在しない slug は無視され、空見出しは出さない。
    */
   relatedGeneralQuestionSlugs?: string[];
+  /**
+   * カード見出しに表示する lucide アイコン名。
+   * 許可リスト（KeyPointIconName）のみ。未指定・未知は既定アイコンにフォールバック。
+   */
+  iconName?: KeyPointIconName;
+  /**
+   * ステータスの短いラベル（例「審査中」）。Badge で表示する。
+   * 省略時はバッジを出さず、従来どおり status 全文のみを表示する。
+   */
+  statusLabel?: string;
 };
 
 export type SessionOverviewData = {
@@ -254,6 +266,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
         citizenRelevance:
           "子どもたちの挑戦機会と、市の予算の使い方に関わります。",
         status: "総務財政委員会で審査中（採決は6/24予定）",
+        statusLabel: "審査中",
+        iconName: "Trophy",
         committee: "総務財政委員会",
         relatedBills: ["議案第42号"],
         relatedTopicSlugs: ["rito-koshien-r8-dai4"],
@@ -274,6 +288,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
         citizenRelevance:
           "子育て世帯の住まい探し・公平な入居選考に直接関わります。",
         status: "建設土木委員会で審査中（採決は6/24予定）",
+        statusLabel: "審査中",
+        iconName: "Baby",
         committee: "建設土木委員会",
         relatedBills: ["議案第40号"],
       },
@@ -288,6 +304,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
         citizenRelevance:
           "石垣の自然環境保全と、市民の声が市政に反映される過程に関わります。",
         status: "経済民生委員会で審査中（採決は6/24予定）",
+        statusLabel: "審査中",
+        iconName: "Waves",
         committee: "経済民生委員会",
         relatedBills: ["請願第2号"],
       },
@@ -302,6 +320,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
         citizenRelevance:
           "観光客の負担で集めたお金が、何に・どう使われるかに関わります。",
         status: "経済民生委員会で審査中（採決は6/24予定）",
+        statusLabel: "審査中",
+        iconName: "Plane",
         committee: "経済民生委員会",
         relatedBills: ["議案第36号"],
       },
@@ -316,6 +336,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
         citizenRelevance:
           "暮らしに不可欠な施設の安全・衛生・利便が、民間運営で保たれるかに関わります。",
         status: "経済民生委員会で審査中（採決は6/24予定）",
+        statusLabel: "審査中",
+        iconName: "Building2",
         committee: "経済民生委員会",
         relatedBills: ["議案第37号"],
       },
@@ -328,6 +350,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
           "基隆市との国際友好都市提携について議会に諮るものです。定期フェリー航路の再開を契機に、相互理解と連携強化を図ります。平成26年の北上市との提携の前例を踏まえ、議会の意思を確認します（提案説明より）。",
         citizenRelevance: "国際交流・往来や、今後の関連予算に関わります。",
         status: "経済民生委員会で審査中（採決は6/24予定）",
+        statusLabel: "審査中",
+        iconName: "Ship",
         committee: "経済民生委員会",
         relatedBills: ["議案第45号"],
         relatedGeneralQuestionSlugs: [
@@ -349,6 +373,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
         citizenRelevance:
           "中立・専門的な調査体制を確実に確保できるかに関わります。",
         status: "総務財政委員会で審査中（採決は6/24予定）",
+        statusLabel: "審査中",
+        iconName: "Scale",
         committee: "総務財政委員会",
         relatedBills: ["議案第52号"],
       },

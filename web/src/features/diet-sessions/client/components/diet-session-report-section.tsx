@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
+import { Badge } from "@/components/ui/badge";
 import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
 import { formatDate } from "@/features/general-questions/shared/utils/format-date";
 import { routes } from "@/lib/routes";
@@ -16,6 +17,7 @@ import {
   type KeyPointRelatedQuestion,
   selectRelatedGeneralQuestions,
 } from "../../shared/utils/select-related-general-questions";
+import { resolveKeyPointIcon } from "../utils/key-point-icons";
 
 type RelatedTopic = {
   slug: string;
@@ -106,14 +108,18 @@ export function DietSessionReportSection({
                     keyPoint.relatedGeneralQuestionSlugs,
                     relatedQuestions
                   );
+                  const Icon = resolveKeyPointIcon(keyPoint.iconName);
                   return (
                     <div
                       key={keyPoint.title}
                       className="bg-mirai-surface rounded-lg p-4 flex flex-col gap-2"
                     >
-                      <h4 className="text-sm font-bold text-mirai-text leading-snug">
-                        {keyPoint.title}
-                      </h4>
+                      <div className="flex items-start gap-2">
+                        <Icon className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                        <h4 className="text-sm font-bold text-mirai-text leading-snug">
+                          {keyPoint.title}
+                        </h4>
+                      </div>
                       <p className="text-xs font-semibold text-mirai-text-secondary leading-relaxed">
                         {keyPoint.oneLine}
                       </p>
@@ -127,16 +133,14 @@ export function DietSessionReportSection({
                         {keyPoint.citizenRelevance}
                       </p>
                       <div className="flex flex-wrap items-center gap-1">
-                        <span className="text-xs text-mirai-text-muted bg-mirai-surface-muted px-1.5 py-0.5 rounded">
-                          {keyPoint.committee}
-                        </span>
+                        {keyPoint.statusLabel && (
+                          <Badge variant="light">{keyPoint.statusLabel}</Badge>
+                        )}
+                        <Badge variant="muted">{keyPoint.committee}</Badge>
                         {keyPoint.relatedBills.map((bill) => (
-                          <span
-                            key={bill}
-                            className="text-xs text-mirai-text-muted bg-mirai-surface-muted px-1.5 py-0.5 rounded"
-                          >
+                          <Badge key={bill} variant="muted">
                             {bill}
-                          </span>
+                          </Badge>
                         ))}
                       </div>
                       <p className="text-xs text-mirai-text-muted">
