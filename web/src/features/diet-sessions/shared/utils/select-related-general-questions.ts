@@ -5,8 +5,12 @@
  * - DBに存在する質問（published のみが渡される前提）だけが `questions` に入るため、
  *   存在しない slug / itemNumber は自然に無視される。
  * - subItemIndex が有効なら sub_items[subItemIndex] を、範囲外なら item title を表示する。
+ * - subItemsPreview には、表示中テキストと重複しない sub_item を最大2件添える。
  * - 一致が無ければ空配列を返す（呼び出し側で見出しごと非表示にする）。
  */
+
+/** 補足表示する sub_item の最大件数 */
+const SUB_ITEMS_PREVIEW_LIMIT = 2;
 
 /** keyPoint 側の手動マッピング（質問 slug + item 番号 + 任意の sub_item index） */
 export type KeyPointQuestionItemRef = {
@@ -35,6 +39,8 @@ export type ResolvedKeyPointQuestion = {
   /** item title または sub_item テキスト */
   displayTitle: string;
   questionDate: string;
+  /** displayTitle の補足。表示中テキストと重複しない sub_item を最大2件。空なら省略 */
+  subItemsPreview?: string[];
 };
 
 export function selectRelatedGeneralQuestionItems(
@@ -68,11 +74,17 @@ export function selectRelatedGeneralQuestionItems(
       // 範囲外なら item title のままフォールバック
     }
 
+    // 補足表示: 表示中テキストと重複しない sub_item を最大2件
+    const subItemsPreview = item.subItems
+      .filter((subItem) => subItem !== displayTitle)
+      .slice(0, SUB_ITEMS_PREVIEW_LIMIT);
+
     resolved.push({
       key: `${ref.questionSlug}-${ref.itemNumber}-${ref.subItemIndex ?? "title"}`,
       memberName: question.memberName,
       displayTitle,
       questionDate: question.questionDate,
+      ...(subItemsPreview.length > 0 ? { subItemsPreview } : {}),
     });
   }
 
