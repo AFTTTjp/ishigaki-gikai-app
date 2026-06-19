@@ -1,4 +1,5 @@
 import type { KeyPointIconName } from "../utils/key-point-icon-names";
+import type { KeyPointQuestionItemRef } from "../utils/select-related-general-questions";
 
 export type SessionCategory = {
   title: string;
@@ -45,11 +46,12 @@ export type SessionKeyPoint = {
   /** 関連する既存 Topic の slug（無ければ省略。量産しない） */
   relatedTopicSlugs?: string[];
   /**
-   * 関連する一般質問の slug（general_questions.slug）。手動マッピングのみ。
-   * 会期ページの論点カードでのみ、DBに存在し published のものだけを表示する。
-   * 存在しない slug は無視され、空見出しは出さない。
+   * 関連する一般質問の item 単位マッピング（手動のみ）。
+   * 会期ページの論点カードでのみ、DBに存在し published の item だけを表示する。
+   * 存在しない slug / itemNumber は無視され、空見出しは出さない。
+   * subItemIndex 指定時はその sub_item を、範囲外なら item title を表示する。
    */
-  relatedGeneralQuestionSlugs?: string[];
+  relatedGeneralQuestionItems?: KeyPointQuestionItemRef[];
   /**
    * カード見出しに表示する lucide アイコン名。
    * 許可リスト（KeyPointIconName）のみ。未指定・未知は既定アイコンにフォールバック。
@@ -271,10 +273,23 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
         committee: "総務財政委員会",
         relatedBills: ["議案第42号"],
         relatedTopicSlugs: ["rito-koshien-r8-dai4"],
-        relatedGeneralQuestionSlugs: [
-          "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
-          "ishigaki-r8-dai4-ippan-miyara-misao",
-          "ishigaki-r8-dai4-ippan-nagahama-nobuo",
+        relatedGeneralQuestionItems: [
+          // 後上里厚司 item7「離島甲子園について」
+          {
+            questionSlug: "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+            itemNumber: 7,
+          },
+          // 宮良操 item4「スポーツ行政について」→ sub「離島甲子園大会派遣について」
+          {
+            questionSlug: "ishigaki-r8-dai4-ippan-miyara-misao",
+            itemNumber: 4,
+            subItemIndex: 0,
+          },
+          // 長浜信夫 item3「離島甲子園大会出場について」
+          {
+            questionSlug: "ishigaki-r8-dai4-ippan-nagahama-nobuo",
+            itemNumber: 3,
+          },
         ],
       },
       {
@@ -354,12 +369,32 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
         iconName: "Ship",
         committee: "経済民生委員会",
         relatedBills: ["議案第45号"],
-        relatedGeneralQuestionSlugs: [
-          "ishigaki-r8-dai4-ippan-tomoyose-eizo",
-          "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
-          "ishigaki-r8-dai4-ippan-omichi-natsuyo",
-          "ishigaki-r8-dai4-ippan-miyara-misao",
-          "ishigaki-r8-dai4-ippan-nagahama-nobuo",
+        relatedGeneralQuestionItems: [
+          // 友寄永三 item1「石垣、基隆定期航路について」
+          {
+            questionSlug: "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+            itemNumber: 1,
+          },
+          // 後上里厚司 item4「石垣・台湾定期航路」
+          {
+            questionSlug: "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+            itemNumber: 4,
+          },
+          // 大道夏代 item1「定期航路事業について」
+          {
+            questionSlug: "ishigaki-r8-dai4-ippan-omichi-natsuyo",
+            itemNumber: 1,
+          },
+          // 宮良操 item1「定期航路事業について」
+          {
+            questionSlug: "ishigaki-r8-dai4-ippan-miyara-misao",
+            itemNumber: 1,
+          },
+          // 長浜信夫 item4「台湾・石垣定期船就航について」
+          {
+            questionSlug: "ishigaki-r8-dai4-ippan-nagahama-nobuo",
+            itemNumber: 4,
+          },
         ],
       },
       {
