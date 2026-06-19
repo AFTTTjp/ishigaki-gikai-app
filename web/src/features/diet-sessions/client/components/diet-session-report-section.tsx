@@ -58,6 +58,12 @@ export function DietSessionReportSection({
       ? (overview.reportDetailed ?? overview.reportEasy)
       : (overview.reportEasy ?? overview.reportDetailed);
 
+  // 採決予定: schedule の既存値を再利用（ラベルに「採決」を含む項目）。
+  // 新しい日付や内容は推測で足さない。該当が無ければ表示しない。
+  const voteSchedule = overview.schedule?.find((item) =>
+    item.label.includes("採決")
+  );
+
   return (
     <section className="bg-white py-8 border-b border-mirai-border">
       <Container>
@@ -66,6 +72,14 @@ export function DietSessionReportSection({
           <h2 className="text-base font-bold text-mirai-text">
             今会期で議論されていること
           </h2>
+
+          {/* 採決予定（schedule の既存値を再利用） */}
+          {voteSchedule && (
+            <Badge variant="light" className="gap-1">
+              <CalendarClock className="h-3.5 w-3.5" />
+              採決予定：{voteSchedule.dates}
+            </Badge>
+          )}
 
           {/* 現在地の一言 */}
           {overview.currentStatus && (
@@ -163,7 +177,10 @@ export function DietSessionReportSection({
                           </p>
                           <ul className="flex flex-col gap-1">
                             {keyPointQuestions.map((question) => (
-                              <li key={question.key}>
+                              <li
+                                key={question.key}
+                                className="flex flex-col gap-0.5"
+                              >
                                 <Link
                                   href={routes.generalQuestionsSession(
                                     sessionSlug
@@ -176,6 +193,11 @@ export function DietSessionReportSection({
                                   {formatDate(question.questionDate)}）
                                   <ChevronRight className="h-3.5 w-3.5" />
                                 </Link>
+                                {question.subItemsPreview && (
+                                  <p className="text-xs text-mirai-text-muted leading-relaxed pl-[1.125rem]">
+                                    {question.subItemsPreview.join("／")}
+                                  </p>
+                                )}
                               </li>
                             ))}
                           </ul>

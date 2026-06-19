@@ -10,7 +10,11 @@ const questions: KeyPointQuestionSource[] = [
     memberName: "後上里厚司",
     questionDate: "2026-06-15",
     items: [
-      { itemNumber: 4, title: "石垣・台湾定期航路", subItems: ["航行費用"] },
+      {
+        itemNumber: 4,
+        title: "石垣・台湾定期航路",
+        subItems: ["航行費用について", "採算性について", "物流量について"],
+      },
       { itemNumber: 7, title: "離島甲子園について", subItems: [] },
     ],
   },
@@ -23,7 +27,7 @@ const questions: KeyPointQuestionSource[] = [
       {
         itemNumber: 4,
         title: "スポーツ行政について",
-        subItems: ["離島甲子園大会派遣について"],
+        subItems: ["離島甲子園大会派遣について", "引率体制について"],
       },
     ],
   },
@@ -61,6 +65,36 @@ describe("selectRelatedGeneralQuestionItems", () => {
       questions
     );
     expect(result.map((r) => r.displayTitle)).toEqual(["スポーツ行政について"]);
+  });
+
+  it("subItemsPreview は最大2件まで（item title 表示時）", () => {
+    const result = selectRelatedGeneralQuestionItems(
+      [{ questionSlug: "gq-shiuezato", itemNumber: 4 }],
+      questions
+    );
+    expect(result[0]?.displayTitle).toBe("石垣・台湾定期航路");
+    expect(result[0]?.subItemsPreview).toEqual([
+      "航行費用について",
+      "採算性について",
+    ]);
+  });
+
+  it("sub_item 表示時は、表示中の sub_item を補足から除外する", () => {
+    const result = selectRelatedGeneralQuestionItems(
+      [{ questionSlug: "gq-miyara", itemNumber: 4, subItemIndex: 0 }],
+      questions
+    );
+    expect(result[0]?.displayTitle).toBe("離島甲子園大会派遣について");
+    // 表示中の sub_item は重複除外され、残りだけが補足に出る
+    expect(result[0]?.subItemsPreview).toEqual(["引率体制について"]);
+  });
+
+  it("sub_items が空なら subItemsPreview は付かない", () => {
+    const result = selectRelatedGeneralQuestionItems(
+      [{ questionSlug: "gq-shiuezato", itemNumber: 7 }],
+      questions
+    );
+    expect(result[0]?.subItemsPreview).toBeUndefined();
   });
 
   it("存在しない slug は無視する", () => {
