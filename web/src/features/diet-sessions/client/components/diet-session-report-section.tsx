@@ -14,8 +14,8 @@ import { routes } from "@/lib/routes";
 import { SESSION_OVERVIEWS } from "../../shared/data/session-overviews";
 import type { DietSession } from "../../shared/types";
 import {
-  type KeyPointRelatedQuestion,
-  selectRelatedGeneralQuestions,
+  type KeyPointQuestionSource,
+  selectRelatedGeneralQuestionItems,
 } from "../../shared/utils/select-related-general-questions";
 import { resolveKeyPointIcon } from "../utils/key-point-icons";
 
@@ -31,7 +31,7 @@ type Props = {
   /** 関連 Topic（公開済みのもののみ、サーバー側で解決して渡す） */
   relatedTopics?: RelatedTopic[];
   /** 会期内の公開済み一般質問（軽量。論点カードの関連表示に使う） */
-  relatedQuestions?: KeyPointRelatedQuestion[];
+  relatedQuestions?: KeyPointQuestionSource[];
 };
 
 export function DietSessionReportSection({
@@ -104,8 +104,8 @@ export function DietSessionReportSection({
                     const topic = relatedTopics.find((t) => t.slug === slug);
                     return topic ? [topic] : [];
                   });
-                  const keyPointQuestions = selectRelatedGeneralQuestions(
-                    keyPoint.relatedGeneralQuestionSlugs,
+                  const keyPointQuestions = selectRelatedGeneralQuestionItems(
+                    keyPoint.relatedGeneralQuestionItems,
                     relatedQuestions
                   );
                   const Icon = resolveKeyPointIcon(keyPoint.iconName);
@@ -163,7 +163,7 @@ export function DietSessionReportSection({
                           </p>
                           <ul className="flex flex-col gap-1">
                             {keyPointQuestions.map((question) => (
-                              <li key={question.slug}>
+                              <li key={question.key}>
                                 <Link
                                   href={routes.generalQuestionsSession(
                                     sessionSlug
@@ -171,7 +171,8 @@ export function DietSessionReportSection({
                                   className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-accent transition-colors"
                                 >
                                   <MessagesSquare className="h-3.5 w-3.5 shrink-0" />
-                                  {question.memberName}（
+                                  {question.memberName}「{question.displayTitle}
+                                  」（
                                   {formatDate(question.questionDate)}）
                                   <ChevronRight className="h-3.5 w-3.5" />
                                 </Link>

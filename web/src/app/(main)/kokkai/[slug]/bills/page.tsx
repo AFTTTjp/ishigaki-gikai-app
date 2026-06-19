@@ -10,7 +10,7 @@ import { DietSessionOverviewSection } from "@/features/diet-sessions/client/comp
 import { DietSessionReportSection } from "@/features/diet-sessions/client/components/diet-session-report-section";
 import { getDietSessionBySlug } from "@/features/diet-sessions/server/loaders/get-diet-session-by-slug";
 import { SESSION_OVERVIEWS } from "@/features/diet-sessions/shared/data/session-overviews";
-import type { KeyPointRelatedQuestion } from "@/features/diet-sessions/shared/utils/select-related-general-questions";
+import type { KeyPointQuestionSource } from "@/features/diet-sessions/shared/utils/select-related-general-questions";
 import { findPublishedGeneralQuestionsBySessionSlug } from "@/features/general-questions/server/repositories/general-question-repository";
 import { getTopics } from "@/features/topics/server/loaders/get-topics";
 import { routes } from "@/lib/routes";
@@ -57,13 +57,18 @@ export default async function DietSessionBillsPage({ params }: Props) {
   // いずれかの keyPoint に手動マッピングがある場合だけ DB を引く。
   const hasKeyPointQuestionMapping = (
     SESSION_OVERVIEWS[slug]?.keyPoints ?? []
-  ).some((keyPoint) => (keyPoint.relatedGeneralQuestionSlugs?.length ?? 0) > 0);
-  const relatedQuestions: KeyPointRelatedQuestion[] = hasKeyPointQuestionMapping
+  ).some((keyPoint) => (keyPoint.relatedGeneralQuestionItems?.length ?? 0) > 0);
+  const relatedQuestions: KeyPointQuestionSource[] = hasKeyPointQuestionMapping
     ? (await findPublishedGeneralQuestionsBySessionSlug(slug)).map(
         (question) => ({
           slug: question.slug,
           memberName: question.member_name_raw ?? "",
           questionDate: question.question_date,
+          items: question.items.map((item) => ({
+            itemNumber: item.item_number,
+            title: item.title,
+            subItems: item.sub_items,
+          })),
         })
       )
     : [];
