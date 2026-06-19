@@ -1,9 +1,11 @@
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
+import { Badge } from "@/components/ui/badge";
 import { routes } from "@/lib/routes";
 import { SESSION_OVERVIEWS } from "../../shared/data/session-overviews";
 import type { DietSession } from "../../shared/types";
+import { resolveKeyPointIcon } from "../utils/key-point-icons";
 
 type Props = {
   session: DietSession | null;
@@ -33,22 +35,31 @@ export function DietSessionKeyPointsSection({ session }: Props) {
           </h2>
 
           <div className="flex flex-col gap-3">
-            {displayed.map((keyPoint) => (
-              <div
-                key={keyPoint.title}
-                className="bg-mirai-surface rounded-lg p-4 flex flex-col gap-2"
-              >
-                <h3 className="text-sm font-bold text-mirai-text leading-snug">
-                  {keyPoint.title}
-                </h3>
-                <p className="text-xs text-mirai-text-secondary leading-relaxed">
-                  {keyPoint.oneLine}
-                </p>
-                <p className="text-xs text-mirai-text-muted">
-                  {keyPoint.status}
-                </p>
-              </div>
-            ))}
+            {displayed.map((keyPoint) => {
+              const Icon = resolveKeyPointIcon(keyPoint.iconName);
+              return (
+                <div
+                  key={keyPoint.title}
+                  className="bg-mirai-surface rounded-lg p-4 flex flex-col gap-2"
+                >
+                  <div className="flex items-start gap-2">
+                    <Icon className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                    <h3 className="text-sm font-bold text-mirai-text leading-snug">
+                      {keyPoint.title}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-mirai-text-secondary leading-relaxed">
+                    {keyPoint.oneLine}
+                  </p>
+                  {keyPoint.statusLabel && (
+                    <Badge variant="light">{keyPoint.statusLabel}</Badge>
+                  )}
+                  <p className="text-xs text-mirai-text-muted">
+                    {keyPoint.status}
+                  </p>
+                </div>
+              );
+            })}
           </div>
 
           <div className="text-center">
