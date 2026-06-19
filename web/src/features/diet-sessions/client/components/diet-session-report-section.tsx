@@ -8,9 +8,14 @@ import {
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
 import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
+import { formatDate } from "@/features/general-questions/shared/utils/format-date";
 import { routes } from "@/lib/routes";
 import { SESSION_OVERVIEWS } from "../../shared/data/session-overviews";
 import type { DietSession } from "../../shared/types";
+import {
+  type KeyPointRelatedQuestion,
+  selectRelatedGeneralQuestions,
+} from "../../shared/utils/select-related-general-questions";
 
 type RelatedTopic = {
   slug: string;
@@ -23,16 +28,20 @@ type Props = {
   currentDifficulty: DifficultyLevelEnum;
   /** 関連 Topic（公開済みのもののみ、サーバー側で解決して渡す） */
   relatedTopics?: RelatedTopic[];
+  /** 会期内の公開済み一般質問（軽量。論点カードの関連表示に使う） */
+  relatedQuestions?: KeyPointRelatedQuestion[];
 };
 
 export function DietSessionReportSection({
   session,
   currentDifficulty,
   relatedTopics = [],
+  relatedQuestions = [],
 }: Props) {
   if (!session?.slug) return null;
+  const sessionSlug = session.slug;
 
-  const overview = SESSION_OVERVIEWS[session.slug];
+  const overview = SESSION_OVERVIEWS[sessionSlug];
   if (!overview) return null;
 
   const hasReport =
@@ -93,6 +102,10 @@ export function DietSessionReportSection({
                     const topic = relatedTopics.find((t) => t.slug === slug);
                     return topic ? [topic] : [];
                   });
+                  const keyPointQuestions = selectRelatedGeneralQuestions(
+                    keyPoint.relatedGeneralQuestionSlugs,
+                    relatedQuestions
+                  );
                   return (
                     <div
                       key={keyPoint.title}
@@ -139,6 +152,30 @@ export function DietSessionReportSection({
                           <ChevronRight className="h-4 w-4" />
                         </Link>
                       ))}
+                      {keyPointQuestions.length > 0 && (
+                        <div className="flex flex-col gap-1.5 border-t border-mirai-border pt-2 mt-1">
+                          <p className="text-xs font-semibold text-mirai-text">
+                            この論点に関する一般質問
+                          </p>
+                          <ul className="flex flex-col gap-1">
+                            {keyPointQuestions.map((question) => (
+                              <li key={question.slug}>
+                                <Link
+                                  href={routes.generalQuestionsSession(
+                                    sessionSlug
+                                  )}
+                                  className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-accent transition-colors"
+                                >
+                                  <MessagesSquare className="h-3.5 w-3.5 shrink-0" />
+                                  {question.memberName}（
+                                  {formatDate(question.questionDate)}）
+                                  <ChevronRight className="h-3.5 w-3.5" />
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
                   );
                 })}

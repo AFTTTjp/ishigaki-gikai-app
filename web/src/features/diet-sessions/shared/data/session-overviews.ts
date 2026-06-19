@@ -42,6 +42,12 @@ export type SessionKeyPoint = {
   relatedBills: string[];
   /** 関連する既存 Topic の slug（無ければ省略。量産しない） */
   relatedTopicSlugs?: string[];
+  /**
+   * 関連する一般質問の slug（general_questions.slug）。手動マッピングのみ。
+   * 会期ページの論点カードでのみ、DBに存在し published のものだけを表示する。
+   * 存在しない slug は無視され、空見出しは出さない。
+   */
+  relatedGeneralQuestionSlugs?: string[];
 };
 
 export type SessionOverviewData = {
@@ -251,6 +257,11 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
         committee: "総務財政委員会",
         relatedBills: ["議案第42号"],
         relatedTopicSlugs: ["rito-koshien-r8-dai4"],
+        relatedGeneralQuestionSlugs: [
+          "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+          "ishigaki-r8-dai4-ippan-miyara-misao",
+          "ishigaki-r8-dai4-ippan-nagahama-nobuo",
+        ],
       },
       {
         title: "子育て世帯は市営住宅に入りやすくなる？",
@@ -319,6 +330,13 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
         status: "経済民生委員会で審査中（採決は6/24予定）",
         committee: "経済民生委員会",
         relatedBills: ["議案第45号"],
+        relatedGeneralQuestionSlugs: [
+          "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+          "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+          "ishigaki-r8-dai4-ippan-omichi-natsuyo",
+          "ishigaki-r8-dai4-ippan-miyara-misao",
+          "ishigaki-r8-dai4-ippan-nagahama-nobuo",
+        ],
       },
       {
         title: "ハラスメント調査委員の報酬は適切？",

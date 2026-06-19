@@ -3,15 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layouts/container";
-import { routes } from "@/lib/routes";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
-import { getDietSessionBySlug } from "@/features/diet-sessions/server/loaders/get-diet-session-by-slug";
 import { getBillsByDietSession } from "@/features/bills/server/loaders/get-bills-by-diet-session";
 import { DietSessionBillList } from "@/features/diet-sessions/client/components/diet-session-bill-list";
 import { DietSessionOverviewSection } from "@/features/diet-sessions/client/components/diet-session-overview-section";
 import { DietSessionReportSection } from "@/features/diet-sessions/client/components/diet-session-report-section";
+import { getDietSessionBySlug } from "@/features/diet-sessions/server/loaders/get-diet-session-by-slug";
 import { SESSION_OVERVIEWS } from "@/features/diet-sessions/shared/data/session-overviews";
+import type { KeyPointRelatedQuestion } from "@/features/diet-sessions/shared/utils/select-related-general-questions";
+import { findPublishedGeneralQuestionsBySessionSlug } from "@/features/general-questions/server/repositories/general-question-repository";
 import { getTopics } from "@/features/topics/server/loaders/get-topics";
+import { routes } from "@/lib/routes";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -51,6 +53,21 @@ export default async function DietSessionBillsPage({ params }: Props) {
           .map((topic) => ({ slug: topic.slug, title: topic.title }))
       : [];
 
+  // 論点カードに「関連する一般質問」を出すための軽量データを用意する。
+  // いずれかの keyPoint に手動マッピングがある場合だけ DB を引く。
+  const hasKeyPointQuestionMapping = (
+    SESSION_OVERVIEWS[slug]?.keyPoints ?? []
+  ).some((keyPoint) => (keyPoint.relatedGeneralQuestionSlugs?.length ?? 0) > 0);
+  const relatedQuestions: KeyPointRelatedQuestion[] = hasKeyPointQuestionMapping
+    ? (await findPublishedGeneralQuestionsBySessionSlug(slug)).map(
+        (question) => ({
+          slug: question.slug,
+          memberName: question.member_name_raw ?? "",
+          questionDate: question.question_date,
+        })
+      )
+    : [];
+
   return (
     <div className="bg-mirai-surface-muted">
       {/* ヒーロー画像 */}
@@ -71,6 +88,7 @@ export default async function DietSessionBillsPage({ params }: Props) {
         session={session}
         currentDifficulty={currentDifficulty}
         relatedTopics={relatedTopics}
+        relatedQuestions={relatedQuestions}
       />
 
       {/* 今会期のテーマセクション（全件表示） */}
