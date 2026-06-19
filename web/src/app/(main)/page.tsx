@@ -1,6 +1,6 @@
 import { Container } from "@/components/layouts/container";
-import { AFTTT } from "@/components/top/afttt";
 import { About } from "@/components/top/about";
+import { AFTTT } from "@/components/top/afttt";
 import { ComingSoonSection } from "@/components/top/coming-soon-section";
 import { Hero } from "@/components/top/hero";
 import { TeamMirai } from "@/components/top/team-mirai";
@@ -60,10 +60,10 @@ export default async function Home() {
       {/* 本日の議会セクション */}
       <CurrentDietSession session={currentSession} />
 
-      {/* 今会期で議論されていること（論点カード・上位のみ） */}
+      {/* 今会期で議論されていること（現在地の一言＋論点カード・トップの主役） */}
       <DietSessionKeyPointsSection session={currentSession} />
 
-      {/* 今会期のテーマセクション */}
+      {/* 議案のカテゴリ別一覧（論点カードの補足。トップでは見出しを弱める） */}
       <DietSessionOverviewSection session={currentSession} />
 
       {topics.length > 0 && (
