@@ -40,7 +40,7 @@ export function DietSessionOverviewSection({
           {/* ヘッダー */}
           <div className="flex items-center justify-between gap-4">
             <h2 className="text-base font-bold text-mirai-text">
-              今会期のテーマ
+              {showAll ? "今会期のテーマ" : "議案のカテゴリ別一覧"}
             </h2>
             <a
               href={overview.officialUrl}
@@ -53,19 +53,16 @@ export function DietSessionOverviewSection({
             </a>
           </div>
 
-          {/* 現在地の一言（トップページのみ。会期ページは会期レポートで表示） */}
-          {!showAll && overview.currentStatus && (
-            <div className="bg-mirai-surface rounded-lg p-4">
-              <p className="text-sm font-semibold text-mirai-text leading-relaxed">
-                {overview.currentStatus}
-              </p>
-            </div>
+          {/*
+            概要文は会期ページ（showAll）のみ表示。
+            トップは「現在地の一言（論点セクション）＋論点カード」で伝えるため、
+            重い概要文と現在地の一言はここでは出さない（二重表示の防止）。
+          */}
+          {showAll && (
+            <p className="text-sm leading-relaxed text-mirai-text-secondary whitespace-pre-line">
+              {overview.summary}
+            </p>
           )}
-
-          {/* 概要文 */}
-          <p className="text-sm leading-relaxed text-mirai-text-secondary whitespace-pre-line">
-            {overview.summary}
-          </p>
 
           {/* カテゴリグリッド */}
           <div className="flex flex-col gap-3">
