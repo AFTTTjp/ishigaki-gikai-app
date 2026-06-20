@@ -32,6 +32,8 @@ type Props = {
   relatedTopics?: RelatedTopic[];
   /** 会期内の公開済み一般質問（軽量。論点カードの関連表示に使う） */
   relatedQuestions?: KeyPointQuestionSource[];
+  /** 議案番号（例「議案第42号」）→ 議案名。委員会セクションの併記に使う */
+  billTitlesByNumber?: Record<string, string>;
 };
 
 export function DietSessionReportSection({
@@ -39,6 +41,7 @@ export function DietSessionReportSection({
   currentDifficulty,
   relatedTopics = [],
   relatedQuestions = [],
+  billTitlesByNumber = {},
 }: Props) {
   if (!session?.slug) return null;
   const sessionSlug = session.slug;
@@ -255,16 +258,26 @@ export function DietSessionReportSection({
                     <h4 className="text-sm font-semibold text-mirai-text leading-snug">
                       {committee.name}
                     </h4>
-                    <div className="flex flex-wrap gap-1">
-                      {committee.items.map((item) => (
-                        <span
-                          key={item}
-                          className="text-xs text-mirai-text-muted bg-mirai-surface-muted px-1.5 py-0.5 rounded"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
+                    <ul className="flex flex-col gap-1.5">
+                      {committee.items.map((item) => {
+                        const billTitle = billTitlesByNumber[item];
+                        return (
+                          <li
+                            key={item}
+                            className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5"
+                          >
+                            <span className="text-xs text-mirai-text-muted bg-mirai-surface-muted px-1.5 py-0.5 rounded shrink-0">
+                              {item}
+                            </span>
+                            {billTitle && (
+                              <span className="text-xs text-mirai-text-secondary leading-relaxed">
+                                {billTitle}
+                              </span>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
                   </div>
                 ))}
               </div>

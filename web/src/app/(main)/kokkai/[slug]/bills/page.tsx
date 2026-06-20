@@ -5,6 +5,10 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layouts/container";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { getBillsByDietSession } from "@/features/bills/server/loaders/get-bills-by-diet-session";
+import {
+  extractBillTitlePrefix,
+  getBillDisplayTitle,
+} from "@/features/bills/shared/utils/bill-title";
 import { DietSessionBillList } from "@/features/diet-sessions/client/components/diet-session-bill-list";
 import { DietSessionOverviewSection } from "@/features/diet-sessions/client/components/diet-session-overview-section";
 import { DietSessionReportSection } from "@/features/diet-sessions/client/components/diet-session-report-section";
@@ -43,6 +47,17 @@ export default async function DietSessionBillsPage({ params }: Props) {
 
   const bills = await getBillsByDietSession(session.id);
   const currentDifficulty = await getDifficultyLevel();
+
+  // 委員会セクションの議案番号（例「議案第42号」）に議案名を併記するための対応表。
+  // bills.name 先頭の番号接頭辞を厳密抽出し、番号文字列 → 議案名（番号除去）で対応付ける。
+  // fuzzy matching・uuid ハードコードはしない。抽出できない bill は対象外。
+  const billTitlesByNumber: Record<string, string> = {};
+  for (const bill of bills) {
+    const billNumber = extractBillTitlePrefix(bill.name);
+    if (billNumber && !(billNumber in billTitlesByNumber)) {
+      billTitlesByNumber[billNumber] = getBillDisplayTitle(bill);
+    }
+  }
 
   // 会期レポートの関連 Topic を、公開済み（active）のもののみ解決する
   const relatedTopicSlugs = SESSION_OVERVIEWS[slug]?.relatedTopicSlugs ?? [];
@@ -94,6 +109,7 @@ export default async function DietSessionBillsPage({ params }: Props) {
         currentDifficulty={currentDifficulty}
         relatedTopics={relatedTopics}
         relatedQuestions={relatedQuestions}
+        billTitlesByNumber={billTitlesByNumber}
       />
 
       {/* 今会期のテーマセクション（全件表示） */}
