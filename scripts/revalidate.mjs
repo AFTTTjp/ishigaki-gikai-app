@@ -12,11 +12,20 @@ const ALL_TAGS = [
 ];
 
 function printUsage() {
-  console.log(`Usage:
-  pnpm revalidate --all
-  pnpm revalidate topics
-  pnpm revalidate bills topics
-  pnpm revalidate --url https://ishigaki-gikai-app-web-coral.vercel.app topics
+  console.log(`Usage (run via node; there is no "pnpm revalidate" script):
+  dotenv -e <envfile> -- node scripts/revalidate.mjs --all
+  dotenv -e <envfile> -- node scripts/revalidate.mjs topics
+  dotenv -e <envfile> -- node scripts/revalidate.mjs bills topics
+  dotenv -e .env.prod -- node scripts/revalidate.mjs --url https://ishigaki-gikai-app-web-coral.vercel.app topics
+
+Env vars (from <envfile>):
+  REVALIDATE_SECRET           Bearer secret. MUST match the target deployment's secret (mismatch => 401).
+  WEB_URL | NEXT_PUBLIC_WEB_URL  Target base URL (or pass --url).
+
+Important (do not mix test/prod):
+  The <envfile> REVALIDATE_SECRET and the target URL must belong to the SAME deployment.
+  prod: .env.prod + prod URL (e.g. https://ishigaki-gikai-app-web-coral.vercel.app)
+  test: .env.test + test URL. Mixing them returns 401 Unauthorized.
 
 Options:
   --all           Revalidate all cache tags

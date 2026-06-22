@@ -39,10 +39,15 @@
 --   5. revalidate（下記）を実行する。
 --
 -- ===== revalidate（データ変更後に必須）=====
---   pnpm revalidate --all
---   もしくは対象タグ指定:
+--   ※ `pnpm revalidate` という script は無い。node で直接実行する。
+--   ※ -e <envfile> の REVALIDATE_SECRET と --url のデプロイを必ず一致させる（不一致は 401）。
+--      prod は .env.prod + prod URL、test は .env.test + test URL。混同しない。
+--   dotenv -e .env.prod -- node scripts/revalidate.mjs \
+--     --url https://ishigaki-gikai-app-web-coral.vercel.app bills diet-sessions
+--   もしくは curl（Authorization ヘッダ必須）:
 --   curl -X POST "https://ishigaki-gikai-app-web-coral.vercel.app/api/revalidate" \
 --     -H "Content-Type: application/json" \
+--     -H "Authorization: Bearer <REVALIDATE_SECRET>" \
 --     -d '{"tags":["bills","diet-sessions"]}'
 
 BEGIN;

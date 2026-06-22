@@ -186,10 +186,10 @@ prod へデータ import（`scripts/import-*.mjs --prod` 等）を行う場合�
 2. **migration 適用確認**: prod migration は push → `deploy.yml` で自動適用される。import 前に対象 PR の CI が green であることを `gh pr checks <番号>` で確認する。必要なら `supabase migration list --linked` で適用済みを確認する。
 3. **dry-run**: `node scripts/import-xxx.mjs --dry-run --prod` で挿入内容をプレビューする。
 4. **prod import**: `node scripts/import-xxx.mjs --prod` で実行する。
-5. **revalidate**: `pnpm revalidate --all`（または対象タグ指定）で Next.js キャッシュを無効化する。`unstable_cache` は deploy しても自動リセットされない場合があるため、データ変更後は必ず実行する。
+5. **revalidate**: `dotenv -e .env.prod -- node scripts/revalidate.mjs --url <対象webURL> --all`（または対象タグ指定）で Next.js キャッシュを無効化する（`pnpm revalidate` という script は存在しない）。`unstable_cache` は deploy しても自動リセットされない場合があるため、データ変更後は必ず実行する。**`-e <envfile>` の `REVALIDATE_SECRET` と `--url` のデプロイを必ず一致させること**（prod は `.env.prod`＋prod URL、test は `.env.test`＋test URL）。不一致だと 401 Unauthorized になる。test/prod を混同しない。
 6. **UI確認**: 本番 URL で表示を確認する。古いキャッシュが疑われる場合は `?cb=<timestamp>` を付けてバイパス確認する。
 
-- **キャッシュタグの同期**: 新しいキャッシュタグを追加したら、`web/src/lib/cache-tags.ts` の `CACHE_TAGS` と `scripts/revalidate.mjs` の `ALL_TAGS` の **両方** を更新すること。片方だけだと `pnpm revalidate --all` でそのタグが revalidate されない。
+- **キャッシュタグの同期**: 新しいキャッシュタグを追加したら、`web/src/lib/cache-tags.ts` の `CACHE_TAGS` と `scripts/revalidate.mjs` の `ALL_TAGS` の **両方** を更新すること。片方だけだと `node scripts/revalidate.mjs --all` でそのタグが revalidate されない。
 
 ## ドキュメント作成ルール
 - 要件定義や実装計画をまとめる際は論点を先に洗い出し、不明点を確認してから Markdown で整理します。
