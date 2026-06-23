@@ -15,14 +15,14 @@ import type { BillWithContent } from "@/features/bills/shared/types";
 import { getBillDisplayTitle } from "@/features/bills/shared/utils/bill-title";
 import { HomeChatClient } from "@/features/chat/client/components/home-chat-client";
 import { CurrentDietSession } from "@/features/diet-sessions/client/components/current-diet-session";
-import { DietSessionFeaturedBillsSection } from "@/features/diet-sessions/client/components/diet-session-featured-bills-section";
+import { DietSessionBillGroupsSection } from "@/features/diet-sessions/client/components/diet-session-bill-groups-section";
 import { DietSessionKeyPointsSection } from "@/features/diet-sessions/client/components/diet-session-key-points-section";
 import { DietSessionOverviewSection } from "@/features/diet-sessions/client/components/diet-session-overview-section";
 import { getActiveDietSession } from "@/features/diet-sessions/server/loaders/get-active-diet-session";
 import { getCurrentDietSession } from "@/features/diet-sessions/server/loaders/get-current-diet-session";
 import { getAllPreviousDietSessions } from "@/features/diet-sessions/server/loaders/get-previous-diet-session";
 import { SESSION_OVERVIEWS } from "@/features/diet-sessions/shared/data/session-overviews";
-import { selectFeaturedBills } from "@/features/diet-sessions/shared/utils/select-featured-bills";
+import { selectFeaturedBillGroups } from "@/features/diet-sessions/shared/utils/select-featured-bills";
 import { TopicsSection } from "@/features/topics/server/components/topics-section";
 import { getTopics } from "@/features/topics/server/loaders/get-topics";
 import { getJapanTime } from "@/lib/utils/date";
@@ -48,15 +48,15 @@ export default async function Home() {
       previousSessions,
     });
 
-  // 「今会期の注目議案」: 現会期の議案から featuredBillNumbers で抽出（番号一致・fuzzyなし）。
-  // 指定が無い会期では DB を引かない。
-  const featuredBillNumbers = currentSession?.slug
-    ? (SESSION_OVERVIEWS[currentSession.slug]?.featuredBillNumbers ?? [])
+  // 「分野別に見る 今会期の議案」: 現会期の議案を featuredBillGroups で分野別に解決
+  // （番号一致・fuzzyなし）。指定が無い会期では DB を引かない。
+  const featuredBillGroups = currentSession?.slug
+    ? (SESSION_OVERVIEWS[currentSession.slug]?.featuredBillGroups ?? [])
     : [];
-  const featuredSessionBills =
-    currentSession && featuredBillNumbers.length > 0
-      ? selectFeaturedBills(
-          featuredBillNumbers,
+  const sessionBillGroups =
+    currentSession && featuredBillGroups.length > 0
+      ? selectFeaturedBillGroups(
+          featuredBillGroups,
           await getBillsByDietSession(currentSession.id)
         )
       : [];
@@ -80,8 +80,8 @@ export default async function Home() {
       {/* 今会期で議論されていること（現在地の一言＋論点カード・トップの主役） */}
       <DietSessionKeyPointsSection session={currentSession} />
 
-      {/* 今会期の注目議案（議案詳細への直接導線。対象が無ければ非表示） */}
-      <DietSessionFeaturedBillsSection bills={featuredSessionBills} />
+      {/* 分野別に見る 今会期の議案（議案詳細への直接導線。対象が無ければ非表示） */}
+      <DietSessionBillGroupsSection groups={sessionBillGroups} />
 
       {/* 議案のカテゴリ別一覧（論点カードの補足。トップでは見出しを弱める） */}
       <DietSessionOverviewSection session={currentSession} />
