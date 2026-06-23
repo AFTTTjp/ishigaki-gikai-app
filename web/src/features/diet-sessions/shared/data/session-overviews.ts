@@ -88,6 +88,12 @@ export type SessionOverviewData = {
   topPageKeyPointCount?: number;
   /** 関連する既存 Topic の slug */
   relatedTopicSlugs?: string[];
+  /**
+   * トップページ「今会期の注目議案」に出す議案番号（例「議案第45号」）。
+   * 議案番号は実行時に bills.name 接頭辞と完全一致で解決し、議案詳細へリンクする。
+   * 記載順に表示。複数指定可。fuzzy マッチはしない。
+   */
+  featuredBillNumbers?: string[];
   /** 出典・注意書き */
   disclaimer?: string;
 };
@@ -415,6 +421,7 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
       },
     ],
     relatedTopicSlugs: ["rito-koshien-r8-dai4"],
+    featuredBillNumbers: ["議案第45号"],
     disclaimer:
       "この会期レポートは、6月8日初日本会議の自動文字起こしをもとに編集部が整理したものです。公式議事録ではありません。議案名・委員会付託は石垣市公式「令和8年第4回定例会 提出議案と結果」（議事日程第1号）と照合しています。金額・施行日・契約相手などの数値は初日の提案説明に基づく暫定情報で、確定情報は公式の議案資料をご確認ください。",
   },
