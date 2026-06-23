@@ -7,6 +7,19 @@ export type SessionCategory = {
   billNumbers: string[];
 };
 
+/**
+ * トップページ「分野別に見る 今会期の議案」の分野グループ。
+ * 議案を番号で指定し、実行時に議案詳細へリンク解決する。
+ */
+export type FeaturedBillGroup = {
+  /** 分野ラベル（例「国際交流・交通」） */
+  category: string;
+  /** 分野の短い説明（任意・1行） */
+  description?: string;
+  /** この分野で紹介する議案番号（例「議案第45号」）。記述順表示・完全一致・fuzzyなし。 */
+  billNumbers: string[];
+};
+
 export type SessionScheduleItem = {
   label: string;
   dates: string;
@@ -89,11 +102,11 @@ export type SessionOverviewData = {
   /** 関連する既存 Topic の slug */
   relatedTopicSlugs?: string[];
   /**
-   * トップページ「今会期の注目議案」に出す議案番号（例「議案第45号」）。
-   * 議案番号は実行時に bills.name 接頭辞と完全一致で解決し、議案詳細へリンクする。
-   * 記載順に表示。複数指定可。fuzzy マッチはしない。
+   * トップページ「分野別に見る 今会期の議案」に出す分野グループ。
+   * 各 billNumbers は実行時に bills.name 接頭辞と完全一致で解決し、議案詳細へリンクする。
+   * 記載順に表示。解決できない議案（未公開・本文なし等）はスキップ。fuzzy マッチはしない。
    */
-  featuredBillNumbers?: string[];
+  featuredBillGroups?: FeaturedBillGroup[];
   /** 出典・注意書き */
   disclaimer?: string;
 };
@@ -421,7 +434,33 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
       },
     ],
     relatedTopicSlugs: ["rito-koshien-r8-dai4"],
-    featuredBillNumbers: ["議案第45号"],
+    featuredBillGroups: [
+      {
+        category: "国際交流・交通",
+        description: "石垣と台湾・基隆市との交流や航路再開に関わる議案です。",
+        billNumbers: ["議案第45号"],
+      },
+      {
+        category: "観光・税",
+        description: "宿泊税の使い道や基金づくりに関わる議案です。",
+        billNumbers: ["議案第36号"],
+      },
+      {
+        category: "子育て・医療",
+        description: "ひとり親家庭などの医療費助成に関わる議案です。",
+        billNumbers: ["議案第38号"],
+      },
+      {
+        category: "住まい",
+        description: "市営住宅の期限付き入居に関わる議案です。",
+        billNumbers: ["議案第40号"],
+      },
+      {
+        category: "防災・安全",
+        description: "消防・救急・救助体制に関わる議案です。",
+        billNumbers: ["議案第49号", "議案第50号", "議案第51号"],
+      },
+    ],
     disclaimer:
       "この会期レポートは、6月8日初日本会議の自動文字起こしをもとに編集部が整理したものです。公式議事録ではありません。議案名・委員会付託は石垣市公式「令和8年第4回定例会 提出議案と結果」（議事日程第1号）と照合しています。金額・施行日・契約相手などの数値は初日の提案説明に基づく暫定情報で、確定情報は公式の議案資料をご確認ください。",
   },
