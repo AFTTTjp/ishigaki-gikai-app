@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  buildBillIdByNumber,
   type FeaturedBillGroupInput,
   selectFeaturedBillGroups,
 } from "./select-featured-bills";
@@ -104,5 +105,37 @@ describe("selectFeaturedBillGroups", () => {
       dup
     );
     expect(result[0]?.bills.map((b) => b.id)).toEqual(["first"]);
+  });
+});
+
+describe("buildBillIdByNumber", () => {
+  it("議案番号 → 議案id の対応表を作る", () => {
+    expect(buildBillIdByNumber(bills)).toEqual({
+      議案第36号: "b36",
+      議案第45号: "b45",
+      議案第40号: "b40",
+      議案第49号: "b49",
+      議案第50号: "b50",
+    });
+  });
+
+  it("接頭辞を抽出できない bill は対象外", () => {
+    const result = buildBillIdByNumber([
+      { id: "x", name: "議案第10号 何かの条例" },
+      { id: "y", name: "番号のない議案名" },
+    ]);
+    expect(result).toEqual({ 議案第10号: "x" });
+  });
+
+  it("同一番号が複数あっても最初の1件のidのみ", () => {
+    const result = buildBillIdByNumber([
+      { id: "first", name: "議案第45号 提携について" },
+      { id: "second", name: "議案第45号 別表記" },
+    ]);
+    expect(result).toEqual({ 議案第45号: "first" });
+  });
+
+  it("空配列なら空オブジェクト", () => {
+    expect(buildBillIdByNumber([])).toEqual({});
   });
 });

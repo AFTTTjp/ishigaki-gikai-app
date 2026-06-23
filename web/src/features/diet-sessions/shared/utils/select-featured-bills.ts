@@ -32,6 +32,28 @@ function buildBillByNumber<T extends { name: string }>(
 }
 
 /**
+ * 議案番号（「議案第45号」等）→ 議案id の対応表を作る純粋関数。
+ *
+ * - `bills[].name` 先頭の議案番号接頭辞を extractBillTitlePrefix で完全一致抽出する
+ *   （fuzzy マッチはしない）。
+ * - 同一番号が複数 bill にあっても最初の1件のみ採用する。
+ * - 接頭辞を抽出できない bill は対象外。
+ *
+ * 議案番号バッジを議案詳細へリンク化する際の解決に使う。
+ * 渡す bills を published＋本文ありに限定すれば、未公開・本文なし議案は
+ * 自動的にこの対応表に含まれず（＝非リンク）扱える。
+ */
+export function buildBillIdByNumber<T extends { id: string; name: string }>(
+  bills: readonly T[]
+): Record<string, string> {
+  const result: Record<string, string> = {};
+  for (const [number, bill] of buildBillByNumber(bills)) {
+    result[number] = bill.id;
+  }
+  return result;
+}
+
+/**
  * トップページ「分野別に見る 今会期の議案」に出す議案を、分野グループ単位で解決する純粋関数。
  *
  * - 各グループの `billNumbers`（例「議案第45号」）と `bills[].name` 先頭の議案番号接頭辞を

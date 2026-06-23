@@ -14,6 +14,7 @@ import { DietSessionOverviewSection } from "@/features/diet-sessions/client/comp
 import { DietSessionReportSection } from "@/features/diet-sessions/client/components/diet-session-report-section";
 import { getDietSessionBySlug } from "@/features/diet-sessions/server/loaders/get-diet-session-by-slug";
 import { SESSION_OVERVIEWS } from "@/features/diet-sessions/shared/data/session-overviews";
+import { buildBillIdByNumber } from "@/features/diet-sessions/shared/utils/select-featured-bills";
 import type { KeyPointQuestionSource } from "@/features/diet-sessions/shared/utils/select-related-general-questions";
 import { findPublishedGeneralQuestionsBySessionSlug } from "@/features/general-questions/server/repositories/general-question-repository";
 import { getTopics } from "@/features/topics/server/loaders/get-topics";
@@ -58,6 +59,9 @@ export default async function DietSessionBillsPage({ params }: Props) {
       billTitlesByNumber[billNumber] = getBillDisplayTitle(bill);
     }
   }
+
+  // テーマ一覧の議案番号バッジを議案詳細へリンクするための番号→id対応表。
+  const billIdByNumber = buildBillIdByNumber(bills);
 
   // 会期レポートの関連 Topic を、公開済み（active）のもののみ解決する
   const relatedTopicSlugs = SESSION_OVERVIEWS[slug]?.relatedTopicSlugs ?? [];
@@ -113,7 +117,11 @@ export default async function DietSessionBillsPage({ params }: Props) {
       />
 
       {/* 今会期のテーマセクション（全件表示） */}
-      <DietSessionOverviewSection session={session} showAll />
+      <DietSessionOverviewSection
+        session={session}
+        showAll
+        billIdByNumber={billIdByNumber}
+      />
 
       <Container className="py-8">
         <DietSessionBillList session={session} bills={bills} />

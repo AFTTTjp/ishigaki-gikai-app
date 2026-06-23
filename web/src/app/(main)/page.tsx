@@ -22,7 +22,10 @@ import { getActiveDietSession } from "@/features/diet-sessions/server/loaders/ge
 import { getCurrentDietSession } from "@/features/diet-sessions/server/loaders/get-current-diet-session";
 import { getAllPreviousDietSessions } from "@/features/diet-sessions/server/loaders/get-previous-diet-session";
 import { SESSION_OVERVIEWS } from "@/features/diet-sessions/shared/data/session-overviews";
-import { selectFeaturedBillGroups } from "@/features/diet-sessions/shared/utils/select-featured-bills";
+import {
+  buildBillIdByNumber,
+  selectFeaturedBillGroups,
+} from "@/features/diet-sessions/shared/utils/select-featured-bills";
 import { TopicsSection } from "@/features/topics/server/components/topics-section";
 import { getTopics } from "@/features/topics/server/loaders/get-topics";
 import { getJapanTime } from "@/lib/utils/date";
@@ -48,18 +51,23 @@ export default async function Home() {
       previousSessions,
     });
 
-  // 「分野別に見る 今会期の議案」: 現会期の議案を featuredBillGroups で分野別に解決
-  // （番号一致・fuzzyなし）。指定が無い会期では DB を引かない。
+  // 現会期の公開済み議案（本文あり）を1回だけ取得し、
+  // 「分野別に見る 今会期の議案」と「今会期の議案テーマ一覧」の両方で使う。
+  const sessionBills = currentSession
+    ? await getBillsByDietSession(currentSession.id)
+    : [];
+
+  // 「分野別に見る 今会期の議案」: featuredBillGroups で分野別に解決（番号一致・fuzzyなし）。
   const featuredBillGroups = currentSession?.slug
     ? (SESSION_OVERVIEWS[currentSession.slug]?.featuredBillGroups ?? [])
     : [];
   const sessionBillGroups =
-    currentSession && featuredBillGroups.length > 0
-      ? selectFeaturedBillGroups(
-          featuredBillGroups,
-          await getBillsByDietSession(currentSession.id)
-        )
+    featuredBillGroups.length > 0
+      ? selectFeaturedBillGroups(featuredBillGroups, sessionBills)
       : [];
+
+  // 「今会期の議案テーマ一覧」のバッジを議案詳細へリンクするための番号→id対応表。
+  const billIdByNumber = buildBillIdByNumber(sessionBills);
 
   const toBillChatContext = (bill: BillWithContent) => {
     return {
@@ -84,7 +92,10 @@ export default async function Home() {
       <DietSessionBillGroupsSection groups={sessionBillGroups} />
 
       {/* 議案のカテゴリ別一覧（論点カードの補足。トップでは見出しを弱める） */}
-      <DietSessionOverviewSection session={currentSession} />
+      <DietSessionOverviewSection
+        session={currentSession}
+        billIdByNumber={billIdByNumber}
+      />
 
       {topics.length > 0 && (
         <div className="bg-mirai-topics-section py-10">

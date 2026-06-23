@@ -1,4 +1,5 @@
 import { Calendar, ExternalLink } from "lucide-react";
+import type { Route } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
 import { routes } from "@/lib/routes";
@@ -12,11 +13,18 @@ type Props = {
    * false（デフォルト）のとき overview.topPageCount 件に絞る。
    */
   showAll?: boolean;
+  /**
+   * 議案番号（「議案第45号」等）→ 議案id の対応表。
+   * 渡された番号は議案詳細へのリンクに、無い番号は従来どおりバッジ表示にする。
+   * 省略時は全番号がバッジ表示（後方互換）。
+   */
+  billIdByNumber?: Record<string, string>;
 };
 
 export function DietSessionOverviewSection({
   session,
   showAll = false,
+  billIdByNumber,
 }: Props) {
   if (!session?.slug) return null;
 
@@ -40,7 +48,7 @@ export function DietSessionOverviewSection({
           {/* ヘッダー */}
           <div className="flex items-center justify-between gap-4">
             <h2 className="text-base font-bold text-mirai-text">
-              {showAll ? "今会期のテーマ" : "議案のカテゴリ別一覧"}
+              {showAll ? "今会期のテーマ" : "今会期の議案テーマ一覧"}
             </h2>
             <a
               href={overview.officialUrl}
@@ -64,6 +72,13 @@ export function DietSessionOverviewSection({
             </p>
           )}
 
+          {/* トップでは会期全体の索引としての位置づけを一言で示す */}
+          {!showAll && (
+            <p className="text-xs text-mirai-text-secondary leading-relaxed">
+              この会期で話し合われる議案を、テーマごとに一覧で確認できます。公開済みの議案番号から詳細を開けます。
+            </p>
+          )}
+
           {/* カテゴリグリッド */}
           <div className="flex flex-col gap-3">
             {displayedCategories.map((category) => (
@@ -76,14 +91,29 @@ export function DietSessionOverviewSection({
                     {category.title}
                   </h3>
                   <div className="flex flex-wrap justify-end gap-1 shrink-0">
-                    {category.billNumbers.map((num) => (
-                      <span
-                        key={num}
-                        className="text-xs text-mirai-text-muted bg-mirai-surface-muted px-1.5 py-0.5 rounded"
-                      >
-                        {num}
-                      </span>
-                    ))}
+                    {category.billNumbers.map((num) => {
+                      const billId = billIdByNumber?.[num];
+                      const badgeClass =
+                        "text-xs text-mirai-text-muted bg-mirai-surface-muted px-1.5 py-0.5 rounded";
+                      // 公開済み＋本文ありの議案だけ詳細へリンク。
+                      // 未公開・本文なし（id 未解決）は従来どおりバッジ表示。
+                      if (billId) {
+                        return (
+                          <Link
+                            key={num}
+                            href={routes.billDetail(billId) as Route}
+                            className={`${badgeClass} hover:text-mirai-text hover:bg-mirai-surface transition-colors`}
+                          >
+                            {num}
+                          </Link>
+                        );
+                      }
+                      return (
+                        <span key={num} className={badgeClass}>
+                          {num}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
                 <p className="text-xs text-mirai-text-secondary leading-relaxed">
