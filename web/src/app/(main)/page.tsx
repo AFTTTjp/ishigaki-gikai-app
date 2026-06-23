@@ -104,8 +104,10 @@ export default async function Home() {
             {/* タグ別議案一覧セクション */}
             <BillsByTagSection billsByTag={billsByTag} />
 
-            {/* Coming soonセクション */}
-            <ComingSoonSection bills={comingSoonBills} />
+            {/* Coming soonセクション（coming_soon 議案が0件なら非表示） */}
+            {comingSoonBills.length > 0 && (
+              <ComingSoonSection bills={comingSoonBills} />
+            )}
           </main>
         </div>
       </Container>
