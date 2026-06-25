@@ -1,0 +1,1476 @@
+{
+  "schema_version": "issue-story-draft/v1",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "generated_at": "2026-06-25T23:37:49.240Z",
+  "source_files": {
+    "issue_editorial_decisions": "/Users/fukuzatoatsushi/Developer/mirai-gikai-ishigaki/docs/general_questions_minutes/r8-dai4-teireikai.issue-editorial-decisions.json",
+    "issue_review_packet": "/Users/fukuzatoatsushi/Developer/mirai-gikai-ishigaki/docs/general_questions_minutes/r8-dai4-teireikai.issue-review-packet.json",
+    "issue_graph_pilot": "/Users/fukuzatoatsushi/Developer/mirai-gikai-ishigaki/docs/general_questions_minutes/r8-dai4-teireikai.issue-graph-pilot.json",
+    "canonical_general_questions": "/Users/fukuzatoatsushi/Developer/mirai-gikai-ishigaki/docs/general_questions_minutes/r8-dai4-teireikai.canonical.json",
+    "public_general_questions": "/Users/fukuzatoatsushi/Developer/mirai-gikai-ishigaki/docs/general_questions/r8-dai4-teireikai.general-questions.json"
+  },
+  "summary": {
+    "issue_count": 7,
+    "story_status": {
+      "issue-r8d4-keelung-route": {
+        "story_slug": "keelung-route",
+        "current_editorial_status": "needs_topic_decision",
+        "anchor_selection_status": "needs_review",
+        "review_required": true,
+        "has_normal_draft": true,
+        "has_hard_draft": true,
+        "has_split_warning": false,
+        "evidence_anchor_count": 1
+      },
+      "issue-r8d4-rito-koshien": {
+        "story_slug": "rito-koshien",
+        "current_editorial_status": "ready_for_keypoint_draft",
+        "anchor_selection_status": "needs_review",
+        "review_required": true,
+        "has_normal_draft": true,
+        "has_hard_draft": true,
+        "has_split_warning": false,
+        "evidence_anchor_count": 0
+      },
+      "issue-r8d4-former-cityhall": {
+        "story_slug": "former-cityhall",
+        "current_editorial_status": "keep_as_issue_only",
+        "anchor_selection_status": "needs_review",
+        "review_required": true,
+        "has_normal_draft": true,
+        "has_hard_draft": true,
+        "has_split_warning": false,
+        "evidence_anchor_count": 1
+      },
+      "issue-r8d4-lodging-tax-finance": {
+        "story_slug": "lodging-tax-finance",
+        "current_editorial_status": "needs_topic_decision",
+        "anchor_selection_status": "needs_review",
+        "review_required": true,
+        "has_normal_draft": true,
+        "has_hard_draft": true,
+        "has_split_warning": false,
+        "evidence_anchor_count": 0
+      },
+      "issue-r8d4-municipal-housing": {
+        "story_slug": "municipal-housing",
+        "current_editorial_status": "needs_topic_decision",
+        "anchor_selection_status": "needs_review",
+        "review_required": true,
+        "has_normal_draft": true,
+        "has_hard_draft": true,
+        "has_split_warning": false,
+        "evidence_anchor_count": 1
+      },
+      "issue-r8d4-school-education": {
+        "story_slug": "school-education",
+        "current_editorial_status": "needs_split",
+        "anchor_selection_status": "split_recommended",
+        "review_required": true,
+        "has_normal_draft": true,
+        "has_hard_draft": true,
+        "has_split_warning": true,
+        "evidence_anchor_count": 1
+      },
+      "issue-r8d4-disaster-fire-rescue": {
+        "story_slug": "disaster-fire-rescue",
+        "current_editorial_status": "needs_split",
+        "anchor_selection_status": "split_recommended",
+        "review_required": true,
+        "has_normal_draft": true,
+        "has_hard_draft": true,
+        "has_split_warning": true,
+        "evidence_anchor_count": 2
+      }
+    },
+    "review_required_count": 7,
+    "needs_split_count": 2
+  },
+  "stories": [
+    {
+      "issue_id": "issue-r8d4-keelung-route",
+      "story_slug": "keelung-route",
+      "title": "台湾・基隆定期航路と八重山丸（やいま丸）",
+      "citizen_question": "台湾・基隆を結ぶ定期航路は、採算や運賃も含めて続けられるの？",
+      "why_it_matters": "この issue は「台湾・基隆を結ぶ定期航路は、採算や運賃も含めて続けられるの？」という市民向けの問いに対して、今会期でどの一般質問と議案候補が結び付いていたかを確認するための review draft です。 一般質問の参照件数は 10 件で、関連議案は 議案第45号（candidate）、関連 topic は ishigaki-keelung-route-yaimamaru（candidate） と整理されています。",
+      "what_was_discussed_this_session": [
+        "一般質問では 友寄永三「石垣、基隆定期航路について」、後上里厚司「石垣・台湾定期航路」、後上里厚司「クルーズ船専用バースの利用状況について」、大道夏代「定期航路事業について」、大道夏代「離島へのフェリー運賃割引について」、伊良部和摩「台湾との物流・交流促進について」、宮良操「定期航路事業について」、花谷史郎「商船やいまについて」、花谷史郎「ホルムズ海峡封鎖における石油危機と平和政策に対する考え」、長浜信夫「台湾・石垣定期船就航について」 がこの issue に関連付けられています。",
+        "関連議案の整理は 議案第45号（candidate） です。",
+        "関連 topic の整理は ishigaki-keelung-route-yaimamaru（candidate） です。",
+        "委員会文脈として 経済民生委員会（議案第45号） が確認できます。"
+      ],
+      "related_questions": [
+        {
+          "member_name": "友寄永三",
+          "question_slug": "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+          "item_number": 1,
+          "sub_item_index": null,
+          "item_title": "石垣、基隆定期航路について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 51,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-16/石垣市議会　令和８年６月15日　６月定例会　友寄永三議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "後上里厚司",
+          "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+          "item_number": 4,
+          "sub_item_index": null,
+          "item_title": "石垣・台湾定期航路",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 85,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-16/石垣市議会　令和８年６月１５日　６月定例会　後上里厚司議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "後上里厚司",
+          "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+          "item_number": 5,
+          "sub_item_index": null,
+          "item_title": "クルーズ船専用バースの利用状況について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 85,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-16/石垣市議会　令和８年６月１５日　６月定例会　後上里厚司議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "大道夏代",
+          "question_slug": "ishigaki-r8-dai4-ippan-omichi-natsuyo",
+          "item_number": 1,
+          "sub_item_index": null,
+          "item_title": "定期航路事業について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 57,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１６日　６月定例会　大道夏代議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "大道夏代",
+          "question_slug": "ishigaki-r8-dai4-ippan-omichi-natsuyo",
+          "item_number": 2,
+          "sub_item_index": null,
+          "item_title": "離島へのフェリー運賃割引について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 57,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１６日　６月定例会　大道夏代議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "伊良部和摩",
+          "question_slug": "ishigaki-r8-dai4-ippan-irabu-kazuma",
+          "item_number": 3,
+          "sub_item_index": null,
+          "item_title": "台湾との物流・交流促進について",
+          "sub_item_text": null,
+          "anchor_text": "3項目目台湾との物流交流促進についてお伺いいたします",
+          "anchor_confidence": "medium",
+          "anchor_source": "canonical_question_items",
+          "anchor_note": null,
+          "anchor_status": "verified",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 45,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１６日　６月定例会　伊良部和摩議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "宮良操",
+          "question_slug": "ishigaki-r8-dai4-ippan-miyara-misao",
+          "item_number": 1,
+          "sub_item_index": null,
+          "item_title": "定期航路事業について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [
+            {
+              "raw_anchor_text": "質問第一点目は石垣台湾定期行動事業についてであります",
+              "confidence": "low",
+              "source": "reference_only",
+              "note": "question-level・ASR由来・item紐付け要校正(review_required)"
+            }
+          ],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 85,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１７日　６月定例会　宮良操議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "花谷史郎",
+          "question_slug": "ishigaki-r8-dai4-ippan-hanatani-shiro",
+          "item_number": 4,
+          "sub_item_index": null,
+          "item_title": "商船やいまについて",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 52,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１９日　６月定例会　花谷史郎議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "花谷史郎",
+          "question_slug": "ishigaki-r8-dai4-ippan-hanatani-shiro",
+          "item_number": 5,
+          "sub_item_index": null,
+          "item_title": "ホルムズ海峡封鎖における石油危機と平和政策に対する考え",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 52,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１９日　６月定例会　花谷史郎議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "長浜信夫",
+          "question_slug": "ishigaki-r8-dai4-ippan-nagahama-nobuo",
+          "item_number": 4,
+          "sub_item_index": null,
+          "item_title": "台湾・石垣定期船就航について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 43,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-25/石垣市議会　令和８年６月２２日　６月定例会　長浜信夫議員　一般質問_minutes.md",
+          "resolved": true
+        }
+      ],
+      "related_bills": [
+        {
+          "bill_number": "議案第45号",
+          "bill_name": "議案第45号 中華民国基隆市との国際友好都市提携について",
+          "committee": "経済民生委員会",
+          "status": "candidate",
+          "note": "基隆友好都市提携。航路再開が文脈。bill紐付けは候補(編集者確認)"
+        }
+      ],
+      "related_topics": [
+        {
+          "topic_slug": "ishigaki-keelung-route-yaimamaru",
+          "title": "石垣－基隆航路とやいま丸",
+          "status": "candidate",
+          "note": "航路系の既存topic。source topic_slugs未設定＝候補"
+        }
+      ],
+      "committee_context": {
+        "committees": [
+          {
+            "committee_name": "経済民生委員会",
+            "bill_numbers": [
+              "議案第45号"
+            ]
+          }
+        ],
+        "note": "bill に付属する委員会名のみを記載しています"
+      },
+      "current_editorial_status": "needs_topic_decision",
+      "anchor_selection_status": "needs_review",
+      "review_required": true,
+      "review_notes": [
+        "議案第45号は友好都市提携の議案であり、航路論点との接続は現時点では candidate 維持が妥当。",
+        "既存 topic `ishigaki-keelung-route-yaimamaru` は存在するが、source topic_slugs での裏付けはないため candidate 維持。",
+        "議案第45号を keyPoint の relatedBills に採るかを編集者が最終確認する。",
+        "既存 topic を keyPoint 側へ使うか、Issue 単独で扱うかを確認する。",
+        "question-level の evidence anchor は reference_only 扱いで、採用 anchor には使っていません。",
+        "related_questions には item-aware verification を通過しなかった行が含まれています。"
+      ],
+      "normal_draft": "【review draft / normal】 台湾・基隆定期航路と八重山丸（やいま丸）について、今会期では 友寄永三の「石垣、基隆定期航路について」、後上里厚司の「石垣・台湾定期航路」、後上里厚司の「クルーズ船専用バースの利用状況について」、大道夏代の「定期航路事業について」、大道夏代の「離島へのフェリー運賃割引について」 が参照されています。 関連議案の整理は 議案第45号（candidate） で、答弁内容や論点の切り分けは evidence anchor と原文で要確認です。",
+      "hard_draft": "【review draft / hard】 current editorial status は needs_topic_decision です。 related_questions は 10 件で、anchor の review_required は 10 件あります。 関連議案は 議案第45号（candidate）、関連 topic は ishigaki-keelung-route-yaimamaru（candidate） と整理しています。 市の答弁内容や因果関係の断定はしておらず、原文確認用の下書きとして扱ってください。",
+      "evidence_anchors": [
+        {
+          "question_slug": "ishigaki-r8-dai4-ippan-irabu-kazuma",
+          "member_name": "伊良部和摩",
+          "anchor_text": "3項目目台湾との物流交流促進についてお伺いいたします",
+          "confidence": "medium",
+          "source": "canonical_question_items",
+          "review_required": true
+        }
+      ],
+      "split_warning": {
+        "required": false,
+        "notes": []
+      },
+      "confidence_summary": {
+        "high": 0,
+        "medium": 1,
+        "low": 0,
+        "unknown": 9
+      }
+    },
+    {
+      "issue_id": "issue-r8d4-rito-koshien",
+      "story_slug": "rito-koshien",
+      "title": "離島甲子園への出場",
+      "citizen_question": "石垣の子どもたちは離島甲子園に参加できるの？費用はどうなる？",
+      "why_it_matters": "この issue は「石垣の子どもたちは離島甲子園に参加できるの？費用はどうなる？」という市民向けの問いに対して、今会期でどの一般質問と議案候補が結び付いていたかを確認するための review draft です。 一般質問の参照件数は 2 件で、関連議案は 議案第42号（confirmed）、関連 topic は rito-koshien-r8-dai4（confirmed） と整理されています。",
+      "what_was_discussed_this_session": [
+        "一般質問では 後上里厚司「離島甲子園について」、長浜信夫「離島甲子園大会出場について」 がこの issue に関連付けられています。",
+        "関連議案の整理は 議案第42号（confirmed） です。",
+        "関連 topic の整理は rito-koshien-r8-dai4（confirmed） です。",
+        "委員会文脈として 総務財政委員会（議案第42号） が確認できます。"
+      ],
+      "related_questions": [
+        {
+          "member_name": "後上里厚司",
+          "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+          "item_number": 7,
+          "sub_item_index": null,
+          "item_title": "離島甲子園について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 85,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-16/石垣市議会　令和８年６月１５日　６月定例会　後上里厚司議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "長浜信夫",
+          "question_slug": "ishigaki-r8-dai4-ippan-nagahama-nobuo",
+          "item_number": 3,
+          "sub_item_index": null,
+          "item_title": "離島甲子園大会出場について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 43,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-25/石垣市議会　令和８年６月２２日　６月定例会　長浜信夫議員　一般質問_minutes.md",
+          "resolved": true
+        }
+      ],
+      "related_bills": [
+        {
+          "bill_number": "議案第42号",
+          "bill_name": "議案第42号 令和8年度石垣市一般会計補正予算（第1号）",
+          "committee": "総務財政委員会",
+          "status": "confirmed",
+          "note": "一般会計補正＝離島甲子園参加経費を含む。bill紐付けは候補"
+        }
+      ],
+      "related_topics": [
+        {
+          "topic_slug": "rito-koshien-r8-dai4",
+          "title": "離島甲子園への出場はどうなる？",
+          "status": "confirmed",
+          "note": "複数質問に source topic_slugs 設定済み。item対応は要確認"
+        }
+      ],
+      "committee_context": {
+        "committees": [
+          {
+            "committee_name": "総務財政委員会",
+            "bill_numbers": [
+              "議案第42号"
+            ]
+          }
+        ],
+        "note": "bill に付属する委員会名のみを記載しています"
+      },
+      "current_editorial_status": "ready_for_keypoint_draft",
+      "anchor_selection_status": "needs_review",
+      "review_required": true,
+      "review_notes": [
+        "一般質問 item ref 2件、議案第42号、既存 topic が一直線につながっており、pilot 7件の中で最も keyPoint 化しやすい。",
+        "topic は source topic_slugs による confirmed_at_source を維持する。",
+        "keyPoint draft に進める前提で、status 文言と citizen-facing oneLine の草案を別途作る。",
+        "question-level の evidence anchor は reference_only 扱いで、採用 anchor には使っていません。",
+        "related_questions には item-aware verification を通過しなかった行が含まれています。"
+      ],
+      "normal_draft": "【review draft / normal】 離島甲子園への出場について、今会期では 後上里厚司の「離島甲子園について」、長浜信夫の「離島甲子園大会出場について」 が参照されています。 関連議案の整理は 議案第42号（confirmed） で、答弁内容や論点の切り分けは evidence anchor と原文で要確認です。",
+      "hard_draft": "【review draft / hard】 current editorial status は ready_for_keypoint_draft です。 related_questions は 2 件で、anchor の review_required は 2 件あります。 関連議案は 議案第42号（confirmed）、関連 topic は rito-koshien-r8-dai4（confirmed） と整理しています。 市の答弁内容や因果関係の断定はしておらず、原文確認用の下書きとして扱ってください。",
+      "evidence_anchors": [],
+      "split_warning": {
+        "required": false,
+        "notes": []
+      },
+      "confidence_summary": {
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "unknown": 2
+      }
+    },
+    {
+      "issue_id": "issue-r8d4-former-cityhall",
+      "story_slug": "former-cityhall",
+      "title": "旧庁舎跡地の活用",
+      "citizen_question": "旧市役所の跡地はこれからどう使われるの？",
+      "why_it_matters": "この issue は「旧市役所の跡地はこれからどう使われるの？」という市民向けの問いに対して、今会期でどの一般質問と議案候補が結び付いていたかを確認するための review draft です。 一般質問の参照件数は 2 件で、関連議案は 未確定、関連 topic は ishigaki-old-city-hall（confirmed） と整理されています。",
+      "what_was_discussed_this_session": [
+        "一般質問では 友寄永三「旧庁舎跡地開発について」、後上里厚司「旧庁舎跡地利用の現状について」 がこの issue に関連付けられています。",
+        "関連議案の整理は 未確定 です。",
+        "関連 topic の整理は ishigaki-old-city-hall（confirmed） です。",
+        "bill 経由で確認できる委員会候補はありません。"
+      ],
+      "related_questions": [
+        {
+          "member_name": "友寄永三",
+          "question_slug": "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+          "item_number": 2,
+          "sub_item_index": null,
+          "item_title": "旧庁舎跡地開発について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 51,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-16/石垣市議会　令和８年６月15日　６月定例会　友寄永三議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "後上里厚司",
+          "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+          "item_number": 3,
+          "sub_item_index": null,
+          "item_title": "旧庁舎跡地利用の現状について",
+          "sub_item_text": null,
+          "anchor_text": "3項目目 旧庁舎跡地利用の現状について",
+          "anchor_confidence": "high",
+          "anchor_source": "canonical_question_items",
+          "anchor_note": null,
+          "anchor_status": "verified",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 85,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-16/石垣市議会　令和８年６月１５日　６月定例会　後上里厚司議員　一般質問_minutes.md",
+          "resolved": true
+        }
+      ],
+      "related_bills": [
+        {
+          "bill_number": null,
+          "bill_name": null,
+          "committee": null,
+          "status": "unresolved",
+          "note": "関連議案はありますが editorial decision 側で未確定です"
+        }
+      ],
+      "related_topics": [
+        {
+          "topic_slug": "ishigaki-old-city-hall",
+          "title": "石垣市庁舎跡地活用",
+          "status": "confirmed",
+          "note": "友寄・後上里の質問に source topic_slugs 設定済み"
+        }
+      ],
+      "committee_context": {
+        "committees": [],
+        "note": "bill 経由で確認できる委員会候補はありません"
+      },
+      "current_editorial_status": "keep_as_issue_only",
+      "anchor_selection_status": "needs_review",
+      "review_required": true,
+      "review_notes": [
+        "既存 topic `ishigaki-old-city-hall` との接続は強い一方、今回 packet source には会期 bill 候補が置かれていない。",
+        "現段階では会期 keyPoint へ昇格させるより、Issue として保持しつつ既存 topic への導線として扱う方が安全。",
+        "session-overview に出す場合でも relatedBills なしで扱うかを編集者が判断する。",
+        "question-level の evidence anchor は reference_only 扱いで、採用 anchor には使っていません。",
+        "related_questions には item-aware verification を通過しなかった行が含まれています。"
+      ],
+      "normal_draft": "【review draft / normal】 旧庁舎跡地の活用について、今会期では 友寄永三の「旧庁舎跡地開発について」、後上里厚司の「旧庁舎跡地利用の現状について」 が参照されています。 関連議案の整理は 未確定 で、答弁内容や論点の切り分けは evidence anchor と原文で要確認です。",
+      "hard_draft": "【review draft / hard】 current editorial status は keep_as_issue_only です。 related_questions は 2 件で、anchor の review_required は 2 件あります。 関連議案は 未確定、関連 topic は ishigaki-old-city-hall（confirmed） と整理しています。 市の答弁内容や因果関係の断定はしておらず、原文確認用の下書きとして扱ってください。",
+      "evidence_anchors": [
+        {
+          "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+          "member_name": "後上里厚司",
+          "anchor_text": "3項目目 旧庁舎跡地利用の現状について",
+          "confidence": "high",
+          "source": "canonical_question_items",
+          "review_required": true
+        }
+      ],
+      "split_warning": {
+        "required": false,
+        "notes": []
+      },
+      "confidence_summary": {
+        "high": 1,
+        "medium": 0,
+        "low": 0,
+        "unknown": 1
+      }
+    },
+    {
+      "issue_id": "issue-r8d4-lodging-tax-finance",
+      "story_slug": "lodging-tax-finance",
+      "title": "宿泊税と観光財源・基金の使い方",
+      "citizen_question": "観光客から集める宿泊税や基金・寄付金は、何に・どう使われるの？",
+      "why_it_matters": "この issue は「観光客から集める宿泊税や基金・寄付金は、何に・どう使われるの？」という市民向けの問いに対して、今会期でどの一般質問と議案候補が結び付いていたかを確認するための review draft です。 一般質問の参照件数は 4 件で、関連議案は 議案第36号（confirmed）、議案第41号（candidate）、議案第42号（candidate）、関連 topic は 宿泊税と観光財源・基金の使い方（new） と整理されています。",
+      "what_was_discussed_this_session": [
+        "一般質問では 伊良部和摩「石垣市宿泊税基金条例と税の活用について」、仲嶺忠師「基金管理について」、内原英聡「ふるさと納税の有効活用」、仲間均「桃原用昇氏寄付金活用」 がこの issue に関連付けられています。",
+        "関連議案の整理は 議案第36号（confirmed）、議案第41号（candidate）、議案第42号（candidate） です。",
+        "関連 topic の整理は 宿泊税と観光財源・基金の使い方（new） です。",
+        "委員会文脈として 経済民生委員会（議案第36号）、総務財政委員会（議案第41号、議案第42号） が確認できます。"
+      ],
+      "related_questions": [
+        {
+          "member_name": "伊良部和摩",
+          "question_slug": "ishigaki-r8-dai4-ippan-irabu-kazuma",
+          "item_number": 2,
+          "sub_item_index": null,
+          "item_title": "石垣市宿泊税基金条例と税の活用について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 45,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１６日　６月定例会　伊良部和摩議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "仲嶺忠師",
+          "question_slug": "ishigaki-r8-dai4-ippan-nakamine-tadashi",
+          "item_number": 1,
+          "sub_item_index": null,
+          "item_title": "基金管理について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 56,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１５日　６月定例会　仲嶺忠師議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "内原英聡",
+          "question_slug": "ishigaki-r8-dai4-ippan-uchihara-hidetoshi",
+          "item_number": 2,
+          "sub_item_index": null,
+          "item_title": "ふるさと納税の有効活用",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 100,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-25/石垣市議会　令和８年６月２２日　６月定例会　内原英聡議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "仲間均",
+          "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+          "item_number": 3,
+          "sub_item_index": null,
+          "item_title": "桃原用昇氏寄付金活用",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 74,
+            "possible_asr_errors": 22,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-25/石垣市議会　令和８年６月２２日　６月定例会　仲間均議員　一般質問_minutes_20260625-192155.md",
+          "resolved": true
+        }
+      ],
+      "related_bills": [
+        {
+          "bill_number": "議案第36号",
+          "bill_name": "議案第36号 石垣市宿泊税基金条例",
+          "committee": "経済民生委員会",
+          "status": "confirmed",
+          "note": "宿泊税基金条例。bill紐付けは候補"
+        },
+        {
+          "bill_number": "議案第41号",
+          "bill_name": "議案第41号 桃原用昇奨学基金条例及び桃原用昇高等学校奨学基金条例の特例並びに廃止に関する条例",
+          "committee": "総務財政委員会",
+          "status": "candidate",
+          "note": "奨学基金の特例並びに廃止(桃原用昇)。候補"
+        },
+        {
+          "bill_number": "議案第42号",
+          "bill_name": "議案第42号 令和8年度石垣市一般会計補正予算（第1号）",
+          "committee": "総務財政委員会",
+          "status": "candidate",
+          "note": "一般会計補正。候補"
+        }
+      ],
+      "related_topics": [
+        {
+          "topic_slug": null,
+          "title": "宿泊税と観光財源・基金の使い方",
+          "status": "new",
+          "note": "議案第36号を中心に、議案第41号・第42号を周辺論点として束ねる新規 topic 候補。"
+        }
+      ],
+      "committee_context": {
+        "committees": [
+          {
+            "committee_name": "経済民生委員会",
+            "bill_numbers": [
+              "議案第36号"
+            ]
+          },
+          {
+            "committee_name": "総務財政委員会",
+            "bill_numbers": [
+              "議案第41号",
+              "議案第42号"
+            ]
+          }
+        ],
+        "note": "bill に付属する委員会名のみを記載しています"
+      },
+      "current_editorial_status": "needs_topic_decision",
+      "anchor_selection_status": "needs_review",
+      "review_required": true,
+      "review_notes": [
+        "議案第36号は論点の中心に近く、editorial 上は confirmed_bills へ寄せる案が妥当。",
+        "議案第41号・第42号は寄付金・一般財源の文脈で関係するが、中心 bill ではないため candidate 維持。",
+        "新規 topic 化するか、Issue のみで留めるかを編集者が決める。",
+        "topic 化する場合の title / slug を別途確定する。",
+        "question-level の evidence anchor は reference_only 扱いで、採用 anchor には使っていません。",
+        "related_questions には item-aware verification を通過しなかった行が含まれています。"
+      ],
+      "normal_draft": "【review draft / normal】 宿泊税と観光財源・基金の使い方について、今会期では 伊良部和摩の「石垣市宿泊税基金条例と税の活用について」、仲嶺忠師の「基金管理について」、内原英聡の「ふるさと納税の有効活用」、仲間均の「桃原用昇氏寄付金活用」 が参照されています。 関連議案の整理は 議案第36号（confirmed）、議案第41号（candidate）、議案第42号（candidate） で、答弁内容や論点の切り分けは evidence anchor と原文で要確認です。",
+      "hard_draft": "【review draft / hard】 current editorial status は needs_topic_decision です。 related_questions は 4 件で、anchor の review_required は 4 件あります。 関連議案は 議案第36号（confirmed）、議案第41号（candidate）、議案第42号（candidate）、関連 topic は 宿泊税と観光財源・基金の使い方（new） と整理しています。 市の答弁内容や因果関係の断定はしておらず、原文確認用の下書きとして扱ってください。",
+      "evidence_anchors": [],
+      "split_warning": {
+        "required": false,
+        "notes": []
+      },
+      "confidence_summary": {
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "unknown": 4
+      }
+    },
+    {
+      "issue_id": "issue-r8d4-municipal-housing",
+      "story_slug": "municipal-housing",
+      "title": "市営住宅・住まいの確保",
+      "citizen_question": "若い世帯やシニアが、石垣で住み続けられる住まいを確保できるの？",
+      "why_it_matters": "この issue は「若い世帯やシニアが、石垣で住み続けられる住まいを確保できるの？」という市民向けの問いに対して、今会期でどの一般質問と議案候補が結び付いていたかを確認するための review draft です。 一般質問の参照件数は 4 件で、関連議案は 議案第40号（confirmed）、関連 topic は 市営住宅・住まいの確保（new） と整理されています。",
+      "what_was_discussed_this_session": [
+        "一般質問では 箕底用一「若い世代が家を建てられる石垣市づくりについて」、仲間均「シニア向け市営団地建設」、石垣達也「真喜良地域公営住宅周辺における公共交通及び道路環境の改善について」、石垣達也「家賃高騰下における生活保護制度と住まいの確保、生活支援の課題について」 がこの issue に関連付けられています。",
+        "関連議案の整理は 議案第40号（confirmed） です。",
+        "関連 topic の整理は 市営住宅・住まいの確保（new） です。",
+        "委員会文脈として 建設土木委員会（議案第40号） が確認できます。"
+      ],
+      "related_questions": [
+        {
+          "member_name": "箕底用一",
+          "question_slug": "ishigaki-r8-dai4-ippan-minosoko-yoichi",
+          "item_number": 1,
+          "sub_item_index": null,
+          "item_title": "若い世代が家を建てられる石垣市づくりについて",
+          "sub_item_text": null,
+          "anchor_text": "1項目目 若い世代が家を建てられる石垣市づくりについて",
+          "anchor_confidence": "high",
+          "anchor_source": "canonical_question_items",
+          "anchor_note": null,
+          "anchor_status": "verified",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 65,
+            "possible_asr_errors": 2,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１９日　６月定例会　箕底用一議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "仲間均",
+          "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+          "item_number": 2,
+          "sub_item_index": null,
+          "item_title": "シニア向け市営団地建設",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 74,
+            "possible_asr_errors": 22,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-25/石垣市議会　令和８年６月２２日　６月定例会　仲間均議員　一般質問_minutes_20260625-192155.md",
+          "resolved": true
+        },
+        {
+          "member_name": "石垣達也",
+          "question_slug": "ishigaki-r8-dai4-ippan-ishigaki-tatsuya",
+          "item_number": 3,
+          "sub_item_index": null,
+          "item_title": "真喜良地域公営住宅周辺における公共交通及び道路環境の改善について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 39,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-25/石垣市議会　令和８年６月２２日　６月定例会　石垣達也議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "石垣達也",
+          "question_slug": "ishigaki-r8-dai4-ippan-ishigaki-tatsuya",
+          "item_number": 5,
+          "sub_item_index": null,
+          "item_title": "家賃高騰下における生活保護制度と住まいの確保、生活支援の課題について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 39,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-25/石垣市議会　令和８年６月２２日　６月定例会　石垣達也議員　一般質問_minutes.md",
+          "resolved": true
+        }
+      ],
+      "related_bills": [
+        {
+          "bill_number": "議案第40号",
+          "bill_name": "議案第40号 石垣市営住宅の設置及び管理に関する条例の一部を改正する条例",
+          "committee": "建設土木委員会",
+          "status": "confirmed",
+          "note": "市営住宅 期限付き入居。bill紐付けは候補"
+        }
+      ],
+      "related_topics": [
+        {
+          "topic_slug": null,
+          "title": "市営住宅・住まいの確保",
+          "status": "new",
+          "note": "議案第40号と一般質問 item ref 4件を束ねる新規 topic 候補。"
+        }
+      ],
+      "committee_context": {
+        "committees": [
+          {
+            "committee_name": "建設土木委員会",
+            "bill_numbers": [
+              "議案第40号"
+            ]
+          }
+        ],
+        "note": "bill に付属する委員会名のみを記載しています"
+      },
+      "current_editorial_status": "needs_topic_decision",
+      "anchor_selection_status": "needs_review",
+      "review_required": true,
+      "review_notes": [
+        "議案第40号は市営住宅 issue の中心 bill とみなしてよい。",
+        "既存 topic は無いため、新規 topic を作るか、Issue のみで扱うかの判断が必要。",
+        "新規 topic 候補の可否を決める。",
+        "keyPoint に進める場合は住まい確保の市民向け問いを短く整える。",
+        "question-level の evidence anchor は reference_only 扱いで、採用 anchor には使っていません。",
+        "related_questions には item-aware verification を通過しなかった行が含まれています。"
+      ],
+      "normal_draft": "【review draft / normal】 市営住宅・住まいの確保について、今会期では 箕底用一の「若い世代が家を建てられる石垣市づくりについて」、仲間均の「シニア向け市営団地建設」、石垣達也の「真喜良地域公営住宅周辺における公共交通及び道路環境の改善について」、石垣達也の「家賃高騰下における生活保護制度と住まいの確保、生活支援の課題について」 が参照されています。 関連議案の整理は 議案第40号（confirmed） で、答弁内容や論点の切り分けは evidence anchor と原文で要確認です。",
+      "hard_draft": "【review draft / hard】 current editorial status は needs_topic_decision です。 related_questions は 4 件で、anchor の review_required は 4 件あります。 関連議案は 議案第40号（confirmed）、関連 topic は 市営住宅・住まいの確保（new） と整理しています。 市の答弁内容や因果関係の断定はしておらず、原文確認用の下書きとして扱ってください。",
+      "evidence_anchors": [
+        {
+          "question_slug": "ishigaki-r8-dai4-ippan-minosoko-yoichi",
+          "member_name": "箕底用一",
+          "anchor_text": "1項目目 若い世代が家を建てられる石垣市づくりについて",
+          "confidence": "high",
+          "source": "canonical_question_items",
+          "review_required": true
+        }
+      ],
+      "split_warning": {
+        "required": false,
+        "notes": []
+      },
+      "confidence_summary": {
+        "high": 1,
+        "medium": 0,
+        "low": 0,
+        "unknown": 3
+      }
+    },
+    {
+      "issue_id": "issue-r8d4-school-education",
+      "story_slug": "school-education",
+      "title": "学校統廃合・教育環境",
+      "citizen_question": "学校の統廃合や老朽校舎、子どもの学び・支援はどうなるの？",
+      "why_it_matters": "この issue は「学校の統廃合や老朽校舎、子どもの学び・支援はどうなるの？」という市民向けの問いに対して、今会期でどの一般質問と議案候補が結び付いていたかを確認するための review draft です。 一般質問の参照件数は 8 件で、関連議案は 議案第48号（candidate）、議案第49号（candidate）、関連 topic は 未確定（unresolved） と整理されています。",
+      "what_was_discussed_this_session": [
+        "一般質問では 花谷史郎「市立小中学校の統廃合」、箕底用一「老朽化校舎の建替え及び危険校舎の解体について」、平良秀之「旧平久保小学校の活用並びに高齢者が集う「憩いの場」について」、平良秀之「教育支援センター「あやぱに学級」について」、東内原とも子「不登校児童生徒への支援体制について」、大道夏代「学校図書費について」、友寄永三「教育行政」、井上美智子「教育行政について」 がこの issue に関連付けられています。",
+        "関連議案の整理は 議案第48号（candidate）、議案第49号（candidate） です。",
+        "関連 topic の整理は 未確定（unresolved） です。",
+        "委員会文脈として 総務財政委員会（議案第48号、議案第49号） が確認できます。",
+        "この issue は分割前提の確認が必要です。"
+      ],
+      "related_questions": [
+        {
+          "member_name": "花谷史郎",
+          "question_slug": "ishigaki-r8-dai4-ippan-hanatani-shiro",
+          "item_number": 3,
+          "sub_item_index": null,
+          "item_title": "市立小中学校の統廃合",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 52,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１９日　６月定例会　花谷史郎議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "箕底用一",
+          "question_slug": "ishigaki-r8-dai4-ippan-minosoko-yoichi",
+          "item_number": 2,
+          "sub_item_index": null,
+          "item_title": "老朽化校舎の建替え及び危険校舎の解体について",
+          "sub_item_text": null,
+          "anchor_text": "2項目目、老朽化校舎の建て替え及び危険校舎の解体について、老朽化が進む学校施設において、児童生徒及び教職員の安全は十分確保されているのか、",
+          "anchor_confidence": "high",
+          "anchor_source": "canonical_question_items",
+          "anchor_note": null,
+          "anchor_status": "verified",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 65,
+            "possible_asr_errors": 2,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１９日　６月定例会　箕底用一議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "平良秀之",
+          "question_slug": "ishigaki-r8-dai4-ippan-taira-hideyuki",
+          "item_number": 2,
+          "sub_item_index": null,
+          "item_title": "旧平久保小学校の活用並びに高齢者が集う「憩いの場」について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [
+            {
+              "raw_anchor_text": "次に石垣市北部地域西部地域活性化基本構想における旧平久保小学校の活用並びに",
+              "confidence": "low",
+              "source": "reference_only",
+              "note": "question-level・ASR由来・item紐付け要校正(review_required)"
+            }
+          ],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 53,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-16/石垣市議会　令和８年６月１５日　６月定例会　平良秀之議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "平良秀之",
+          "question_slug": "ishigaki-r8-dai4-ippan-taira-hideyuki",
+          "item_number": 5,
+          "sub_item_index": null,
+          "item_title": "教育支援センター「あやぱに学級」について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 53,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-16/石垣市議会　令和８年６月１５日　６月定例会　平良秀之議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "東内原とも子",
+          "question_slug": "ishigaki-r8-dai4-ippan-higashiuchihara-tomoko",
+          "item_number": 1,
+          "sub_item_index": null,
+          "item_title": "不登校児童生徒への支援体制について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 41,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１６日　６月定例会　東内原とも子議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "大道夏代",
+          "question_slug": "ishigaki-r8-dai4-ippan-omichi-natsuyo",
+          "item_number": 3,
+          "sub_item_index": null,
+          "item_title": "学校図書費について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 57,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１６日　６月定例会　大道夏代議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "友寄永三",
+          "question_slug": "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+          "item_number": 3,
+          "sub_item_index": null,
+          "item_title": "教育行政",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 51,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-16/石垣市議会　令和８年６月15日　６月定例会　友寄永三議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "井上美智子",
+          "question_slug": "ishigaki-r8-dai4-ippan-inoue-michiko",
+          "item_number": 4,
+          "sub_item_index": null,
+          "item_title": "教育行政について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 31,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１７日　６月定例会　井上美智子議員　一般質問_minutes.md",
+          "resolved": true
+        }
+      ],
+      "related_bills": [
+        {
+          "bill_number": "議案第48号",
+          "bill_name": "議案第48号 財産の取得について［石垣市学習者用GIGA端末］",
+          "committee": "総務財政委員会",
+          "status": "candidate",
+          "note": "学習者用GIGA端末取得。候補"
+        },
+        {
+          "bill_number": "議案第49号",
+          "bill_name": "議案第49号 財産の取得について［石垣市指導者用GIGA端末］",
+          "committee": "総務財政委員会",
+          "status": "candidate",
+          "note": "指導者用GIGA端末取得。候補"
+        }
+      ],
+      "related_topics": [
+        {
+          "topic_slug": null,
+          "title": null,
+          "status": "unresolved",
+          "note": "関連 topic はありますが editorial decision 側で未確定です"
+        }
+      ],
+      "committee_context": {
+        "committees": [
+          {
+            "committee_name": "総務財政委員会",
+            "bill_numbers": [
+              "議案第48号",
+              "議案第49号"
+            ]
+          }
+        ],
+        "note": "bill に付属する委員会名のみを記載しています"
+      },
+      "current_editorial_status": "needs_split",
+      "anchor_selection_status": "split_recommended",
+      "review_required": true,
+      "review_notes": [
+        "現状の issue は教育全体を束ねすぎており、GIGA 端末議案を confirmed_bills に上げると論点が広すぎる。",
+        "まず split してから keyPoint or topic 判断に進む方が安全。",
+        "教育全体 issue を 2 つ以上の sub_issue に分ける案を作る。",
+        "question-level の evidence anchor は reference_only 扱いで、採用 anchor には使っていません。",
+        "related_questions には item-aware verification を通過しなかった行が含まれています。"
+      ],
+      "normal_draft": "【review draft / normal】 学校統廃合・教育環境について、今会期では 花谷史郎の「市立小中学校の統廃合」、箕底用一の「老朽化校舎の建替え及び危険校舎の解体について」、平良秀之の「旧平久保小学校の活用並びに高齢者が集う「憩いの場」について」、平良秀之の「教育支援センター「あやぱに学級」について」、東内原とも子の「不登校児童生徒への支援体制について」 が参照されています。 関連議案の整理は 議案第48号（candidate）、議案第49号（candidate） で、答弁内容や論点の切り分けは evidence anchor と原文で要確認です。 この issue は論点が広いため、分割して読む前提で確認が必要です。",
+      "hard_draft": "【review draft / hard】 current editorial status は needs_split です。 related_questions は 8 件で、anchor の review_required は 8 件あります。 関連議案は 議案第48号（candidate）、議案第49号（candidate）、関連 topic は 未確定（unresolved） と整理しています。 市の答弁内容や因果関係の断定はしておらず、原文確認用の下書きとして扱ってください。",
+      "evidence_anchors": [
+        {
+          "question_slug": "ishigaki-r8-dai4-ippan-minosoko-yoichi",
+          "member_name": "箕底用一",
+          "anchor_text": "2項目目、老朽化校舎の建て替え及び危険校舎の解体について、老朽化が進む学校施設において、児童生徒及び教職員の安全は十分確保されているのか、",
+          "confidence": "high",
+          "source": "canonical_question_items",
+          "review_required": true
+        }
+      ],
+      "split_warning": {
+        "required": true,
+        "notes": [
+          "議案第48号・第49号は GIGA 端末取得には直接つながるが、学校統廃合・給食・図書館・教育環境全体とは別軸になりやすい。",
+          "sub_issue 例: `school-giga-devices` / `school-environment-and-reorganization`"
+        ]
+      },
+      "confidence_summary": {
+        "high": 1,
+        "medium": 0,
+        "low": 0,
+        "unknown": 7
+      }
+    },
+    {
+      "issue_id": "issue-r8d4-disaster-fire-rescue",
+      "story_slug": "disaster-fire-rescue",
+      "title": "防災・消防救急・避難",
+      "citizen_question": "災害や有事のとき、消防救急や避難の体制は大丈夫なの？",
+      "why_it_matters": "この issue は「災害や有事のとき、消防救急や避難の体制は大丈夫なの？」という市民向けの問いに対して、今会期でどの一般質問と議案候補が結び付いていたかを確認するための review draft です。 一般質問の参照件数は 4 件で、関連議案は 議案第50号（candidate）、議案第51号（candidate）、関連 topic は 未確定（unresolved） と整理されています。",
+      "what_was_discussed_this_session": [
+        "一般質問では 髙良宗矩「消防行政について」、内原英聡「地震津波の避難の在り方」、内原英聡「有事「国民保護」の課題」、井上美智子「国民保護計画について」 がこの issue に関連付けられています。",
+        "関連議案の整理は 議案第50号（candidate）、議案第51号（candidate） です。",
+        "関連 topic の整理は 未確定（unresolved） です。",
+        "委員会文脈として 総務財政委員会（議案第50号、議案第51号） が確認できます。",
+        "この issue は分割前提の確認が必要です。"
+      ],
+      "related_questions": [
+        {
+          "member_name": "髙良宗矩",
+          "question_slug": "ishigaki-r8-dai4-ippan-takara-munenori",
+          "item_number": 5,
+          "sub_item_index": null,
+          "item_title": "消防行政について",
+          "sub_item_text": null,
+          "anchor_text": "5項目目消防行政についてお伺いいたします",
+          "anchor_confidence": "high",
+          "anchor_source": "canonical_question_items",
+          "anchor_note": null,
+          "anchor_status": "verified",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 69,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１６日　６月定例会　髙良宗矩議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "内原英聡",
+          "question_slug": "ishigaki-r8-dai4-ippan-uchihara-hidetoshi",
+          "item_number": 6,
+          "sub_item_index": null,
+          "item_title": "地震津波の避難の在り方",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 100,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-25/石垣市議会　令和８年６月２２日　６月定例会　内原英聡議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "内原英聡",
+          "question_slug": "ishigaki-r8-dai4-ippan-uchihara-hidetoshi",
+          "item_number": 7,
+          "sub_item_index": null,
+          "item_title": "有事「国民保護」の課題",
+          "sub_item_text": null,
+          "anchor_text": "7項目目、有事国民保護の課題について",
+          "anchor_confidence": "high",
+          "anchor_source": "canonical_question_items",
+          "anchor_note": null,
+          "anchor_status": "verified",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 100,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-25/石垣市議会　令和８年６月２２日　６月定例会　内原英聡議員　一般質問_minutes.md",
+          "resolved": true
+        },
+        {
+          "member_name": "井上美智子",
+          "question_slug": "ishigaki-r8-dai4-ippan-inoue-michiko",
+          "item_number": 2,
+          "sub_item_index": null,
+          "item_title": "国民保護計画について",
+          "sub_item_text": null,
+          "anchor_text": null,
+          "anchor_confidence": "unknown",
+          "anchor_source": "unresolved",
+          "anchor_note": null,
+          "anchor_status": "needs_review",
+          "reference_only_anchors": [],
+          "review_required": true,
+          "question_review_flags_count": {
+            "hallucination_like": 0,
+            "short_fragments": 100,
+            "name_or_title_variants": 31,
+            "possible_asr_errors": 0,
+            "needs_human_review": 100
+          },
+          "source_minutes_file": "/Users/fukuzatoatsushi/Developer/local-transcriber/outputs_minutes_input/2026-06-24/石垣市議会　令和８年６月１７日　６月定例会　井上美智子議員　一般質問_minutes.md",
+          "resolved": true
+        }
+      ],
+      "related_bills": [
+        {
+          "bill_number": "議案第50号",
+          "bill_name": "議案第50号 財産の取得について［救助工作車］",
+          "committee": "総務財政委員会",
+          "status": "candidate",
+          "note": "救助工作車取得。候補"
+        },
+        {
+          "bill_number": "議案第51号",
+          "bill_name": "議案第51号 財産の取得について［高規格救急自動車］",
+          "committee": "総務財政委員会",
+          "status": "candidate",
+          "note": "高規格救急自動車取得。候補"
+        }
+      ],
+      "related_topics": [
+        {
+          "topic_slug": null,
+          "title": null,
+          "status": "unresolved",
+          "note": "関連 topic はありますが editorial decision 側で未確定です"
+        }
+      ],
+      "committee_context": {
+        "committees": [
+          {
+            "committee_name": "総務財政委員会",
+            "bill_numbers": [
+              "議案第50号",
+              "議案第51号"
+            ]
+          }
+        ],
+        "note": "bill に付属する委員会名のみを記載しています"
+      },
+      "current_editorial_status": "needs_split",
+      "anchor_selection_status": "split_recommended",
+      "review_required": true,
+      "review_notes": [
+        "消防救急の asset issue と、津波避難・国民保護の policy issue は分けて扱う方が編集しやすい。",
+        "消防救急車両 issue と避難・有事 issue の分割案を先に作る。",
+        "question-level の evidence anchor は reference_only 扱いで、採用 anchor には使っていません。",
+        "related_questions には item-aware verification を通過しなかった行が含まれています。"
+      ],
+      "normal_draft": "【review draft / normal】 防災・消防救急・避難について、今会期では 髙良宗矩の「消防行政について」、内原英聡の「地震津波の避難の在り方」、内原英聡の「有事「国民保護」の課題」、井上美智子の「国民保護計画について」 が参照されています。 関連議案の整理は 議案第50号（candidate）、議案第51号（candidate） で、答弁内容や論点の切り分けは evidence anchor と原文で要確認です。 この issue は論点が広いため、分割して読む前提で確認が必要です。",
+      "hard_draft": "【review draft / hard】 current editorial status は needs_split です。 related_questions は 4 件で、anchor の review_required は 4 件あります。 関連議案は 議案第50号（candidate）、議案第51号（candidate）、関連 topic は 未確定（unresolved） と整理しています。 市の答弁内容や因果関係の断定はしておらず、原文確認用の下書きとして扱ってください。",
+      "evidence_anchors": [
+        {
+          "question_slug": "ishigaki-r8-dai4-ippan-takara-munenori",
+          "member_name": "髙良宗矩",
+          "anchor_text": "5項目目消防行政についてお伺いいたします",
+          "confidence": "high",
+          "source": "canonical_question_items",
+          "review_required": true
+        },
+        {
+          "question_slug": "ishigaki-r8-dai4-ippan-uchihara-hidetoshi",
+          "member_name": "内原英聡",
+          "anchor_text": "7項目目、有事国民保護の課題について",
+          "confidence": "high",
+          "source": "canonical_question_items",
+          "review_required": true
+        }
+      ],
+      "split_warning": {
+        "required": true,
+        "notes": [
+          "議案第50号・第51号は消防救急車両の取得に接続するが、津波避難・有事・平和まで同一 issue に束ねると論点が広すぎる。",
+          "sub_issue 例: `fire-and-ambulance-assets` / `tsunami-evacuation-and-civil-protection`"
+        ]
+      },
+      "confidence_summary": {
+        "high": 2,
+        "medium": 0,
+        "low": 0,
+        "unknown": 2
+      }
+    }
+  ]
+}
