@@ -458,7 +458,7 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
       {
         category: "防災・安全",
         description: "消防・救急・救助体制に関わる議案です。",
-        billNumbers: ["議案第49号", "議案第50号", "議案第51号"],
+        billNumbers: ["議案第50号", "議案第51号"],
       },
     ],
     disclaimer:
