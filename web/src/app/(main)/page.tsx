@@ -51,15 +51,20 @@ export default async function Home() {
       previousSessions,
     });
 
-  // 現会期の公開済み議案（本文あり）を1回だけ取得し、
+  // 会期終了後もトップに直近会期の議案導線を残すため、開催中の会期（currentSession）が
+  // 無ければ is_active 会期（activeSession）へフォールバックする表示用セッション。
+  // ※ CurrentDietSession バナーは日付基準を保つため currentSession のまま（下記参照）。
+  const displaySession = currentSession ?? activeSession;
+
+  // 表示会期の公開済み議案（本文あり）を1回だけ取得し、
   // 「分野別に見る 今会期の議案」と「今会期の議案テーマ一覧」の両方で使う。
-  const sessionBills = currentSession
-    ? await getBillsByDietSession(currentSession.id)
+  const sessionBills = displaySession
+    ? await getBillsByDietSession(displaySession.id)
     : [];
 
   // 「分野別に見る 今会期の議案」: featuredBillGroups で分野別に解決（番号一致・fuzzyなし）。
-  const featuredBillGroups = currentSession?.slug
-    ? (SESSION_OVERVIEWS[currentSession.slug]?.featuredBillGroups ?? [])
+  const featuredBillGroups = displaySession?.slug
+    ? (SESSION_OVERVIEWS[displaySession.slug]?.featuredBillGroups ?? [])
     : [];
   const sessionBillGroups =
     featuredBillGroups.length > 0
@@ -82,18 +87,18 @@ export default async function Home() {
     <>
       <Hero />
 
-      {/* 本日の議会セクション */}
+      {/* 本日の議会セクション（バナーは日付基準。閉会後は「開催なし」を維持） */}
       <CurrentDietSession session={currentSession} />
 
       {/* 今会期で議論されていること（現在地の一言＋論点カード・トップの主役） */}
-      <DietSessionKeyPointsSection session={currentSession} />
+      <DietSessionKeyPointsSection session={displaySession} />
 
       {/* 分野別に見る 今会期の議案（議案詳細への直接導線。対象が無ければ非表示） */}
       <DietSessionBillGroupsSection groups={sessionBillGroups} />
 
       {/* 議案のカテゴリ別一覧（論点カードの補足。トップでは見出しを弱める） */}
       <DietSessionOverviewSection
-        session={currentSession}
+        session={displaySession}
         billIdByNumber={billIdByNumber}
       />
 
