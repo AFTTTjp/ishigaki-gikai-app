@@ -73,6 +73,7 @@ export default async function Home() {
 
   // 「今会期の議案テーマ一覧」のバッジを議案詳細へリンクするための番号→id対応表。
   const billIdByNumber = buildBillIdByNumber(sessionBills);
+  const availableTopicSlugs = topics.map((topic) => topic.slug);
 
   const toBillChatContext = (bill: BillWithContent) => {
     return {
@@ -91,7 +92,10 @@ export default async function Home() {
       <CurrentDietSession session={currentSession} />
 
       {/* 今会期で議論されていること（現在地の一言＋論点カード・トップの主役） */}
-      <DietSessionKeyPointsSection session={displaySession} />
+      <DietSessionKeyPointsSection
+        session={displaySession}
+        availableTopicSlugs={availableTopicSlugs}
+      />
 
       {/* 分野別に見る 今会期の議案（議案詳細への直接導線。対象が無ければ非表示） */}
       <DietSessionBillGroupsSection groups={sessionBillGroups} />
