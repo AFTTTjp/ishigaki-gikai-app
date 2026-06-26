@@ -195,7 +195,7 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
     officialUrl:
       "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
     currentStatus:
-      "6月定例会（令和8年第4回）は6月8日に開会。27の議案と1件の請願が3つの委員会に振り分けられ、いま審査中です。結論（採決）は6月24日の予定です。",
+      "6月定例会（令和8年第4回）は6月8日に開会し、6月24日に閉会しました。27の議案と1件の請願が3つの委員会で審査されました。各議案の結果は公式資料をご確認ください。",
     reportEasy:
       "石垣市議会の6月議会が6月8日に始まりました。今回は、観光客から集める「宿泊税」の使い道、火葬場の運営を民間に任せる仕組み、子育て世帯が市営住宅に入りやすくする制度、台湾・基隆（キールン）市との友好都市の提携、サンゴを守る活動を市の事業にしてほしいという市民の請願など、暮らしに関わるテーマが話し合われます。\n\n初日は、これらの議案が「総務財政」「経済民生」「建設土木」の3つの委員会に分けられ、くわしい審査が始まりました。まだ何も決まっていません。結論が出るのは6月24日の予定です。それまでの間、6月15日からは議員が市の考えをたずねる「一般質問」も行われます。\n\nなお初日の朝は、台湾付近の地震で石垣島に津波注意報が出され、市は避難指示を出して対応しました。議会もその状況を共有しながら進められました。",
     reportDetailed:
@@ -286,8 +286,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
           "一般会計補正予算（第1号）に離島甲子園への参加経費が計上されています。当初予算で計上されなかった経緯や、宿泊21人分の確保（今月末が期限）が委員会で議論されています。詳しくは関連トピックをご覧ください。",
         citizenRelevance:
           "子どもたちの挑戦機会と、市の予算の使い方に関わります。",
-        status: "総務財政委員会で審査中（採決は6/24予定）",
-        statusLabel: "審査中",
+        status: "総務財政委員会で審査終了（6/24閉会）",
+        statusLabel: "審査終了",
         iconName: "Trophy",
         committee: "総務財政委員会",
         relatedBills: ["議案第42号"],
@@ -321,8 +321,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
           "市営住宅条例を一部改正し、夫婦ともに45歳以下かつ12歳以下の子と同居する世帯を対象に、原則最長10年の期限付き入居制度を新設。あわせて住宅困窮度に応じた点数評価方式を導入します（提案説明より）。",
         citizenRelevance:
           "子育て世帯の住まい探し・公平な入居選考に直接関わります。",
-        status: "建設土木委員会で審査中（採決は6/24予定）",
-        statusLabel: "審査中",
+        status: "建設土木委員会で審査終了（6/24閉会）",
+        statusLabel: "審査終了",
         iconName: "Baby",
         committee: "建設土木委員会",
         relatedBills: ["議案第40号"],
@@ -337,8 +337,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
           "サンゴレンジャープラスの石垣市事業化を求める請願（請願第2号）が経済民生委員会に付託されました。市民発の請願として審査されます。",
         citizenRelevance:
           "石垣の自然環境保全と、市民の声が市政に反映される過程に関わります。",
-        status: "経済民生委員会で審査中（採決は6/24予定）",
-        statusLabel: "審査中",
+        status: "経済民生委員会で審査終了（6/24閉会）",
+        statusLabel: "審査終了",
         iconName: "Waves",
         committee: "経済民生委員会",
         relatedBills: ["請願第2号"],
@@ -353,8 +353,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
           "宿泊税条例に基づく税収から必要経費を除いた額を基金に積み立て、観光振興施策のために使えるようにする条例です。施行は令和9年2月1日からの予定（提案説明より）。",
         citizenRelevance:
           "観光客の負担で集めたお金が、何に・どう使われるかに関わります。",
-        status: "経済民生委員会で審査中（採決は6/24予定）",
-        statusLabel: "審査中",
+        status: "経済民生委員会で審査終了（6/24閉会）",
+        statusLabel: "審査終了",
         iconName: "Plane",
         committee: "経済民生委員会",
         relatedBills: ["議案第36号"],
@@ -369,8 +369,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
           "火葬場の設置・管理に関する条例を全部改正し、指定管理者が行う業務範囲などを定めます。施行は令和9年4月1日の予定（提案説明より）。",
         citizenRelevance:
           "暮らしに不可欠な施設の安全・衛生・利便が、民間運営で保たれるかに関わります。",
-        status: "経済民生委員会で審査中（採決は6/24予定）",
-        statusLabel: "審査中",
+        status: "経済民生委員会で審査終了（6/24閉会）",
+        statusLabel: "審査終了",
         iconName: "Building2",
         committee: "経済民生委員会",
         relatedBills: ["議案第37号"],
@@ -383,8 +383,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
         detailedDescription:
           "基隆市との国際友好都市提携について議会に諮るものです。定期フェリー航路の再開を契機に、相互理解と連携強化を図ります。平成26年の北上市との提携の前例を踏まえ、議会の意思を確認します（提案説明より）。",
         citizenRelevance: "国際交流・往来や、今後の関連予算に関わります。",
-        status: "経済民生委員会で審査中（採決は6/24予定）",
-        statusLabel: "審査中",
+        status: "経済民生委員会で審査終了（6/24閉会）",
+        statusLabel: "審査終了",
         iconName: "Ship",
         committee: "経済民生委員会",
         relatedBills: ["議案第45号"],
@@ -426,8 +426,8 @@ export const SESSION_OVERVIEWS: Record<string, SessionOverviewData> = {
           "旧・議案第2号を、委員報酬額の見直しを求める委員会意見を受けて撤回し、報酬を見直した議案第52号として再提出。報酬は時給制（弁護士1時間22,000円・その他16,500円）とし、遠隔地加算を設けます（提案説明より）。",
         citizenRelevance:
           "中立・専門的な調査体制を確実に確保できるかに関わります。",
-        status: "総務財政委員会で審査中（採決は6/24予定）",
-        statusLabel: "審査中",
+        status: "総務財政委員会で審査終了（6/24閉会）",
+        statusLabel: "審査終了",
         iconName: "Scale",
         committee: "総務財政委員会",
         relatedBills: ["議案第52号"],
