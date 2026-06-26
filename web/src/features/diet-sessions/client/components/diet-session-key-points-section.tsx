@@ -10,6 +10,7 @@ import { resolveKeyPointIcon } from "../utils/key-point-icons";
 
 type Props = {
   session: DietSession | null;
+  closed?: boolean;
   availableTopicSlugs?: string[];
 };
 
@@ -20,6 +21,7 @@ type Props = {
  */
 export function DietSessionKeyPointsSection({
   session,
+  closed = false,
   availableTopicSlugs = [],
 }: Props) {
   if (!session?.slug) return null;
@@ -37,7 +39,7 @@ export function DietSessionKeyPointsSection({
       <Container>
         <div className="flex flex-col gap-6">
           <h2 className="text-base font-bold text-mirai-text">
-            今会期で議論されていること
+            {closed ? "今会期で話し合われたこと" : "今会期で議論されていること"}
           </h2>
 
           {/* 現在地の一言（今どこにいるか）を論点カードの前に表示 */}
