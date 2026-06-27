@@ -1,0 +1,217 @@
+{
+  "schema": "event-graph/v1-review",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "issue_id": "issue-r8d4-rito-koshien",
+  "based_on": {
+    "issue_graph_v2_review": "docs/general_questions_minutes/r8-dai4-teireikai.issue-graph-v2-rito-koshien.review.json",
+    "speech_canonical_sources": [
+      "docs/general_questions_minutes/speech-canonical/r8-dai4/ishigaki-r8-dai4-ippan-nagahama-nobuo.speech-canonical.json",
+      "docs/general_questions_minutes/speech-canonical/r8-dai4/ishigaki-r8-dai4-ippan-shiuezato-atsushi.speech-canonical.json"
+    ],
+    "topic_source": "docs/ishigaki_gikai_topics_dev_set/rito-koshien-r8-dai4.topic.json",
+    "general_questions_source": "docs/general_questions/r8-dai4-teireikai.general-questions.json",
+    "session_overview_source": "web/src/features/diet-sessions/shared/data/session-overviews.ts"
+  },
+  "events": [
+    {
+      "event_id": "issue-r8d4-rito-koshien:bill-introduction:2026-06-08",
+      "event_type": "bill_introduction",
+      "title": "議案第42号として離島甲子園参加経費を含む補正予算案が提出される",
+      "status": "candidate",
+      "event_date": "2026-06-08",
+      "session_slug": "ishigaki-r8-dai4-teireikai",
+      "related_issue_ids": [
+        "issue-r8d4-rito-koshien"
+      ],
+      "related_topic_slugs": [
+        "rito-koshien-r8-dai4"
+      ],
+      "related_bill_numbers": [
+        "議案第42号"
+      ],
+      "related_committees": [],
+      "related_question_refs": [],
+      "evidence_ids": [],
+      "source_refs": [
+        {
+          "source_kind": "topic_json",
+          "source_path": "docs/ishigaki_gikai_topics_dev_set/rito-koshien-r8-dai4.topic.json",
+          "source_locator": "topic_updates[0]"
+        },
+        {
+          "source_kind": "session_overview",
+          "source_path": "web/src/features/diet-sessions/shared/data/session-overviews.ts",
+          "source_locator": "SESSION_OVERVIEWS[\"ishigaki-r8-dai4-teireikai\"].reportDetailed"
+        }
+      ],
+      "notes": [
+        "議案第42号の提出と離島甲子園参加経費の計上は topic source と session overview で確認できる。"
+      ]
+    },
+    {
+      "event_id": "issue-r8d4-rito-koshien:committee-referral:2026-06-08",
+      "event_type": "committee_referral",
+      "title": "議案第42号が総務財政委員会に付託される",
+      "status": "candidate",
+      "event_date": "2026-06-08",
+      "session_slug": "ishigaki-r8-dai4-teireikai",
+      "related_issue_ids": [
+        "issue-r8d4-rito-koshien"
+      ],
+      "related_topic_slugs": [
+        "rito-koshien-r8-dai4"
+      ],
+      "related_bill_numbers": [
+        "議案第42号"
+      ],
+      "related_committees": [
+        "総務財政委員会"
+      ],
+      "related_question_refs": [],
+      "evidence_ids": [],
+      "source_refs": [
+        {
+          "source_kind": "session_overview",
+          "source_path": "web/src/features/diet-sessions/shared/data/session-overviews.ts",
+          "source_locator": "SESSION_OVERVIEWS[\"ishigaki-r8-dai4-teireikai\"].committees"
+        }
+      ],
+      "notes": [
+        "付託の source は session overview 由来で、council action や議事録根拠はまだ紐付けていない。"
+      ]
+    },
+    {
+      "event_id": "issue-r8d4-rito-koshien:committee-discussion:2026-06-10",
+      "event_type": "committee_discussion",
+      "title": "総務財政委員会で離島甲子園参加経費の経緯と宿泊条件が説明される",
+      "status": "candidate",
+      "event_date": "2026-06-10",
+      "session_slug": "ishigaki-r8-dai4-teireikai",
+      "related_issue_ids": [
+        "issue-r8d4-rito-koshien"
+      ],
+      "related_topic_slugs": [
+        "rito-koshien-r8-dai4"
+      ],
+      "related_bill_numbers": [
+        "議案第42号"
+      ],
+      "related_committees": [
+        "総務財政委員会"
+      ],
+      "related_question_refs": [],
+      "evidence_ids": [],
+      "source_refs": [
+        {
+          "source_kind": "topic_json",
+          "source_path": "docs/ishigaki_gikai_topics_dev_set/rito-koshien-r8-dai4.topic.json",
+          "source_locator": "topic_updates[1]"
+        }
+      ],
+      "notes": [
+        "委員会 discussion は topic review artifact による保持で、speech evidence は未接続。"
+      ]
+    },
+    {
+      "event_id": "issue-r8d4-rito-koshien:general-question:ishigaki-r8-dai4-ippan-shiuezato-atsushi:item7",
+      "event_type": "general_question",
+      "title": "後上里厚司議員が離島甲子園について一般質問する",
+      "status": "confirmed",
+      "event_date": "2026-06-15",
+      "session_slug": "ishigaki-r8-dai4-teireikai",
+      "related_issue_ids": [
+        "issue-r8d4-rito-koshien"
+      ],
+      "related_topic_slugs": [
+        "rito-koshien-r8-dai4"
+      ],
+      "related_bill_numbers": [
+        "議案第42号"
+      ],
+      "related_committees": [],
+      "related_question_refs": [
+        {
+          "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+          "item_number": 7
+        }
+      ],
+      "evidence_ids": [
+        "ishigaki-r8-dai4-ippan-shiuezato-atsushi#L21-L23",
+        "ishigaki-r8-dai4-ippan-shiuezato-atsushi#L134-L152"
+      ],
+      "source_refs": [
+        {
+          "source_kind": "issue_graph_v2_review",
+          "source_path": "docs/general_questions_minutes/r8-dai4-teireikai.issue-graph-v2-rito-koshien.review.json",
+          "source_locator": "issues[0].related_general_question_items[questionSlug=\"ishigaki-r8-dai4-ippan-shiuezato-atsushi\"]"
+        },
+        {
+          "source_kind": "speech_canonical",
+          "source_path": "docs/general_questions_minutes/speech-canonical/r8-dai4/ishigaki-r8-dai4-ippan-shiuezato-atsushi.speech-canonical.json",
+          "source_locator": "speech_blocks[evidence_id=\"ishigaki-r8-dai4-ippan-shiuezato-atsushi#L21-L23\" | \"ishigaki-r8-dai4-ippan-shiuezato-atsushi#L134-L152\"]"
+        },
+        {
+          "source_kind": "general_questions_json",
+          "source_path": "docs/general_questions/r8-dai4-teireikai.general-questions.json",
+          "source_locator": "questions[slug=\"ishigaki-r8-dai4-ippan-shiuezato-atsushi\"].items[item_number=7]"
+        }
+      ],
+      "notes": [
+        "question / answer primary evidence は Speech Canonical v1 pilot の stable evidence_id を使用。"
+      ]
+    },
+    {
+      "event_id": "issue-r8d4-rito-koshien:general-question:ishigaki-r8-dai4-ippan-nagahama-nobuo:item3",
+      "event_type": "general_question",
+      "title": "長浜信夫議員が離島甲子園大会出場について一般質問する",
+      "status": "confirmed",
+      "event_date": "2026-06-22",
+      "session_slug": "ishigaki-r8-dai4-teireikai",
+      "related_issue_ids": [
+        "issue-r8d4-rito-koshien"
+      ],
+      "related_topic_slugs": [
+        "rito-koshien-r8-dai4"
+      ],
+      "related_bill_numbers": [
+        "議案第42号"
+      ],
+      "related_committees": [],
+      "related_question_refs": [
+        {
+          "question_slug": "ishigaki-r8-dai4-ippan-nagahama-nobuo",
+          "item_number": 3
+        }
+      ],
+      "evidence_ids": [
+        "ishigaki-r8-dai4-ippan-nagahama-nobuo#L57-L67",
+        "ishigaki-r8-dai4-ippan-nagahama-nobuo#L126-L135"
+      ],
+      "source_refs": [
+        {
+          "source_kind": "issue_graph_v2_review",
+          "source_path": "docs/general_questions_minutes/r8-dai4-teireikai.issue-graph-v2-rito-koshien.review.json",
+          "source_locator": "issues[0].related_general_question_items[questionSlug=\"ishigaki-r8-dai4-ippan-nagahama-nobuo\"]"
+        },
+        {
+          "source_kind": "speech_canonical",
+          "source_path": "docs/general_questions_minutes/speech-canonical/r8-dai4/ishigaki-r8-dai4-ippan-nagahama-nobuo.speech-canonical.json",
+          "source_locator": "speech_blocks[evidence_id=\"ishigaki-r8-dai4-ippan-nagahama-nobuo#L57-L67\" | \"ishigaki-r8-dai4-ippan-nagahama-nobuo#L126-L135\"]"
+        },
+        {
+          "source_kind": "general_questions_json",
+          "source_path": "docs/general_questions/r8-dai4-teireikai.general-questions.json",
+          "source_locator": "questions[slug=\"ishigaki-r8-dai4-ippan-nagahama-nobuo\"].items[item_number=3]"
+        }
+      ],
+      "notes": [
+        "question / answer primary evidence は Speech Canonical v1 pilot の stable evidence_id を使用。"
+      ]
+    }
+  ],
+  "review_required": [
+    "vote not included in pilot v1 because a stable per-bill source was not connected in this artifact",
+    "bill_introduction / committee_referral / committee_discussion are source_ref-based candidate events without speech evidence",
+    "committee discussion details remain review-first and should not be promoted without stronger council source linkage"
+  ]
+}
