@@ -14,7 +14,9 @@ import { TopicRelatedGeneralQuestions } from "@/features/topics/server/component
 import { TopicRelatedLinks } from "@/features/topics/server/components/topic-related-links";
 import { TopicStatusCard } from "@/features/topics/server/components/topic-status-card";
 import { TopicTimeline } from "@/features/topics/server/components/topic-timeline";
+import { TopicTimelineReview } from "@/features/topics/server/components/topic-timeline-review";
 import { getTopicBySlug } from "@/features/topics/server/loaders/get-topic-by-slug";
+import { getTopicTimelineReview } from "@/features/topics/server/loaders/get-topic-timeline-review";
 import { routes } from "@/lib/routes";
 
 interface TopicDetailPageProps {
@@ -45,9 +47,10 @@ export default async function TopicDetailPage({
   params,
 }: TopicDetailPageProps) {
   const { slug } = await params;
-  const [topic, currentDifficulty] = await Promise.all([
+  const [topic, currentDifficulty, timelineReview] = await Promise.all([
     getTopicBySlug(slug),
     getDifficultyLevel(),
+    getTopicTimelineReview(slug),
   ]);
 
   if (!topic) {
@@ -105,10 +108,15 @@ export default async function TopicDetailPage({
           {/* ④ 議会での主な論点 */}
           <TopicDiscussionPoints updates={topic.updates} />
 
-          {/* ⑤ これまでの流れ */}
+          {/* ⑤ この話題の流れ（試作） */}
+          {timelineReview ? (
+            <TopicTimelineReview timelineReview={timelineReview} />
+          ) : null}
+
+          {/* ⑥ これまでの流れ */}
           <TopicTimeline updates={topic.updates} />
 
-          {/* ⑥ 現時点の整理 */}
+          {/* ⑦ 現時点の整理 */}
           {displayContent ? (
             <section className="space-y-4">
               <h2 className="text-[22px] font-bold text-slate-900">
@@ -118,23 +126,23 @@ export default async function TopicDetailPage({
             </section>
           ) : null}
 
-          {/* ⑦ 議会のアクション */}
+          {/* ⑧ 議会のアクション */}
           <TopicCouncilActions councilActions={topic.councilActions} />
 
-          {/* ⑧ 関連議案一覧 */}
+          {/* ⑨ 関連議案一覧 */}
           <TopicRelatedBills bills={topic.relatedBills} />
 
-          {/* ⑨ 関連する一般質問 */}
+          {/* ⑩ 関連する一般質問 */}
           <TopicRelatedGeneralQuestions
             questions={topic.relatedGeneralQuestions}
           />
 
-          {/* ⑩ 関連情報・資料 */}
+          {/* ⑪ 関連情報・資料 */}
           <TopicRelatedLinks updates={topic.updates} />
         </div>
       </Container>
 
-      {/* ⑪ チャット */}
+      {/* ⑫ チャット */}
       <PageChatClient
         currentDifficulty={currentDifficulty}
         items={[
