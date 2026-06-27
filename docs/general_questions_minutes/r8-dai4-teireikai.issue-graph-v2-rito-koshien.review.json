@@ -1,0 +1,134 @@
+{
+  "schema": "issue-graph/v2-review",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "based_on": {
+    "issue_graph_pilot": "docs/general_questions_minutes/r8-dai4-teireikai.issue-graph-pilot.json",
+    "speech_canonical_sources": [
+      "docs/general_questions_minutes/speech-canonical/r8-dai4/ishigaki-r8-dai4-ippan-nagahama-nobuo.speech-canonical.json",
+      "docs/general_questions_minutes/speech-canonical/r8-dai4/ishigaki-r8-dai4-ippan-shiuezato-atsushi.speech-canonical.json"
+    ]
+  },
+  "issues": [
+    {
+      "issue_id": "issue-r8d4-rito-koshien",
+      "title": "離島甲子園への出場",
+      "citizen_question": "石垣の子どもたちは離島甲子園に参加できるの？費用はどうなる？",
+      "summary": "今会期で 2 件の一般質問item がこの論点に関係（下記）。議案候補 1 件・topic 1 件。詳細は議事録原文で要確認。",
+      "category": "スポーツ・教育・財政",
+      "status": "補正予算で審査中（採決6/24予定）",
+      "evidence_anchors": [
+        {
+          "questionSlug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+          "member": "後上里厚司",
+          "raw_anchor_texts": [
+            "市職員の一項目め市職員の窓口の対応についてお伺いいたします",
+            "過去半年毎月のカット等数をお伺いします",
+            "3項目目 旧庁舎跡地利用の現状について"
+          ],
+          "note": "question-level・ASR由来・item紐付け要校正(review_required)"
+        },
+        {
+          "questionSlug": "ishigaki-r8-dai4-ippan-nagahama-nobuo",
+          "member": "長浜信夫",
+          "raw_anchor_texts": [
+            "最後から2番目の質問者となりました",
+            "次に、物価高騰対策についてお伺いいたします。",
+            "についてお伺いいたします発汗 性が指摘される有機物素化合物"
+          ],
+          "note": "question-level・ASR由来・item紐付け要校正(review_required)"
+        }
+      ],
+      "related_general_question_items": [
+        {
+          "questionSlug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+          "itemNumber": 7,
+          "member": "後上里厚司",
+          "item_title": "離島甲子園について",
+          "resolved": true,
+          "question_topic_slugs_source": [
+            "ishigaki-old-city-hall",
+            "rito-koshien-r8-dai4"
+          ],
+          "speech_evidence": {
+            "source_question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+            "question_primary_evidence_ids": [
+              "ishigaki-r8-dai4-ippan-shiuezato-atsushi#L21-L23"
+            ],
+            "answer_primary_evidence_ids": [
+              "ishigaki-r8-dai4-ippan-shiuezato-atsushi#L134-L152"
+            ],
+            "secondary_evidence_ids": []
+          }
+        },
+        {
+          "questionSlug": "ishigaki-r8-dai4-ippan-nagahama-nobuo",
+          "itemNumber": 3,
+          "member": "長浜信夫",
+          "item_title": "離島甲子園大会出場について",
+          "resolved": true,
+          "question_topic_slugs_source": [
+            "rito-koshien-r8-dai4"
+          ],
+          "speech_evidence": {
+            "source_question_slug": "ishigaki-r8-dai4-ippan-nagahama-nobuo",
+            "question_primary_evidence_ids": [
+              "ishigaki-r8-dai4-ippan-nagahama-nobuo#L57-L67"
+            ],
+            "answer_primary_evidence_ids": [
+              "ishigaki-r8-dai4-ippan-nagahama-nobuo#L126-L135"
+            ],
+            "secondary_evidence_ids": []
+          }
+        }
+      ],
+      "related_bills": [
+        {
+          "bill_number": "議案第42号",
+          "status": "candidate",
+          "note": "一般会計補正＝離島甲子園参加経費を含む。bill紐付けは候補"
+        }
+      ],
+      "related_topics": [
+        {
+          "topic_slug": "rito-koshien-r8-dai4",
+          "status": "confirmed_at_source",
+          "note": "複数質問に source topic_slugs 設定済み。item対応は要確認"
+        }
+      ],
+      "related_committees": [
+        {
+          "name": "総務財政委員会",
+          "via_bill": "議案第42号",
+          "status": "candidate"
+        }
+      ],
+      "related_session_overview": {
+        "keyPoint_candidate": true,
+        "note": "session-overviews.ts の keyPoint へ昇格候補。relatedBills/relatedTopicSlugs/relatedGeneralQuestionItems を本Issueから供給可"
+      },
+      "review_required": [
+        "related_bills は candidate",
+        "related_topics の candidate は未確定",
+        "anchorは要校正",
+        "gq_ref resolved=false があれば要修正"
+      ],
+      "issue_evidence": {
+        "question_evidence_ids": [
+          "ishigaki-r8-dai4-ippan-shiuezato-atsushi#L21-L23",
+          "ishigaki-r8-dai4-ippan-nagahama-nobuo#L57-L67"
+        ],
+        "answer_evidence_ids": [
+          "ishigaki-r8-dai4-ippan-shiuezato-atsushi#L134-L152",
+          "ishigaki-r8-dai4-ippan-nagahama-nobuo#L126-L135"
+        ],
+        "secondary_evidence_ids": [],
+        "all_evidence_ids": [
+          "ishigaki-r8-dai4-ippan-nagahama-nobuo#L126-L135",
+          "ishigaki-r8-dai4-ippan-nagahama-nobuo#L57-L67",
+          "ishigaki-r8-dai4-ippan-shiuezato-atsushi#L134-L152",
+          "ishigaki-r8-dai4-ippan-shiuezato-atsushi#L21-L23"
+        ]
+      }
+    }
+  ]
+}
