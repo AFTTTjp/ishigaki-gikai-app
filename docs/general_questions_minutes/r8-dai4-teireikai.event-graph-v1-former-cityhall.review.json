@@ -1,0 +1,103 @@
+{
+  "schema": "event-graph/v1-review",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "issue_id": "issue-r8d4-former-cityhall",
+  "based_on": {
+    "issue_review_packet": "docs/general_questions_minutes/r8-dai4-teireikai.issue-review-packet.json",
+    "topic_source": "docs/ishigaki_gikai_topics_dev_set/old_city_hall.topic.json",
+    "general_questions_source": "docs/general_questions/r8-dai4-teireikai.general-questions.json"
+  },
+  "events": [
+    {
+      "event_id": "issue-r8d4-former-cityhall:general-question:ishigaki-r8-dai4-ippan-tomoyose-eizo:item2",
+      "event_type": "general_question",
+      "title": "友寄永三議員が旧庁舎跡地開発についてについて一般質問する",
+      "status": "candidate",
+      "event_date": "2026-06-15",
+      "session_slug": "ishigaki-r8-dai4-teireikai",
+      "related_issue_ids": [
+        "issue-r8d4-former-cityhall"
+      ],
+      "related_topic_slugs": [
+        "ishigaki-old-city-hall"
+      ],
+      "related_bill_numbers": [],
+      "related_committees": [],
+      "related_question_refs": [
+        {
+          "question_slug": "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+          "item_number": 2
+        }
+      ],
+      "evidence_ids": [],
+      "source_refs": [
+        {
+          "source_kind": "issue_review_packet",
+          "source_path": "docs/general_questions_minutes/r8-dai4-teireikai.issue-review-packet.json",
+          "source_locator": "issues[issue_id=\"issue-r8d4-former-cityhall\"].related_general_question_items[questionSlug=\"ishigaki-r8-dai4-ippan-tomoyose-eizo\"]"
+        },
+        {
+          "source_kind": "general_questions_json",
+          "source_path": "docs/general_questions/r8-dai4-teireikai.general-questions.json",
+          "source_locator": "questions[slug=\"ishigaki-r8-dai4-ippan-tomoyose-eizo\"].items[item_number=2]"
+        },
+        {
+          "source_kind": "topic_json",
+          "source_path": "docs/ishigaki_gikai_topics_dev_set/old_city_hall.topic.json",
+          "source_locator": "topic_slug=\"ishigaki-old-city-hall\""
+        }
+      ],
+      "notes": [
+        "stable speech evidence_id が未整備のため、この pilot では general_question event を candidate として保持する。"
+      ]
+    },
+    {
+      "event_id": "issue-r8d4-former-cityhall:general-question:ishigaki-r8-dai4-ippan-shiuezato-atsushi:item3",
+      "event_type": "general_question",
+      "title": "後上里厚司議員が旧庁舎跡地利用の現状についてについて一般質問する",
+      "status": "candidate",
+      "event_date": "2026-06-15",
+      "session_slug": "ishigaki-r8-dai4-teireikai",
+      "related_issue_ids": [
+        "issue-r8d4-former-cityhall"
+      ],
+      "related_topic_slugs": [
+        "ishigaki-old-city-hall"
+      ],
+      "related_bill_numbers": [],
+      "related_committees": [],
+      "related_question_refs": [
+        {
+          "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+          "item_number": 3
+        }
+      ],
+      "evidence_ids": [],
+      "source_refs": [
+        {
+          "source_kind": "issue_review_packet",
+          "source_path": "docs/general_questions_minutes/r8-dai4-teireikai.issue-review-packet.json",
+          "source_locator": "issues[issue_id=\"issue-r8d4-former-cityhall\"].related_general_question_items[questionSlug=\"ishigaki-r8-dai4-ippan-shiuezato-atsushi\"]"
+        },
+        {
+          "source_kind": "general_questions_json",
+          "source_path": "docs/general_questions/r8-dai4-teireikai.general-questions.json",
+          "source_locator": "questions[slug=\"ishigaki-r8-dai4-ippan-shiuezato-atsushi\"].items[item_number=3]"
+        },
+        {
+          "source_kind": "topic_json",
+          "source_path": "docs/ishigaki_gikai_topics_dev_set/old_city_hall.topic.json",
+          "source_locator": "topic_slug=\"ishigaki-old-city-hall\""
+        }
+      ],
+      "notes": [
+        "stable speech evidence_id が未整備のため、この pilot では general_question event を candidate として保持する。"
+      ]
+    }
+  ],
+  "review_required": [
+    "stable speech evidence_id is not yet connected for this issue, so general_question events remain candidate",
+    "no related bill or committee event was added because the current review sources do not provide a stable session-scoped bill/committee linkage for this issue",
+    "vote not included in pilot v1 because a stable per-bill source was not connected in this artifact"
+  ]
+}
