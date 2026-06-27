@@ -1,0 +1,615 @@
+{
+  "schema": "vote-results/review-v1",
+  "session": {
+    "slug": "ishigaki-r8-dai4-teireikai",
+    "name": "令和8年第4回定例会",
+    "closed_on": "2026-06-24"
+  },
+  "source_refs": [
+    {
+      "source_kind": "official_html",
+      "label": "提出議案とその結果",
+      "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+      "note": "更新日 2026-06-25"
+    },
+    {
+      "source_kind": "official_pdf",
+      "label": "6月24日 提出議案とその結果",
+      "url": "https://www.city.ishigaki.okinawa.jp/material/files/group/33/R8_dai4_giji0624.pdf",
+      "note": "HTTP 200 confirmed"
+    },
+    {
+      "source_kind": "official_pdf",
+      "label": "6月24日 提出議案とその結果2",
+      "url": "https://www.city.ishigaki.okinawa.jp/material/files/group/33/R8_dai4_giji0624-2.pdf",
+      "note": "HTTP 200 confirmed"
+    },
+    {
+      "source_kind": "official_html",
+      "label": "意見書・決議書 令和8年（2026年）",
+      "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/ikennketugisyo/11720.html",
+      "note": "更新日 2026-06-24"
+    }
+  ],
+  "bills": [
+    {
+      "bill_number": "議案第36号",
+      "bill_name": "石垣市宿泊税基金条例",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第36号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第37号",
+      "bill_name": "石垣市火葬場の設置及び管理に関する条例",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第37号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第38号",
+      "bill_name": "石垣市母子及び父子家庭等医療費助成に関する条例の一部を改正する条例",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第38号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第39号",
+      "bill_name": "石垣市下水道条例の一部を改正する条例",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第39号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第40号",
+      "bill_name": "石垣市営住宅の設置及び管理に関する条例の一部を改正する条例",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第40号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第41号",
+      "bill_name": "桃原用昇奨学基金条例及び桃原用昇高等学校奨学基金条例の特例並びに廃止に関する条例",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第41号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第42号",
+      "bill_name": "令和8年度石垣市一般会計補正予算（第1号）",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 原案可決・修正案否決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第42号 / 6月24日 / 可決・修正案否決"
+      }
+    },
+    {
+      "bill_number": "議案第43号",
+      "bill_name": "令和8年度石垣都市計画土地区画整理事業特別会計補正予算（第1号）",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第43号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第44号",
+      "bill_name": "令和8年度石垣市港湾事業特別会計補正予算（第1号）",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第44号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第45号",
+      "bill_name": "中華民国基隆市との国際友好都市提携について",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第45号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第46号",
+      "bill_name": "八重山広域市町村圏事務組合規約の変更について",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第46号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第47号",
+      "bill_name": "訴えの提起について",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第47号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第48号",
+      "bill_name": "財産の取得について[石垣市学習者用GIGA端末]",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第48号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第49号",
+      "bill_name": "財産の取得について[石垣市指導者用GIGA端末]",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第49号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第50号",
+      "bill_name": "財産の取得について[救助工作車]",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第50号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第51号",
+      "bill_name": "財産の取得について[高規格救急自動車]",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第51号 / 6月24日 / 可決"
+      }
+    },
+    {
+      "bill_number": "議案第52号",
+      "bill_name": "石垣市ハラスメント調査に関する第三者委員会設置条例の一部を改正する条例",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 可決（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第52号 / 6月24日 / 可決"
+      }
+    }
+  ],
+  "approvals": [
+    {
+      "approval_number": "承認第2号",
+      "approval_name": "専決処分の承認について[令和7年度石垣市一般会計補正予算（第13号）]",
+      "result_label": "承認",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 承認（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "承認第2号 / 6月24日 / 承認"
+      }
+    },
+    {
+      "approval_number": "承認第3号",
+      "approval_name": "専決処分の承認について[石垣市税条例の一部を改正する条例]",
+      "result_label": "承認",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 承認（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "承認第3号 / 6月24日 / 承認"
+      }
+    },
+    {
+      "approval_number": "承認第4号",
+      "approval_name": "専決処分の承認について[石垣市国民健康保険税条例の一部を改正する条例]",
+      "result_label": "承認",
+      "result_date": "2026-06-24",
+      "proposed_status": "enacted",
+      "status_note": "2026-06-24 承認（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "承認第4号 / 6月24日 / 承認"
+      }
+    }
+  ],
+  "petitions": [
+    {
+      "petition_number": "請願第1号",
+      "petition_name": "観音堂地区におけるヘリコプター離着陸場の運用見直しおよび住民の生活環境保護に関する請願",
+      "result_label": "一部採択",
+      "result_date": "2026-06-24",
+      "proposed_status": null,
+      "status_note": "2026-06-24 一部採択（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "請願第1号 / 6月24日 / 一部採択"
+      }
+    },
+    {
+      "petition_number": "請願第2号",
+      "petition_name": "サンゴレンジャープラスの石垣市事業化について",
+      "result_label": "採択",
+      "result_date": "2026-06-24",
+      "proposed_status": null,
+      "status_note": "2026-06-24 採択（令和8年第4回定例会）",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "請願第2号 / 6月24日 / 採択"
+      }
+    }
+  ],
+  "amendments": [
+    {
+      "amendment_label": "議案第42号（修正案）",
+      "related_bill_number": "議案第42号",
+      "result_label": "否決",
+      "result_date": "2026-06-24",
+      "proposed_status": null,
+      "status_note": "2026-06-24 議案第42号修正案 否決",
+      "confidence": "high",
+      "needs_review": false,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案第42号（修正案） / 6月24日 / 否決"
+      }
+    }
+  ],
+  "reports": [
+    {
+      "report_number": "報告第3号",
+      "report_name": "令和7年度石垣市一般会計予算繰越明許費繰越計算書の報告について",
+      "result_label": "報告",
+      "result_date": "2026-06-08",
+      "proposed_status": null,
+      "status_note": "2026-06-08 報告",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "報告第3号 / 6月8日 / 報告"
+      }
+    },
+    {
+      "report_number": "報告第4号",
+      "report_name": "令和7年度石垣市一般会計予算事故繰越し繰越計算書の報告について",
+      "result_label": "報告",
+      "result_date": "2026-06-08",
+      "proposed_status": null,
+      "status_note": "2026-06-08 報告",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "報告第4号 / 6月8日 / 報告"
+      }
+    },
+    {
+      "report_number": "報告第5号",
+      "report_name": "令和7年度石垣市後期高齢者医療特別会計予算繰越明許費繰越計算書の報告について",
+      "result_label": "報告",
+      "result_date": "2026-06-08",
+      "proposed_status": null,
+      "status_note": "2026-06-08 報告",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "報告第5号 / 6月8日 / 報告"
+      }
+    },
+    {
+      "report_number": "報告第6号",
+      "report_name": "令和7年度石垣都市計画土地区画整理事業特別会計予算繰越明許費繰越計算書の報告について",
+      "result_label": "報告",
+      "result_date": "2026-06-08",
+      "proposed_status": null,
+      "status_note": "2026-06-08 報告",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "報告第6号 / 6月8日 / 報告"
+      }
+    },
+    {
+      "report_number": "報告第7号",
+      "report_name": "令和7年度石垣市港湾事業特別会計予算繰越明許費繰越計算書の報告について",
+      "result_label": "報告",
+      "result_date": "2026-06-08",
+      "proposed_status": null,
+      "status_note": "2026-06-08 報告",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "報告第7号 / 6月8日 / 報告"
+      }
+    },
+    {
+      "report_number": "報告第8号",
+      "report_name": "令和7年度石垣市下水道事業会計予算の繰越について",
+      "result_label": "報告",
+      "result_date": "2026-06-08",
+      "proposed_status": null,
+      "status_note": "2026-06-08 報告",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "報告第8号 / 6月8日 / 報告"
+      }
+    },
+    {
+      "report_number": "報告第9号",
+      "report_name": "令和7年度石垣市水道事業会計予算の繰越について",
+      "result_label": "報告",
+      "result_date": "2026-06-08",
+      "proposed_status": null,
+      "status_note": "2026-06-08 報告",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "報告第9号 / 6月8日 / 報告"
+      }
+    }
+  ],
+  "assembly_proposals": [
+    {
+      "proposal_number": "委員会提出議案第1号",
+      "proposal_name": "石垣市議会ハラスメント防止条例",
+      "proposal_type": "committee_bill",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": null,
+      "status_note": "2026-06-24 可決",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/ikennketugisyo/11720.html",
+        "locator": "委員会提出議案第1号 / 可決"
+      }
+    },
+    {
+      "proposal_number": "議員提出議案第13号",
+      "proposal_name": "石垣市地元酒等による乾杯の推進に関する条例",
+      "proposal_type": "member_bill",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": null,
+      "status_note": "2026-06-24 可決",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/ikennketugisyo/11720.html",
+        "locator": "議員提出議案第13号 / 可決"
+      }
+    },
+    {
+      "proposal_number": "議員提出議案第14号",
+      "proposal_name": "離島における建設資材・燃料・輸送費高騰に対する実効的支援を求める意見書",
+      "proposal_type": "opinion",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": null,
+      "status_note": "2026-06-24 可決",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/ikennketugisyo/11720.html",
+        "locator": "議員提出議案第14号 / 可決"
+      }
+    },
+    {
+      "proposal_number": "議員提出議案第15号",
+      "proposal_name": "古賀千景参議院議員による国会における自衛隊員への偏見発言に抗議し、猛省と再発防止を求める決議書",
+      "proposal_type": "resolution",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": null,
+      "status_note": "2026-06-24 可決",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/ikennketugisyo/11720.html",
+        "locator": "議員提出議案第15号 / 可決"
+      }
+    },
+    {
+      "proposal_number": "議員提出議案第16号",
+      "proposal_name": "自衛官等に対する偏見及び差別の解消並びに憲法明記を含む法的地位の確立を求める意見書",
+      "proposal_type": "opinion",
+      "result_label": "可決",
+      "result_date": "2026-06-24",
+      "proposed_status": null,
+      "status_note": "2026-06-24 可決",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/ikennketugisyo/11720.html",
+        "locator": "議員提出議案第16号 / 可決"
+      }
+    }
+  ],
+  "withdrawals": [
+    {
+      "label": "議案の撤回について(議案第2号)",
+      "result_label": "承認",
+      "result_date": "2026-06-08",
+      "proposed_status": null,
+      "status_note": "2026-06-08 議案撤回を承認",
+      "confidence": "high",
+      "needs_review": true,
+      "source_ref": {
+        "source_kind": "official_html",
+        "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+        "locator": "議案の撤回について(議案第2号) / 6月8日 / 承認"
+      }
+    }
+  ],
+  "unknown_counts": {
+    "bills_total": 17,
+    "bills_needs_review": 0,
+    "approvals_total": 3,
+    "approvals_needs_review": 3,
+    "petitions_total": 2,
+    "petitions_needs_review": 2,
+    "amendments_total": 1,
+    "amendments_needs_review": 0,
+    "reports_total": 7,
+    "reports_needs_review": 7,
+    "assembly_proposals_total": 5,
+    "assembly_proposals_needs_review": 5,
+    "withdrawals_total": 1,
+    "withdrawals_needs_review": 1
+  },
+  "review_required": [
+    "bills.status へ直接反映する対象は bills[] に限定する案が安全です。",
+    "承認案件は既存 enum 上は enacted へ寄せられるが、bill/document_type 単位の扱いを import 前に確認が必要です。",
+    "請願・意見書・決議書・委員会提出議案・議案撤回は既存 bills.status 更新対象ではないため review-only 扱いです。",
+    "報告案件は bills.status 更新対象ではないため review-only 扱いです。",
+    "議案第42号は原案可決に加え修正案否決があるため、status_note で併記する運用が必要です。"
+  ]
+}
