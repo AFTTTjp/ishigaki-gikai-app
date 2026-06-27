@@ -100,6 +100,7 @@ export default async function Home() {
         session={displaySession}
         closed={isSessionClosed}
         availableTopicSlugs={availableTopicSlugs}
+        billIdByNumber={billIdByNumber}
       />
 
       {/* 分野別に見る 今会期の議案（議案詳細への直接導線。対象が無ければ非表示） */}

@@ -12,6 +12,7 @@ type Props = {
   session: DietSession | null;
   closed?: boolean;
   availableTopicSlugs?: string[];
+  billIdByNumber?: Record<string, string>;
 };
 
 /**
@@ -23,6 +24,7 @@ export function DietSessionKeyPointsSection({
   session,
   closed = false,
   availableTopicSlugs = [],
+  billIdByNumber = {},
 }: Props) {
   if (!session?.slug) return null;
   const sessionSlug = session.slug;
@@ -57,9 +59,15 @@ export function DietSessionKeyPointsSection({
               const linkedTopicSlug = keyPoint.relatedTopicSlugs?.find((slug) =>
                 availableTopicSlugSet.has(slug)
               );
+              const resolvedBillId =
+                keyPoint.relatedBills.length === 1
+                  ? billIdByNumber[keyPoint.relatedBills[0]]
+                  : undefined;
               const href = linkedTopicSlug
                 ? routes.topicDetail(linkedTopicSlug)
-                : routes.kokkaiSessionBills(sessionSlug);
+                : resolvedBillId
+                  ? routes.billDetail(resolvedBillId)
+                  : routes.kokkaiSessionBills(sessionSlug);
               return (
                 <Link
                   key={keyPoint.title}
