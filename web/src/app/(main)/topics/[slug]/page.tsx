@@ -2,7 +2,6 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata, Route } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Container } from "@/components/layouts/container";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { PageChatClient } from "@/features/chat/client/components/page-chat-client";
 import { TopicContent } from "@/features/topics/server/components/topic-content";
@@ -63,11 +62,11 @@ export default async function TopicDetailPage({
       : topic.content;
 
   return (
-    <div className="container mx-auto max-w-4xl pb-32 md:pb-8">
+    <div className="mx-auto max-w-[1180px] pb-32 md:pb-8">
       {/* ① ヘッダー（概要） */}
       <div className="mb-8 rounded-b-4xl bg-white">
-        <Container>
-          <div className="space-y-4 px-4 pb-8 pt-4">
+        <div className="mx-auto max-w-[1180px] px-4 sm:px-6 lg:px-8">
+          <div className="space-y-4 pb-8 pt-4 pc:pr-[470px] pcl:pr-[500px]">
             <Link
               href={routes.topics() as Route}
               className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 transition-opacity hover:opacity-70"
@@ -90,11 +89,11 @@ export default async function TopicDetailPage({
               </div>
             </div>
           </div>
-        </Container>
+        </div>
       </div>
 
-      <Container>
-        <div className="flex flex-col gap-8">
+      <div className="mx-auto max-w-[1180px] px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-8 pc:pr-[470px] pcl:pr-[500px]">
           {/* ② 現在の状況 */}
           <TopicStatusCard
             label={topic.current_status_label}
@@ -108,7 +107,7 @@ export default async function TopicDetailPage({
           {/* ④ 議会での主な論点 */}
           <TopicDiscussionPoints updates={topic.updates} />
 
-          {/* ⑤ この話題の流れ（試作） */}
+          {/* ⑤ この話題の流れ */}
           {timelineReview ? (
             <TopicTimelineReview timelineReview={timelineReview} />
           ) : null}
@@ -140,7 +139,7 @@ export default async function TopicDetailPage({
           {/* ⑪ 関連情報・資料 */}
           <TopicRelatedLinks updates={topic.updates} />
         </div>
-      </Container>
+      </div>
 
       {/* ⑫ チャット */}
       <PageChatClient

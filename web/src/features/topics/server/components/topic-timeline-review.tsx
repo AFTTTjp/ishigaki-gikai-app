@@ -17,7 +17,7 @@ function getStatusLabel(
     case "confirmed":
       return "確認済み";
     case "candidate":
-      return "確認中";
+      return "照合中";
     default:
       return "要確認";
   }
@@ -173,7 +173,7 @@ function getSourceDisplays(
 function getDisplayReviewNotes() {
   return [
     "「確認済み」は、公開資料や議事録で確認できた内容です。",
-    "「確認中」は、資料との照合を続けている項目です。",
+    "「照合中」は、発言単位の根拠や一次資料との照合を続けている項目です。",
     "内容は確認が進み次第更新します。",
   ];
 }
@@ -188,17 +188,10 @@ export function TopicTimelineReview({
   return (
     <section className="space-y-5">
       <div className="space-y-2">
-        <div className="flex flex-wrap items-center gap-2">
-          <h2 className="text-[22px] font-bold text-slate-900">
-            この話題の流れ（試作）
-          </h2>
-          <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800">
-            試作
-          </span>
-        </div>
+        <h2 className="text-[22px] font-bold text-slate-900">この話題の流れ</h2>
         <p className="text-sm text-slate-500">
-          この話題が会期中にどう進んだかを、公開資料と議事録の根拠をもとに時系列で整理しています。
-          「確認中」は、関連する資料や発言との照合が残っている項目です。
+          この話題が会期中にどう進んだかを、公開資料や議事録をもとに時系列で整理しています。
+          「照合中」は、発言単位の根拠や一次資料との照合を続けている項目です。
         </p>
       </div>
 
