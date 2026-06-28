@@ -152,7 +152,7 @@ export default async function DietSessionBillsPage({ params }: Props) {
         </nav>
       </Container>
 
-      {/* AI 導線（PC でも開閉式の floating ボタン。本文は圧迫しない） */}
+      {/* AI 導線（議案詳細ページと同じ。PC は右下に補助表示、モバイルは下部導線） */}
       <PageChatClient
         currentDifficulty={currentDifficulty}
         items={sessionChatItems}
@@ -162,7 +162,6 @@ export default async function DietSessionBillsPage({ params }: Props) {
           "宿泊税について教えて",
           "一般質問ではどんなテーマが多かったですか？",
         ]}
-        pcLayout="floating"
       />
     </div>
   );

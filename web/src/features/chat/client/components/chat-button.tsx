@@ -11,9 +11,7 @@ import {
   useState,
 } from "react";
 import type { BillWithContent } from "@/features/bills/shared/types";
-import { cn } from "@/lib/utils";
 import { ChatWindow } from "./chat-window";
-import type { ChatDesktopLayout } from "./page-chat-client";
 
 // アニメーション定数
 const ANIMATION_DURATION = {
@@ -27,7 +25,6 @@ interface ChatButtonProps {
   hasInterviewConfig?: boolean;
   difficultyLevel: string;
   suggestedQuestions?: string[];
-  pcLayout?: ChatDesktopLayout;
   pageContext?: {
     type: "home" | "bill";
     bills?: Array<{
@@ -50,7 +47,6 @@ export const ChatButton = forwardRef<ChatButtonRef, ChatButtonProps>(
       hasInterviewConfig,
       difficultyLevel,
       suggestedQuestions,
-      pcLayout = "fixed",
       pageContext,
     },
     ref
@@ -60,10 +56,6 @@ export const ChatButton = forwardRef<ChatButtonRef, ChatButtonProps>(
     const [showText, setShowText] = useState(true);
     const [openedWithText, setOpenedWithText] = useState(false);
     const pathname = usePathname();
-
-    // floating: PC でも開閉ボタンを出し、押した時だけパネルを開くモード。
-    // fixed（既定）は従来どおり PC で右下に常時パネルを表示し、ボタンはモバイルのみ。
-    const isFloating = pcLayout === "floating";
 
     // Chat state をここで管理することで、モーダルが閉じても状態が保持される
     const chatState = useChat();
@@ -128,19 +120,7 @@ export const ChatButton = forwardRef<ChatButtonRef, ChatButtonProps>(
 
     return (
       <>
-        <div
-          className={cn(
-            "fixed left-6 right-6 bottom-4 z-50 mx-auto flex max-w-[460px] justify-center md:bottom-8",
-            // fixed モードは従来どおり PC ではボタンを隠す（常時パネル表示のため）。
-            // floating モードでは PC でも右下に compact なボタンを出し、開いている間は隠す。
-            isFloating
-              ? cn(
-                  "pc:left-auto pc:right-8 pc:mx-0 pc:w-auto pc:max-w-none pc:justify-end",
-                  isOpen && "pc:hidden"
-                )
-              : "pc:hidden"
-          )}
-        >
+        <div className="fixed max-w-[460px] mx-auto left-6 right-6 bottom-4 z-50 md:bottom-8 flex justify-center pc:hidden">
           <div
             className="relative rounded-[50px] bg-gradient-to-tr from-mirai-gradient-start to-mirai-gradient-end p-[2px] shadow-[2px_2px_2px_0px_rgba(0,0,0,0.25)] origin-center flex transition-[flex-basis] ease-in-out"
             style={{
@@ -199,7 +179,6 @@ export const ChatButton = forwardRef<ChatButtonRef, ChatButtonProps>(
           hasInterviewConfig={hasInterviewConfig}
           difficultyLevel={difficultyLevel}
           suggestedQuestions={suggestedQuestions}
-          pcLayout={pcLayout}
           chatState={chatState}
           isOpen={isOpen}
           onClose={() => {

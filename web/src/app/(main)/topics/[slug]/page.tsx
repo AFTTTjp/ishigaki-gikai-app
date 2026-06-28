@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata, Route } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Container } from "@/components/layouts/container";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { PageChatClient } from "@/features/chat/client/components/page-chat-client";
 import { TopicContent } from "@/features/topics/server/components/topic-content";
@@ -63,9 +64,9 @@ export default async function TopicDetailPage({
 
   return (
     <div className="pb-32 md:pb-8">
-      {/* ① ヘッダー（概要・白帯は全幅、本文は中央寄せの読みやすい幅） */}
+      {/* ① ヘッダー（概要・白帯は全幅、本文は議案詳細と同じ Container 幅） */}
       <div className="mb-8 rounded-b-4xl bg-white">
-        <div className="mx-auto max-w-4xl space-y-4 px-4 pb-8 pt-4 sm:px-6 lg:px-8">
+        <Container className="space-y-4 pb-8 pt-4">
           <Link
             href={routes.topics() as Route}
             className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 transition-opacity hover:opacity-70"
@@ -87,10 +88,10 @@ export default async function TopicDetailPage({
               </p>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
 
-      <div className="mx-auto flex max-w-4xl flex-col gap-8 px-4 sm:px-6 lg:px-8">
+      <Container className="flex flex-col gap-8">
         {/* ② 現在の状況 */}
         <TopicStatusCard
           label={topic.current_status_label}
@@ -135,9 +136,9 @@ export default async function TopicDetailPage({
 
         {/* ⑪ 関連情報・資料 */}
         <TopicRelatedLinks updates={topic.updates} />
-      </div>
+      </Container>
 
-      {/* ⑫ AI 導線（PC でも開閉式の floating ボタン。本文は圧迫しない） */}
+      {/* ⑫ AI 導線（議案詳細ページと同じ。PC は右下に補助表示、モバイルは下部導線） */}
       <PageChatClient
         currentDifficulty={currentDifficulty}
         items={[
@@ -160,7 +161,6 @@ export default async function TopicDetailPage({
             tags: ["関連議案"],
           })),
         ]}
-        pcLayout="floating"
       />
     </div>
   );

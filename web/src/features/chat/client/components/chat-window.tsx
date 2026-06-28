@@ -22,8 +22,6 @@ import {
 import type { BillWithContent } from "@/features/bills/shared/types";
 import { useIsDesktop } from "@/hooks/use-is-desktop";
 import { useViewportHeight } from "@/hooks/use-viewport-height";
-import { cn } from "@/lib/utils";
-import type { ChatDesktopLayout } from "./page-chat-client";
 import { SystemMessage } from "./system-message";
 import { UserMessage } from "./user-message";
 
@@ -32,7 +30,6 @@ interface ChatWindowProps {
   hasInterviewConfig?: boolean;
   difficultyLevel: string;
   suggestedQuestions?: string[];
-  pcLayout?: ChatDesktopLayout;
   chatState: ReturnType<typeof import("@ai-sdk/react").useChat>;
   isOpen: boolean;
   onClose: () => void;
@@ -165,7 +162,6 @@ export function ChatWindow({
   hasInterviewConfig,
   difficultyLevel,
   suggestedQuestions,
-  pcLayout = "fixed",
   chatState,
   isOpen,
   onClose,
@@ -181,9 +177,6 @@ export function ChatWindow({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const isResponding = status === "streaming" || status === "submitted";
-  // floating: PC でも開いた時だけ右下にパネルを出すモード（会期 / Topic）。
-  // fixed（既定）は PC で常時表示のドッキングパネル（home / members / 議案詳細）。
-  const isFloating = pcLayout === "floating";
 
   useEffect(() => {
     setIsMounted(true);
@@ -244,26 +237,15 @@ export function ChatWindow({
 
       {/* チャットウィンドウ */}
       <div
-        className={cn(
-          "fixed inset-x-0 bottom-0 z-50 flex h-[80vh] flex-col rounded-t-2xl bg-white shadow-md",
-          "md:bottom-4 md:left-auto md:right-4 md:w-[450px] md:rounded-2xl",
-          isFloating
-            ? [
-                // PC でも開いた時だけ右下に表示（常時パネルにせず本文を圧迫しない）
-                isOpen ? "visible opacity-100" : "invisible opacity-0",
-                "pc:h-[70vh] pc:w-[420px]",
-              ]
-            : [
-                // 既定: PC では右下に常時表示するドッキングパネル
-                isOpen
-                  ? "visible opacity-100"
-                  : "invisible opacity-0 pc:visible pc:opacity-100",
-                "pc:w-[380px] pcl:w-[420px] xl:w-[450px]",
-                "pc:h-[70vh] pc:visible pc:opacity-100",
-                // xlサイズでは、横幅1180px（メイン + チャット）の中央寄せにする
-                "xl:right-[calc(calc(100%-1180px)/2)]",
-              ]
-        )}
+        // xlサイズでは、横幅1180px（メイン + チャット）の中央寄せにする
+        className={`fixed inset-x-0 bottom-0 z-50
+          bg-white shadow-md rounded-t-2xl flex flex-col
+          md:bottom-4 md:right-4 md:left-auto md:rounded-2xl
+          pc:w-[380px] pcl:w-[420px] xl:w-[450px]
+          pc:visible pc:opacity-100 h-[80vh] pc:h-[70vh]
+          xl:right-[calc(calc(100%-1180px)/2)]
+					${isOpen ? "visible opacity-100" : "invisible opacity-0 pc:visible pc:opacity-100"}
+				`}
         style={
           viewportHeight && !isDesktop
             ? { maxHeight: `${viewportHeight}px` }
@@ -272,12 +254,7 @@ export function ChatWindow({
       >
         <button
           type="button"
-          className={cn(
-            "self-end p-2 m-2 hover:bg-gray-100 rounded-full",
-            // fixed の常時パネルは PC で閉じる導線が不要なので隠す。
-            // floating は PC でも開閉するため閉じるボタンを表示する。
-            !isFloating && "pc:hidden"
-          )}
+          className="pc:hidden self-end p-2 m-2 hover:bg-gray-100 rounded-full"
           onClick={onClose}
           aria-label="モーダルを閉じる"
         >
