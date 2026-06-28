@@ -5,6 +5,11 @@ interface TopicTimelineReviewProps {
   timelineReview: TopicTimelineReviewData;
 }
 
+interface TimelineSourceDisplay {
+  label: string;
+  description: string;
+}
+
 function getStatusLabel(
   status: TopicTimelineReviewData["timeline_items"][number]["status"]
 ) {
@@ -44,61 +49,139 @@ function getDisplaySummary(
   }
 }
 
-function getSourceKindLabel(sourceKind: string) {
-  switch (sourceKind) {
-    case "session_overview":
-      return "会期ページ用メモ";
-    case "topic_json":
-      return "トピック下書き";
-    case "speech_canonical":
-      return "発言の根拠";
-    case "issue_graph_v2_review":
-      return "論点レビュー";
-    default:
-      return sourceKind;
-  }
+function getCommitteeName(text: string) {
+  const match = text.match(/(総務財政委員会|経済民生委員会|建設土木委員会)/);
+  return match?.[1] ?? null;
 }
 
-function getEvidenceEmptyLabel(
+function getBillNumber(text: string) {
+  const match = text.match(/(議案第\d+号)/);
+  return match?.[1] ?? null;
+}
+
+function getQuestionSpeaker(title: string) {
+  const match = title.match(/^(.+?)議員が/);
+  return match ? `${match[1]}議員` : null;
+}
+
+function getGeneralQuestionSourceDescription(
+  item: TopicTimelineReviewData["timeline_items"][number]
+) {
+  const speaker = getQuestionSpeaker(item.title);
+  if (speaker) {
+    return `${speaker}の一般質問をもとにしています。`;
+  }
+
+  return "この話題に関する一般質問をもとにしています。";
+}
+
+function getBillSourceDescription(
+  item: TopicTimelineReviewData["timeline_items"][number]
+) {
+  const billNumber = getBillNumber(item.title);
+  if (billNumber) {
+    return `${billNumber}に関する資料をもとにしています。`;
+  }
+
+  return "この話題に関する議案資料をもとにしています。";
+}
+
+function getCommitteeSourceDescription(
+  item: TopicTimelineReviewData["timeline_items"][number]
+) {
+  const committeeName = getCommitteeName(item.title);
+  if (item.event_type === "committee_referral") {
+    if (committeeName) {
+      return `${committeeName}で審査されることが会期資料で確認できます。`;
+    }
+    return "委員会で審査されることが会期資料で確認できます。";
+  }
+
+  if (committeeName) {
+    return `${committeeName}での説明内容をもとに整理しています。`;
+  }
+
+  return "委員会での説明内容をもとに整理しています。";
+}
+
+function getFallbackSourceDescription(
   item: TopicTimelineReviewData["timeline_items"][number]
 ) {
   if (item.status === "candidate") {
-    return "この項目は、会期資料やトピック下書きをもとに整理しています。発言単位の根拠づけは確認中です。";
+    return "会期資料やトピック整理資料をもとに整理しています。";
   }
 
-  return "この項目に紐づく発言の根拠は、まだ表示できる形で整理されていません。";
+  return "関連資料をもとに整理しています。";
 }
 
-function getDisplayReviewNotes(notes: string[]) {
-  const mapped = notes.flatMap((note) => {
-    if (note.includes("vote event")) {
-      return ["採決結果は、この試作タイムラインにはまだ反映していません。"];
-    }
-    if (note.includes("candidate items should not be treated as confirmed")) {
-      return [
-        "「確認中」と表示している項目は、関連資料との照合が残っています。",
-      ];
-    }
-    if (
-      note.includes(
-        "bill_introduction / committee_referral / committee_discussion"
-      )
-    ) {
-      return ["会期初日や委員会の動きは、公開資料をもとに整理しています。"];
-    }
-    if (note.includes("committee discussion details remain review-first")) {
-      return [
-        "委員会での説明内容は、より確かな一次資料との照合を続けています。",
-      ];
-    }
-    if (note.includes("UI integration is not implemented")) {
-      return [];
-    }
+function getSourceDisplays(
+  item: TopicTimelineReviewData["timeline_items"][number]
+) {
+  const sourceKinds = new Set(
+    item.source_refs.map((sourceRef) => sourceRef.source_kind)
+  );
+  const displays: TimelineSourceDisplay[] = [];
 
-    return [note];
-  });
+  switch (item.event_type) {
+    case "bill_introduction":
+      displays.push({
+        label: "📄 議案",
+        description: getBillSourceDescription(item),
+      });
+      break;
+    case "committee_referral":
+    case "committee_discussion":
+      displays.push({
+        label: "🏛 委員会",
+        description: getCommitteeSourceDescription(item),
+      });
+      break;
+    case "general_question":
+      displays.push({
+        label: "🗣 一般質問",
+        description: getGeneralQuestionSourceDescription(item),
+      });
+      break;
+    default:
+      break;
+  }
 
-  return [...new Set(mapped)];
+  if (sourceKinds.has("session_overview")) {
+    displays.push({
+      label: "📘 会期資料",
+      description: "会期全体の公開資料をもとに整理しています。",
+    });
+  }
+
+  if (sourceKinds.has("topic_json")) {
+    displays.push({
+      label: "🗂 トピック整理資料",
+      description: "この話題について整理した資料をもとにしています。",
+    });
+  }
+
+  if (displays.length === 0) {
+    displays.push({
+      label: "📎 関連資料",
+      description: getFallbackSourceDescription(item),
+    });
+  }
+
+  return displays;
+}
+
+function hasNestedEvidenceDetails(
+  item: TopicTimelineReviewData["timeline_items"][number]
+) {
+  return item.evidence_ids.length > 0;
+}
+
+function getDisplayReviewNotes() {
+  return [
+    "「確認済み」は、公開資料や議事録で確認できた内容です。",
+    "「確認中」は、資料との照合を続けている項目です。",
+    "内容は確認が進み次第更新します。",
+  ];
 }
 
 export function TopicTimelineReview({
@@ -158,47 +241,44 @@ export function TopicTimelineReview({
 
               <details className="rounded-xl bg-slate-50 px-4 py-3">
                 <summary className="cursor-pointer text-sm font-medium text-slate-700">
-                  根拠を見る
+                  情報源を見る
                 </summary>
                 <div className="mt-3 space-y-3 text-sm text-slate-600">
-                  {item.evidence_ids.length > 0 ? (
-                    <div className="space-y-1">
-                      <p className="font-semibold text-slate-800">
-                        発言の根拠ID
-                      </p>
-                      <ul className="list-disc space-y-1 pl-5">
-                        {item.evidence_ids.map((evidenceId) => (
-                          <li key={evidenceId} className="break-all">
-                            <code>{evidenceId}</code>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : (
-                    <p className="text-slate-500">
-                      {getEvidenceEmptyLabel(item)}
-                    </p>
-                  )}
-
-                  <div className="space-y-1">
-                    <p className="font-semibold text-slate-800">参照元</p>
-                    <ul className="list-disc space-y-1 pl-5">
-                      {item.source_refs.map((sourceRef) => (
-                        <li
-                          key={`${sourceRef.source_path}:${sourceRef.source_locator}`}
-                        >
-                          <span className="font-medium">
-                            {getSourceKindLabel(sourceRef.source_kind)}
-                          </span>
-                          : <code>{sourceRef.source_path}</code>
-                          <span className="text-slate-500">
-                            {" "}
-                            ({sourceRef.source_locator})
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="space-y-2">
+                    {getSourceDisplays(item).map((sourceDisplay) => (
+                      <div
+                        key={`${item.date}:${item.title}:${sourceDisplay.label}`}
+                        className="rounded-xl border border-slate-200 bg-white px-4 py-3"
+                      >
+                        <p className="text-sm font-semibold text-slate-900">
+                          {sourceDisplay.label}
+                        </p>
+                        <p className="mt-1 text-sm leading-6 text-slate-600">
+                          {sourceDisplay.description}
+                        </p>
+                      </div>
+                    ))}
                   </div>
+
+                  {hasNestedEvidenceDetails(item) ? (
+                    <details className="rounded-xl border border-slate-200 bg-white px-4 py-3">
+                      <summary className="cursor-pointer text-sm font-medium text-slate-700">
+                        詳細IDを見る
+                      </summary>
+                      <div className="mt-3 space-y-2">
+                        <p className="text-sm font-semibold text-slate-900">
+                          発言の根拠ID
+                        </p>
+                        <ul className="list-disc space-y-1 pl-5 text-sm text-slate-600">
+                          {item.evidence_ids.map((evidenceId) => (
+                            <li key={evidenceId} className="break-all">
+                              <code>{evidenceId}</code>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </details>
+                  ) : null}
                 </div>
               </details>
             </div>
@@ -206,17 +286,15 @@ export function TopicTimelineReview({
         ))}
       </div>
 
-      {getDisplayReviewNotes(timelineReview.review_required).length > 0 ? (
+      {timelineReview.review_required.length > 0 ? (
         <details className="rounded-2xl border border-dashed border-amber-300 bg-amber-50 px-5 py-4">
           <summary className="cursor-pointer text-sm font-bold text-amber-900">
             この表示について
           </summary>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-amber-900">
-            {getDisplayReviewNotes(timelineReview.review_required).map(
-              (note) => (
-                <li key={note}>{note}</li>
-              )
-            )}
+            {getDisplayReviewNotes().map((note) => (
+              <li key={note}>{note}</li>
+            ))}
           </ul>
         </details>
       ) : null}
