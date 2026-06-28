@@ -36,6 +36,13 @@ type Props = {
   billTitlesByNumber?: Record<string, string>;
 };
 
+function formatLocalDateYmd(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 export function DietSessionReportSection({
   session,
   currentDifficulty,
@@ -45,6 +52,8 @@ export function DietSessionReportSection({
 }: Props) {
   if (!session?.slug) return null;
   const sessionSlug = session.slug;
+  const todayYmd = formatLocalDateYmd(new Date());
+  const isSessionClosed = todayYmd > session.end_date;
 
   const overview = SESSION_OVERVIEWS[sessionSlug];
   if (!overview) return null;
@@ -73,11 +82,13 @@ export function DietSessionReportSection({
         <div className="flex flex-col gap-6">
           {/* 見出し */}
           <h2 className="text-base font-bold text-mirai-text">
-            今会期で議論されていること
+            {isSessionClosed
+              ? "この会期で議論されたこと"
+              : "今会期で議論されていること"}
           </h2>
 
           {/* 採決予定（schedule の既存値を再利用） */}
-          {voteSchedule && (
+          {!isSessionClosed && voteSchedule && (
             <Badge variant="light" className="gap-1">
               <CalendarClock className="h-3.5 w-3.5" />
               採決予定：{voteSchedule.dates}
