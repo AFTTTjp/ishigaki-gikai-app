@@ -69,7 +69,7 @@ function getGeneralQuestionSourceDescription(
 ) {
   const speaker = getQuestionSpeaker(item.title);
   if (speaker) {
-    return `${speaker}の一般質問をもとにしています。`;
+    return `${speaker}がこの話題について行った一般質問をもとにしています。`;
   }
 
   return "この話題に関する一般質問をもとにしています。";
@@ -80,7 +80,7 @@ function getBillSourceDescription(
 ) {
   const billNumber = getBillNumber(item.title);
   if (billNumber) {
-    return `${billNumber}に関する資料をもとにしています。`;
+    return `${billNumber}として提出された議案資料をもとにしています。`;
   }
 
   return "この話題に関する議案資料をもとにしています。";
@@ -98,7 +98,7 @@ function getCommitteeSourceDescription(
   }
 
   if (committeeName) {
-    return `${committeeName}での説明内容をもとに整理しています。`;
+    return `${committeeName}で担当課から説明があった内容をもとに整理しています。`;
   }
 
   return "委員会での説明内容をもとに整理しています。";
@@ -168,12 +168,6 @@ function getSourceDisplays(
   }
 
   return displays;
-}
-
-function hasNestedEvidenceDetails(
-  item: TopicTimelineReviewData["timeline_items"][number]
-) {
-  return item.evidence_ids.length > 0;
 }
 
 function getDisplayReviewNotes() {
@@ -259,26 +253,6 @@ export function TopicTimelineReview({
                       </div>
                     ))}
                   </div>
-
-                  {hasNestedEvidenceDetails(item) ? (
-                    <details className="rounded-xl border border-slate-200 bg-white px-4 py-3">
-                      <summary className="cursor-pointer text-sm font-medium text-slate-700">
-                        詳細IDを見る
-                      </summary>
-                      <div className="mt-3 space-y-2">
-                        <p className="text-sm font-semibold text-slate-900">
-                          発言の根拠ID
-                        </p>
-                        <ul className="list-disc space-y-1 pl-5 text-sm text-slate-600">
-                          {item.evidence_ids.map((evidenceId) => (
-                            <li key={evidenceId} className="break-all">
-                              <code>{evidenceId}</code>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </details>
-                  ) : null}
                 </div>
               </details>
             </div>
