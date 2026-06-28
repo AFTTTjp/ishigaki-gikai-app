@@ -98,19 +98,19 @@ update 実行前に、対象17件の現状を必ず保存する。
 
 ### 4-1. 実行
 
-- preview SQL 実行日時:
-- 実行者:
+- preview SQL 実行日時: 2026-06-28 JST
+- 実行者: Codex（読み取りのみ）
 
 ### 4-2. 結果貼り付け欄
 
-- `matched_count`:
-- `missing_count`:
-- `unexpected_count`:
-- `preview_judgement` の要約:
+- `matched_count`: 17
+- `missing_count`: 0
+- `unexpected_count`: 0
+- `preview_judgement` の要約: `OK_FOR_REVIEW_SQL` 17件
 
 詳細結果の保存先:
 
-- preview 結果保存先:
+- preview 結果保存先: この runbook とチャット記録
 
 ### 4-3. 停止条件
 
@@ -129,13 +129,14 @@ update 実行前に、対象17件の現状を必ず保存する。
 
 preview 結果を貼り付けたうえで、人間承認を得る。
 
-- 承認者:
-- 承認日時:
-- 承認コメント:
+- 承認者: ユーザー（チャット承認）
+- 承認日時: 2026-06-28 JST
+- 承認コメント: preview 条件を満たしているため update SQL に進行可
 
 承認取得:
 
 - [ ] yes
+- [x] yes
 
 ---
 
