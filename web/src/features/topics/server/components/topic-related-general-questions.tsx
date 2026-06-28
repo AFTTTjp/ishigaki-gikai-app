@@ -21,9 +21,14 @@ export function TopicRelatedGeneralQuestions({
         <p className="text-sm text-slate-500">{questions.length}件</p>
       </div>
 
-      <p className="text-sm leading-7 text-slate-500">
-        このテーマに関連して、議員が本会議で行った一般質問の一覧です。
-      </p>
+      <div className="space-y-2 text-sm leading-7 text-slate-500">
+        <p>
+          この話題に関連して、本会議で取り上げられた一般質問をまとめています。
+        </p>
+        <p>
+          各カードは質問全体への入口です。下に表示している項目は、この質問で扱われた主な項目であり、この話題だけを抜き出した一覧ではありません。
+        </p>
+      </div>
 
       {questions.length > 0 ? (
         <div className="space-y-4">
@@ -54,23 +59,31 @@ export function TopicRelatedGeneralQuestions({
                   </div>
 
                   {question.items.length > 0 && (
-                    <ol className="flex flex-col gap-2 pl-11">
-                      {question.items.map((item) => (
-                        <li key={item.id} className="flex items-start gap-2">
-                          <span className="shrink-0 text-sm font-bold text-mirai-text-muted">
-                            {item.item_number}.
-                          </span>
-                          <span className="text-sm leading-snug text-mirai-text">
-                            {item.title}
-                          </span>
-                        </li>
-                      ))}
-                    </ol>
+                    <div className="space-y-2 pl-11">
+                      <p className="text-xs font-medium tracking-[0.04em] text-mirai-text-muted">
+                        この質問で扱われた主な項目
+                      </p>
+                      <ol className="flex flex-col gap-2">
+                        {question.items.map((item) => (
+                          <li key={item.id} className="flex items-start gap-2">
+                            <span className="shrink-0 text-sm font-bold text-mirai-text-muted">
+                              {item.item_number}.
+                            </span>
+                            <span className="text-sm leading-snug text-mirai-text">
+                              {item.title}
+                            </span>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
                   )}
 
-                  <p className="text-xs text-mirai-text-muted">
-                    {question.diet_session.name}
-                  </p>
+                  <div className="space-y-1 text-xs text-mirai-text-muted">
+                    <p>{question.diet_session.name}</p>
+                    <p>
+                      質問全体の内容は会期ページの一般質問一覧から確認できます。
+                    </p>
+                  </div>
                 </div>
               </div>
             </Link>
