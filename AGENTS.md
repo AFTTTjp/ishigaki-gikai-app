@@ -126,6 +126,7 @@ Repository レイヤーの詳細は [docs/repository-layer.md](docs/repository-l
 - **アイコン**: インラインSVGは禁止です。必ず `lucide-react` からアイコンコンポーネントをインポートして使用してください。
 - **ボタン**: `<button>` タグの使用は禁止です。必ず `@/components/ui/button` の `Button` コンポーネントを使用してください。
 - **色**: インラインカラーコード（`text-[#xxx]`, `bg-[#xxx]`, `border-[#xxx]` 等の arbitrary value や style 属性での直接指定）は**禁止**です。必ず `globals.css` の `@theme inline` で定義済みのカラートークン（`text-mirai-text`, `bg-primary`, `border-primary-accent` 等）を使用してください。新しい色が必要な場合は、まず `globals.css` にトークンを追加してから使用すること。既存トークン一覧は `web/src/app/globals.css` の `@theme inline` ブロックを参照。
+- **UIレイアウト変更**: 会期ページ・Topicページ等のレイアウトを変更するときは、新規レイアウトや抽象（`PageWithChatLayout` / `pcLayout` / `inline` / `floating` / AI用2カラム等）を作らず、まず正解基準ページ `/bills/[id]` を確認して差分だけ直すこと。詳細は [docs/ai/ui-layout-change-rules.md](docs/ai/ui-layout-change-rules.md) を参照。
 
 ### admin 内部ルート定義
 - admin アプリの内部リンク（Link href, router.push, redirect）には `@/lib/routes` の関数を使用すること。文字列リテラルでのルート直書きは禁止。
