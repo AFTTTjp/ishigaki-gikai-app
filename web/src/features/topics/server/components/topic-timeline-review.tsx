@@ -27,6 +27,80 @@ function formatDate(value: string) {
   return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
 }
 
+function getDisplaySummary(
+  item: TopicTimelineReviewData["timeline_items"][number]
+) {
+  switch (item.event_type) {
+    case "bill_introduction":
+      return "この話題に関わる議案が会期の初日に提出されました。";
+    case "committee_referral":
+      return "この議案は委員会で詳しく審査されることになりました。";
+    case "committee_discussion":
+      return "委員会で、参加経費や条件について説明が行われたことを確認しています。";
+    case "general_question":
+      return "本会議の一般質問で、この話題が取り上げられました。";
+    default:
+      return item.summary;
+  }
+}
+
+function getSourceKindLabel(sourceKind: string) {
+  switch (sourceKind) {
+    case "session_overview":
+      return "会期ページ用メモ";
+    case "topic_json":
+      return "トピック下書き";
+    case "speech_canonical":
+      return "発言の根拠";
+    case "issue_graph_v2_review":
+      return "論点レビュー";
+    default:
+      return sourceKind;
+  }
+}
+
+function getEvidenceEmptyLabel(
+  item: TopicTimelineReviewData["timeline_items"][number]
+) {
+  if (item.status === "candidate") {
+    return "この項目は、会期資料やトピック下書きをもとに整理しています。発言単位の根拠づけは確認中です。";
+  }
+
+  return "この項目に紐づく発言の根拠は、まだ表示できる形で整理されていません。";
+}
+
+function getDisplayReviewNotes(notes: string[]) {
+  const mapped = notes.flatMap((note) => {
+    if (note.includes("vote event")) {
+      return ["採決結果は、この試作タイムラインにはまだ反映していません。"];
+    }
+    if (note.includes("candidate items should not be treated as confirmed")) {
+      return [
+        "「確認中」と表示している項目は、関連資料との照合が残っています。",
+      ];
+    }
+    if (
+      note.includes(
+        "bill_introduction / committee_referral / committee_discussion"
+      )
+    ) {
+      return ["会期初日や委員会の動きは、公開資料をもとに整理しています。"];
+    }
+    if (note.includes("committee discussion details remain review-first")) {
+      return [
+        "委員会での説明内容は、より確かな一次資料との照合を続けています。",
+      ];
+    }
+    if (note.includes("UI integration is not implemented")) {
+      return [];
+    }
+
+    return [note];
+  });
+
+  return [...new Set(mapped)];
+}
+
 export function TopicTimelineReview({
   timelineReview,
 }: TopicTimelineReviewProps) {
@@ -42,12 +116,12 @@ export function TopicTimelineReview({
             この話題の流れ（試作）
           </h2>
           <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800">
-            Review
+            試作
           </span>
         </div>
         <p className="text-sm text-slate-500">
-          Event Graph review artifact から整理した下書きです。
-          「確認中」は根拠接続の確認が残っている項目です。
+          この話題が会期中にどう進んだかを、公開資料と議事録の根拠をもとに時系列で整理しています。
+          「確認中」は、関連する資料や発言との照合が残っている項目です。
         </p>
       </div>
 
@@ -78,7 +152,7 @@ export function TopicTimelineReview({
                   {item.title}
                 </h3>
                 <p className="text-[15px] leading-7 text-slate-600">
-                  {item.summary}
+                  {getDisplaySummary(item)}
                 </p>
               </div>
 
@@ -90,7 +164,7 @@ export function TopicTimelineReview({
                   {item.evidence_ids.length > 0 ? (
                     <div className="space-y-1">
                       <p className="font-semibold text-slate-800">
-                        Evidence IDs
+                        発言の根拠ID
                       </p>
                       <ul className="list-disc space-y-1 pl-5">
                         {item.evidence_ids.map((evidenceId) => (
@@ -102,19 +176,19 @@ export function TopicTimelineReview({
                     </div>
                   ) : (
                     <p className="text-slate-500">
-                      Speech evidence はまだ接続されていません。
+                      {getEvidenceEmptyLabel(item)}
                     </p>
                   )}
 
                   <div className="space-y-1">
-                    <p className="font-semibold text-slate-800">Source refs</p>
+                    <p className="font-semibold text-slate-800">参照元</p>
                     <ul className="list-disc space-y-1 pl-5">
                       {item.source_refs.map((sourceRef) => (
                         <li
                           key={`${sourceRef.source_path}:${sourceRef.source_locator}`}
                         >
                           <span className="font-medium">
-                            {sourceRef.source_kind}
+                            {getSourceKindLabel(sourceRef.source_kind)}
                           </span>
                           : <code>{sourceRef.source_path}</code>
                           <span className="text-slate-500">
@@ -132,15 +206,19 @@ export function TopicTimelineReview({
         ))}
       </div>
 
-      {timelineReview.review_required.length > 0 ? (
-        <div className="rounded-2xl border border-dashed border-amber-300 bg-amber-50 px-5 py-4">
-          <h3 className="text-sm font-bold text-amber-900">確認メモ</h3>
+      {getDisplayReviewNotes(timelineReview.review_required).length > 0 ? (
+        <details className="rounded-2xl border border-dashed border-amber-300 bg-amber-50 px-5 py-4">
+          <summary className="cursor-pointer text-sm font-bold text-amber-900">
+            この表示について
+          </summary>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-amber-900">
-            {timelineReview.review_required.map((note) => (
-              <li key={note}>{note}</li>
-            ))}
+            {getDisplayReviewNotes(timelineReview.review_required).map(
+              (note) => (
+                <li key={note}>{note}</li>
+              )
+            )}
           </ul>
-        </div>
+        </details>
       ) : null}
     </section>
   );

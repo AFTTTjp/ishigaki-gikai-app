@@ -9,6 +9,7 @@ import {
   extractBillTitlePrefix,
   getBillDisplayTitle,
 } from "@/features/bills/shared/utils/bill-title";
+import { PageChatClient } from "@/features/chat/client/components/page-chat-client";
 import { DietSessionBillList } from "@/features/diet-sessions/client/components/diet-session-bill-list";
 import { DietSessionOverviewSection } from "@/features/diet-sessions/client/components/diet-session-overview-section";
 import { DietSessionReportSection } from "@/features/diet-sessions/client/components/diet-session-report-section";
@@ -92,6 +93,19 @@ export default async function DietSessionBillsPage({ params }: Props) {
       )
     : [];
 
+  const sessionChatItems = [
+    ...(SESSION_OVERVIEWS[slug]?.keyPoints ?? []).map((keyPoint) => ({
+      name: keyPoint.title,
+      summary: [keyPoint.oneLine, keyPoint.status].filter(Boolean).join("\n"),
+      tags: ["会期の論点"],
+    })),
+    ...bills.map((bill) => ({
+      name: getBillDisplayTitle(bill),
+      summary: bill.bill_content?.summary,
+      tags: ["議案"],
+    })),
+  ];
+
   return (
     <div className="bg-mirai-surface-muted">
       {/* ヒーロー画像 */}
@@ -137,6 +151,17 @@ export default async function DietSessionBillsPage({ params }: Props) {
           <span className="text-black">過去の議案</span>
         </nav>
       </Container>
+
+      <PageChatClient
+        currentDifficulty={currentDifficulty}
+        items={sessionChatItems}
+        suggestedQuestions={[
+          "この会期では何が議論されましたか？",
+          "離島甲子園はどうなりましたか？",
+          "宿泊税について教えて",
+          "一般質問ではどんなテーマが多かったですか？",
+        ]}
+      />
     </div>
   );
 }

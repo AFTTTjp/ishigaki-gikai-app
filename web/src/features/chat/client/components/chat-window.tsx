@@ -29,6 +29,7 @@ interface ChatWindowProps {
   billContext?: BillWithContent;
   hasInterviewConfig?: boolean;
   difficultyLevel: string;
+  suggestedQuestions?: string[];
   chatState: ReturnType<typeof import("@ai-sdk/react").useChat>;
   isOpen: boolean;
   onClose: () => void;
@@ -53,6 +54,7 @@ function ChatMessages({
   billContext,
   hasInterviewConfig,
   difficultyLevel,
+  suggestedQuestions,
   messages,
   sendMessage,
   status,
@@ -62,6 +64,7 @@ function ChatMessages({
   billContext?: BillWithContent;
   hasInterviewConfig?: boolean;
   difficultyLevel: string;
+  suggestedQuestions?: string[];
   messages: ChatWindowProps["chatState"]["messages"];
   sendMessage: ChatWindowProps["chatState"]["sendMessage"];
   status: ChatWindowProps["chatState"]["status"];
@@ -96,13 +99,15 @@ function ChatMessages({
 
         {/* サンプル質問チップ */}
         <div className="flex flex-wrap gap-3">
-          {(billContext
-            ? [`この議案のポイントは？`, "この議案は私にどんな影響がある？"]
-            : [
-                "みらい議会石垣市議会版って何？",
-                "石垣市議会って何をするところ？",
-                "今注目の議案について教えて",
-              ]
+          {(suggestedQuestions && suggestedQuestions.length > 0
+            ? suggestedQuestions
+            : billContext
+              ? ["この議案のポイントは？", "この議案は私にどんな影響がある？"]
+              : [
+                  "みらい議会石垣市議会版って何？",
+                  "石垣市議会って何をするところ？",
+                  "今注目の議案について教えて",
+                ]
           ).map((question) => {
             return (
               <button
@@ -156,6 +161,7 @@ export function ChatWindow({
   billContext,
   hasInterviewConfig,
   difficultyLevel,
+  suggestedQuestions,
   chatState,
   isOpen,
   onClose,
@@ -260,6 +266,7 @@ export function ChatWindow({
               billContext={billContext}
               hasInterviewConfig={hasInterviewConfig}
               difficultyLevel={difficultyLevel}
+              suggestedQuestions={suggestedQuestions}
               messages={messages}
               sendMessage={sendMessage}
               status={status}

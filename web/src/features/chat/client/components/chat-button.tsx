@@ -24,6 +24,7 @@ interface ChatButtonProps {
   billContext?: BillWithContent;
   hasInterviewConfig?: boolean;
   difficultyLevel: string;
+  suggestedQuestions?: string[];
   pageContext?: {
     type: "home" | "bill";
     bills?: Array<{
@@ -40,7 +41,16 @@ export interface ChatButtonRef {
 }
 
 export const ChatButton = forwardRef<ChatButtonRef, ChatButtonProps>(
-  ({ billContext, hasInterviewConfig, difficultyLevel, pageContext }, ref) => {
+  (
+    {
+      billContext,
+      hasInterviewConfig,
+      difficultyLevel,
+      suggestedQuestions,
+      pageContext,
+    },
+    ref
+  ) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isCompact, setIsCompact] = useState(false);
     const [showText, setShowText] = useState(true);
@@ -168,6 +178,7 @@ export const ChatButton = forwardRef<ChatButtonRef, ChatButtonProps>(
           billContext={billContext}
           hasInterviewConfig={hasInterviewConfig}
           difficultyLevel={difficultyLevel}
+          suggestedQuestions={suggestedQuestions}
           chatState={chatState}
           isOpen={isOpen}
           onClose={() => {

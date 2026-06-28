@@ -11,15 +11,18 @@ interface PageChatClientProps {
     tags?: string[];
     isFeatured?: boolean;
   }>;
+  suggestedQuestions?: string[];
 }
 
 export function PageChatClient({
   currentDifficulty,
   items,
+  suggestedQuestions,
 }: PageChatClientProps) {
   return (
     <ChatButton
       difficultyLevel={currentDifficulty}
+      suggestedQuestions={suggestedQuestions}
       pageContext={{
         type: "home",
         bills: items,
