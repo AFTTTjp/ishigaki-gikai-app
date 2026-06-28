@@ -286,9 +286,6 @@ function buildReviewDraft(publicQuestions, canonicalQuestions, canonicalJsonPath
       question_number: canonicalQuestion.question_number,
       question_date: canonicalQuestion.question_date,
       member_name_raw: canonicalQuestion.member_name_raw,
-      source_minutes_file: sanitizePathForOutput(
-        canonicalQuestion.source_minutes_file
-      ),
       full_text_available: Boolean(canonicalQuestion.full_text?.trim()),
       current_items,
       keywords: canonicalQuestion.keywords,
@@ -378,7 +375,6 @@ function buildMarkdown(reviewDraft) {
     lines.push(
       `- full_text_available: ${question.full_text_available ? "true" : "false"}`
     );
-    lines.push(`- source_minutes_file: ${question.source_minutes_file}`);
     lines.push(
       `- question_review_required: ${question.question_review_required ? "true" : "false"}`
     );

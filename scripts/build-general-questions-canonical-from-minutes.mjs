@@ -480,10 +480,6 @@ function buildCanonicalQuestions(publicQuestions, minutesByKey, minutesRoot) {
         member_id: publicQuestion.member_id,
         member_name_raw: publicQuestion.member_name_raw,
         source_file: parsedMinutes.source_file,
-        source_minutes_file: relativizeFromBase(
-          minutesRoot,
-          minutesIdentity.source_minutes_file_path
-        ),
         extracted_overview: parsedMinutes.extracted_overview,
         keywords: parsedMinutes.keywords,
         review_flags: parsedMinutes.review_flags,
