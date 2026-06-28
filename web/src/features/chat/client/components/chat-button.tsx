@@ -12,6 +12,7 @@ import {
 } from "react";
 import type { BillWithContent } from "@/features/bills/shared/types";
 import { ChatWindow } from "./chat-window";
+import type { ChatDesktopLayout } from "./page-chat-client";
 
 // アニメーション定数
 const ANIMATION_DURATION = {
@@ -25,6 +26,7 @@ interface ChatButtonProps {
   hasInterviewConfig?: boolean;
   difficultyLevel: string;
   suggestedQuestions?: string[];
+  pcLayout?: ChatDesktopLayout;
   pageContext?: {
     type: "home" | "bill";
     bills?: Array<{
@@ -47,6 +49,7 @@ export const ChatButton = forwardRef<ChatButtonRef, ChatButtonProps>(
       hasInterviewConfig,
       difficultyLevel,
       suggestedQuestions,
+      pcLayout = "fixed",
       pageContext,
     },
     ref
@@ -179,6 +182,7 @@ export const ChatButton = forwardRef<ChatButtonRef, ChatButtonProps>(
           hasInterviewConfig={hasInterviewConfig}
           difficultyLevel={difficultyLevel}
           suggestedQuestions={suggestedQuestions}
+          pcLayout={pcLayout}
           chatState={chatState}
           isOpen={isOpen}
           onClose={() => {

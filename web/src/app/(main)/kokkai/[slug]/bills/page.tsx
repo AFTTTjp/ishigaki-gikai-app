@@ -10,6 +10,7 @@ import {
   getBillDisplayTitle,
 } from "@/features/bills/shared/utils/bill-title";
 import { PageChatClient } from "@/features/chat/client/components/page-chat-client";
+import { PageWithChatLayout } from "@/features/chat/client/components/page-with-chat-layout";
 import { DietSessionBillList } from "@/features/diet-sessions/client/components/diet-session-bill-list";
 import { DietSessionOverviewSection } from "@/features/diet-sessions/client/components/diet-session-overview-section";
 import { DietSessionReportSection } from "@/features/diet-sessions/client/components/diet-session-report-section";
@@ -121,47 +122,52 @@ export default async function DietSessionBillsPage({ params }: Props) {
         />
       </div>
 
-      {/* 会期レポート（現在地・初日の動き・委員会付託） */}
-      <DietSessionReportSection
-        session={session}
-        currentDifficulty={currentDifficulty}
-        relatedTopics={relatedTopics}
-        relatedQuestions={relatedQuestions}
-        billTitlesByNumber={billTitlesByNumber}
-      />
+      <PageWithChatLayout
+        chat={
+          <PageChatClient
+            currentDifficulty={currentDifficulty}
+            items={sessionChatItems}
+            suggestedQuestions={[
+              "この会期では何が議論されましたか？",
+              "離島甲子園はどうなりましたか？",
+              "宿泊税について教えて",
+              "一般質問ではどんなテーマが多かったですか？",
+            ]}
+            pcLayout="inline"
+          />
+        }
+      >
+        {/* 会期レポート（現在地・初日の動き・委員会付託） */}
+        <DietSessionReportSection
+          session={session}
+          currentDifficulty={currentDifficulty}
+          relatedTopics={relatedTopics}
+          relatedQuestions={relatedQuestions}
+          billTitlesByNumber={billTitlesByNumber}
+        />
 
-      {/* 今会期のテーマセクション（全件表示） */}
-      <DietSessionOverviewSection
-        session={session}
-        showAll
-        billIdByNumber={billIdByNumber}
-      />
+        {/* 今会期のテーマセクション（全件表示） */}
+        <DietSessionOverviewSection
+          session={session}
+          showAll
+          billIdByNumber={billIdByNumber}
+        />
 
-      <Container className="py-8">
-        <DietSessionBillList session={session} bills={bills} />
-      </Container>
+        <Container className="py-8">
+          <DietSessionBillList session={session} bills={bills} />
+        </Container>
 
-      {/* パンくずリスト */}
-      <Container className="py-8">
-        <nav className="flex items-center gap-2 text-[15px]">
-          <Link href={routes.home()} className="text-black">
-            TOP
-          </Link>
-          <ChevronRight className="h-5 w-5 text-black" />
-          <span className="text-black">過去の議案</span>
-        </nav>
-      </Container>
-
-      <PageChatClient
-        currentDifficulty={currentDifficulty}
-        items={sessionChatItems}
-        suggestedQuestions={[
-          "この会期では何が議論されましたか？",
-          "離島甲子園はどうなりましたか？",
-          "宿泊税について教えて",
-          "一般質問ではどんなテーマが多かったですか？",
-        ]}
-      />
+        {/* パンくずリスト */}
+        <Container className="py-8">
+          <nav className="flex items-center gap-2 text-[15px]">
+            <Link href={routes.home()} className="text-black">
+              TOP
+            </Link>
+            <ChevronRight className="h-5 w-5 text-black" />
+            <span className="text-black">過去の議案</span>
+          </nav>
+        </Container>
+      </PageWithChatLayout>
     </div>
   );
 }

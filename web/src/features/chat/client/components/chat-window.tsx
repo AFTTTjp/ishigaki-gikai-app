@@ -22,6 +22,8 @@ import {
 import type { BillWithContent } from "@/features/bills/shared/types";
 import { useIsDesktop } from "@/hooks/use-is-desktop";
 import { useViewportHeight } from "@/hooks/use-viewport-height";
+import { cn } from "@/lib/utils";
+import type { ChatDesktopLayout } from "./page-chat-client";
 import { SystemMessage } from "./system-message";
 import { UserMessage } from "./user-message";
 
@@ -30,6 +32,7 @@ interface ChatWindowProps {
   hasInterviewConfig?: boolean;
   difficultyLevel: string;
   suggestedQuestions?: string[];
+  pcLayout?: ChatDesktopLayout;
   chatState: ReturnType<typeof import("@ai-sdk/react").useChat>;
   isOpen: boolean;
   onClose: () => void;
@@ -162,6 +165,7 @@ export function ChatWindow({
   hasInterviewConfig,
   difficultyLevel,
   suggestedQuestions,
+  pcLayout = "fixed",
   chatState,
   isOpen,
   onClose,
@@ -177,6 +181,7 @@ export function ChatWindow({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const isResponding = status === "streaming" || status === "submitted";
+  const isInlineDesktop = pcLayout === "inline" && isDesktop;
 
   useEffect(() => {
     setIsMounted(true);
@@ -238,14 +243,23 @@ export function ChatWindow({
       {/* チャットウィンドウ */}
       <div
         // xlサイズでは、横幅1180px（メイン + チャット）の中央寄せにする
-        className={`fixed inset-x-0 bottom-0 z-50
-          bg-white shadow-md rounded-t-2xl flex flex-col
-          md:bottom-4 md:right-4 md:left-auto md:rounded-2xl
-          pc:w-[380px] pcl:w-[420px] xl:w-[450px]
-          pc:visible pc:opacity-100 h-[80vh] pc:h-[70vh]
-          xl:right-[calc(calc(100%-1180px)/2)]
-					${isOpen ? "visible opacity-100" : "invisible opacity-0 pc:visible pc:opacity-100"}
-				`}
+        className={cn(
+          "fixed inset-x-0 bottom-0 z-50 flex h-[80vh] flex-col rounded-t-2xl bg-white shadow-md",
+          "md:bottom-4 md:left-auto md:right-4 md:w-[450px] md:rounded-2xl",
+          isOpen
+            ? "visible opacity-100"
+            : "invisible opacity-0 pc:visible pc:opacity-100",
+          isInlineDesktop
+            ? [
+                "pc:sticky pc:top-24 pc:z-10 pc:inset-x-auto pc:bottom-auto",
+                "pc:h-[70vh] pc:w-full pc:self-start pc:rounded-2xl pc:opacity-100 pc:visible",
+              ]
+            : [
+                "pc:w-[380px] pcl:w-[420px] xl:w-[450px]",
+                "pc:h-[70vh] pc:visible pc:opacity-100",
+                "xl:right-[calc(calc(100%-1180px)/2)]",
+              ]
+        )}
         style={
           viewportHeight && !isDesktop
             ? { maxHeight: `${viewportHeight}px` }
@@ -320,6 +334,10 @@ export function ChatWindow({
   // body直下にPortalでマウント（クライアントサイドのみ）
   if (!isMounted) {
     return null;
+  }
+
+  if (isInlineDesktop) {
+    return chatContent;
   }
 
   // チャットのストリーミング表示がルビ機能と競合して表示がおかしくなるため、body直下に移動してルビ機能の影響を受けないようにする
