@@ -4,7 +4,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { PageChatClient } from "@/features/chat/client/components/page-chat-client";
-import { PageWithChatLayout } from "@/features/chat/client/components/page-with-chat-layout";
 import { TopicContent } from "@/features/topics/server/components/topic-content";
 import { TopicCouncilActions } from "@/features/topics/server/components/topic-council-actions";
 import { TopicDecisions } from "@/features/topics/server/components/topic-decisions";
@@ -64,62 +63,34 @@ export default async function TopicDetailPage({
 
   return (
     <div className="pb-32 md:pb-8">
-      <PageWithChatLayout
-        mainClassName="space-y-8"
-        chat={
-          <PageChatClient
-            currentDifficulty={currentDifficulty}
-            items={[
-              {
-                name: topic.title,
-                summary: [
-                  topic.description,
-                  topic.current_status_label
-                    ? `現在の状況: ${topic.current_status_label}`
-                    : "",
-                  topic.current_status_note ?? "",
-                ]
-                  .filter(Boolean)
-                  .join("\n"),
-                tags: ["Topics"],
-              },
-              ...topic.relatedBills.map((bill) => ({
-                name: bill.name,
-                summary: bill.bill_content?.summary,
-                tags: ["関連議案"],
-              })),
-            ]}
-            pcLayout="inline"
-          />
-        }
-      >
-        {/* ① ヘッダー（概要） */}
-        <div className="rounded-b-4xl bg-white">
-          <div className="space-y-4 px-4 pb-8 pt-4 sm:px-6 lg:px-8">
-            <Link
-              href={routes.topics() as Route}
-              className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 transition-opacity hover:opacity-70"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Topics 一覧に戻る
-            </Link>
+      {/* ① ヘッダー（概要・白帯は全幅、本文は中央寄せの読みやすい幅） */}
+      <div className="mb-8 rounded-b-4xl bg-white">
+        <div className="mx-auto max-w-4xl space-y-4 px-4 pb-8 pt-4 sm:px-6 lg:px-8">
+          <Link
+            href={routes.topics() as Route}
+            className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 transition-opacity hover:opacity-70"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Topics 一覧に戻る
+          </Link>
 
-            <div className="space-y-4">
-              <span className="inline-flex rounded-full bg-stance-for-badge-end px-3 py-1 text-xs font-bold tracking-[0.08em] text-primary-accent">
-                TOPIC
-              </span>
-              <div className="space-y-3">
-                <h1 className="text-2xl font-bold text-slate-900">
-                  {topic.title}
-                </h1>
-                <p className="leading-relaxed text-slate-700">
-                  {topic.description}
-                </p>
-              </div>
+          <div className="space-y-4">
+            <span className="inline-flex rounded-full bg-stance-for-badge-end px-3 py-1 text-xs font-bold tracking-[0.08em] text-primary-accent">
+              TOPIC
+            </span>
+            <div className="space-y-3">
+              <h1 className="text-2xl font-bold text-slate-900">
+                {topic.title}
+              </h1>
+              <p className="leading-relaxed text-slate-700">
+                {topic.description}
+              </p>
             </div>
           </div>
         </div>
+      </div>
 
+      <div className="mx-auto flex max-w-4xl flex-col gap-8 px-4 sm:px-6 lg:px-8">
         {/* ② 現在の状況 */}
         <TopicStatusCard
           label={topic.current_status_label}
@@ -164,7 +135,33 @@ export default async function TopicDetailPage({
 
         {/* ⑪ 関連情報・資料 */}
         <TopicRelatedLinks updates={topic.updates} />
-      </PageWithChatLayout>
+      </div>
+
+      {/* ⑫ AI 導線（PC でも開閉式の floating ボタン。本文は圧迫しない） */}
+      <PageChatClient
+        currentDifficulty={currentDifficulty}
+        items={[
+          {
+            name: topic.title,
+            summary: [
+              topic.description,
+              topic.current_status_label
+                ? `現在の状況: ${topic.current_status_label}`
+                : "",
+              topic.current_status_note ?? "",
+            ]
+              .filter(Boolean)
+              .join("\n"),
+            tags: ["Topics"],
+          },
+          ...topic.relatedBills.map((bill) => ({
+            name: bill.name,
+            summary: bill.bill_content?.summary,
+            tags: ["関連議案"],
+          })),
+        ]}
+        pcLayout="floating"
+      />
     </div>
   );
 }

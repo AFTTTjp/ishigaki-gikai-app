@@ -181,7 +181,9 @@ export function ChatWindow({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const isResponding = status === "streaming" || status === "submitted";
-  const isInlineDesktop = pcLayout === "inline" && isDesktop;
+  // floating: PC でも開いた時だけ右下にパネルを出すモード（会期 / Topic）。
+  // fixed（既定）は PC で常時表示のドッキングパネル（home / members / 議案詳細）。
+  const isFloating = pcLayout === "floating";
 
   useEffect(() => {
     setIsMounted(true);
@@ -242,21 +244,23 @@ export function ChatWindow({
 
       {/* チャットウィンドウ */}
       <div
-        // xlサイズでは、横幅1180px（メイン + チャット）の中央寄せにする
         className={cn(
           "fixed inset-x-0 bottom-0 z-50 flex h-[80vh] flex-col rounded-t-2xl bg-white shadow-md",
           "md:bottom-4 md:left-auto md:right-4 md:w-[450px] md:rounded-2xl",
-          isOpen
-            ? "visible opacity-100"
-            : "invisible opacity-0 pc:visible pc:opacity-100",
-          isInlineDesktop
+          isFloating
             ? [
-                "pc:sticky pc:top-24 pc:z-10 pc:inset-x-auto pc:bottom-auto",
-                "pc:h-[70vh] pc:w-full pc:self-start pc:rounded-2xl pc:opacity-100 pc:visible",
+                // PC でも開いた時だけ右下に表示（常時パネルにせず本文を圧迫しない）
+                isOpen ? "visible opacity-100" : "invisible opacity-0",
+                "pc:h-[70vh] pc:w-[420px]",
               ]
             : [
+                // 既定: PC では右下に常時表示するドッキングパネル
+                isOpen
+                  ? "visible opacity-100"
+                  : "invisible opacity-0 pc:visible pc:opacity-100",
                 "pc:w-[380px] pcl:w-[420px] xl:w-[450px]",
                 "pc:h-[70vh] pc:visible pc:opacity-100",
+                // xlサイズでは、横幅1180px（メイン + チャット）の中央寄せにする
                 "xl:right-[calc(calc(100%-1180px)/2)]",
               ]
         )}
@@ -268,7 +272,12 @@ export function ChatWindow({
       >
         <button
           type="button"
-          className="pc:hidden self-end p-2 m-2 hover:bg-gray-100 rounded-full"
+          className={cn(
+            "self-end p-2 m-2 hover:bg-gray-100 rounded-full",
+            // fixed の常時パネルは PC で閉じる導線が不要なので隠す。
+            // floating は PC でも開閉するため閉じるボタンを表示する。
+            !isFloating && "pc:hidden"
+          )}
           onClick={onClose}
           aria-label="モーダルを閉じる"
         >
@@ -334,10 +343,6 @@ export function ChatWindow({
   // body直下にPortalでマウント（クライアントサイドのみ）
   if (!isMounted) {
     return null;
-  }
-
-  if (isInlineDesktop) {
-    return chatContent;
   }
 
   // チャットのストリーミング表示がルビ機能と競合して表示がおかしくなるため、body直下に移動してルビ機能の影響を受けないようにする

@@ -3,7 +3,10 @@
 import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
 import { ChatButton } from "./chat-button";
 
-export type ChatDesktopLayout = "fixed" | "inline";
+// "fixed": PC で右下に常時表示するドッキングパネル（home / members / 議案詳細）。
+// "floating": PC でも右下に開閉ボタンを出し、押した時だけパネルを開く（会期 / Topic）。
+//   本文を 2 カラムで圧迫せず、AI は補助導線に徹する。
+export type ChatDesktopLayout = "fixed" | "floating";
 
 interface PageChatClientProps {
   currentDifficulty: DifficultyLevelEnum;
