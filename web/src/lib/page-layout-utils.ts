@@ -14,6 +14,8 @@ export function isDifficultyTogglePage(pathname: string): boolean {
   if (isMainPage(pathname)) return true;
   // 会議議案一覧ページ（/kokkai/[slug]/bills）
   if (/\/kokkai\/[^/]+\/bills$/.test(pathname)) return true;
+  // 一般質問ページ（/general-questions/[sessionSlug]）
+  if (/\/general-questions\/[^/]+$/.test(pathname)) return true;
   return false;
 }
 
