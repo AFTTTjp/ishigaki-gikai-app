@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
+import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
+import { GeneralQuestionsPage } from "@/features/general-questions/server/components/general-questions-page";
 import {
   findDietSessionBySlug,
   findPublishedGeneralQuestionsBySessionSlug,
 } from "@/features/general-questions/server/repositories/general-question-repository";
-import { GeneralQuestionsPage } from "@/features/general-questions/server/components/general-questions-page";
 
 type Props = {
   params: Promise<{ sessionSlug: string }>;
@@ -23,14 +24,21 @@ export async function generateMetadata({ params }: Props) {
 export default async function GeneralQuestionsSessionPage({ params }: Props) {
   const { sessionSlug } = await params;
 
-  const [session, questions] = await Promise.all([
+  const [session, questions, currentDifficulty] = await Promise.all([
     findDietSessionBySlug(sessionSlug),
     findPublishedGeneralQuestionsBySessionSlug(sessionSlug),
+    getDifficultyLevel(),
   ]);
 
   if (!session) {
     notFound();
   }
 
-  return <GeneralQuestionsPage session={session} questions={questions} />;
+  return (
+    <GeneralQuestionsPage
+      session={session}
+      questions={questions}
+      currentDifficulty={currentDifficulty}
+    />
+  );
 }

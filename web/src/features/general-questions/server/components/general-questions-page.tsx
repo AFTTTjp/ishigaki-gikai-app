@@ -1,4 +1,6 @@
 import { Container } from "@/components/layouts/container";
+import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
+import { PageChatClient } from "@/features/chat/client/components/page-chat-client";
 import type { DietSessionInfo, GeneralQuestion } from "../../shared/types";
 import { groupByDate } from "../../shared/utils/group-by-date";
 import { GeneralQuestionsDateGroup } from "./general-questions-date-group";
@@ -6,10 +8,23 @@ import { GeneralQuestionsDateGroup } from "./general-questions-date-group";
 type Props = {
   session: DietSessionInfo;
   questions: GeneralQuestion[];
+  currentDifficulty: DifficultyLevelEnum;
 };
 
-export function GeneralQuestionsPage({ session, questions }: Props) {
+export function GeneralQuestionsPage({
+  session,
+  questions,
+  currentDifficulty,
+}: Props) {
   const grouped = groupByDate(questions);
+  const chatItems = questions.map((question) => ({
+    name: `${question.member_name_raw ?? "氏名不明"}議員の一般質問`,
+    summary: [
+      `日付: ${question.question_date}`,
+      ...question.items.map((item) => `${item.item_number}. ${item.title}`),
+    ].join("\n"),
+    tags: ["一般質問"],
+  }));
 
   return (
     <div className="min-h-screen bg-mirai-surface pb-20 pt-10">
@@ -49,6 +64,17 @@ export function GeneralQuestionsPage({ session, questions }: Props) {
           )}
         </div>
       </Container>
+
+      <PageChatClient
+        currentDifficulty={currentDifficulty}
+        items={chatItems}
+        suggestedQuestions={[
+          "この一般質問ではどんなテーマが多かったですか？",
+          "離島甲子園について話されていますか？",
+          "旧庁舎跡地について話されていますか？",
+          "議員ごとの質問内容を教えて",
+        ]}
+      />
     </div>
   );
 }

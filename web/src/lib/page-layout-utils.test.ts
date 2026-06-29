@@ -61,6 +61,12 @@ describe("isDifficultyTogglePage", () => {
     ).toBe(true);
   });
 
+  it("returns true for /general-questions/[sessionSlug]", () => {
+    expect(
+      isDifficultyTogglePage("/general-questions/ishigaki-r8-dai4-teireikai")
+    ).toBe(true);
+  });
+
   it("returns false for /kokkai/[slug] (not the bills sub-page)", () => {
     expect(isDifficultyTogglePage("/kokkai/ishigaki-r8-dai4-teireikai")).toBe(
       false
