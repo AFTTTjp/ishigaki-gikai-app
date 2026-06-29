@@ -81,11 +81,16 @@ export function DietSessionReportSection({
       <Container>
         <div className="flex flex-col gap-6">
           {/* 見出し */}
-          <h2 className="text-base font-bold text-mirai-text">
-            {isSessionClosed
-              ? "この会期で議論されたこと"
-              : "今会期で議論されていること"}
-          </h2>
+          <div className="flex flex-col gap-2">
+            <h2 className="text-base font-bold text-mirai-text">
+              {isSessionClosed
+                ? "この会期で議論されたこと"
+                : "今会期で議論されていること"}
+            </h2>
+            <p className="text-sm text-mirai-text-secondary leading-relaxed">
+              まずは、この会期で何が話し合われたのかを大づかみできます。気になるテーマや提出議案は、この下の一覧から詳しく確認できます。
+            </p>
+          </div>
 
           {/* 採決予定（schedule の既存値を再利用） */}
           {!isSessionClosed && voteSchedule && (
@@ -117,7 +122,7 @@ export function DietSessionReportSection({
               <div className="flex items-center gap-2">
                 <MessagesSquare className="h-4 w-4 text-mirai-text-muted shrink-0" />
                 <h3 className="text-sm font-semibold text-mirai-text">
-                  主な論点
+                  まず押さえたい主な論点
                 </h3>
               </div>
               <div className="flex flex-col gap-3">
@@ -230,9 +235,12 @@ export function DietSessionReportSection({
               <div className="flex items-center gap-2">
                 <CalendarClock className="h-4 w-4 text-mirai-text-muted shrink-0" />
                 <h3 className="text-sm font-semibold text-mirai-text">
-                  初日に起きたこと
+                  会期の流れを見る
                 </h3>
               </div>
+              <p className="text-xs text-mirai-text-secondary leading-relaxed">
+                開会日に何が決まり、その後どのように審査や採決へ進んだかをたどれます。
+              </p>
               <ol className="flex flex-col gap-2">
                 {overview.timeline.map((item) => (
                   <li
@@ -257,9 +265,12 @@ export function DietSessionReportSection({
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-mirai-text-muted shrink-0" />
                 <h3 className="text-sm font-semibold text-mirai-text">
-                  委員会で審査される議案
+                  委員会での審査を見る
                 </h3>
               </div>
+              <p className="text-xs text-mirai-text-secondary leading-relaxed">
+                どの議案や請願を、どの委員会が担当したかを確認できます。
+              </p>
               <div className="flex flex-col gap-3">
                 {overview.committees.map((committee) => (
                   <div
