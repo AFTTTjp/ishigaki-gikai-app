@@ -48,7 +48,7 @@ export function DietSessionOverviewSection({
           {/* ヘッダー */}
           <div className="flex items-center justify-between gap-4">
             <h2 className="text-base font-bold text-mirai-text">
-              {showAll ? "今会期のテーマ" : "今会期の議案テーマ一覧"}
+              {showAll ? "テーマ別に詳しく見る" : "今会期の議案テーマ一覧"}
             </h2>
             <a
               href={overview.officialUrl}
@@ -67,9 +67,14 @@ export function DietSessionOverviewSection({
             重い概要文と現在地の一言はここでは出さない（二重表示の防止）。
           */}
           {showAll && (
-            <p className="text-sm leading-relaxed text-mirai-text-secondary whitespace-pre-line">
-              {overview.summary}
-            </p>
+            <div className="flex flex-col gap-2">
+              <p className="text-sm text-mirai-text-secondary leading-relaxed">
+                ここからは、提出議案や請願をテーマごとに見ていけます。気になる分野から、内容や関連する議案の詳細をたどれます。
+              </p>
+              <p className="text-sm leading-relaxed text-mirai-text-secondary whitespace-pre-line">
+                {overview.summary}
+              </p>
+            </div>
           )}
 
           {/* トップでは会期全体の索引としての位置づけを一言で示す */}
