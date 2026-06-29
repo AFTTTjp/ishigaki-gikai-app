@@ -174,6 +174,11 @@ export function DietSessionOverviewSection({
               </div>
             </div>
             <div className="flex flex-col items-start gap-2 shrink-0 sm:items-end">
+              {showAll && (
+                <p className="max-w-xs text-xs text-mirai-text-secondary leading-relaxed sm:text-right">
+                  議案だけでなく、議員ごとの一般質問からも、この会期で話し合われたテーマを確認できます。
+                </p>
+              )}
               <Link
                 href={routes.kokkaiSessionBills(session.slug)}
                 className="text-sm font-medium text-primary hover:text-primary-accent transition-colors"
@@ -181,10 +186,14 @@ export function DietSessionOverviewSection({
                 議案一覧を見る →
               </Link>
               <Link
-                href={routes.generalQuestions()}
+                href={
+                  showAll
+                    ? routes.generalQuestionsSession(session.slug)
+                    : routes.generalQuestions()
+                }
                 className="text-sm font-medium text-primary hover:text-primary-accent transition-colors"
               >
-                一般質問を見る →
+                {showAll ? "この会期の一般質問を見る →" : "一般質問を見る →"}
               </Link>
             </div>
           </div>
