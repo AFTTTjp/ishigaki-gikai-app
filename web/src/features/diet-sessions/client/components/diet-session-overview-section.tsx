@@ -71,9 +71,14 @@ export function DietSessionOverviewSection({
               <p className="text-sm text-mirai-text-secondary leading-relaxed">
                 ここからは、提出議案や請願をテーマごとに見ていけます。気になる分野から、内容や関連する議案の詳細をたどれます。
               </p>
-              <p className="text-sm leading-relaxed text-mirai-text-secondary whitespace-pre-line">
-                {overview.summary}
-              </p>
+              <details className="rounded-lg border border-mirai-border bg-mirai-surface px-4 py-3">
+                <summary className="cursor-pointer list-none text-sm font-semibold text-mirai-text marker:hidden">
+                  会期全体の詳しい説明を読む
+                </summary>
+                <p className="mt-3 text-sm leading-relaxed text-mirai-text-secondary whitespace-pre-line">
+                  {overview.summary}
+                </p>
+              </details>
             </div>
           )}
 
