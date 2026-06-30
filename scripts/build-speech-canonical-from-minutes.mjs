@@ -120,6 +120,66 @@ const TARGETS = [
       ],
     },
   },
+  {
+    // former-cityhall（旧庁舎跡地）pilot 用。item2 の境界 marker は full_text に
+    // 厳密に存在するが、話者名の ASR 崩れ・質問が冒頭まとめ読み由来など review 前提。
+    // candidate → confirmed の確定は人間が後段で行う（このスクリプトは review artifact のみ生成）。
+    question_slug: "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+    question_date: "2026-06-15",
+    member_name_raw: "友寄永三",
+    item_number: 2,
+    item_title: "旧庁舎跡地開発について",
+    minutes_relative_path:
+      "2026-06-16/石垣市議会　令和８年６月15日　６月定例会　友寄永三議員　一般質問_minutes.md",
+    question_block: {
+      start_contains: "2番 旧庁舎跡地開発について",
+      end_before_contains: "3番 教育行政",
+      speaker_hint: "友寄永三",
+      speaker_role_hint: "questioner",
+      speech_kind: "question_item",
+      confidence: "low",
+      review_flags: ["possible_asr_error", "needs_human_review"],
+    },
+    answer_block: {
+      start_contains: "2項目目 旧庁舎跡地開発について",
+      end_before_contains: "続きまして、5項目目、船舶の経由地確保について",
+      speaker_hint: null,
+      speaker_role_hint: "executive",
+      speech_kind: "answer",
+      confidence: "medium",
+      review_flags: ["needs_human_review"],
+    },
+    item_candidates: [
+      {
+        candidate_id: "item2-question-primary",
+        source: "question",
+        raw_anchor_contains: "2番 旧庁舎跡地開発について",
+        confidence: "low",
+      },
+      {
+        candidate_id: "item2-answer-primary",
+        source: "answer",
+        raw_anchor_contains: "2項目目 旧庁舎跡地開発について",
+        confidence: "medium",
+      },
+    ],
+    review_flags: {
+      hallucination_like: [],
+      short_fragments: [],
+      name_or_title_variants: [
+        "話者名が ASR で『友康映像 / 富代生映像 / 富山映像 / 友寄せ映像』等に崩れている（いずれも友寄永三）",
+        "『三崎町』は ASR 変種で、public source（general-questions.json）では『美崎町』",
+      ],
+      possible_asr_errors: [
+        "質問側 item2 の primary evidence は冒頭の全項目まとめ読みから抽出しており、item 単位の独立した質問ターンではない",
+      ],
+      needs_human_review: [
+        "issue-review-packet で tomoyose の item 紐付けは要校正(review_required)とされており、question/answer の item2 binding は人間レビュー前提",
+        "question block は『2番 旧庁舎跡地開発について』〜『3番 教育行政』で機械抽出（confidence low）",
+        "candidate → confirmed の確定および公開可否は人間判断（このartifactでは未確定）",
+      ],
+    },
+  },
 ];
 
 function normalizeText(value) {
