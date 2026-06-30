@@ -1,5 +1,4 @@
 import { ExternalLink } from "lucide-react";
-import Image from "next/image";
 import type { BillWithContent } from "@/features/bills/shared/types";
 import type { DietSession } from "../../shared/types";
 import { BillListWithStatusFilter } from "./bill-list-with-status-filter";
@@ -16,19 +15,11 @@ export function DietSessionBillList({ session, bills }: Props) {
 
   return (
     <div className="flex flex-col gap-8">
-      {/* Archiveヘッダー */}
+      {/* セクション導入 */}
       <div className="flex flex-col gap-1">
-        <h1>
-          <Image
-            src="/icons/archive-typography.svg"
-            alt="Archive"
-            width={156}
-            height={36}
-            priority
-          />
-        </h1>
-        <p className="text-sm font-bold text-primary-accent">
-          過去の議会に提出された議案
+        <p className="text-sm font-bold text-primary-accent">この会期の議案</p>
+        <p className="text-sm leading-7 text-mirai-text-muted">
+          この会期に提出・審議された議案を一覧できます。気になる議案から詳しい内容を確認できます。
         </p>
       </div>
 
