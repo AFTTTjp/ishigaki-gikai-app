@@ -127,6 +127,7 @@ Repository レイヤーの詳細は [docs/repository-layer.md](docs/repository-l
 - **ボタン**: `<button>` タグの使用は禁止です。必ず `@/components/ui/button` の `Button` コンポーネントを使用してください。
 - **色**: インラインカラーコード（`text-[#xxx]`, `bg-[#xxx]`, `border-[#xxx]` 等の arbitrary value や style 属性での直接指定）は**禁止**です。必ず `globals.css` の `@theme inline` で定義済みのカラートークン（`text-mirai-text`, `bg-primary`, `border-primary-accent` 等）を使用してください。新しい色が必要な場合は、まず `globals.css` にトークンを追加してから使用すること。既存トークン一覧は `web/src/app/globals.css` の `@theme inline` ブロックを参照。
 - **UIレイアウト変更**: 会期ページ・Topicページ等のレイアウトを変更するときは、新規レイアウトや抽象（`PageWithChatLayout` / `pcLayout` / `inline` / `floating` / AI用2カラム等）を作らず、まず正解基準ページ `/bills/[id]` を確認して差分だけ直すこと。詳細は [docs/ai/ui-layout-change-rules.md](docs/ai/ui-layout-change-rules.md) を参照。
+- **文字起こし由来データの公開**: YouTube文字起こし由来（speech-canonical / event-graph / timeline-review 等）を市民向けUIに出すのは、`confirmed` があり `evidence_id` が接続され `timeline-review/v1` まで生成済みで、既存 `TopicTimelineReview` のようなサニタイズ component 経由のときだけ。event-graph 止まり・全 candidate・raw review フィールド（`candidate`/`review_required`/`evidence_id`/`source_locator`/`generated_at`/`full_text`）の表示は禁止。詳細は [docs/ai/transcript-publish-gate.md](docs/ai/transcript-publish-gate.md) を参照。
 
 ### admin 内部ルート定義
 - admin アプリの内部リンク（Link href, router.push, redirect）には `@/lib/routes` の関数を使用すること。文字列リテラルでのルート直書きは禁止。
