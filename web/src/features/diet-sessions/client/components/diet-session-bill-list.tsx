@@ -48,7 +48,7 @@ export function DietSessionBillList({ session, bills }: Props) {
       {/* 石垣市議会リンク */}
       {session.shugiin_url && (
         <div className="flex items-center gap-1 text-[13px] font-medium text-mirai-text">
-          {startDate.getFullYear()}年{session.name}に提出された全ての議案は
+          {startDate.getFullYear()}年{session.name}の公式な議案一覧は
           <a
             href={session.shugiin_url}
             target="_blank"

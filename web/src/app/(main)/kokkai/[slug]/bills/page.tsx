@@ -148,7 +148,7 @@ export default async function DietSessionBillsPage({ params }: Props) {
             TOP
           </Link>
           <ChevronRight className="h-5 w-5 text-black" />
-          <span className="text-black">過去の議案</span>
+          <span className="text-black">この会期の議案</span>
         </nav>
       </Container>
 
