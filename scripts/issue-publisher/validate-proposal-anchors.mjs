@@ -18,6 +18,40 @@ const REVIEW_ONLY_SOURCE_TYPES = new Set([
   "issue_graph",
 ]);
 
+const PUBLICATION_STATUSES = new Set([
+  "not_published",
+  "approved_for_export",
+  "rejected",
+]);
+
+const CLAIM_TYPES = new Set(["attributed_speech", "fact"]);
+
+const PROPOSAL_TYPES = new Set([
+  "discussion_point",
+  "timeline_event",
+  "topic_update",
+  "related_bill",
+  "related_question",
+  "bill_enrichment",
+]);
+
+const EVIDENCE_SOURCE_TYPES = new Set([
+  "general_question_minutes",
+  "official_minutes",
+  "bill_text",
+  "council_action",
+  "review_draft",
+  "issue_review_packet",
+  "issue_editorial_decisions",
+  "session_editorial_map",
+  "editorial_note",
+  "issue_graph",
+]);
+
+const EVIDENCE_ROLES = new Set(["primary", "secondary"]);
+const EVIDENCE_MODES = new Set(["quote", "paraphrase"]);
+const REVIEW_STATUSES = new Set(["pending", "approved", "edited", "rejected"]);
+
 function isCliEntry() {
   return path.resolve(process.argv[1] ?? "") === fileURLToPath(import.meta.url);
 }
@@ -26,20 +60,203 @@ function loadJson(filePath) {
   return JSON.parse(readFileSync(filePath, "utf8"));
 }
 
-function validateProposalAnchors(index, proposal) {
+function isNonEmptyString(value) {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function validateProposalSchemaShape(proposal) {
   const errors = [];
+
+  if (proposal?.schema_version !== "issue-publisher-proposal.v0") {
+    errors.push({
+      code: "INVALID_SCHEMA_VERSION",
+      message:
+        "proposal.schema_version must be issue-publisher-proposal.v0",
+    });
+  }
+
+  for (const field of [
+    "proposal_id",
+    "proposal_kind",
+    "issue_id",
+    "issue_title",
+    "diet_session_slug",
+  ]) {
+    if (!isNonEmptyString(proposal?.[field])) {
+      errors.push({
+        code: "MISSING_REQUIRED_FIELD",
+        message: `proposal.${field} must be a non-empty string`,
+      });
+    }
+  }
+
+  if (!PUBLICATION_STATUSES.has(proposal?.publication_status)) {
+    errors.push({
+      code: "INVALID_PUBLICATION_STATUS",
+      message: `proposal.publication_status must be one of: ${Array.from(
+        PUBLICATION_STATUSES
+      ).join(", ")}`,
+    });
+  }
+
+  if (!CLAIM_TYPES.has(proposal?.claim_type)) {
+    errors.push({
+      code: "INVALID_CLAIM_TYPE",
+      message: `proposal.claim_type must be one of: ${Array.from(
+        CLAIM_TYPES
+      ).join(", ")}`,
+    });
+  }
+
+  if (!PROPOSAL_TYPES.has(proposal?.proposal_type)) {
+    errors.push({
+      code: "INVALID_PROPOSAL_TYPE",
+      message: `proposal.proposal_type must be one of: ${Array.from(
+        PROPOSAL_TYPES
+      ).join(", ")}`,
+    });
+  }
+
+  if (
+    !proposal?.public_draft ||
+    typeof proposal.public_draft !== "object" ||
+    Array.isArray(proposal.public_draft)
+  ) {
+    errors.push({
+      code: "MISSING_PUBLIC_DRAFT",
+      message: "proposal.public_draft must be an object",
+    });
+  } else {
+    for (const field of ["summary_easy", "summary_detailed"]) {
+      if (!isNonEmptyString(proposal.public_draft[field])) {
+        errors.push({
+          code: "MISSING_PUBLIC_DRAFT_FIELD",
+          message: `proposal.public_draft.${field} must be a non-empty string`,
+        });
+      }
+    }
+  }
+
+  if (!Array.isArray(proposal?.evidence) || proposal.evidence.length === 0) {
+    errors.push({
+      code: "MISSING_EVIDENCE",
+      message: "proposal.evidence must contain at least one entry",
+    });
+  } else {
+    for (const [index, entry] of proposal.evidence.entries()) {
+      if (
+        !entry ||
+        typeof entry !== "object" ||
+        Array.isArray(entry)
+      ) {
+        errors.push({
+          code: "INVALID_EVIDENCE_ENTRY",
+          message: `proposal.evidence[${index}] must be an object`,
+        });
+        continue;
+      }
+
+      if (!EVIDENCE_SOURCE_TYPES.has(entry.source_type)) {
+        errors.push({
+          code: "INVALID_EVIDENCE_SOURCE_TYPE",
+          message: `proposal.evidence[${index}].source_type must be one of: ${Array.from(
+            EVIDENCE_SOURCE_TYPES
+          ).join(", ")}`,
+        });
+      }
+
+      if (!isNonEmptyString(entry.anchor)) {
+        errors.push({
+          code: "MISSING_ANCHOR",
+          message: `proposal.evidence[${index}].anchor must be a non-empty string`,
+        });
+      }
+
+      if (!EVIDENCE_ROLES.has(entry.evidence_role)) {
+        errors.push({
+          code: "INVALID_EVIDENCE_ROLE",
+          message: `proposal.evidence[${index}].evidence_role must be one of: ${Array.from(
+            EVIDENCE_ROLES
+          ).join(", ")}`,
+        });
+      }
+
+      if (!EVIDENCE_MODES.has(entry.mode)) {
+        errors.push({
+          code: "INVALID_EVIDENCE_MODE",
+          message: `proposal.evidence[${index}].mode must be one of: ${Array.from(
+            EVIDENCE_MODES
+          ).join(", ")}`,
+        });
+      }
+    }
+  }
+
+  if (
+    !proposal?.links ||
+    typeof proposal.links !== "object" ||
+    Array.isArray(proposal.links)
+  ) {
+    errors.push({
+      code: "MISSING_LINKS",
+      message: "proposal.links must be an object",
+    });
+  } else {
+    for (const field of ["related_bill_ids", "related_question_slugs"]) {
+      if (!Array.isArray(proposal.links[field])) {
+        errors.push({
+          code: "INVALID_LINKS_FIELD",
+          message: `proposal.links.${field} must be an array`,
+        });
+      }
+    }
+  }
+
+  if (
+    !proposal?.review ||
+    typeof proposal.review !== "object" ||
+    Array.isArray(proposal.review)
+  ) {
+    errors.push({
+      code: "MISSING_REVIEW",
+      message: "proposal.review must be an object",
+    });
+  } else {
+    if (!REVIEW_STATUSES.has(proposal.review.status)) {
+      errors.push({
+        code: "INVALID_REVIEW_STATUS",
+        message: `proposal.review.status must be one of: ${Array.from(
+          REVIEW_STATUSES
+        ).join(", ")}`,
+      });
+    }
+
+    if (typeof proposal.review.needs_human_review !== "boolean") {
+      errors.push({
+        code: "INVALID_REVIEW_NEEDS_HUMAN_REVIEW",
+        message: "proposal.review.needs_human_review must be a boolean",
+      });
+    }
+
+    if (!Array.isArray(proposal.review.review_reason)) {
+      errors.push({
+        code: "INVALID_REVIEW_REASON",
+        message: "proposal.review.review_reason must be an array",
+      });
+    }
+  }
+
+  return errors;
+}
+
+function validateProposalAnchors(index, proposal) {
+  const schemaErrors = validateProposalSchemaShape(proposal);
+  const errors = [...schemaErrors];
   const warnings = [];
   const evidenceResults = [];
 
   const claimType = proposal.claim_type ?? "attributed_speech";
   const evidence = Array.isArray(proposal.evidence) ? proposal.evidence : null;
-
-  if (!evidence || evidence.length === 0) {
-    errors.push({
-      code: "MISSING_EVIDENCE",
-      message: "proposal.evidence must contain at least one entry",
-    });
-  }
 
   let publishableEvidenceCount = 0;
   let transcriptEvidenceCount = 0;
@@ -104,6 +321,7 @@ function validateProposalAnchors(index, proposal) {
 
   return {
     ok: errors.length === 0,
+    schema_ok: schemaErrors.length === 0,
     claim_type: claimType,
     publishable_evidence_count: publishableEvidenceCount,
     transcript_evidence_count: transcriptEvidenceCount,
