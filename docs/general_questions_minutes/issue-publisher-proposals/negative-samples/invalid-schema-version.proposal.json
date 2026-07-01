@@ -1,0 +1,35 @@
+{
+  "schema_version": "issue-publisher-proposal.v9",
+  "proposal_id": "negative.r8-dai4.invalid-schema-version.001",
+  "proposal_kind": "negative_sample",
+  "publication_status": "not_published",
+  "note": "Negative sample for validator regression. This file is intentionally invalid and is not publishable content.",
+  "issue_id": "issue-r8d4-rito-koshien",
+  "issue_title": "離島甲子園への出場",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "claim_type": "attributed_speech",
+  "proposal_type": "discussion_point",
+  "public_draft": {
+    "summary_easy": "一般質問で離島甲子園について答弁がありました。",
+    "summary_detailed": "一般質問で離島甲子園について答弁があったことを確認するための negative sample です。"
+  },
+  "evidence": [
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0011",
+      "evidence_role": "primary",
+      "mode": "paraphrase"
+    }
+  ],
+  "links": {
+    "related_bill_ids": [],
+    "related_question_slugs": [
+      "ishigaki-r8-dai4-ippan-shiuezato-atsushi"
+    ]
+  },
+  "review": {
+    "status": "pending",
+    "needs_human_review": true,
+    "review_reason": ["negative_sample", "invalid_schema_version"]
+  }
+}

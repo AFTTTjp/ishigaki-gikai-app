@@ -92,3 +92,21 @@ Schema は proposal 形状の明文化、validator は運用 gate の実装で�
   - `claim_type: attributed_speech`
   - transcript evidence による sample
   - `publication_status: not_published`
+
+## Negative samples
+
+- `negative-samples/`
+  - validator regression 用の fixture
+  - publishable proposal ではない
+  - 意図的に invalid な shape や policy 違反を含む
+
+このディレクトリには、次のような運用 gate を壊していないか確認するための
+fixture を置きます。
+
+- review-only source を publishable evidence にしない
+- transcript-only `fact` claim を通さない
+- invalid anchor を reject する
+- required field / enum / nested shape の崩れを reject する
+
+negative sample は public JSON に export せず、validator regression の確認だけに
+使います。
