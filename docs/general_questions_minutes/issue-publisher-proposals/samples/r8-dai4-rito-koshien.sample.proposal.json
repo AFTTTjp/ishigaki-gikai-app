@@ -1,0 +1,48 @@
+{
+  "schema_version": "issue-publisher-proposal.v0",
+  "proposal_id": "sample.r8-dai4.rito-koshien.001",
+  "proposal_kind": "sample",
+  "publication_status": "not_published",
+  "note": "This is a proposal sample for Issue Publisher validation. It is not published content.",
+  "issue_id": "issue-r8d4-rito-koshien",
+  "issue_title": "離島甲子園への出場",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "claim_type": "attributed_speech",
+  "proposal_type": "discussion_point",
+  "public_draft": {
+    "summary_easy": "一般質問の答弁では、離島甲子園への出場や不参加の経緯について説明がありました。",
+    "summary_detailed": "令和8年第4回定例会の一般質問では、離島甲子園の開催目的や、参加事業の扱い、不参加の経緯について答弁がありました。これは発言の存在を示す proposal sample であり、事実関係そのものを transcript だけで確定するものではありません."
+  },
+  "evidence": [
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0011",
+      "evidence_role": "primary",
+      "mode": "paraphrase",
+      "note": "Transcript evidence supports that an explanation about the purpose and background of the program was given in response."
+    },
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0009",
+      "evidence_role": "primary",
+      "mode": "paraphrase",
+      "note": "Transcript evidence supports that an explanation about the non-participation background was given in response."
+    }
+  ],
+  "links": {
+    "related_bill_ids": [],
+    "related_question_slugs": [
+      "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+      "ishigaki-r8-dai4-ippan-nagahama-nobuo"
+    ]
+  },
+  "review": {
+    "status": "pending",
+    "needs_human_review": true,
+    "review_reason": [
+      "sample_proposal",
+      "transcript_derived",
+      "attributed_speech_only"
+    ]
+  }
+}
