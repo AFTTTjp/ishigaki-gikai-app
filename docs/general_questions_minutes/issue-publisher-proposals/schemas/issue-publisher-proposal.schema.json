@@ -136,6 +136,40 @@
         }
       }
     },
+    "export": {
+      "type": "object",
+      "required": ["target"],
+      "properties": {
+        "target": {
+          "type": "string",
+          "enum": [
+            "topic_json",
+            "bill_json",
+            "general_question_json",
+            "none"
+          ]
+        },
+        "target_slug": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_proposal_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exported_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "exported_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
     "review": {
       "type": "object",
       "required": ["status", "needs_human_review", "review_reason"],
@@ -148,6 +182,32 @@
           "type": "boolean"
         },
         "review_reason": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reviewer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "approval_note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "export_readiness": {
+          "type": "string",
+          "enum": [
+            "not_ready",
+            "ready_for_export",
+            "blocked"
+          ]
+        },
+        "export_blockers": {
           "type": "array",
           "items": {
             "type": "string"

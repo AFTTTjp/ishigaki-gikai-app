@@ -51,6 +51,17 @@ const EVIDENCE_SOURCE_TYPES = new Set([
 const EVIDENCE_ROLES = new Set(["primary", "secondary"]);
 const EVIDENCE_MODES = new Set(["quote", "paraphrase"]);
 const REVIEW_STATUSES = new Set(["pending", "approved", "edited", "rejected"]);
+const EXPORT_READINESS = new Set([
+  "not_ready",
+  "ready_for_export",
+  "blocked",
+]);
+const EXPORT_TARGETS = new Set([
+  "topic_json",
+  "bill_json",
+  "general_question_json",
+  "none",
+]);
 
 function isCliEntry() {
   return path.resolve(process.argv[1] ?? "") === fileURLToPath(import.meta.url);
@@ -62,6 +73,10 @@ function loadJson(filePath) {
 
 function isNonEmptyString(value) {
   return typeof value === "string" && value.trim().length > 0;
+}
+
+function isValidDateTimeString(value) {
+  return isNonEmptyString(value) && !Number.isNaN(new Date(value).getTime());
 }
 
 function validateProposalSchemaShape(proposal) {
@@ -242,6 +257,175 @@ function validateProposalSchemaShape(proposal) {
       errors.push({
         code: "INVALID_REVIEW_REASON",
         message: "proposal.review.review_reason must be an array",
+      });
+    }
+
+    if (
+      proposal.review.reviewer !== undefined &&
+      !isNonEmptyString(proposal.review.reviewer)
+    ) {
+      errors.push({
+        code: "INVALID_REVIEWER",
+        message: "proposal.review.reviewer must be a non-empty string",
+      });
+    }
+
+    if (
+      proposal.review.reviewed_at !== undefined &&
+      !isValidDateTimeString(proposal.review.reviewed_at)
+    ) {
+      errors.push({
+        code: "INVALID_REVIEWED_AT",
+        message: "proposal.review.reviewed_at must be a valid date-time string",
+      });
+    }
+
+    if (
+      proposal.review.approval_note !== undefined &&
+      !isNonEmptyString(proposal.review.approval_note)
+    ) {
+      errors.push({
+        code: "INVALID_APPROVAL_NOTE",
+        message: "proposal.review.approval_note must be a non-empty string",
+      });
+    }
+
+    if (
+      proposal.review.export_readiness !== undefined &&
+      !EXPORT_READINESS.has(proposal.review.export_readiness)
+    ) {
+      errors.push({
+        code: "INVALID_EXPORT_READINESS",
+        message: `proposal.review.export_readiness must be one of: ${Array.from(
+          EXPORT_READINESS
+        ).join(", ")}`,
+      });
+    }
+
+    if (
+      proposal.review.export_blockers !== undefined &&
+      (!Array.isArray(proposal.review.export_blockers) ||
+        proposal.review.export_blockers.some(
+          (value) => !isNonEmptyString(value)
+        ))
+    ) {
+      errors.push({
+        code: "INVALID_EXPORT_BLOCKERS",
+        message:
+          "proposal.review.export_blockers must be an array of non-empty strings",
+      });
+    }
+  }
+
+  if (proposal.export !== undefined) {
+    if (
+      !proposal.export ||
+      typeof proposal.export !== "object" ||
+      Array.isArray(proposal.export)
+    ) {
+      errors.push({
+        code: "INVALID_EXPORT_OBJECT",
+        message: "proposal.export must be an object",
+      });
+    } else {
+      if (!EXPORT_TARGETS.has(proposal.export.target)) {
+        errors.push({
+          code: "INVALID_EXPORT_TARGET",
+          message: `proposal.export.target must be one of: ${Array.from(
+            EXPORT_TARGETS
+          ).join(", ")}`,
+        });
+      }
+
+      for (const field of [
+        "target_slug",
+        "source_proposal_id",
+        "exported_by",
+        "notes",
+      ]) {
+        if (
+          proposal.export[field] !== undefined &&
+          !isNonEmptyString(proposal.export[field])
+        ) {
+          errors.push({
+            code: "INVALID_EXPORT_FIELD",
+            message: `proposal.export.${field} must be a non-empty string`,
+          });
+        }
+      }
+
+      if (
+        proposal.export.exported_at !== undefined &&
+        !isValidDateTimeString(proposal.export.exported_at)
+      ) {
+        errors.push({
+          code: "INVALID_EXPORTED_AT",
+          message: "proposal.export.exported_at must be a valid date-time string",
+        });
+      }
+    }
+  }
+
+  const isApprovedState =
+    proposal?.publication_status === "approved_for_export" ||
+    proposal?.review?.status === "approved";
+
+  if (isApprovedState) {
+    if (!isNonEmptyString(proposal?.review?.reviewer)) {
+      errors.push({
+        code: "MISSING_APPROVAL_REVIEWER",
+        message:
+          "Approved proposals must include proposal.review.reviewer",
+      });
+    }
+
+    if (!isValidDateTimeString(proposal?.review?.reviewed_at)) {
+      errors.push({
+        code: "MISSING_APPROVAL_REVIEWED_AT",
+        message:
+          "Approved proposals must include proposal.review.reviewed_at as a valid date-time string",
+      });
+    }
+
+    if (!isNonEmptyString(proposal?.review?.approval_note)) {
+      errors.push({
+        code: "MISSING_APPROVAL_NOTE",
+        message:
+          "Approved proposals must include proposal.review.approval_note",
+      });
+    }
+
+    if (!EXPORT_READINESS.has(proposal?.review?.export_readiness)) {
+      errors.push({
+        code: "MISSING_EXPORT_READINESS",
+        message:
+          "Approved proposals must include proposal.review.export_readiness",
+      });
+    }
+  }
+
+  if (proposal?.publication_status === "approved_for_export") {
+    if (proposal?.review?.status !== "approved") {
+      errors.push({
+        code: "APPROVED_EXPORT_REQUIRES_REVIEW_APPROVED",
+        message:
+          "proposal.publication_status=approved_for_export requires proposal.review.status=approved",
+      });
+    }
+
+    if (proposal?.review?.needs_human_review !== false) {
+      errors.push({
+        code: "APPROVED_EXPORT_REQUIRES_COMPLETED_HUMAN_REVIEW",
+        message:
+          "proposal.publication_status=approved_for_export requires proposal.review.needs_human_review=false",
+      });
+    }
+
+    if (proposal?.review?.export_readiness !== "ready_for_export") {
+      errors.push({
+        code: "APPROVED_EXPORT_REQUIRES_READY_STATE",
+        message:
+          "proposal.publication_status=approved_for_export requires proposal.review.export_readiness=ready_for_export",
       });
     }
   }

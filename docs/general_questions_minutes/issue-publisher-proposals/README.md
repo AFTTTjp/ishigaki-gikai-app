@@ -15,6 +15,11 @@ Proposal は published JSON ではありません。公開物にするには、
 validation gate と human review を通し、approved になった proposal だけを
 export 対象にします。
 
+`publication_status: approved_for_export` は、
+public JSON に反映済みという意味ではありません。
+human review を通過し、既存の JSON source of truth / import / revalidate
+フローに載せる候補として扱える状態を指します。
+
 ## Proposal lifecycle
 
 ```text
@@ -30,6 +35,28 @@ approved proposal only
   ↓
 published JSON export
 ```
+
+## Approval metadata
+
+proposal を `approved` / `approved_for_export` に進める場合は、
+review / approval metadata を残します。
+
+- `review.reviewer`
+  - 誰が human review を行ったか
+- `review.reviewed_at`
+  - いつ review したか
+- `review.approval_note`
+  - 何を根拠に export 候補として安全と判断したか
+- `review.export_readiness`
+  - `not_ready` / `ready_for_export` / `blocked`
+- `review.export_blockers`
+  - export を止める理由がある場合のメモ
+- `export`
+  - 実際に public JSON へ反映した後の記録
+  - `target`, `source_proposal_id`, `exported_at`, `exported_by` など
+
+approved proposal であっても、public JSON への反映は別フェーズです。
+proposal store から public JSON へ自動反映しません。
 
 ## Evidence policy
 
@@ -56,6 +83,38 @@ transcript-only で `claim_type: fact` を通してはいけません。
 - `editorial_note`
 - `issue_graph`
 
+## Approval gate
+
+`review.status: approved` または
+`publication_status: approved_for_export` に進める前に、
+少なくとも次を満たす必要があります。
+
+- evidence anchors が exact resolve できる
+- publishable evidence only である
+- review-only artifact を evidence に含めない
+- `claim_type: attributed_speech` は発言帰属表現に留める
+- `claim_type: fact` は official evidence を別途要求する
+- `related_bill_ids` は exact ID のみを使う
+
+`publication_status: approved_for_export` は、
+「human review 済みで export 候補として扱える」ことを表します。
+「public JSON へ反映済み」を表す状態ではありません。
+
+## Export boundaries
+
+export 前は次を禁止します。
+
+- sample / draft proposal から public JSON へ自動反映する
+- DB を直接更新して公開内容を変える
+- revalidate だけで content が変わるとみなす
+- transcript-only `fact` claim を export する
+
+public JSON への実反映は、既存の JSON source of truth を編集し、
+import と revalidate を別フェーズで行う運用に従います。
+
+proposal store と public JSON の乖離を防ぐため、実反映フェーズでは
+`source_proposal_id` や `approval_note` を参照できる形を維持します。
+
 ## Validator responsibilities
 
 現在の validator (`scripts/issue-publisher/validate-proposal-anchors.mjs`) は、
@@ -67,6 +126,7 @@ transcript-only で `claim_type: fact` を通してはいけません。
 - anchor が exact resolve できるか
 - review-only source を reject するか
 - transcript-only fact を reject するか
+- approved proposal に必要な最小 review metadata があるか
 
 現時点では、JSON Schema を外部依存で完全評価する仕組みは入れていません。
 Schema は proposal 形状の明文化、validator は運用 gate の実装です。
