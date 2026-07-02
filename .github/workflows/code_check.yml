@@ -34,6 +34,9 @@ jobs:
       - name: Run TypeScript type checking
         run: pnpm run typecheck
 
+      - name: Run issue publisher regression checks
+        run: pnpm run test:issue-publisher
+
       - name: Run build
         run: pnpm run build
         env:
