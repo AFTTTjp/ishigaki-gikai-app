@@ -20,6 +20,7 @@
     "seed:csv": "dotenv -e .env -- pnpm --filter @mirai-gikai/seed seed:csv",
     "test": "pnpm -r --parallel run test",
     "test:coverage": "pnpm -r --parallel run test:coverage",
+    "test:issue-publisher": "node scripts/issue-publisher/check-negative-samples.mjs",
     "test:integration": "dotenv -e .env -- vitest run --config tests/supabase/vitest.config.mts && pnpm -r run test:integration",
     "test:integration:watch": "dotenv -e .env -- vitest --config tests/supabase/vitest.config.mts",
     "test:integration:coverage": "dotenv -e .env -- vitest run --config tests/supabase/vitest.config.mts && pnpm -r run test:integration:coverage",
