@@ -8,6 +8,9 @@ import {
   validateProposalAnchors,
 } from "./validate-proposal-anchors.mjs";
 import { loadUtteranceIndex } from "./resolve-anchor.mjs";
+import {
+  exportApprovedProposalDryRun,
+} from "./export-approved-proposal-dry-run.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..", "..");
@@ -34,6 +37,10 @@ const POSITIVE_SAMPLE_PATHS = [
     ROOT,
     "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech.proposal.json"
   ),
+  resolve(
+    ROOT,
+    "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-topic-target.proposal.json"
+  ),
 ];
 
 const NEGATIVE_SAMPLES_DIR = resolve(
@@ -45,6 +52,37 @@ const APPROVED_STATE_NEGATIVE_SAMPLES_DIR = resolve(
   ROOT,
   "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/negative"
 );
+
+const DRY_RUN_CASES = [
+  {
+    proposalPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-topic-target.proposal.json"
+    ),
+    outputPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-export-dry-runs/approved-attributed-speech-topic-target.dry-run.json"
+    ),
+    expectedStatus: "resolved",
+    expectedSurface: "topic",
+    expectedTargetId: "ishigaki-old-city-hall",
+    expectedBlockCodes: [],
+  },
+  {
+    proposalPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech.proposal.json"
+    ),
+    outputPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-export-dry-runs/approved-attributed-speech.blocked.dry-run.json"
+    ),
+    expectedStatus: "blocked",
+    expectedSurface: "unresolved",
+    expectedTargetId: null,
+    expectedBlockCodes: ["MISSING_EXPLICIT_EXPORT_TARGET"],
+  },
+];
 
 const EXPECTED_ERROR_CODES_BY_FILE = {
   "missing-required-field.proposal.json": ["MISSING_REQUIRED_FIELD"],
@@ -144,7 +182,7 @@ function assertNegative(index, baseDir, fileName) {
   }
 
   for (const expectedCode of expectedCodes) {
-    if (!codes.includes(expectedCode)) {
+    if (codes.indexOf(expectedCode) === -1) {
       throw new Error(
         `${fileName} must include error code ${expectedCode}, but got: ${codes.join(", ")}`
       );
@@ -156,6 +194,47 @@ function assertNegative(index, baseDir, fileName) {
     ok: false,
     expected_error_codes: expectedCodes,
     actual_error_codes: codes,
+  };
+}
+
+function assertDryRunCase(caseConfig) {
+  const artifact = exportApprovedProposalDryRun({
+    proposalPath: caseConfig.proposalPath,
+    outPath: caseConfig.outputPath,
+  });
+  const blockCodes = artifact.blocks.map((entry) => entry.code);
+
+  if (artifact.target_resolution.status !== caseConfig.expectedStatus) {
+    throw new Error(
+      `${path.basename(caseConfig.proposalPath)} dry-run status must be ${caseConfig.expectedStatus}, but got ${artifact.target_resolution.status}`
+    );
+  }
+
+  if (artifact.target_resolution.surface !== caseConfig.expectedSurface) {
+    throw new Error(
+      `${path.basename(caseConfig.proposalPath)} dry-run surface must be ${caseConfig.expectedSurface}, but got ${artifact.target_resolution.surface}`
+    );
+  }
+
+  if (artifact.target_resolution.target_id !== caseConfig.expectedTargetId) {
+    throw new Error(
+      `${path.basename(caseConfig.proposalPath)} dry-run target_id must be ${caseConfig.expectedTargetId}, but got ${artifact.target_resolution.target_id}`
+    );
+  }
+
+  for (const expectedCode of caseConfig.expectedBlockCodes) {
+    if (blockCodes.indexOf(expectedCode) === -1) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} dry-run must include block code ${expectedCode}, but got: ${blockCodes.join(", ")}`
+      );
+    }
+  }
+
+  return {
+    file: path.basename(caseConfig.proposalPath),
+    target_resolution: artifact.target_resolution,
+    block_codes: blockCodes,
+    output_path: path.relative(ROOT, caseConfig.outputPath),
   };
 }
 
@@ -180,6 +259,9 @@ function main() {
     approved_state_negative_samples: approvedStateNegativeFiles.map(
       (fileName) =>
         assertNegative(index, APPROVED_STATE_NEGATIVE_SAMPLES_DIR, fileName)
+    ),
+    dry_run_exports: DRY_RUN_CASES.map((caseConfig) =>
+      assertDryRunCase(caseConfig)
     ),
   };
 

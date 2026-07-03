@@ -1,0 +1,69 @@
+{
+  "schema_version": "issue-publisher-export-dry-run.v1",
+  "dry_run": true,
+  "proposal": {
+    "id": "fixture.r8-dai4.former-cityhall.approved.001",
+    "title": "旧庁舎跡地の活用",
+    "source_path": "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech.proposal.json",
+    "proposal_kind": "fixture",
+    "publication_status": "approved_for_export"
+  },
+  "approval_state": {
+    "is_approved": true,
+    "review_status": "approved",
+    "publication_status": "approved_for_export",
+    "export_readiness": "ready_for_export"
+  },
+  "target_resolution": {
+    "status": "blocked",
+    "surface": "unresolved",
+    "target_id": null,
+    "target_file": null,
+    "resolved_by": "blocked_no_explicit_target"
+  },
+  "would_write": [],
+  "evidence_summary": {
+    "anchors": [
+      {
+        "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011",
+        "source_type": "general_question_minutes",
+        "evidence_role": "primary",
+        "mode": "paraphrase",
+        "resolved": true,
+        "resolved_by": "utterance_id",
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011",
+        "question_slug": "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+        "line_start": 116,
+        "line_end": 134,
+        "source_minutes_file": "2026-06-16/石垣市議会　令和８年６月15日　６月定例会　友寄永三議員　一般質問_minutes.md"
+      },
+      {
+        "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+        "source_type": "general_question_minutes",
+        "evidence_role": "primary",
+        "mode": "paraphrase",
+        "resolved": true,
+        "resolved_by": "utterance_id",
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+        "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+        "line_start": 72,
+        "line_end": 98,
+        "source_minutes_file": "2026-06-16/石垣市議会　令和８年６月１５日　６月定例会　後上里厚司議員　一般質問_minutes.md"
+      }
+    ],
+    "claims": [
+      {
+        "claim_type": "attributed_speech",
+        "proposal_type": "discussion_point",
+        "summary_easy": "旧庁舎跡地の活用について、一般質問の答弁では進捗や協議の継続状況が説明されました。",
+        "summary_detailed": "令和8年第4回定例会の一般質問では、旧庁舎跡地の活用について、事業の進捗や協議の継続状況、維持管理や優先交渉権者決定の経緯に関する答弁がありました。これは発言の存在を示す approved-state regression fixture であり、事業の状態そのものを transcript だけで確定するものではありません."
+      }
+    ]
+  },
+  "blocks": [
+    {
+      "code": "MISSING_EXPLICIT_EXPORT_TARGET",
+      "message": "Dry-run export requires proposal.export.target and exact target metadata. No public target is inferred from proposal links."
+    }
+  ]
+}
