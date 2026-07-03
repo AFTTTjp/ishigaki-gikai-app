@@ -1,0 +1,41 @@
+{
+  "schema_version": "issue-publisher-proposal.v0",
+  "proposal_id": "fixture.r8-dai4.former-cityhall.approved-missing-approval-note.001",
+  "proposal_kind": "fixture",
+  "publication_status": "not_published",
+  "note": "This is an approved-state negative regression fixture. It is not published content.",
+  "issue_id": "issue-r8d4-former-cityhall",
+  "issue_title": "旧庁舎跡地の活用",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "claim_type": "attributed_speech",
+  "proposal_type": "discussion_point",
+  "public_draft": {
+    "summary_easy": "旧庁舎跡地の活用について、一般質問の答弁では進捗や協議の継続状況が説明されました。",
+    "summary_detailed": "令和8年第4回定例会の一般質問では、旧庁舎跡地の活用について、進捗や協議の継続状況に関する答弁がありました。これは approved-state gate regression fixture です。"
+  },
+  "evidence": [
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011",
+      "evidence_role": "primary",
+      "mode": "paraphrase"
+    }
+  ],
+  "links": {
+    "related_bill_ids": [],
+    "related_question_slugs": [
+      "ishigaki-r8-dai4-ippan-tomoyose-eizo"
+    ]
+  },
+  "review": {
+    "status": "approved",
+    "needs_human_review": false,
+    "review_reason": [
+      "approved_state_fixture"
+    ],
+    "reviewer": "issue-publisher-reviewer",
+    "reviewed_at": "2026-07-03T00:00:00+09:00",
+    "export_readiness": "ready_for_export",
+    "export_blockers": []
+  }
+}

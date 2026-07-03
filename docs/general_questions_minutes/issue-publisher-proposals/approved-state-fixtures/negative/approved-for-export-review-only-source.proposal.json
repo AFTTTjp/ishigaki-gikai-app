@@ -1,0 +1,40 @@
+{
+  "schema_version": "issue-publisher-proposal.v0",
+  "proposal_id": "fixture.r8-dai4.former-cityhall.approved-for-export-review-only-source.001",
+  "proposal_kind": "fixture",
+  "publication_status": "approved_for_export",
+  "note": "This is an approved-state negative regression fixture. It is not published content.",
+  "issue_id": "issue-r8d4-former-cityhall",
+  "issue_title": "旧庁舎跡地の活用",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "claim_type": "attributed_speech",
+  "proposal_type": "discussion_point",
+  "public_draft": {
+    "summary_easy": "旧庁舎跡地の活用について、一般質問の答弁があったとする review-only fixture です。",
+    "summary_detailed": "これは review-only source を approved_for_export に載せようとした場合の regression fixture であり、publishable proposal ではありません。"
+  },
+  "evidence": [
+    {
+      "source_type": "review_draft",
+      "anchor": "issue-publisher-review-only-fixture",
+      "evidence_role": "primary",
+      "mode": "paraphrase"
+    }
+  ],
+  "links": {
+    "related_bill_ids": [],
+    "related_question_slugs": []
+  },
+  "review": {
+    "status": "approved",
+    "needs_human_review": false,
+    "review_reason": [
+      "approved_state_fixture"
+    ],
+    "reviewer": "issue-publisher-reviewer",
+    "reviewed_at": "2026-07-03T00:00:00+09:00",
+    "approval_note": "review-only source intentionally used for regression coverage.",
+    "export_readiness": "ready_for_export",
+    "export_blockers": []
+  }
+}
