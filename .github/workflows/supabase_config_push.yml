@@ -1,11 +1,10 @@
-name: Migrate DB
+name: Manual Supabase Config Push
 
 on:
-  push:
-    branches: [main, develop]
+  workflow_dispatch:
 
 jobs:
-  migrate-db:
+  supabase-config-push:
     runs-on: ubuntu-latest
     environment: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
 
@@ -16,7 +15,7 @@ jobs:
       - name: Setup Supabase CLI
         uses: supabase/setup-cli@ab058987d8d6c725971f6cf9d0b5c98467e30bd1 # v1.7.1
         with:
-          version: v2.106.0 # pinned: integration_test.yml と揃える。v1.6.0は旧命名(supabase_linux_amd64.tar.gz)しか解決できずv2.106.0+で404になる
+          version: v2.106.0 # keep in sync with deploy.yml and integration_test.yml until CLI compatibility is reviewed separately
 
       - name: Supabase link
         run: |
@@ -26,14 +25,13 @@ jobs:
           SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
           SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
 
-      - name: Show migration status
+      - name: Push Supabase project config
+        # This step updates remote project settings, not database rows.
+        # Run only after human confirmation that:
+        # - the target branch/environment is correct
+        # - Supabase CLI compatibility has been checked
+        # - known Storage config schema issues have been reviewed
         run: |
-          supabase migration list --linked
-        env:
-          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-
-      - name: Apply pending migrations
-        run: |
-          supabase migration up --linked --include-all
+          supabase config push
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
