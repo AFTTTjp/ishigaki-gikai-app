@@ -315,6 +315,18 @@ function validateProposalSchemaShape(proposal) {
           "proposal.review.export_blockers must be an array of non-empty strings",
       });
     }
+
+    if (
+      proposal.review.export_readiness === "ready_for_export" &&
+      Array.isArray(proposal.review.export_blockers) &&
+      proposal.review.export_blockers.length > 0
+    ) {
+      errors.push({
+        code: "READY_EXPORT_HAS_BLOCKERS",
+        message:
+          "proposal.review.export_blockers must be empty when proposal.review.export_readiness=ready_for_export",
+      });
+    }
   }
 
   if (proposal.export !== undefined) {

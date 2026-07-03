@@ -72,6 +72,15 @@ transcript-only で `claim_type: fact` を通してはいけません。
   - transcript-only は不可
   - 将来的に official evidence が必要
 
+現状の validator / evidence resolver は transcript utterance index を中心に
+見ています。official evidence layer はまだ未実装のため、
+`claim_type: fact` は export-ready / `approved_for_export` に進めない
+fail-closed design です。これは現段階の意図した制約であり、バグではありません。
+
+fact claim を通すために official evidence を transcript utterance index に
+混ぜてはいけません。official evidence は将来、別 index / 別 locator として
+設計します。
+
 ### Review artifacts are not publishable evidence
 
 以下は探索や注意喚起には使えても、publishable evidence にはしません。
