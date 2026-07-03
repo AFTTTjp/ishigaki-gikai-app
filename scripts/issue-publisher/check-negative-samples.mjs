@@ -90,6 +90,9 @@ const EXPECTED_ERROR_CODES_BY_FILE = {
     "REVIEW_ONLY_SOURCE",
     "NO_PUBLISHABLE_EVIDENCE",
   ],
+  "approved-ready-with-export-blockers.proposal.json": [
+    "READY_EXPORT_HAS_BLOCKERS",
+  ],
 };
 
 function loadJson(filePath) {
@@ -98,6 +101,18 @@ function loadJson(filePath) {
 
 function summarizeCodes(result) {
   return result.errors.map((error) => error.code);
+}
+
+function getExpectedErrorCodes(fileName) {
+  const expectedCodes = EXPECTED_ERROR_CODES_BY_FILE[fileName];
+
+  if (!Array.isArray(expectedCodes) || expectedCodes.length === 0) {
+    throw new Error(
+      `${fileName} is missing expected error code mapping in EXPECTED_ERROR_CODES_BY_FILE`
+    );
+  }
+
+  return expectedCodes;
 }
 
 function assertPositive(index, proposalPath) {
@@ -122,7 +137,7 @@ function assertNegative(index, baseDir, fileName) {
   const proposal = loadJson(proposalPath);
   const result = validateProposalAnchors(index, proposal);
   const codes = summarizeCodes(result);
-  const expectedCodes = EXPECTED_ERROR_CODES_BY_FILE[fileName] ?? [];
+  const expectedCodes = getExpectedErrorCodes(fileName);
 
   if (result.ok) {
     throw new Error(`${fileName} must fail validation, but passed`);
