@@ -75,14 +75,53 @@ function buildTopicIndex() {
 }
 
 function loadGeneralQuestionsFile(dietSessionSlug) {
-  const filePath = resolve(
+  const exactFilePath = resolve(
     GENERAL_QUESTIONS_DIR,
     `${dietSessionSlug}.general-questions.json`
   );
-  return {
-    filePath,
-    data: loadJson(filePath),
-  };
+
+  try {
+    return {
+      filePath: exactFilePath,
+      data: loadJson(exactFilePath),
+    };
+  } catch (error) {
+    if (error?.code !== "ENOENT") {
+      throw error;
+    }
+  }
+
+  const candidateFiles = readdirSync(GENERAL_QUESTIONS_DIR)
+    .filter((fileName) => fileName.endsWith(".general-questions.json"))
+    .sort();
+
+  const matches = [];
+
+  for (const fileName of candidateFiles) {
+    const filePath = resolve(GENERAL_QUESTIONS_DIR, fileName);
+    const data = loadJson(filePath);
+    if (data?.diet_session_slug === dietSessionSlug) {
+      matches.push({
+        filePath,
+        data,
+      });
+    }
+  }
+
+  if (matches.length === 1) {
+    return matches[0];
+  }
+
+  if (matches.length > 1) {
+    const matchFiles = matches.map(({ filePath }) => toRepoRelative(filePath));
+    throw new Error(
+      `Multiple general questions JSON files found for diet_session_slug=${dietSessionSlug}: ${matchFiles.join(", ")}`
+    );
+  }
+
+  throw new Error(
+    `General questions JSON not found for diet_session_slug=${dietSessionSlug}`
+  );
 }
 
 function createBlock(code, message, reviewerAction) {

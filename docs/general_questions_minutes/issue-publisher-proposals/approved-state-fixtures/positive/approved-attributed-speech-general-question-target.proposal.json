@@ -1,0 +1,59 @@
+{
+  "schema_version": "issue-publisher-proposal.v0",
+  "proposal_id": "fixture.r8-dai4.former-cityhall.approved-general-question-target.001",
+  "proposal_kind": "fixture",
+  "publication_status": "approved_for_export",
+  "note": "This is an approved-state dry-run export fixture with an explicit general question target. It is not published content.",
+  "issue_id": "issue-r8d4-former-cityhall",
+  "issue_title": "旧庁舎跡地の活用",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "claim_type": "attributed_speech",
+  "proposal_type": "discussion_point",
+  "public_draft": {
+    "summary_easy": "旧庁舎跡地の活用について、一般質問の答弁では進捗や協議の継続状況が説明されました。",
+    "summary_detailed": "令和8年第4回定例会の一般質問では、旧庁舎跡地の活用について、事業の進捗や協議の継続状況、維持管理や優先交渉権者決定の経緯に関する答弁がありました。これは発言の存在を示す dry-run export fixture であり、事業の状態そのものを transcript だけで確定するものではありません."
+  },
+  "evidence": [
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011",
+      "evidence_role": "primary",
+      "mode": "paraphrase",
+      "note": "Transcript evidence supports that an explanation about progress and ongoing discussions for the former city hall site was given in response."
+    },
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+      "evidence_role": "primary",
+      "mode": "paraphrase",
+      "note": "Transcript evidence supports that an explanation about site management and the selection background for the negotiation partner was given in response."
+    }
+  ],
+  "links": {
+    "related_bill_ids": [],
+    "related_question_slugs": [
+      "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+      "ishigaki-r8-dai4-ippan-shiuezato-atsushi"
+    ]
+  },
+  "review": {
+    "status": "approved",
+    "needs_human_review": false,
+    "review_reason": [
+      "approved_state_fixture",
+      "transcript_derived",
+      "attributed_speech_only"
+    ],
+    "reviewer": "issue-publisher-reviewer",
+    "reviewed_at": "2026-07-03T00:00:00+09:00",
+    "approval_note": "Approved-state dry-run fixture with exact transcript anchors and an explicit general question export target.",
+    "export_readiness": "ready_for_export",
+    "export_blockers": []
+  },
+  "export": {
+    "target": "general_question_json",
+    "target_slug": "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+    "source_proposal_id": "fixture.r8-dai4.former-cityhall.approved-general-question-target.001",
+    "notes": "Dry-run only. Public JSON must not be edited automatically."
+  }
+}

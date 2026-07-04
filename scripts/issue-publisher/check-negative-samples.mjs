@@ -41,6 +41,10 @@ const POSITIVE_SAMPLE_PATHS = [
     ROOT,
     "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-topic-target.proposal.json"
   ),
+  resolve(
+    ROOT,
+    "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-general-question-target.proposal.json"
+  ),
 ];
 
 const NEGATIVE_SAMPLES_DIR = resolve(
@@ -66,6 +70,22 @@ const DRY_RUN_CASES = [
     expectedStatus: "resolved",
     expectedSurface: "topic",
     expectedTargetId: "ishigaki-old-city-hall",
+    expectedTargetLabel: "石垣市庁舎跡地活用",
+    expectedBlockCodes: [],
+  },
+  {
+    proposalPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-general-question-target.proposal.json"
+    ),
+    outputPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-export-dry-runs/approved-attributed-speech-general-question-target.dry-run.json"
+    ),
+    expectedStatus: "resolved",
+    expectedSurface: "general_question",
+    expectedTargetId: "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+    expectedTargetLabel: "友寄永三 一般質問",
     expectedBlockCodes: [],
   },
   {
@@ -231,6 +251,15 @@ function assertDryRunCase(caseConfig) {
   if (artifact.target_resolution.target_id !== caseConfig.expectedTargetId) {
     throw new Error(
       `${path.basename(caseConfig.proposalPath)} dry-run target_id must be ${caseConfig.expectedTargetId}, but got ${artifact.target_resolution.target_id}`
+    );
+  }
+
+  if (
+    caseConfig.expectedTargetLabel !== undefined &&
+    artifact.target_resolution.target_label !== caseConfig.expectedTargetLabel
+  ) {
+    throw new Error(
+      `${path.basename(caseConfig.proposalPath)} dry-run target_label must be ${caseConfig.expectedTargetLabel}, but got ${artifact.target_resolution.target_label}`
     );
   }
 
