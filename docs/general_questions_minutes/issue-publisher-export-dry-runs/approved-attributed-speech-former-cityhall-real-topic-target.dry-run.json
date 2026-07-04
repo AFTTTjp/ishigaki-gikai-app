@@ -1,0 +1,109 @@
+{
+  "schema_version": "issue-publisher-export-dry-run.v1",
+  "dry_run": true,
+  "proposal": {
+    "id": "fixture.r8-dai4.former-cityhall.real-topic-target.001",
+    "title": "旧庁舎跡地の活用",
+    "source_path": "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-former-cityhall-real-topic-target.proposal.json",
+    "proposal_kind": "fixture",
+    "publication_status": "approved_for_export"
+  },
+  "approval_state": {
+    "is_approved": true,
+    "review_status": "approved",
+    "publication_status": "approved_for_export",
+    "export_readiness": "ready_for_export",
+    "needs_human_review": false,
+    "reviewer": "issue-publisher-reviewer",
+    "reviewed_at": "2026-07-04T00:00:00+09:00",
+    "approval_note": "Real former-cityhall dry-run candidate with exact transcript anchors and an explicit topic export target. Review-only; not reflected to public JSON.",
+    "export_blockers": []
+  },
+  "application_status": {
+    "applied": false,
+    "public_json_written": false,
+    "db_written": false,
+    "revalidation_needed": false,
+    "note": "Review-only dry-run. No public source-of-truth JSON was modified."
+  },
+  "target_resolution": {
+    "status": "resolved",
+    "surface": "topic",
+    "surface_label": "Topic",
+    "target_id": "ishigaki-old-city-hall",
+    "target_file": "docs/ishigaki_gikai_topics_dev_set/old_city_hall.topic.json",
+    "target_label": "石垣市庁舎跡地活用",
+    "target_title": "石垣市庁舎跡地活用",
+    "resolved_by": "explicit_proposal_field",
+    "resolution_note": "Exact topic target resolved from proposal.export.target and proposal.export.target_slug."
+  },
+  "reviewer_guidance": {
+    "ready_for_editor_review": true,
+    "next_step": "Compare content_preview, approval metadata, and evidence_summary before any manual public JSON editing in a later phase.",
+    "note": "Resolved dry-run artifacts are still review-only and must not be treated as applied public content."
+  },
+  "would_write": [
+    {
+      "operation": "review_candidate_only",
+      "target_file": "docs/ishigaki_gikai_topics_dev_set/old_city_hall.topic.json",
+      "target_field": "review_only_not_public_json",
+      "content_preview": {
+        "surface": "topic",
+        "surface_label": "Topic",
+        "target_id": "ishigaki-old-city-hall",
+        "target_label": "石垣市庁舎跡地活用",
+        "source_proposal_id": "fixture.r8-dai4.former-cityhall.real-topic-target.001",
+        "proposal_type": "discussion_point",
+        "claim_type": "attributed_speech",
+        "issue_id": "issue-r8d4-former-cityhall",
+        "issue_title": "旧庁舎跡地の活用",
+        "summary_easy": "旧庁舎跡地の活用について、一般質問の答弁では進捗や協議の継続状況が説明されました。",
+        "summary_detailed": "令和8年第4回定例会の一般質問では、旧庁舎跡地の活用について、事業の進捗や協議の継続状況、維持管理や優先交渉権者決定の経緯に関する答弁がありました。これは発言の存在を示す review-only dry-run fixture であり、事業の状態そのものを transcript だけで確定するものではありません.",
+        "related_question_slugs": [
+          "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+          "ishigaki-r8-dai4-ippan-shiuezato-atsushi"
+        ],
+        "related_bill_ids": []
+      }
+    }
+  ],
+  "evidence_summary": {
+    "anchors": [
+      {
+        "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011",
+        "source_type": "general_question_minutes",
+        "evidence_role": "primary",
+        "mode": "paraphrase",
+        "resolved": true,
+        "resolved_by": "utterance_id",
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011",
+        "question_slug": "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+        "line_start": 116,
+        "line_end": 134,
+        "source_minutes_file": "2026-06-16/石垣市議会　令和８年６月15日　６月定例会　友寄永三議員　一般質問_minutes.md"
+      },
+      {
+        "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+        "source_type": "general_question_minutes",
+        "evidence_role": "primary",
+        "mode": "paraphrase",
+        "resolved": true,
+        "resolved_by": "utterance_id",
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+        "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+        "line_start": 72,
+        "line_end": 98,
+        "source_minutes_file": "2026-06-16/石垣市議会　令和８年６月１５日　６月定例会　後上里厚司議員　一般質問_minutes.md"
+      }
+    ],
+    "claims": [
+      {
+        "claim_type": "attributed_speech",
+        "proposal_type": "discussion_point",
+        "summary_easy": "旧庁舎跡地の活用について、一般質問の答弁では進捗や協議の継続状況が説明されました。",
+        "summary_detailed": "令和8年第4回定例会の一般質問では、旧庁舎跡地の活用について、事業の進捗や協議の継続状況、維持管理や優先交渉権者決定の経緯に関する答弁がありました。これは発言の存在を示す review-only dry-run fixture であり、事業の状態そのものを transcript だけで確定するものではありません."
+      }
+    ]
+  },
+  "blocks": []
+}
