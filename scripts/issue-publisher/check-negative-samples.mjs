@@ -45,6 +45,10 @@ const POSITIVE_SAMPLE_PATHS = [
     ROOT,
     "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-general-question-target.proposal.json"
   ),
+  resolve(
+    ROOT,
+    "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-former-cityhall-real-topic-target.proposal.json"
+  ),
 ];
 
 const NEGATIVE_SAMPLES_DIR = resolve(
@@ -58,6 +62,23 @@ const APPROVED_STATE_NEGATIVE_SAMPLES_DIR = resolve(
 );
 
 const DRY_RUN_CASES = [
+  {
+    proposalPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-former-cityhall-real-topic-target.proposal.json"
+    ),
+    outputPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-export-dry-runs/approved-attributed-speech-former-cityhall-real-topic-target.dry-run.json"
+    ),
+    expectedStatus: "resolved",
+    expectedSurface: "topic",
+    expectedTargetId: "ishigaki-old-city-hall",
+    expectedTargetFile:
+      "docs/ishigaki_gikai_topics_dev_set/old_city_hall.topic.json",
+    expectedTargetLabel: "石垣市庁舎跡地活用",
+    expectedBlockCodes: [],
+  },
   {
     proposalPath: resolve(
       ROOT,
@@ -236,6 +257,18 @@ function assertDryRunCase(caseConfig) {
     );
   }
 
+  if (artifact.application_status?.db_written !== false) {
+    throw new Error(
+      `${path.basename(caseConfig.proposalPath)} dry-run must not write DB state`
+    );
+  }
+
+  if (artifact.application_status?.revalidation_needed !== false) {
+    throw new Error(
+      `${path.basename(caseConfig.proposalPath)} dry-run must not require revalidation`
+    );
+  }
+
   if (artifact.target_resolution.status !== caseConfig.expectedStatus) {
     throw new Error(
       `${path.basename(caseConfig.proposalPath)} dry-run status must be ${caseConfig.expectedStatus}, but got ${artifact.target_resolution.status}`
@@ -260,6 +293,15 @@ function assertDryRunCase(caseConfig) {
   ) {
     throw new Error(
       `${path.basename(caseConfig.proposalPath)} dry-run target_label must be ${caseConfig.expectedTargetLabel}, but got ${artifact.target_resolution.target_label}`
+    );
+  }
+
+  if (
+    caseConfig.expectedTargetFile !== undefined &&
+    artifact.target_resolution.target_file !== caseConfig.expectedTargetFile
+  ) {
+    throw new Error(
+      `${path.basename(caseConfig.proposalPath)} dry-run target_file must be ${caseConfig.expectedTargetFile}, but got ${artifact.target_resolution.target_file}`
     );
   }
 
