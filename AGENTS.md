@@ -177,19 +177,28 @@ Repository レイヤーの詳細は [docs/repository-layer.md](docs/repository-l
 
 ## Supabase & Environment Notes
 - ローカル開発前に `npx supabase start` を実行し、`.env.example` を `.env` にコピーして値を整えます。
+- **env ファイルの役割（重要・混同しない）**: `.env` は**ローカル開発用**（`.env.example` をコピー。`dev` / `seed` / `build` / `test:integration` / 無印の import はこれを読む）。prod への import / revalidate は **`.env.prod`**、test 用は **`.env.test`** を使う（テンプレは `.env.prod.example` / `.env.test.example`）。`.env.prod` / `.env.test` は import・revalidate 専用で、Next.js アプリ自体の起動には使わない（起動は Vercel 環境変数）。**`.env` を prod 値で運用しない**こと（無印 script が prod を向く誤操作の元）。実態が設計と異なる場合（例: `.env` が prod を指す、`.env.prod` が未整備）は、prod 操作の前に必ず接続先を確認し、ズレていれば整備してから進める。
 - スキーマ変更時は `supabase/migrations` のマイグレーションと `packages/supabase/types/supabase.types.ts` の再生成ファイルをセットでコミットします。
 - `pnpm seed` は `admin@example.com / admin123456` を含む検証データを投入するため、開発用途に限定してください。
 - **RLSとアクセスパターン**: マイグレーションでは必ず `alter table <テーブル名> enable row level security;` を記述してRLSを有効化すること。ただし **ポリシーは定義しない**（デフォルト全拒否）。データアクセスはすべて `createAdminClient()`（Service Role Key）経由で行い、認可ロジックはアプリケーション層（Server Actions / Loaders）で実装する。
 
 ### prod import の標準手順（必須）
-prod へデータ import（`scripts/import-*.mjs --prod` 等）を行う場合は、必ず以下の順で実施する。**migration 適用前に prod import を実行しないこと**（参照先テーブルが存在せず失敗する）。
+prod へデータ import を行う場合は、必ず以下の順で実施する。**prod 化は `.env.prod` の env-file 選択で行う**（後述のとおり、`import-topics-json.mjs` / `import-council-actions.mjs` に `--prod` フラグは無い）。**migration 適用前に prod import を実行しないこと**（参照先テーブルが存在せず失敗する）。
 
-1. **接続先確認**: import する `.env` の `SUPABASE_URL` が prod か test かを必ず確認する。
+1. **接続先確認**: prod は `.env.prod`、test は `.env.test`、`.env` はローカル（上の「env ファイルの役割」参照）。prod import の前に、使う env の `SUPABASE_URL` が prod プロジェクトを指すか（host / project ref）を必ず確認する。**`.env.prod` が未整備（`SUPABASE_URL` 等が空）の場合は、`.env` で代用して進めず、`.env.prod` を整備してから実行する**（`.env` を prod 値で使う運用は誤操作の元）。
 2. **migration 適用確認**: prod migration は push → `deploy.yml` で自動適用される。import 前に対象 PR の CI が green であることを `gh pr checks <番号>` で確認する。必要なら `supabase migration list --linked` で適用済みを確認する。
-3. **dry-run**: `node scripts/import-xxx.mjs --dry-run --prod` で挿入内容をプレビューする。
-4. **prod import**: `node scripts/import-xxx.mjs --prod` で実行する。
-5. **revalidate**: `dotenv -e .env.prod -- node scripts/revalidate.mjs --url <対象webURL> --all`（または対象タグ指定）で Next.js キャッシュを無効化する（`pnpm revalidate` という script は存在しない）。`unstable_cache` は deploy しても自動リセットされない場合があるため、データ変更後は必ず実行する。**`-e <envfile>` の `REVALIDATE_SECRET` と `--url` のデプロイを必ず一致させること**（prod は `.env.prod`＋prod URL、test は `.env.test`＋test URL）。不一致だと 401 Unauthorized になる。test/prod を混同しない。
+3. **dry-run（対象を限定）**: 対象ファイルを明示して dry-run し、更新対象が想定 topic/slug のみであることを確認する。想定外の大量更新・削除・他対象更新が出たら停止する。
+   - topics: `pnpm db:topics:import:prod --dry-run docs/ishigaki_gikai_topics_dev_set/<slug>.topic.json`
+   - council-actions: `pnpm db:council-actions:import:prod --dry-run <file>`
+   - general-questions: `pnpm db:general-questions:import:prod --dry-run`
+4. **prod import**: dry-run が妥当な場合のみ実行する。**prod 化は `:prod` script（`.env.prod` 選択）で行う**。
+   - topics: `pnpm db:topics:import:prod docs/ishigaki_gikai_topics_dev_set/<slug>.topic.json`（`import-topics-json.mjs` に `--prod` フラグは無い。付けるとファイル引数扱いで失敗する）
+   - council-actions: `pnpm db:council-actions:import:prod <file>`（同上、`--prod` フラグ無し）
+   - general-questions: **`import-general-questions.mjs` のみ**リモート実挿入に安全フラグ `--prod` を要求する。`pnpm db:general-questions:import:prod --prod`（`--prod` を付けないと実挿入せず止まる）。他2スクリプトと混同しないこと。
+5. **revalidate**: `dotenv -e .env.prod -- node scripts/revalidate.mjs --url <prod web URL> topics`（対象タグ指定。`--all` も可）で Next.js キャッシュを無効化する（`pnpm revalidate` という script は存在しない）。`unstable_cache` は deploy しても自動リセットされない場合があるため、データ変更後は必ず実行する。**`.env.prod` の `REVALIDATE_SECRET` と prod URL を使う**（test は `.env.test`＋test URL）。`REVALIDATE_SECRET` と `--url` のデプロイが不一致だと 401 Unauthorized。**`.env` で代用しない**。401 が出たら secret 不一致として停止し、別 secret を推測しない。
 6. **UI確認**: 本番 URL で表示を確認する。古いキャッシュが疑われる場合は `?cb=<timestamp>` を付けてバイパス確認する。
+
+> **test 環境が未整備の場合**: `.env.test` が無ければ `:test` script は使えない。その場合は test で確認せず、**prod で対象ファイルを明示した dry-run（手順3）で対象を限定してから**手順4に進む（対象外の更新が出たら停止）。
 
 - **キャッシュタグの同期**: 新しいキャッシュタグを追加したら、`web/src/lib/cache-tags.ts` の `CACHE_TAGS` と `scripts/revalidate.mjs` の `ALL_TAGS` の **両方** を更新すること。片方だけだと `node scripts/revalidate.mjs --all` でそのタグが revalidate されない。
 
