@@ -12,14 +12,35 @@
     "is_approved": true,
     "review_status": "approved",
     "publication_status": "approved_for_export",
-    "export_readiness": "ready_for_export"
+    "export_readiness": "ready_for_export",
+    "needs_human_review": false,
+    "reviewer": "issue-publisher-reviewer",
+    "reviewed_at": "2026-07-03T00:00:00+09:00",
+    "approval_note": "Approved-state regression fixture with exact transcript anchors and attributed-speech wording only.",
+    "export_blockers": []
+  },
+  "application_status": {
+    "applied": false,
+    "public_json_written": false,
+    "db_written": false,
+    "revalidation_needed": false,
+    "note": "Review-only dry-run. No public source-of-truth JSON was modified."
   },
   "target_resolution": {
     "status": "blocked",
     "surface": "unresolved",
+    "surface_label": "Unresolved",
     "target_id": null,
     "target_file": null,
-    "resolved_by": "blocked_no_explicit_target"
+    "target_label": null,
+    "target_title": null,
+    "resolved_by": "blocked_no_explicit_target",
+    "resolution_note": "Dry-run export stopped before any public write because no exact export target was provided."
+  },
+  "reviewer_guidance": {
+    "ready_for_editor_review": false,
+    "next_step": "Set proposal.export.target and an exact proposal.export.target_slug before rerunning the dry-run export.",
+    "note": "Blocked dry-run artifacts stop before any public write and should remain unapplied until all blockers are resolved."
   },
   "would_write": [],
   "evidence_summary": {
@@ -63,7 +84,8 @@
   "blocks": [
     {
       "code": "MISSING_EXPLICIT_EXPORT_TARGET",
-      "message": "Dry-run export requires proposal.export.target and exact target metadata. No public target is inferred from proposal links."
+      "message": "Dry-run export requires proposal.export.target and exact target metadata. No public target is inferred from proposal links.",
+      "reviewer_action": "Set proposal.export.target and an exact proposal.export.target_slug before rerunning the dry-run export."
     }
   ]
 }
