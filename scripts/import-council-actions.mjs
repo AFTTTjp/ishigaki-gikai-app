@@ -41,14 +41,37 @@ function printUsage() {
 
 Options:
   --dry-run    Validate and resolve bills without writing to Supabase
+  --prod       Confirm writing to a remote (non-local) Supabase
   --help       Show this message
 `);
+}
+
+// リモート（localhost/127.0.0.1 以外）への実書き込みには --prod を必須にする安全弁。
+// dry-run と local 接続は --prod なしで許可する。SUPABASE_URL 未設定時は remote 扱い
+// せず、後段の createAdminClient() の env 不足エラーに委ねる。
+function assertRemoteWriteConfirmed(dryRun, prodConfirmed) {
+  const supabaseUrl = process.env.SUPABASE_URL ?? "";
+  const isRemote =
+    supabaseUrl.length > 0 &&
+    !supabaseUrl.includes("localhost") &&
+    !supabaseUrl.includes("127.0.0.1");
+
+  if (isRemote && !dryRun && !prodConfirmed) {
+    console.error(
+      "⚠️  リモート（本番/ステージングの可能性）への実書き込みには --prod が必要です。"
+    );
+    console.error(
+      "   まず --dry-run で対象を確認し、書き込み時のみ --prod を付けてください。"
+    );
+    process.exit(1);
+  }
 }
 
 function parseArgs(argv) {
   const args = [...argv];
   const options = {
     dryRun: false,
+    prodConfirmed: false,
     files: [],
   };
 
@@ -58,6 +81,11 @@ function parseArgs(argv) {
 
     if (arg === "--dry-run") {
       options.dryRun = true;
+      continue;
+    }
+
+    if (arg === "--prod") {
+      options.prodConfirmed = true;
       continue;
     }
 
@@ -311,7 +339,7 @@ async function importFile(supabase, filePath, dryRun) {
 // -------------------------------------------------------------------------
 
 async function main() {
-  const { dryRun, files } = parseArgs(process.argv.slice(2));
+  const { dryRun, prodConfirmed, files } = parseArgs(process.argv.slice(2));
   const inputFiles = await resolveInputFiles(files);
 
   if (inputFiles.length === 0) {
@@ -319,6 +347,8 @@ async function main() {
       `import 対象の ${FILE_SUFFIX} ファイルが見つかりません。`
     );
   }
+
+  assertRemoteWriteConfirmed(dryRun, prodConfirmed);
 
   const supabase = createAdminClient();
   const results = [];

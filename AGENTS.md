@@ -183,7 +183,7 @@ Repository レイヤーの詳細は [docs/repository-layer.md](docs/repository-l
 - **RLSとアクセスパターン**: マイグレーションでは必ず `alter table <テーブル名> enable row level security;` を記述してRLSを有効化すること。ただし **ポリシーは定義しない**（デフォルト全拒否）。データアクセスはすべて `createAdminClient()`（Service Role Key）経由で行い、認可ロジックはアプリケーション層（Server Actions / Loaders）で実装する。
 
 ### prod import の標準手順（必須）
-prod へデータ import を行う場合は、必ず以下の順で実施する。**prod 化は `.env.prod` の env-file 選択で行う**（後述のとおり、`import-topics-json.mjs` / `import-council-actions.mjs` に `--prod` フラグは無い）。**migration 適用前に prod import を実行しないこと**（参照先テーブルが存在せず失敗する）。
+prod へデータ import を行う場合は、必ず以下の順で実施する。**接続先は `.env.prod` の env-file 選択で決め、リモートへの実書き込みには `--prod` を明示する**（3つの import スクリプト（topics / council-actions / general-questions）とも、リモート＝localhost/127.0.0.1 以外への非 dry-run 書き込みには `--prod` が必須。dry-run と local 接続は `--prod` 不要）。**migration 適用前に prod import を実行しないこと**（参照先テーブルが存在せず失敗する）。
 
 1. **接続先確認**: prod は `.env.prod`、test は `.env.test`、`.env` はローカル（上の「env ファイルの役割」参照）。prod import の前に、使う env の `SUPABASE_URL` が prod プロジェクトを指すか（host / project ref）を必ず確認する。**`.env.prod` が未整備（`SUPABASE_URL` 等が空）の場合は、`.env` で代用して進めず、`.env.prod` を整備してから実行する**（`.env` を prod 値で使う運用は誤操作の元）。
 2. **migration 適用確認**: prod migration は push → `deploy.yml` で自動適用される。import 前に対象 PR の CI が green であることを `gh pr checks <番号>` で確認する。必要なら `supabase migration list --linked` で適用済みを確認する。
@@ -191,10 +191,11 @@ prod へデータ import を行う場合は、必ず以下の順で実施する�
    - topics: `pnpm db:topics:import:prod --dry-run docs/ishigaki_gikai_topics_dev_set/<slug>.topic.json`
    - council-actions: `pnpm db:council-actions:import:prod --dry-run <file>`
    - general-questions: `pnpm db:general-questions:import:prod --dry-run`
-4. **prod import**: dry-run が妥当な場合のみ実行する。**prod 化は `:prod` script（`.env.prod` 選択）で行う**。
-   - topics: `pnpm db:topics:import:prod docs/ishigaki_gikai_topics_dev_set/<slug>.topic.json`（`import-topics-json.mjs` に `--prod` フラグは無い。付けるとファイル引数扱いで失敗する）
-   - council-actions: `pnpm db:council-actions:import:prod <file>`（同上、`--prod` フラグ無し）
-   - general-questions: **`import-general-questions.mjs` のみ**リモート実挿入に安全フラグ `--prod` を要求する。`pnpm db:general-questions:import:prod --prod`（`--prod` を付けないと実挿入せず止まる）。他2スクリプトと混同しないこと。
+4. **prod import**: dry-run が妥当な場合のみ実行する。**接続先は `:prod` script（`.env.prod` 選択）で決め、リモートへの実書き込みには 3スクリプトとも `--prod` を明示する**（`--prod` が無いとリモート書き込みは安全弁で中止される。dry-run では不要）。
+   - topics: `pnpm db:topics:import:prod --prod docs/ishigaki_gikai_topics_dev_set/<slug>.topic.json`
+   - council-actions: `pnpm db:council-actions:import:prod --prod <file>`
+   - general-questions: `pnpm db:general-questions:import:prod --prod`
+   - ※ `package.json` の `:prod` script に `--prod` は焼き込んでいない（誤発火防止のため、書き込み時に手で付ける運用）。`--prod` は「フラグ」として扱われ、ファイル引数にはならない。
 5. **revalidate**: `dotenv -e .env.prod -- node scripts/revalidate.mjs --url <prod web URL> topics`（対象タグ指定。`--all` も可）で Next.js キャッシュを無効化する（`pnpm revalidate` という script は存在しない）。`unstable_cache` は deploy しても自動リセットされない場合があるため、データ変更後は必ず実行する。**`.env.prod` の `REVALIDATE_SECRET` と prod URL を使う**（test は `.env.test`＋test URL）。`REVALIDATE_SECRET` と `--url` のデプロイが不一致だと 401 Unauthorized。**`.env` で代用しない**。401 が出たら secret 不一致として停止し、別 secret を推測しない。
 6. **UI確認**: 本番 URL で表示を確認する。古いキャッシュが疑われる場合は `?cb=<timestamp>` を付けてバイパス確認する。
 
