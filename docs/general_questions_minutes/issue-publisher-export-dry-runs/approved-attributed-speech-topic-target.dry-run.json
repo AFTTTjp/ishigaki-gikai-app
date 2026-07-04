@@ -12,14 +12,35 @@
     "is_approved": true,
     "review_status": "approved",
     "publication_status": "approved_for_export",
-    "export_readiness": "ready_for_export"
+    "export_readiness": "ready_for_export",
+    "needs_human_review": false,
+    "reviewer": "issue-publisher-reviewer",
+    "reviewed_at": "2026-07-03T00:00:00+09:00",
+    "approval_note": "Approved-state dry-run fixture with exact transcript anchors and an explicit topic export target.",
+    "export_blockers": []
+  },
+  "application_status": {
+    "applied": false,
+    "public_json_written": false,
+    "db_written": false,
+    "revalidation_needed": false,
+    "note": "Review-only dry-run. No public source-of-truth JSON was modified."
   },
   "target_resolution": {
     "status": "resolved",
     "surface": "topic",
+    "surface_label": "Topic",
     "target_id": "ishigaki-old-city-hall",
     "target_file": "docs/ishigaki_gikai_topics_dev_set/old_city_hall.topic.json",
-    "resolved_by": "explicit_proposal_field"
+    "target_label": "石垣市庁舎跡地活用",
+    "target_title": "石垣市庁舎跡地活用",
+    "resolved_by": "explicit_proposal_field",
+    "resolution_note": "Exact topic target resolved from proposal.export.target and proposal.export.target_slug."
+  },
+  "reviewer_guidance": {
+    "ready_for_editor_review": true,
+    "next_step": "Compare content_preview, approval metadata, and evidence_summary before any manual public JSON editing in a later phase.",
+    "note": "Resolved dry-run artifacts are still review-only and must not be treated as applied public content."
   },
   "would_write": [
     {
@@ -28,7 +49,9 @@
       "target_field": "review_only_not_public_json",
       "content_preview": {
         "surface": "topic",
+        "surface_label": "Topic",
         "target_id": "ishigaki-old-city-hall",
+        "target_label": "石垣市庁舎跡地活用",
         "source_proposal_id": "fixture.r8-dai4.former-cityhall.approved-topic-target.001",
         "proposal_type": "discussion_point",
         "claim_type": "attributed_speech",

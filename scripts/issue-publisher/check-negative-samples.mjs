@@ -204,6 +204,18 @@ function assertDryRunCase(caseConfig) {
   });
   const blockCodes = artifact.blocks.map((entry) => entry.code);
 
+  if (artifact.application_status?.applied !== false) {
+    throw new Error(
+      `${path.basename(caseConfig.proposalPath)} dry-run must remain unapplied`
+    );
+  }
+
+  if (artifact.application_status?.public_json_written !== false) {
+    throw new Error(
+      `${path.basename(caseConfig.proposalPath)} dry-run must not write public JSON`
+    );
+  }
+
   if (artifact.target_resolution.status !== caseConfig.expectedStatus) {
     throw new Error(
       `${path.basename(caseConfig.proposalPath)} dry-run status must be ${caseConfig.expectedStatus}, but got ${artifact.target_resolution.status}`
@@ -220,6 +232,28 @@ function assertDryRunCase(caseConfig) {
     throw new Error(
       `${path.basename(caseConfig.proposalPath)} dry-run target_id must be ${caseConfig.expectedTargetId}, but got ${artifact.target_resolution.target_id}`
     );
+  }
+
+  if (artifact.target_resolution.status === "resolved") {
+    if (!artifact.target_resolution.target_label) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} resolved dry-run must include target_label`
+      );
+    }
+
+    if (artifact.reviewer_guidance?.ready_for_editor_review !== true) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} resolved dry-run must be ready for editor review`
+      );
+    }
+  }
+
+  if (artifact.target_resolution.status === "blocked") {
+    if (artifact.reviewer_guidance?.ready_for_editor_review !== false) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} blocked dry-run must not be ready for editor review`
+      );
+    }
   }
 
   for (const expectedCode of caseConfig.expectedBlockCodes) {

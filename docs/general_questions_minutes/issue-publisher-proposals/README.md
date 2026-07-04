@@ -133,6 +133,9 @@ dry-run artifact を生成できます。
 - target は `proposal.export.target` / `proposal.export.target_slug` の
   exact match でのみ解決します
 - 明示 target がない、または exact resolve できない場合は blocked になります
+- artifact には `approval_state` / `application_status` / `reviewer_guidance`
+  を含め、誰が承認した proposal か、未反映であること、次に reviewer が
+  何を確認すべきかを dry-run 単体で読めるようにします
 - DB / revalidation は不要です
 - public JSON 反映は別フェーズで行います
 
