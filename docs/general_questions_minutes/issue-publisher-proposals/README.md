@@ -124,6 +124,18 @@ import と revalidate を別フェーズで行う運用に従います。
 proposal store と public JSON の乖離を防ぐため、実反映フェーズでは
 `source_proposal_id` や `approval_note` を参照できる形を維持します。
 
+## Dry-run export
+
+approved proposal から public JSON へ直接書く前に、review-only の
+dry-run artifact を生成できます。
+
+- dry-run artifact は人間レビュー用であり、public JSON を変更しません
+- target は `proposal.export.target` / `proposal.export.target_slug` の
+  exact match でのみ解決します
+- 明示 target がない、または exact resolve できない場合は blocked になります
+- DB / revalidation は不要です
+- public JSON 反映は別フェーズで行います
+
 ## Validator responsibilities
 
 現在の validator (`scripts/issue-publisher/validate-proposal-anchors.mjs`) は、
