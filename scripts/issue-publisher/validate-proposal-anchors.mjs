@@ -62,6 +62,12 @@ const EXPORT_TARGETS = new Set([
   "general_question_json",
   "none",
 ]);
+const CANDIDATE_V2_ROLES = new Set([
+  "questioner",
+  "executive",
+  "chair",
+  "unknown",
+]);
 
 function isCliEntry() {
   return path.resolve(process.argv[1] ?? "") === fileURLToPath(import.meta.url);
@@ -77,6 +83,346 @@ function isNonEmptyString(value) {
 
 function isValidDateTimeString(value) {
   return isNonEmptyString(value) && !Number.isNaN(new Date(value).getTime());
+}
+
+function isValidDateString(value) {
+  if (!isNonEmptyString(value)) {
+    return false;
+  }
+
+  const date = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(date.getTime()) && /^\d{4}-\d{2}-\d{2}$/.test(value);
+}
+
+function validateAnchorIdArray(value, fieldPath, errors) {
+  if (!Array.isArray(value) || value.length === 0) {
+    errors.push({
+      code: "INVALID_CANDIDATE_V2_ANCHOR_IDS",
+      message: `${fieldPath} must be a non-empty array of anchor ids`,
+    });
+    return false;
+  }
+
+  if (value.some((entry) => !isNonEmptyString(entry))) {
+    errors.push({
+      code: "INVALID_CANDIDATE_V2_ANCHOR_IDS",
+      message: `${fieldPath} must contain only non-empty string anchor ids`,
+    });
+    return false;
+  }
+
+  return true;
+}
+
+function validateCandidateV2Shape(candidateV2) {
+  const errors = [];
+
+  if (
+    !candidateV2 ||
+    typeof candidateV2 !== "object" ||
+    Array.isArray(candidateV2)
+  ) {
+    return [
+      {
+        code: "INVALID_CANDIDATE_V2_OBJECT",
+        message: "proposal.candidate_v2 must be an object",
+      },
+    ];
+  }
+
+  const sourceScope = candidateV2.source_scope;
+  if (!sourceScope || typeof sourceScope !== "object" || Array.isArray(sourceScope)) {
+    errors.push({
+      code: "INVALID_CANDIDATE_V2_SOURCE_SCOPE",
+      message: "proposal.candidate_v2.source_scope must be an object",
+    });
+  } else {
+    if (!isNonEmptyString(sourceScope.question_slug)) {
+      errors.push({
+        code: "INVALID_CANDIDATE_V2_SOURCE_SCOPE",
+        message:
+          "proposal.candidate_v2.source_scope.question_slug must be a non-empty string",
+      });
+    }
+
+    if (!isValidDateString(sourceScope.question_date)) {
+      errors.push({
+        code: "INVALID_CANDIDATE_V2_SOURCE_SCOPE",
+        message:
+          "proposal.candidate_v2.source_scope.question_date must be a valid YYYY-MM-DD string",
+      });
+    }
+
+    if (!Number.isInteger(sourceScope.item_number) || sourceScope.item_number < 1) {
+      errors.push({
+        code: "INVALID_CANDIDATE_V2_SOURCE_SCOPE",
+        message:
+          "proposal.candidate_v2.source_scope.item_number must be a positive integer",
+      });
+    }
+
+    if (!isNonEmptyString(sourceScope.item_title)) {
+      errors.push({
+        code: "INVALID_CANDIDATE_V2_SOURCE_SCOPE",
+        message:
+          "proposal.candidate_v2.source_scope.item_title must be a non-empty string",
+      });
+    }
+  }
+
+  for (const fieldName of ["question", "city_answer"]) {
+    const entry = candidateV2[fieldName];
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+      errors.push({
+        code: "INVALID_CANDIDATE_V2_PART",
+        message: `proposal.candidate_v2.${fieldName} must be an object`,
+      });
+      continue;
+    }
+
+    if (!isNonEmptyString(entry.summary)) {
+      errors.push({
+        code: "INVALID_CANDIDATE_V2_PART",
+        message: `proposal.candidate_v2.${fieldName}.summary must be a non-empty string`,
+      });
+    }
+
+    validateAnchorIdArray(
+      entry.anchor_ids,
+      `proposal.candidate_v2.${fieldName}.anchor_ids`,
+      errors
+    );
+
+    if (
+      !isNonEmptyString(entry.expected_speaker_role) ||
+      !CANDIDATE_V2_ROLES.has(entry.expected_speaker_role)
+    ) {
+      errors.push({
+        code: "INVALID_CANDIDATE_V2_ROLE",
+        message: `proposal.candidate_v2.${fieldName}.expected_speaker_role must be one of: ${Array.from(
+          CANDIDATE_V2_ROLES
+        ).join(", ")}`,
+      });
+    }
+  }
+
+  if (!Array.isArray(candidateV2.confirmed_facts)) {
+    errors.push({
+      code: "INVALID_CANDIDATE_V2_CONFIRMED_FACTS",
+      message: "proposal.candidate_v2.confirmed_facts must be an array",
+    });
+  } else {
+    for (const [index, entry] of candidateV2.confirmed_facts.entries()) {
+      if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+        errors.push({
+          code: "INVALID_CANDIDATE_V2_CONFIRMED_FACTS",
+          message: `proposal.candidate_v2.confirmed_facts[${index}] must be an object`,
+        });
+        continue;
+      }
+
+      if (!isNonEmptyString(entry.statement)) {
+        errors.push({
+          code: "INVALID_CANDIDATE_V2_CONFIRMED_FACTS",
+          message: `proposal.candidate_v2.confirmed_facts[${index}].statement must be a non-empty string`,
+        });
+      }
+      validateAnchorIdArray(
+        entry.anchor_ids,
+        `proposal.candidate_v2.confirmed_facts[${index}].anchor_ids`,
+        errors
+      );
+      if (!isNonEmptyString(entry.status)) {
+        errors.push({
+          code: "INVALID_CANDIDATE_V2_CONFIRMED_FACTS",
+          message: `proposal.candidate_v2.confirmed_facts[${index}].status must be a non-empty string`,
+        });
+      }
+      if (!isNonEmptyString(entry.public_use)) {
+        errors.push({
+          code: "INVALID_CANDIDATE_V2_CONFIRMED_FACTS",
+          message: `proposal.candidate_v2.confirmed_facts[${index}].public_use must be a non-empty string`,
+        });
+      }
+    }
+  }
+
+  if (!Array.isArray(candidateV2.unresolved_or_not_confirmed)) {
+    errors.push({
+      code: "INVALID_CANDIDATE_V2_UNRESOLVED",
+      message:
+        "proposal.candidate_v2.unresolved_or_not_confirmed must be an array",
+    });
+  } else {
+    for (const [index, entry] of candidateV2.unresolved_or_not_confirmed.entries()) {
+      if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+        errors.push({
+          code: "INVALID_CANDIDATE_V2_UNRESOLVED",
+          message:
+            `proposal.candidate_v2.unresolved_or_not_confirmed[${index}] must be an object`,
+        });
+        continue;
+      }
+
+      if (!isNonEmptyString(entry.statement)) {
+        errors.push({
+          code: "INVALID_CANDIDATE_V2_UNRESOLVED",
+          message:
+            `proposal.candidate_v2.unresolved_or_not_confirmed[${index}].statement must be a non-empty string`,
+        });
+      }
+      if (!isNonEmptyString(entry.reason)) {
+        errors.push({
+          code: "INVALID_CANDIDATE_V2_UNRESOLVED",
+          message:
+            `proposal.candidate_v2.unresolved_or_not_confirmed[${index}].reason must be a non-empty string`,
+        });
+      }
+      if (
+        entry.anchor_ids !== undefined &&
+        (!Array.isArray(entry.anchor_ids) ||
+          entry.anchor_ids.some((value) => !isNonEmptyString(value)))
+      ) {
+        errors.push({
+          code: "INVALID_CANDIDATE_V2_UNRESOLVED",
+          message:
+            `proposal.candidate_v2.unresolved_or_not_confirmed[${index}].anchor_ids must be an array of non-empty strings`,
+        });
+      }
+    }
+  }
+
+  const reflection = candidateV2.recommended_reflection;
+  if (!reflection || typeof reflection !== "object" || Array.isArray(reflection)) {
+    errors.push({
+      code: "INVALID_CANDIDATE_V2_RECOMMENDED_REFLECTION",
+      message: "proposal.candidate_v2.recommended_reflection must be an object",
+    });
+  } else {
+    for (const field of ["surface", "kind", "status_label", "safe_scope"]) {
+      if (!isNonEmptyString(reflection[field])) {
+        errors.push({
+          code: "INVALID_CANDIDATE_V2_RECOMMENDED_REFLECTION",
+          message:
+            `proposal.candidate_v2.recommended_reflection.${field} must be a non-empty string`,
+        });
+      }
+    }
+
+    if (
+      !reflection.target ||
+      typeof reflection.target !== "object" ||
+      Array.isArray(reflection.target)
+    ) {
+      errors.push({
+        code: "INVALID_CANDIDATE_V2_RECOMMENDED_REFLECTION",
+        message:
+          "proposal.candidate_v2.recommended_reflection.target must be an object",
+      });
+    } else {
+      for (const field of ["type", "slug"]) {
+        if (!isNonEmptyString(reflection.target[field])) {
+          errors.push({
+            code: "INVALID_CANDIDATE_V2_RECOMMENDED_REFLECTION",
+            message:
+              `proposal.candidate_v2.recommended_reflection.target.${field} must be a non-empty string`,
+          });
+        }
+      }
+    }
+
+    if (
+      !Array.isArray(reflection.avoid) ||
+      reflection.avoid.some((value) => !isNonEmptyString(value))
+    ) {
+      errors.push({
+        code: "INVALID_CANDIDATE_V2_RECOMMENDED_REFLECTION",
+        message:
+          "proposal.candidate_v2.recommended_reflection.avoid must be an array of non-empty strings",
+      });
+    }
+  }
+
+  return errors;
+}
+
+function collectCandidateV2AnchorChecks(index, candidateV2) {
+  const errors = [];
+  const warnings = [];
+
+  if (!candidateV2 || typeof candidateV2 !== "object" || Array.isArray(candidateV2)) {
+    return { errors, warnings };
+  }
+
+  const anchorGroups = [
+    {
+      fieldPath: "proposal.candidate_v2.question",
+      expectedRole: candidateV2.question?.expected_speaker_role ?? null,
+      anchorIds: candidateV2.question?.anchor_ids ?? [],
+    },
+    {
+      fieldPath: "proposal.candidate_v2.city_answer",
+      expectedRole: candidateV2.city_answer?.expected_speaker_role ?? null,
+      anchorIds: candidateV2.city_answer?.anchor_ids ?? [],
+    },
+  ];
+
+  for (const [indexEntry, entry] of (candidateV2.confirmed_facts ?? []).entries()) {
+    anchorGroups.push({
+      fieldPath: `proposal.candidate_v2.confirmed_facts[${indexEntry}]`,
+      expectedRole: null,
+      anchorIds: entry?.anchor_ids ?? [],
+    });
+  }
+
+  for (const [indexEntry, entry] of (
+    candidateV2.unresolved_or_not_confirmed ?? []
+  ).entries()) {
+    anchorGroups.push({
+      fieldPath: `proposal.candidate_v2.unresolved_or_not_confirmed[${indexEntry}]`,
+      expectedRole: null,
+      anchorIds: entry?.anchor_ids ?? [],
+    });
+  }
+
+  for (const group of anchorGroups) {
+    if (!Array.isArray(group.anchorIds)) {
+      continue;
+    }
+
+    for (const anchorId of group.anchorIds) {
+      if (!isNonEmptyString(anchorId)) {
+        continue;
+      }
+
+      const resolved = resolveAnchor(index, anchorId);
+      if (!resolved.ok) {
+        errors.push({
+          code: "CANDIDATE_V2_ANCHOR_NOT_FOUND",
+          message: `${group.fieldPath}.anchor_ids includes an unresolved anchor: ${anchorId}`,
+        });
+        continue;
+      }
+
+      const actualRole = resolved.utterance?.speaker_role_hint ?? "unknown";
+      if (
+        group.expectedRole &&
+        actualRole !== "unknown" &&
+        actualRole !== group.expectedRole
+      ) {
+        warnings.push({
+          code: "CANDIDATE_V2_ROLE_MISMATCH",
+          message:
+            `${group.fieldPath} expected speaker role ${group.expectedRole} but anchor ${anchorId} resolved to ${actualRole}`,
+          anchor: anchorId,
+          expected_role: group.expectedRole,
+          actual_role: actualRole,
+        });
+      }
+    }
+  }
+
+  return { errors, warnings };
 }
 
 function validateProposalSchemaShape(proposal) {
@@ -447,7 +793,11 @@ function validateProposalSchemaShape(proposal) {
 
 function validateProposalAnchors(index, proposal) {
   const schemaErrors = validateProposalSchemaShape(proposal);
-  const errors = [...schemaErrors];
+  const candidateV2Errors =
+    proposal?.candidate_v2 !== undefined
+      ? validateCandidateV2Shape(proposal.candidate_v2)
+      : [];
+  const errors = [...schemaErrors, ...candidateV2Errors];
   const warnings = [];
   const evidenceResults = [];
 
@@ -514,6 +864,14 @@ function validateProposalAnchors(index, proposal) {
         "Transcript evidence can support attributed_speech but not fact claims by itself",
     });
   }
+
+  const candidateV2AnchorChecks =
+    proposal?.candidate_v2 !== undefined
+      ? collectCandidateV2AnchorChecks(index, proposal.candidate_v2)
+      : { errors: [], warnings: [] };
+
+  errors.push(...candidateV2AnchorChecks.errors);
+  warnings.push(...candidateV2AnchorChecks.warnings);
 
   return {
     ok: errors.length === 0,
