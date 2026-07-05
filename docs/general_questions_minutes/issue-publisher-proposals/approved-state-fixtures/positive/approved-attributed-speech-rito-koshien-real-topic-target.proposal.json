@@ -1,0 +1,59 @@
+{
+  "schema_version": "issue-publisher-proposal.v0",
+  "proposal_id": "fixture.r8-dai4.rito-koshien.real-topic-target.001",
+  "proposal_kind": "fixture",
+  "publication_status": "approved_for_export",
+  "note": "This is a real-issue approved-state dry-run fixture for rito-koshien with an explicit topic target. It is not published content.",
+  "issue_id": "issue-r8d4-rito-koshien",
+  "issue_title": "離島甲子園への出場",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "claim_type": "attributed_speech",
+  "proposal_type": "discussion_point",
+  "public_draft": {
+    "summary_easy": "離島甲子園について、一般質問の答弁では事業の目的や継続の背景、不参加の経緯について説明がありました。",
+    "summary_detailed": "令和8年第4回定例会の一般質問では、離島甲子園について、事業の目的やこれまでの派遣の背景、当初予算への計上が見送られた経緯に関する答弁がありました。これは6月議会答弁の存在を示す review-only dry-run fixture であり、7月の出場決定そのものや事業の最終状態を transcript だけで確定するものではありません."
+  },
+  "evidence": [
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0011",
+      "evidence_role": "primary",
+      "mode": "paraphrase",
+      "note": "Transcript evidence supports that an explanation about the purpose, background, and budget handling of the rito-koshien program was given in response."
+    },
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0009",
+      "evidence_role": "primary",
+      "mode": "paraphrase",
+      "note": "Transcript evidence supports that an explanation about the non-participation background for rito-koshien was given in response."
+    }
+  ],
+  "links": {
+    "related_bill_ids": [],
+    "related_question_slugs": [
+      "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+      "ishigaki-r8-dai4-ippan-nagahama-nobuo"
+    ]
+  },
+  "review": {
+    "status": "approved",
+    "needs_human_review": false,
+    "review_reason": [
+      "real_issue_candidate",
+      "transcript_derived",
+      "attributed_speech_only"
+    ],
+    "reviewer": "issue-publisher-reviewer",
+    "reviewed_at": "2026-07-05T00:00:00+09:00",
+    "approval_note": "Existing public rito-koshien topic already includes July updates. This dry-run fixture is limited to a June council-answer attributed_speech candidate and is not the July participation decision itself. Review-only; no public JSON, DB, or revalidation is performed.",
+    "export_readiness": "ready_for_export",
+    "export_blockers": []
+  },
+  "export": {
+    "target": "topic_json",
+    "target_slug": "rito-koshien-r8-dai4",
+    "source_proposal_id": "fixture.r8-dai4.rito-koshien.real-topic-target.001",
+    "notes": "Dry-run only. Public JSON must not be edited automatically."
+  }
+}
