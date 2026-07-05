@@ -15,9 +15,7 @@ describe("formatUpdateDate", () => {
   });
 
   it("JST midnight ISO offset を前日にずらさず表示する", () => {
-    expect(formatUpdateDate("2026-06-15T00:00:00+09:00")).toBe(
-      "2026年6月15日"
-    );
+    expect(formatUpdateDate("2026-06-15T00:00:00+09:00")).toBe("2026年6月15日");
   });
 
   it("UTC ISO でも JST 基準で表示する", () => {
