@@ -139,6 +139,31 @@ dry-run artifact を生成できます。
 - DB / revalidation は不要です
 - public JSON 反映は別フェーズで行います
 
+## Optional `candidate_v2`
+
+既存 `issue-publisher-proposal.v0` を壊さずに、市側答弁を含む構造化 candidate を
+review-only artifact へ出したい場合は、optional な `candidate_v2` を追加できます。
+
+- `source_scope`
+  - どの一般質問 item を対象にした candidate か
+- `question`
+  - 議員が何を問うたかの summary と anchor
+- `city_answer`
+  - 市側がどう答えたかの summary と anchor
+- `confirmed_facts`
+  - 答弁で確認できる範囲
+- `unresolved_or_not_confirmed`
+  - transcript だけでは確定しない点
+- `recommended_reflection`
+  - 将来の public reflection を検討する際の safe scope
+
+`candidate_v2` は現段階では optional です。既存 fixture / proposal に無くても、
+validator と dry-run export は従来どおり動作します。
+
+Phase 1-A では `candidate_v2` の shape と anchor existence を確認し、
+speaker role mismatch は hard fail にせず、dry-run の
+`anchor_role_summary` で reviewer が確認できるようにします。
+
 ## Validator responsibilities
 
 現在の validator (`scripts/issue-publisher/validate-proposal-anchors.mjs`) は、

@@ -80,7 +80,12 @@
         "question_slug": "ishigaki-r8-dai4-ippan-tomoyose-eizo",
         "line_start": 116,
         "line_end": 134,
-        "source_minutes_file": "2026-06-16/石垣市議会　令和８年６月15日　６月定例会　友寄永三議員　一般質問_minutes.md"
+        "source_minutes_file": "2026-06-16/石垣市議会　令和８年６月15日　６月定例会　友寄永三議員　一般質問_minutes.md",
+        "speaker_hint": "建設部長 下地俊幸",
+        "speaker_role_hint": "executive",
+        "speech_kind": "answer",
+        "item_number_candidate": 2,
+        "item_title_candidate": "旧庁舎跡地開発について"
       },
       {
         "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
@@ -93,7 +98,12 @@
         "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
         "line_start": 72,
         "line_end": 98,
-        "source_minutes_file": "2026-06-16/石垣市議会　令和８年６月１５日　６月定例会　後上里厚司議員　一般質問_minutes.md"
+        "source_minutes_file": "2026-06-16/石垣市議会　令和８年６月１５日　６月定例会　後上里厚司議員　一般質問_minutes.md",
+        "speaker_hint": "建設部長下地俊一",
+        "speaker_role_hint": "executive",
+        "speech_kind": "answer",
+        "item_number_candidate": 3,
+        "item_title_candidate": "旧庁舎跡地利用の現状について"
       }
     ],
     "claims": [
@@ -105,5 +115,31 @@
       }
     ]
   },
+  "anchor_role_summary": {
+    "proposal_evidence": [
+      {
+        "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011",
+        "source_type": "general_question_minutes",
+        "resolved": true,
+        "speaker_role_hint": "executive",
+        "speech_kind": "answer",
+        "question_slug": "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+        "item_number_candidate": 2,
+        "item_title_candidate": "旧庁舎跡地開発について"
+      },
+      {
+        "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+        "source_type": "general_question_minutes",
+        "resolved": true,
+        "speaker_role_hint": "executive",
+        "speech_kind": "answer",
+        "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+        "item_number_candidate": 3,
+        "item_title_candidate": "旧庁舎跡地利用の現状について"
+      }
+    ],
+    "candidate_v2": null
+  },
+  "structured_candidate_v2": null,
   "blocks": []
 }

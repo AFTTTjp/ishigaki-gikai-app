@@ -1,0 +1,125 @@
+{
+  "schema_version": "issue-publisher-proposal.v0",
+  "proposal_id": "fixture.r8-dai4.former-cityhall.real-topic-target.v2.001",
+  "proposal_kind": "fixture",
+  "publication_status": "approved_for_export",
+  "note": "This is a review-only v2 fixture for former-cityhall with structured question and city answer sections. It is not published content.",
+  "issue_id": "issue-r8d4-former-cityhall",
+  "issue_title": "旧庁舎跡地の活用",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "claim_type": "attributed_speech",
+  "proposal_type": "discussion_point",
+  "public_draft": {
+    "summary_easy": "旧庁舎跡地の活用について、一般質問の答弁では進捗や協議の継続状況が説明されました。",
+    "summary_detailed": "令和8年第4回定例会の一般質問では、旧庁舎跡地の活用について、事業の進捗や協議の継続状況、維持管理や優先交渉権者決定の経緯に関する答弁がありました。これは発言の存在を示す review-only dry-run fixture であり、事業の状態そのものを transcript だけで確定するものではありません."
+  },
+  "evidence": [
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011",
+      "evidence_role": "primary",
+      "mode": "paraphrase",
+      "note": "Transcript evidence supports that an explanation about progress and ongoing discussions for the former city hall site was given in response."
+    },
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+      "evidence_role": "primary",
+      "mode": "paraphrase",
+      "note": "Transcript evidence supports that an explanation about site management and the selection background for the negotiation partner was given in response."
+    }
+  ],
+  "links": {
+    "related_bill_ids": [],
+    "related_question_slugs": [
+      "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+      "ishigaki-r8-dai4-ippan-shiuezato-atsushi"
+    ]
+  },
+  "candidate_v2": {
+    "source_scope": {
+      "question_slug": "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+      "question_date": "2026-06-15",
+      "item_number": 2,
+      "item_title": "旧庁舎跡地開発について"
+    },
+    "question": {
+      "summary": "議員は、旧庁舎跡地活用の進捗状況、市民意見の反映、三崎町再開発との関連を質問しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-ippan-tomoyose-eizo#L12-L14"
+      ],
+      "expected_speaker_role": "questioner"
+    },
+    "city_answer": {
+      "summary": "市は、優先交渉権者との協議継続、見直し案提出待ち、市民意見の反映経路、再開発との位置づけを答弁で説明しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011",
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+      ],
+      "expected_speaker_role": "executive"
+    },
+    "confirmed_facts": [
+      {
+        "statement": "優先交渉権者との協議継続や見直し案の提出待ちであることが答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      },
+      {
+        "statement": "跡地維持管理や優先交渉権者決定の経緯が答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      }
+    ],
+    "unresolved_or_not_confirmed": [
+      {
+        "statement": "事業の最終的な実施時期や方針決定までは、この transcript だけで確定しません。",
+        "reason": "answer_is_explanatory_not_final_decision",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011",
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+        ]
+      }
+    ],
+    "recommended_reflection": {
+      "surface": "topic_update",
+      "target": {
+        "type": "topic_json",
+        "slug": "ishigaki-old-city-hall"
+      },
+      "kind": "council",
+      "status_label": "議会で確認",
+      "safe_scope": "city_answer_only",
+      "avoid": [
+        "current_status_overwrite",
+        "related_bill_ids_inference"
+      ]
+    }
+  },
+  "review": {
+    "status": "approved",
+    "needs_human_review": false,
+    "review_reason": [
+      "real_issue_candidate",
+      "transcript_derived",
+      "attributed_speech_only",
+      "candidate_v2_review_only"
+    ],
+    "reviewer": "issue-publisher-reviewer",
+    "reviewed_at": "2026-07-05T00:00:00+09:00",
+    "approval_note": "Real former-cityhall dry-run candidate with optional candidate_v2 structure for question / city answer / confirmed vs unresolved review-only output. Not reflected to public JSON.",
+    "export_readiness": "ready_for_export",
+    "export_blockers": []
+  },
+  "export": {
+    "target": "topic_json",
+    "target_slug": "ishigaki-old-city-hall",
+    "source_proposal_id": "fixture.r8-dai4.former-cityhall.real-topic-target.v2.001",
+    "notes": "Dry-run only. Public JSON must not be edited automatically."
+  }
+}

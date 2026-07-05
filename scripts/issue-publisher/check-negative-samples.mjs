@@ -53,6 +53,10 @@ const POSITIVE_SAMPLE_PATHS = [
     ROOT,
     "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-rito-koshien-real-topic-target.proposal.json"
   ),
+  resolve(
+    ROOT,
+    "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-former-cityhall-real-topic-target-v2.proposal.json"
+  ),
 ];
 
 const NEGATIVE_SAMPLES_DIR = resolve(
@@ -99,6 +103,24 @@ const DRY_RUN_CASES = [
       "docs/ishigaki_gikai_topics_dev_set/rito-koshien-r8-dai4.topic.json",
     expectedTargetLabel: "離島甲子園への出場はどうなる？",
     expectedBlockCodes: [],
+  },
+  {
+    proposalPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-former-cityhall-real-topic-target-v2.proposal.json"
+    ),
+    outputPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-export-dry-runs/approved-attributed-speech-former-cityhall-real-topic-target-v2.dry-run.json"
+    ),
+    expectedStatus: "resolved",
+    expectedSurface: "topic",
+    expectedTargetId: "ishigaki-old-city-hall",
+    expectedTargetFile:
+      "docs/ishigaki_gikai_topics_dev_set/old_city_hall.topic.json",
+    expectedTargetLabel: "石垣市庁舎跡地活用",
+    expectedBlockCodes: [],
+    expectedStructuredCandidateV2: true,
   },
   {
     proposalPath: resolve(
@@ -344,6 +366,20 @@ function assertDryRunCase(caseConfig) {
     if (artifact.reviewer_guidance?.ready_for_editor_review !== false) {
       throw new Error(
         `${path.basename(caseConfig.proposalPath)} blocked dry-run must not be ready for editor review`
+      );
+    }
+  }
+
+  if (caseConfig.expectedStructuredCandidateV2 === true) {
+    if (!artifact.structured_candidate_v2) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} dry-run must include structured_candidate_v2`
+      );
+    }
+
+    if (!artifact.anchor_role_summary?.candidate_v2) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} dry-run must include candidate_v2 anchor_role_summary`
       );
     }
   }

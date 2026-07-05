@@ -80,7 +80,12 @@
         "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
         "line_start": 134,
         "line_end": 152,
-        "source_minutes_file": "2026-06-16/石垣市議会　令和８年６月１５日　６月定例会　後上里厚司議員　一般質問_minutes.md"
+        "source_minutes_file": "2026-06-16/石垣市議会　令和８年６月１５日　６月定例会　後上里厚司議員　一般質問_minutes.md",
+        "speaker_hint": "企画部長 菅沼副",
+        "speaker_role_hint": "executive",
+        "speech_kind": "answer",
+        "item_number_candidate": 7,
+        "item_title_candidate": "離島甲子園について"
       },
       {
         "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0009",
@@ -93,7 +98,12 @@
         "question_slug": "ishigaki-r8-dai4-ippan-nagahama-nobuo",
         "line_start": 126,
         "line_end": 135,
-        "source_minutes_file": "2026-06-25/石垣市議会　令和８年６月２２日　６月定例会　長浜信夫議員　一般質問_minutes.md"
+        "source_minutes_file": "2026-06-25/石垣市議会　令和８年６月２２日　６月定例会　長浜信夫議員　一般質問_minutes.md",
+        "speaker_hint": "市民保健部長 富浜",
+        "speaker_role_hint": "executive",
+        "speech_kind": "answer",
+        "item_number_candidate": 3,
+        "item_title_candidate": "離島甲子園大会出場について"
       }
     ],
     "claims": [
@@ -105,5 +115,31 @@
       }
     ]
   },
+  "anchor_role_summary": {
+    "proposal_evidence": [
+      {
+        "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0011",
+        "source_type": "general_question_minutes",
+        "resolved": true,
+        "speaker_role_hint": "executive",
+        "speech_kind": "answer",
+        "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+        "item_number_candidate": 7,
+        "item_title_candidate": "離島甲子園について"
+      },
+      {
+        "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0009",
+        "source_type": "general_question_minutes",
+        "resolved": true,
+        "speaker_role_hint": "executive",
+        "speech_kind": "answer",
+        "question_slug": "ishigaki-r8-dai4-ippan-nagahama-nobuo",
+        "item_number_candidate": 3,
+        "item_title_candidate": "離島甲子園大会出場について"
+      }
+    ],
+    "candidate_v2": null
+  },
+  "structured_candidate_v2": null,
   "blocks": []
 }

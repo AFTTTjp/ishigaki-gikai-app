@@ -152,6 +152,98 @@ function createBlockedResolution({
   };
 }
 
+function summarizeRole(role) {
+  return role ?? "unknown";
+}
+
+function buildAnchorRoleSummary(index, proposal) {
+  const summary = {
+    proposal_evidence: [],
+    candidate_v2: null,
+  };
+
+  for (const entry of proposal.evidence ?? []) {
+    const resolved = resolveAnchor(index, entry.anchor);
+    summary.proposal_evidence.push({
+      anchor: entry.anchor,
+      source_type: entry.source_type,
+      resolved: resolved.ok,
+      speaker_role_hint: resolved.ok
+        ? summarizeRole(resolved.utterance.speaker_role_hint)
+        : null,
+      speech_kind: resolved.ok ? resolved.utterance.speech_kind ?? null : null,
+      question_slug: resolved.ok ? resolved.utterance.question_slug ?? null : null,
+      item_number_candidate: resolved.ok
+        ? resolved.utterance.item_number_candidate ?? null
+        : null,
+      item_title_candidate: resolved.ok
+        ? resolved.utterance.item_title_candidate ?? null
+        : null,
+    });
+  }
+
+  if (!proposal.candidate_v2) {
+    return summary;
+  }
+
+  function summarizeGroup(anchorIds, expectedRole) {
+    const anchors = [];
+
+    for (const anchorId of anchorIds ?? []) {
+      const resolved = resolveAnchor(index, anchorId);
+      anchors.push({
+        anchor: anchorId,
+        resolved: resolved.ok,
+        expected_speaker_role: expectedRole,
+        actual_speaker_role: resolved.ok
+          ? summarizeRole(resolved.utterance.speaker_role_hint)
+          : null,
+        speech_kind: resolved.ok ? resolved.utterance.speech_kind ?? null : null,
+        question_slug: resolved.ok ? resolved.utterance.question_slug ?? null : null,
+        item_number_candidate: resolved.ok
+          ? resolved.utterance.item_number_candidate ?? null
+          : null,
+        item_title_candidate: resolved.ok
+          ? resolved.utterance.item_title_candidate ?? null
+          : null,
+        role_match:
+          resolved.ok &&
+          resolved.utterance.speaker_role_hint !== "unknown" &&
+          expectedRole
+            ? resolved.utterance.speaker_role_hint === expectedRole
+            : null,
+      });
+    }
+
+    return anchors;
+  }
+
+  summary.candidate_v2 = {
+    source_scope: proposal.candidate_v2.source_scope,
+    question: summarizeGroup(
+      proposal.candidate_v2.question?.anchor_ids,
+      proposal.candidate_v2.question?.expected_speaker_role ?? null
+    ),
+    city_answer: summarizeGroup(
+      proposal.candidate_v2.city_answer?.anchor_ids,
+      proposal.candidate_v2.city_answer?.expected_speaker_role ?? null
+    ),
+    confirmed_facts: (proposal.candidate_v2.confirmed_facts ?? []).map((entry) => ({
+      statement: entry.statement,
+      anchors: summarizeGroup(entry.anchor_ids, null),
+    })),
+    unresolved_or_not_confirmed: (
+      proposal.candidate_v2.unresolved_or_not_confirmed ?? []
+    ).map((entry) => ({
+      statement: entry.statement,
+      reason: entry.reason,
+      anchors: summarizeGroup(entry.anchor_ids ?? [], null),
+    })),
+  };
+
+  return summary;
+}
+
 function resolveTarget(proposal) {
   const blocks = [];
   const exportTarget = proposal.export?.target;
@@ -383,6 +475,11 @@ function buildEvidenceSummary(index, proposal) {
       line_start: resolved.source_locator.line_start,
       line_end: resolved.source_locator.line_end,
       source_minutes_file: resolved.source_locator.source_minutes_file,
+      speaker_hint: resolved.utterance.speaker_hint ?? null,
+      speaker_role_hint: resolved.utterance.speaker_role_hint ?? null,
+      speech_kind: resolved.utterance.speech_kind ?? null,
+      item_number_candidate: resolved.utterance.item_number_candidate ?? null,
+      item_title_candidate: resolved.utterance.item_title_candidate ?? null,
     });
   }
 
@@ -397,6 +494,14 @@ function buildEvidenceSummary(index, proposal) {
       },
     ],
   };
+}
+
+function buildStructuredCandidateV2(proposal) {
+  if (!proposal.candidate_v2) {
+    return null;
+  }
+
+  return proposal.candidate_v2;
 }
 
 function buildApprovalState(proposal) {
@@ -484,6 +589,8 @@ function buildDryRunArtifact(proposalPath, proposal, index) {
     ),
     would_write: buildWouldWrite(proposal, resolution.targetResolution),
     evidence_summary: buildEvidenceSummary(index, proposal),
+    anchor_role_summary: buildAnchorRoleSummary(index, proposal),
+    structured_candidate_v2: buildStructuredCandidateV2(proposal),
     blocks: resolution.blocks,
   };
 }
