@@ -3,8 +3,7 @@ import { formatUpdateDate } from "./format-update-date";
 
 describe("formatUpdateDate", () => {
   it("ISO日時文字列を日本語日付に変換する", () => {
-    const result = formatUpdateDate("2026-04-15T00:00:00.000Z");
-    expect(result).toMatch(/^2026年\d{1,2}月\d{1,2}日$/);
+    expect(formatUpdateDate("2026-04-15T00:00:00.000Z")).toBe("2026年4月15日");
   });
 
   it("無効な日付はそのまま返す", () => {
@@ -15,10 +14,11 @@ describe("formatUpdateDate", () => {
     expect(formatUpdateDate("not-a-date-string")).toBe("not-a-date-string");
   });
 
-  it("年・月・日を含む形式で返す", () => {
-    const result = formatUpdateDate("2026-01-05T00:00:00.000Z");
-    expect(result).toContain("2026年");
-    expect(result).toContain("月");
-    expect(result).toContain("日");
+  it("JST midnight ISO offset を前日にずらさず表示する", () => {
+    expect(formatUpdateDate("2026-06-15T00:00:00+09:00")).toBe("2026年6月15日");
+  });
+
+  it("UTC ISO でも JST 基準で表示する", () => {
+    expect(formatUpdateDate("2026-06-14T15:00:00.000Z")).toBe("2026年6月15日");
   });
 });
