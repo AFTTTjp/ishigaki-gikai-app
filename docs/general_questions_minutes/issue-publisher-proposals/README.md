@@ -164,6 +164,11 @@ Phase 1-A では `candidate_v2` の shape と anchor existence を確認し、
 speaker role mismatch は hard fail にせず、dry-run の
 `anchor_role_summary` で reviewer が確認できるようにします。
 
+Phase 1-B では、`candidate_v2.question` の anchor が resolve しても
+speaker role が `unknown` の場合、dry-run artifact の
+`candidate_v2_review_warnings` に reviewer 向け warning を出します。
+これは hard fail ではなく review attention list です。
+
 ## Validator responsibilities
 
 現在の validator (`scripts/issue-publisher/validate-proposal-anchors.mjs`) は、

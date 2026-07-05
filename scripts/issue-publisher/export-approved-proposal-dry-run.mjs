@@ -551,6 +551,40 @@ function buildReviewerGuidance(targetResolution, blocks) {
   };
 }
 
+function buildCandidateV2ReviewWarnings(validationWarnings) {
+  const warnings = [];
+
+  for (const entry of validationWarnings ?? []) {
+    if (entry?.code === "CANDIDATE_V2_QUESTION_ROLE_UNRESOLVED") {
+      warnings.push({
+        code: entry.code,
+        severity: "warning",
+        field_path: entry.field_path ?? "proposal.candidate_v2.question",
+        summary:
+          "Question anchor resolved, but speaker role could not be confirmed as questioner.",
+        anchors: entry.anchor ? [entry.anchor] : [],
+        reviewer_action:
+          "Confirm whether this anchor is acceptable as the question-side reference before public reflection.",
+      });
+      continue;
+    }
+
+    if (entry?.code === "CANDIDATE_V2_ROLE_MISMATCH") {
+      warnings.push({
+        code: entry.code,
+        severity: "warning",
+        field_path: entry.field_path ?? "proposal.candidate_v2",
+        summary: `Anchor role resolved to ${entry.actual_role ?? "unknown"} instead of expected ${entry.expected_role ?? "unknown"}.`,
+        anchors: entry.anchor ? [entry.anchor] : [],
+        reviewer_action:
+          "Confirm whether this anchor is assigned to the correct question or answer section before public reflection.",
+      });
+    }
+  }
+
+  return warnings;
+}
+
 function buildDryRunArtifact(proposalPath, proposal, index) {
   const validationResult = validateProposalAnchors(index, proposal);
   if (!validationResult.ok) {
@@ -586,6 +620,9 @@ function buildDryRunArtifact(proposalPath, proposal, index) {
     reviewer_guidance: buildReviewerGuidance(
       resolution.targetResolution,
       resolution.blocks
+    ),
+    candidate_v2_review_warnings: buildCandidateV2ReviewWarnings(
+      validationResult.warnings
     ),
     would_write: buildWouldWrite(proposal, resolution.targetResolution),
     evidence_summary: buildEvidenceSummary(index, proposal),

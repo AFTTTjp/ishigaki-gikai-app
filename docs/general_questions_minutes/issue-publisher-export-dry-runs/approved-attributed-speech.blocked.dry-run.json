@@ -42,6 +42,7 @@
     "next_step": "Set proposal.export.target and an exact proposal.export.target_slug before rerunning the dry-run export.",
     "note": "Blocked dry-run artifacts stop before any public write and should remain unapplied until all blockers are resolved."
   },
+  "candidate_v2_review_warnings": [],
   "would_write": [],
   "evidence_summary": {
     "anchors": [
