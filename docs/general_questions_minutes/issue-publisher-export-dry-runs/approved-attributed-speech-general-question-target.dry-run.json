@@ -42,6 +42,7 @@
     "next_step": "Compare content_preview, approval metadata, and evidence_summary before any manual public JSON editing in a later phase.",
     "note": "Resolved dry-run artifacts are still review-only and must not be treated as applied public content."
   },
+  "candidate_v2_review_warnings": [],
   "would_write": [
     {
       "operation": "review_candidate_only",

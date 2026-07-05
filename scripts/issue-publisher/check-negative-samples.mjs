@@ -121,6 +121,9 @@ const DRY_RUN_CASES = [
     expectedTargetLabel: "石垣市庁舎跡地活用",
     expectedBlockCodes: [],
     expectedStructuredCandidateV2: true,
+    expectedCandidateV2WarningCodes: [
+      "CANDIDATE_V2_QUESTION_ROLE_UNRESOLVED",
+    ],
   },
   {
     proposalPath: resolve(
@@ -380,6 +383,17 @@ function assertDryRunCase(caseConfig) {
     if (!artifact.anchor_role_summary?.candidate_v2) {
       throw new Error(
         `${path.basename(caseConfig.proposalPath)} dry-run must include candidate_v2 anchor_role_summary`
+      );
+    }
+  }
+
+  for (const expectedWarningCode of caseConfig.expectedCandidateV2WarningCodes ?? []) {
+    const warningCodes = (artifact.candidate_v2_review_warnings ?? []).map(
+      (entry) => entry.code
+    );
+    if (warningCodes.indexOf(expectedWarningCode) === -1) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} dry-run must include candidate_v2 review warning ${expectedWarningCode}, but got: ${warningCodes.join(", ")}`
       );
     }
   }

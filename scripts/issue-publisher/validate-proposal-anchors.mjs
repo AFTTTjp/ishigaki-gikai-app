@@ -406,6 +406,23 @@ function collectCandidateV2AnchorChecks(index, candidateV2) {
 
       const actualRole = resolved.utterance?.speaker_role_hint ?? "unknown";
       if (
+        group.fieldPath === "proposal.candidate_v2.question" &&
+        group.expectedRole &&
+        actualRole === "unknown"
+      ) {
+        warnings.push({
+          code: "CANDIDATE_V2_QUESTION_ROLE_UNRESOLVED",
+          message:
+            `${group.fieldPath} expected speaker role ${group.expectedRole} but anchor ${anchorId} resolved with unknown speaker role`,
+          anchor: anchorId,
+          field_path: group.fieldPath,
+          expected_role: group.expectedRole,
+          actual_role: actualRole,
+        });
+        continue;
+      }
+
+      if (
         group.expectedRole &&
         actualRole !== "unknown" &&
         actualRole !== group.expectedRole
@@ -415,6 +432,7 @@ function collectCandidateV2AnchorChecks(index, candidateV2) {
           message:
             `${group.fieldPath} expected speaker role ${group.expectedRole} but anchor ${anchorId} resolved to ${actualRole}`,
           anchor: anchorId,
+          field_path: group.fieldPath,
           expected_role: group.expectedRole,
           actual_role: actualRole,
         });

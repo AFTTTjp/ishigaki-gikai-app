@@ -42,6 +42,18 @@
     "next_step": "Compare content_preview, approval metadata, and evidence_summary before any manual public JSON editing in a later phase.",
     "note": "Resolved dry-run artifacts are still review-only and must not be treated as applied public content."
   },
+  "candidate_v2_review_warnings": [
+    {
+      "code": "CANDIDATE_V2_QUESTION_ROLE_UNRESOLVED",
+      "severity": "warning",
+      "field_path": "proposal.candidate_v2.question",
+      "summary": "Question anchor resolved, but speaker role could not be confirmed as questioner.",
+      "anchors": [
+        "ishigaki-r8-dai4-ippan-tomoyose-eizo#L12-L14"
+      ],
+      "reviewer_action": "Confirm whether this anchor is acceptable as the question-side reference before public reflection."
+    }
+  ],
   "would_write": [
     {
       "operation": "review_candidate_only",
