@@ -30,6 +30,10 @@ function loadJson(filePath) {
   return JSON.parse(readFileSync(filePath, "utf8"));
 }
 
+function isNonEmptyString(value) {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
 function toRepoRelative(filePath) {
   return relative(ROOT, filePath).replaceAll(path.sep, "/");
 }
@@ -727,6 +731,217 @@ function buildCandidateV2ReflectionContext(proposal, anchorRoleSummary, warnings
   return context;
 }
 
+const CANDIDATE_V2_GATE_NOTES = [
+  "Review-only gate. Does not imply public JSON is updated.",
+  "This gate does not authorize DB import or revalidation.",
+];
+
+const CANDIDATE_V2_GATE_ALLOWED_INPUTS = [
+  "city_answer",
+  "confirmed_facts",
+  "recommended_reflection",
+];
+
+const CANDIDATE_V2_GATE_DISALLOWED_INPUTS = [
+  "question",
+  "unresolved_or_not_confirmed",
+  "public_draft.summary_detailed",
+];
+
+function createCandidateV2ReflectionGate(decision, reasons, safeToGenerate) {
+  return {
+    decision,
+    reasons,
+    safe_to_generate_topic_update: safeToGenerate,
+    allowed_inputs: safeToGenerate ? CANDIDATE_V2_GATE_ALLOWED_INPUTS : [],
+    disallowed_inputs: CANDIDATE_V2_GATE_DISALLOWED_INPUTS,
+    notes: CANDIDATE_V2_GATE_NOTES,
+  };
+}
+
+function includesAll(items, expectedValues) {
+  const values = new Set(items ?? []);
+  return expectedValues.every((value) => values.has(value));
+}
+
+function buildCandidateV2ReflectionGate(
+  proposal,
+  targetResolution,
+  context,
+  warnings
+) {
+  if (!proposal.candidate_v2) {
+    return null;
+  }
+
+  const warningCodes = (warnings ?? []).map((entry) => entry.code);
+
+  if (targetResolution.status !== "resolved") {
+    return createCandidateV2ReflectionGate("blocked", ["TARGET_NOT_RESOLVED"], false);
+  }
+
+  if (!context) {
+    return createCandidateV2ReflectionGate(
+      "blocked",
+      ["CANDIDATE_V2_CONTEXT_MISSING"],
+      false
+    );
+  }
+
+  const recommendedReflection = context.recommended_reflection;
+  const questionRoleStatus = context.question?.role_observation?.role_status ?? null;
+  const cityAnswerRoleStatus =
+    context.city_answer?.role_observation?.role_status ?? null;
+  const confirmedFacts = Array.isArray(context.confirmed_facts)
+    ? context.confirmed_facts
+    : [];
+  const reviewNoteWarnings = (context.review_notes ?? [])
+    .filter((entry) => entry?.severity === "warning")
+    .map((entry) => entry.code);
+  const avoid = Array.isArray(recommendedReflection?.avoid)
+    ? recommendedReflection.avoid
+    : [];
+
+  const confirmedFactsHaveUnresolvedAnchors = confirmedFacts.some((entry) => {
+    const observation = entry.anchor_observation ?? {};
+    return (
+      entry.anchor_count < 1 ||
+      observation.unresolved_anchor_count > 0 ||
+      observation.resolved_anchor_count !== entry.anchor_count
+    );
+  });
+
+  if (
+    recommendedReflection?.surface === "topic_update" &&
+    confirmedFacts.length === 0
+  ) {
+    return createCandidateV2ReflectionGate(
+      "blocked",
+      ["NO_CONFIRMED_FACTS_FOR_TOPIC_UPDATE"],
+      false
+    );
+  }
+
+  if (cityAnswerRoleStatus === "mismatch") {
+    return createCandidateV2ReflectionGate(
+      "blocked",
+      ["CITY_ANSWER_ROLE_MISMATCH"],
+      false
+    );
+  }
+
+  if (confirmedFactsHaveUnresolvedAnchors) {
+    return createCandidateV2ReflectionGate(
+      "blocked",
+      ["CONFIRMED_FACTS_HAVE_UNRESOLVED_ANCHORS"],
+      false
+    );
+  }
+
+  if (!recommendedReflection?.safe_scope) {
+    return createCandidateV2ReflectionGate("blocked", ["MISSING_SAFE_SCOPE"], false);
+  }
+
+  if (
+    isNonEmptyString(recommendedReflection?.target?.slug) &&
+    isNonEmptyString(targetResolution.target_id) &&
+    recommendedReflection.target.slug !== targetResolution.target_id
+  ) {
+    return createCandidateV2ReflectionGate(
+      "blocked",
+      ["RECOMMENDED_TARGET_MISMATCH"],
+      false
+    );
+  }
+
+  const autoReadyConditions = [
+    proposal.publication_status === "approved_for_export",
+    targetResolution.status === "resolved",
+    recommendedReflection?.surface === "topic_update",
+    recommendedReflection?.safe_scope === "city_answer_only",
+    questionRoleStatus === "confirmed",
+    cityAnswerRoleStatus === "confirmed",
+    confirmedFacts.length > 0,
+    warningCodes.length === 0,
+    reviewNoteWarnings.length === 0,
+    includesAll(avoid, [
+      "current_status_overwrite",
+      "related_bill_ids_inference",
+    ]),
+    confirmedFacts.every(
+      (entry) => entry.public_use === "topic_update_candidate"
+    ),
+  ];
+
+  if (autoReadyConditions.every(Boolean)) {
+    return createCandidateV2ReflectionGate(
+      "auto_ready",
+      [
+        "APPROVED_FOR_EXPORT",
+        "TARGET_RESOLVED",
+        "QUESTION_ROLE_CONFIRMED",
+        "CITY_ANSWER_ROLE_CONFIRMED",
+        "CONFIRMED_FACTS_PRESENT",
+        "SAFE_SCOPE_CITY_ANSWER_ONLY",
+        "NO_CANDIDATE_V2_WARNINGS",
+      ],
+      true
+    );
+  }
+
+  const reasons = [];
+
+  if (warningCodes.includes("CANDIDATE_V2_QUESTION_ROLE_UNRESOLVED")) {
+    reasons.push("QUESTION_ROLE_UNRESOLVED");
+  }
+
+  if (warningCodes.includes("CANDIDATE_V2_ROLE_MISMATCH")) {
+    reasons.push("CANDIDATE_V2_ROLE_MISMATCH");
+  }
+
+  if (questionRoleStatus !== "confirmed") {
+    reasons.push("QUESTION_ROLE_REVIEW_REQUIRED");
+  }
+
+  if (cityAnswerRoleStatus === "confirmed") {
+    reasons.push("CITY_ANSWER_ROLE_CONFIRMED_ONLY");
+  }
+
+  if (recommendedReflection?.surface !== "topic_update") {
+    reasons.push("RECOMMENDED_SURFACE_NOT_TOPIC_UPDATE");
+  }
+
+  if (recommendedReflection?.safe_scope !== "city_answer_only") {
+    reasons.push("SAFE_SCOPE_NOT_CITY_ANSWER_ONLY");
+  }
+
+  if (
+    context.question?.role_observation?.actual_speaker_roles?.includes("unknown") ||
+    context.city_answer?.role_observation?.actual_speaker_roles?.includes("unknown")
+  ) {
+    reasons.push("SPEAKER_METADATA_REVIEW_REQUIRED");
+  }
+
+  if (confirmedFacts.length > 0) {
+    reasons.push("CONFIRMED_FACTS_REQUIRE_EDITORIAL_REVIEW");
+  }
+
+  if (
+    !includesAll(avoid, [
+      "current_status_overwrite",
+      "related_bill_ids_inference",
+    ])
+  ) {
+    reasons.push("MISSING_RECOMMENDED_AVOID_GUARDS");
+  }
+
+  return createCandidateV2ReflectionGate(
+    "review_required",
+    uniqueNonNull(reasons),
+    false
+  );
+}
+
 function buildDryRunArtifact(proposalPath, proposal, index) {
   const validationResult = validateProposalAnchors(index, proposal);
   if (!validationResult.ok) {
@@ -750,6 +965,11 @@ function buildDryRunArtifact(proposalPath, proposal, index) {
     validationResult.warnings
   );
   const anchorRoleSummary = buildAnchorRoleSummary(index, proposal);
+  const candidateV2ReflectionContext = buildCandidateV2ReflectionContext(
+    proposal,
+    anchorRoleSummary,
+    candidateV2ReviewWarnings
+  );
   return {
     schema_version: "issue-publisher-export-dry-run.v1",
     dry_run: true,
@@ -772,9 +992,11 @@ function buildDryRunArtifact(proposalPath, proposal, index) {
     evidence_summary: buildEvidenceSummary(index, proposal),
     anchor_role_summary: anchorRoleSummary,
     structured_candidate_v2: buildStructuredCandidateV2(proposal),
-    candidate_v2_reflection_context: buildCandidateV2ReflectionContext(
+    candidate_v2_reflection_context: candidateV2ReflectionContext,
+    candidate_v2_reflection_gate: buildCandidateV2ReflectionGate(
       proposal,
-      anchorRoleSummary,
+      resolution.targetResolution,
+      candidateV2ReflectionContext,
       candidateV2ReviewWarnings
     ),
     blocks: resolution.blocks,

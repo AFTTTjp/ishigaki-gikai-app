@@ -132,6 +132,17 @@ const DRY_RUN_CASES = [
         "CITY_ANSWER_ROLE_CONFIRMED",
       ],
     },
+    expectedCandidateV2ReflectionGate: {
+      decision: "review_required",
+      safeToGenerateTopicUpdate: false,
+      reasonCodes: [
+        "QUESTION_ROLE_UNRESOLVED",
+        "QUESTION_ROLE_REVIEW_REQUIRED",
+        "CITY_ANSWER_ROLE_CONFIRMED_ONLY",
+        "SPEAKER_METADATA_REVIEW_REQUIRED",
+        "CONFIRMED_FACTS_REQUIRE_EDITORIAL_REVIEW",
+      ],
+    },
   },
   {
     proposalPath: resolve(
@@ -399,6 +410,16 @@ function assertDryRunCase(caseConfig) {
         `${path.basename(caseConfig.proposalPath)} dry-run must include candidate_v2_reflection_context`
       );
     }
+
+    if (!artifact.candidate_v2_reflection_gate) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} dry-run must include candidate_v2_reflection_gate`
+      );
+    }
+  } else if (artifact.candidate_v2_reflection_gate !== null) {
+    throw new Error(
+      `${path.basename(caseConfig.proposalPath)} non-v2 dry-run must keep candidate_v2_reflection_gate as null`
+    );
   } else if (artifact.candidate_v2_reflection_context !== null) {
     throw new Error(
       `${path.basename(caseConfig.proposalPath)} non-v2 dry-run must keep candidate_v2_reflection_context as null`
@@ -443,6 +464,34 @@ function assertDryRunCase(caseConfig) {
       if (!noteCodes.includes(expectedCode)) {
         throw new Error(
           `${path.basename(caseConfig.proposalPath)} dry-run must include candidate_v2 reflection note ${expectedCode}, but got: ${noteCodes.join(", ")}`
+        );
+      }
+    }
+  }
+
+  if (caseConfig.expectedCandidateV2ReflectionGate) {
+    const gate = artifact.candidate_v2_reflection_gate;
+
+    if (gate.decision !== caseConfig.expectedCandidateV2ReflectionGate.decision) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} dry-run candidate_v2 reflection gate decision must be ${caseConfig.expectedCandidateV2ReflectionGate.decision}, but got ${gate.decision}`
+      );
+    }
+
+    if (
+      gate.safe_to_generate_topic_update !==
+      caseConfig.expectedCandidateV2ReflectionGate.safeToGenerateTopicUpdate
+    ) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} dry-run candidate_v2 reflection gate safe_to_generate_topic_update must be ${caseConfig.expectedCandidateV2ReflectionGate.safeToGenerateTopicUpdate}, but got ${gate.safe_to_generate_topic_update}`
+      );
+    }
+
+    for (const expectedCode of caseConfig.expectedCandidateV2ReflectionGate
+      .reasonCodes ?? []) {
+      if (!(gate.reasons ?? []).includes(expectedCode)) {
+        throw new Error(
+          `${path.basename(caseConfig.proposalPath)} dry-run must include candidate_v2 reflection gate reason ${expectedCode}, but got: ${(gate.reasons ?? []).join(", ")}`
         );
       }
     }
