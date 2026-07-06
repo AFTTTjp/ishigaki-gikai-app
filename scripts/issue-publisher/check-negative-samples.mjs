@@ -124,6 +124,14 @@ const DRY_RUN_CASES = [
     expectedCandidateV2WarningCodes: [
       "CANDIDATE_V2_QUESTION_ROLE_UNRESOLVED",
     ],
+    expectedCandidateV2ReflectionContext: {
+      questionRoleStatus: "unresolved",
+      cityAnswerRoleStatus: "confirmed",
+      reviewNoteCodes: [
+        "QUESTION_ROLE_UNRESOLVED",
+        "CITY_ANSWER_ROLE_CONFIRMED",
+      ],
+    },
   },
   {
     proposalPath: resolve(
@@ -385,6 +393,16 @@ function assertDryRunCase(caseConfig) {
         `${path.basename(caseConfig.proposalPath)} dry-run must include candidate_v2 anchor_role_summary`
       );
     }
+
+    if (!artifact.candidate_v2_reflection_context) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} dry-run must include candidate_v2_reflection_context`
+      );
+    }
+  } else if (artifact.candidate_v2_reflection_context !== null) {
+    throw new Error(
+      `${path.basename(caseConfig.proposalPath)} non-v2 dry-run must keep candidate_v2_reflection_context as null`
+    );
   }
 
   for (const expectedWarningCode of caseConfig.expectedCandidateV2WarningCodes ?? []) {
@@ -395,6 +413,38 @@ function assertDryRunCase(caseConfig) {
       throw new Error(
         `${path.basename(caseConfig.proposalPath)} dry-run must include candidate_v2 review warning ${expectedWarningCode}, but got: ${warningCodes.join(", ")}`
       );
+    }
+  }
+
+  if (caseConfig.expectedCandidateV2ReflectionContext) {
+    const context = artifact.candidate_v2_reflection_context;
+    const noteCodes = (context.review_notes ?? []).map((entry) => entry.code);
+
+    if (
+      context.question?.role_observation?.role_status !==
+      caseConfig.expectedCandidateV2ReflectionContext.questionRoleStatus
+    ) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} dry-run question role status must be ${caseConfig.expectedCandidateV2ReflectionContext.questionRoleStatus}, but got ${context.question?.role_observation?.role_status}`
+      );
+    }
+
+    if (
+      context.city_answer?.role_observation?.role_status !==
+      caseConfig.expectedCandidateV2ReflectionContext.cityAnswerRoleStatus
+    ) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} dry-run city_answer role status must be ${caseConfig.expectedCandidateV2ReflectionContext.cityAnswerRoleStatus}, but got ${context.city_answer?.role_observation?.role_status}`
+      );
+    }
+
+    for (const expectedCode of caseConfig.expectedCandidateV2ReflectionContext
+      .reviewNoteCodes ?? []) {
+      if (!noteCodes.includes(expectedCode)) {
+        throw new Error(
+          `${path.basename(caseConfig.proposalPath)} dry-run must include candidate_v2 reflection note ${expectedCode}, but got: ${noteCodes.join(", ")}`
+        );
+      }
     }
   }
 

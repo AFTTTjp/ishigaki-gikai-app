@@ -585,6 +585,148 @@ function buildCandidateV2ReviewWarnings(validationWarnings) {
   return warnings;
 }
 
+function uniqueNonNull(values) {
+  return Array.from(
+    new Set(
+      (values ?? []).filter(
+        (value) => value !== null && value !== undefined && value !== ""
+      )
+    )
+  );
+}
+
+function buildRoleObservation(anchors, expectedRole = null) {
+  const anchorList = Array.isArray(anchors) ? anchors : [];
+  const resolvedAnchors = anchorList.filter((entry) => entry?.resolved === true);
+  const actualRoles = uniqueNonNull(
+    resolvedAnchors.map((entry) => entry.actual_speaker_role)
+  );
+  const speechKinds = uniqueNonNull(
+    resolvedAnchors.map((entry) => entry.speech_kind)
+  );
+
+  let roleStatus = null;
+  if (expectedRole) {
+    if (anchorList.some((entry) => entry?.role_match === false)) {
+      roleStatus = "mismatch";
+    } else if (
+      resolvedAnchors.some((entry) => entry.actual_speaker_role === "unknown")
+    ) {
+      roleStatus = "unresolved";
+    } else if (
+      resolvedAnchors.length > 0 &&
+      resolvedAnchors.every((entry) => entry.role_match === true)
+    ) {
+      roleStatus = "confirmed";
+    } else if (anchorList.length === 0) {
+      roleStatus = "no_anchors";
+    } else {
+      roleStatus = "review_needed";
+    }
+  }
+
+  return {
+    resolved_anchor_count: resolvedAnchors.length,
+    unresolved_anchor_count: anchorList.length - resolvedAnchors.length,
+    actual_speaker_roles: actualRoles,
+    speech_kinds: speechKinds,
+    role_status: roleStatus,
+  };
+}
+
+function summarizeCandidateV2Entry(entry, anchors, expectedRole = null) {
+  return {
+    summary: entry?.summary ?? null,
+    anchor_ids: Array.isArray(entry?.anchor_ids) ? entry.anchor_ids : [],
+    anchor_count: Array.isArray(entry?.anchor_ids) ? entry.anchor_ids.length : 0,
+    expected_speaker_role: expectedRole,
+    role_observation: buildRoleObservation(anchors, expectedRole),
+  };
+}
+
+function summarizeCandidateV2EvidenceItem(entry, anchors) {
+  return {
+    statement: entry?.statement ?? null,
+    status: entry?.status ?? null,
+    public_use: entry?.public_use ?? null,
+    reason: entry?.reason ?? null,
+    anchor_ids: Array.isArray(entry?.anchor_ids) ? entry.anchor_ids : [],
+    anchor_count: Array.isArray(entry?.anchor_ids) ? entry.anchor_ids.length : 0,
+    anchor_observation: buildRoleObservation(anchors, null),
+  };
+}
+
+function buildCandidateV2ReflectionNotes(context, warnings) {
+  if (!context) {
+    return [];
+  }
+
+  const notes = [];
+
+  if (warnings.some((entry) => entry?.code === "CANDIDATE_V2_QUESTION_ROLE_UNRESOLVED")) {
+    notes.push({
+      code: "QUESTION_ROLE_UNRESOLVED",
+      severity: "warning",
+      summary:
+        "Question-side anchor is present, but reviewer should confirm that it is acceptable as the question reference because speaker role metadata is unresolved.",
+      related_warning_codes: ["CANDIDATE_V2_QUESTION_ROLE_UNRESOLVED"],
+    });
+  }
+
+  if (context.city_answer?.role_observation?.role_status === "confirmed") {
+    notes.push({
+      code: "CITY_ANSWER_ROLE_CONFIRMED",
+      severity: "info",
+      summary:
+        "City answer anchors resolved as executive answer utterances in the current utterance metadata.",
+      anchor_count: context.city_answer.anchor_count,
+    });
+  }
+
+  return notes;
+}
+
+function buildCandidateV2ReflectionContext(proposal, anchorRoleSummary, warnings) {
+  if (!proposal.candidate_v2 || !anchorRoleSummary?.candidate_v2) {
+    return null;
+  }
+
+  const candidate = proposal.candidate_v2;
+  const summary = anchorRoleSummary.candidate_v2;
+
+  const context = {
+    source_scope: candidate.source_scope ?? null,
+    question: summarizeCandidateV2Entry(
+      candidate.question,
+      summary.question,
+      candidate.question?.expected_speaker_role ?? null
+    ),
+    city_answer: summarizeCandidateV2Entry(
+      candidate.city_answer,
+      summary.city_answer,
+      candidate.city_answer?.expected_speaker_role ?? null
+    ),
+    confirmed_facts: (candidate.confirmed_facts ?? []).map((entry, index) =>
+      summarizeCandidateV2EvidenceItem(
+        entry,
+        summary.confirmed_facts?.[index]?.anchors ?? []
+      )
+    ),
+    unresolved_or_not_confirmed: (
+      candidate.unresolved_or_not_confirmed ?? []
+    ).map((entry, index) =>
+      summarizeCandidateV2EvidenceItem(
+        entry,
+        summary.unresolved_or_not_confirmed?.[index]?.anchors ?? []
+      )
+    ),
+    recommended_reflection: candidate.recommended_reflection ?? null,
+  };
+
+  context.review_notes = buildCandidateV2ReflectionNotes(context, warnings);
+  return context;
+}
+
 function buildDryRunArtifact(proposalPath, proposal, index) {
   const validationResult = validateProposalAnchors(index, proposal);
   if (!validationResult.ok) {
@@ -604,6 +746,10 @@ function buildDryRunArtifact(proposalPath, proposal, index) {
   }
 
   const resolution = resolveTarget(proposal);
+  const candidateV2ReviewWarnings = buildCandidateV2ReviewWarnings(
+    validationResult.warnings
+  );
+  const anchorRoleSummary = buildAnchorRoleSummary(index, proposal);
   return {
     schema_version: "issue-publisher-export-dry-run.v1",
     dry_run: true,
@@ -621,13 +767,16 @@ function buildDryRunArtifact(proposalPath, proposal, index) {
       resolution.targetResolution,
       resolution.blocks
     ),
-    candidate_v2_review_warnings: buildCandidateV2ReviewWarnings(
-      validationResult.warnings
-    ),
+    candidate_v2_review_warnings: candidateV2ReviewWarnings,
     would_write: buildWouldWrite(proposal, resolution.targetResolution),
     evidence_summary: buildEvidenceSummary(index, proposal),
-    anchor_role_summary: buildAnchorRoleSummary(index, proposal),
+    anchor_role_summary: anchorRoleSummary,
     structured_candidate_v2: buildStructuredCandidateV2(proposal),
+    candidate_v2_reflection_context: buildCandidateV2ReflectionContext(
+      proposal,
+      anchorRoleSummary,
+      candidateV2ReviewWarnings
+    ),
     blocks: resolution.blocks,
   };
 }

@@ -169,6 +169,23 @@ speaker role が `unknown` の場合、dry-run artifact の
 `candidate_v2_review_warnings` に reviewer 向け warning を出します。
 これは hard fail ではなく review attention list です。
 
+Phase 1-C では、dry-run artifact に
+`candidate_v2_reflection_context` を追加し、`question` / `city_answer` /
+`confirmed_facts` / `unresolved_or_not_confirmed` /
+`recommended_reflection` を reviewer が読みやすい形で再整理します。
+これは `structured_candidate_v2` の置き換えではなく、
+review-only の要約レイヤーです。
+
+- `structured_candidate_v2`
+  - proposal に書かれた元の `candidate_v2` payload
+- `anchor_role_summary`
+  - anchor resolve 結果と speaker role metadata の生データ
+- `candidate_v2_review_warnings`
+  - unresolved / mismatch を reviewer attention list として明示
+- `candidate_v2_reflection_context`
+  - Topic 更新判断前に question / city answer / confirmed / unresolved /
+    recommended reflection を読むための整理済み context
+
 ## Validator responsibilities
 
 現在の validator (`scripts/issue-publisher/validate-proposal-anchors.mjs`) は、

@@ -325,5 +325,150 @@
       ]
     }
   },
+  "candidate_v2_reflection_context": {
+    "source_scope": {
+      "question_slug": "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+      "question_date": "2026-06-15",
+      "item_number": 2,
+      "item_title": "旧庁舎跡地開発について"
+    },
+    "question": {
+      "summary": "議員は、旧庁舎跡地活用の進捗状況、市民意見の反映、三崎町再開発との関連を質問しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-ippan-tomoyose-eizo#L12-L14"
+      ],
+      "anchor_count": 1,
+      "expected_speaker_role": "questioner",
+      "role_observation": {
+        "resolved_anchor_count": 1,
+        "unresolved_anchor_count": 0,
+        "actual_speaker_roles": [
+          "unknown"
+        ],
+        "speech_kinds": [
+          "unknown"
+        ],
+        "role_status": "unresolved"
+      }
+    },
+    "city_answer": {
+      "summary": "市は、優先交渉権者との協議継続、見直し案提出待ち、市民意見の反映経路、再開発との位置づけを答弁で説明しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011",
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+      ],
+      "anchor_count": 2,
+      "expected_speaker_role": "executive",
+      "role_observation": {
+        "resolved_anchor_count": 2,
+        "unresolved_anchor_count": 0,
+        "actual_speaker_roles": [
+          "executive"
+        ],
+        "speech_kinds": [
+          "answer"
+        ],
+        "role_status": "confirmed"
+      }
+    },
+    "confirmed_facts": [
+      {
+        "statement": "優先交渉権者との協議継続や見直し案の提出待ちであることが答弁で説明されました。",
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate",
+        "reason": null,
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011"
+        ],
+        "anchor_count": 1,
+        "anchor_observation": {
+          "resolved_anchor_count": 1,
+          "unresolved_anchor_count": 0,
+          "actual_speaker_roles": [
+            "executive"
+          ],
+          "speech_kinds": [
+            "answer"
+          ],
+          "role_status": null
+        }
+      },
+      {
+        "statement": "跡地維持管理や優先交渉権者決定の経緯が答弁で説明されました。",
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate",
+        "reason": null,
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+        ],
+        "anchor_count": 1,
+        "anchor_observation": {
+          "resolved_anchor_count": 1,
+          "unresolved_anchor_count": 0,
+          "actual_speaker_roles": [
+            "executive"
+          ],
+          "speech_kinds": [
+            "answer"
+          ],
+          "role_status": null
+        }
+      }
+    ],
+    "unresolved_or_not_confirmed": [
+      {
+        "statement": "事業の最終的な実施時期や方針決定までは、この transcript だけで確定しません。",
+        "status": null,
+        "public_use": null,
+        "reason": "answer_is_explanatory_not_final_decision",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011",
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+        ],
+        "anchor_count": 2,
+        "anchor_observation": {
+          "resolved_anchor_count": 2,
+          "unresolved_anchor_count": 0,
+          "actual_speaker_roles": [
+            "executive"
+          ],
+          "speech_kinds": [
+            "answer"
+          ],
+          "role_status": null
+        }
+      }
+    ],
+    "recommended_reflection": {
+      "surface": "topic_update",
+      "target": {
+        "type": "topic_json",
+        "slug": "ishigaki-old-city-hall"
+      },
+      "kind": "council",
+      "status_label": "議会で確認",
+      "safe_scope": "city_answer_only",
+      "avoid": [
+        "current_status_overwrite",
+        "related_bill_ids_inference"
+      ]
+    },
+    "review_notes": [
+      {
+        "code": "QUESTION_ROLE_UNRESOLVED",
+        "severity": "warning",
+        "summary": "Question-side anchor is present, but reviewer should confirm that it is acceptable as the question reference because speaker role metadata is unresolved.",
+        "related_warning_codes": [
+          "CANDIDATE_V2_QUESTION_ROLE_UNRESOLVED"
+        ]
+      },
+      {
+        "code": "CITY_ANSWER_ROLE_CONFIRMED",
+        "severity": "info",
+        "summary": "City answer anchors resolved as executive answer utterances in the current utterance metadata.",
+        "anchor_count": 2
+      }
+    ]
+  },
   "blocks": []
 }
