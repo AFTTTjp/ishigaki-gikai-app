@@ -118,6 +118,7 @@
     "candidate_v2": null
   },
   "structured_candidate_v2": null,
+  "candidate_v2_reflection_context": null,
   "blocks": [
     {
       "code": "MISSING_EXPLICIT_EXPORT_TARGET",
