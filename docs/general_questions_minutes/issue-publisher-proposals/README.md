@@ -195,15 +195,26 @@ public JSON 更新済み・DB import 済み・revalidation 済みを意味しま
 - `candidate_v2_reflection_gate`
   - review artifact 上の publication-readiness summary
   - `auto_ready` でも import / DB / revalidation は別フェーズ
+  - `candidate_v2_reflection_gate` 自体は dry-run artifact にだけ出る
+    reviewer 向け metadata であり、public Topic JSON には書かれない
   - `auto_ready` の最低条件は、question role confirmed / city answer role
     confirmed / confirmed_facts present / `safe_scope = city_answer_only` /
     avoid guards present / warning 0
+  - `auto_ready` は public-ready / publish-ready を意味しない
+  - `auto_ready` で reviewer が直接参照してよい入力は
+    `city_answer` / `confirmed_facts` / `recommended_reflection` のみ
   - `review_required` は人間確認が必要
+  - `review_required` の場合は automatic reflection を試みない
   - `blocked` は candidate_v2 を Topic update 候補生成に使わない
   - `unresolved_or_not_confirmed` は public wording の根拠に使わない
+  - `question` / `unresolved_or_not_confirmed` /
+    `public_draft.summary_detailed` は direct public reflection material
+    として使わない
   - `CITY_ANSWER_ROLE_CONFIRMED` 単独では gate を通さない
   - issue story 全体の review status と narrow candidate の `auto_ready`
     は同一ではない
+  - 最終的な public Topic update は、人間確認のうえで JSON 正本編集 →
+    import → revalidation の通常フローで扱う
 
 ## Validator responsibilities
 
