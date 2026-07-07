@@ -139,6 +139,12 @@ const DRY_RUN_CASES = [
     expectedCandidateV2ReflectionGate: {
       decision: "review_required",
       safeToGenerateTopicUpdate: false,
+      allowedInputsExact: [],
+      disallowedInputsIncludes: [
+        "question",
+        "unresolved_or_not_confirmed",
+        "public_draft.summary_detailed",
+      ],
       reasonCodes: [
         "QUESTION_ROLE_UNRESOLVED",
         "QUESTION_ROLE_REVIEW_REQUIRED",
@@ -175,6 +181,21 @@ const DRY_RUN_CASES = [
     expectedCandidateV2ReflectionGate: {
       decision: "auto_ready",
       safeToGenerateTopicUpdate: true,
+      allowedInputsExact: [
+        "city_answer",
+        "confirmed_facts",
+        "recommended_reflection",
+      ],
+      disallowedInputsIncludes: [
+        "question",
+        "unresolved_or_not_confirmed",
+        "public_draft.summary_detailed",
+      ],
+      noteSubstrings: [
+        "Review-only gate",
+        "Does not imply public JSON is updated",
+        "does not authorize DB import or revalidation",
+      ],
       reasonCodes: [
         "APPROVED_FOR_EXPORT",
         "TARGET_RESOLVED",
@@ -559,6 +580,45 @@ function assertDryRunCase(caseConfig) {
       if (!(gate.reasons ?? []).includes(expectedCode)) {
         throw new Error(
           `${path.basename(caseConfig.proposalPath)} dry-run must include candidate_v2 reflection gate reason ${expectedCode}, but got: ${(gate.reasons ?? []).join(", ")}`
+        );
+      }
+    }
+
+    if (caseConfig.expectedCandidateV2ReflectionGate.allowedInputsExact) {
+      const actualAllowedInputs = Array.isArray(gate.allowed_inputs)
+        ? gate.allowed_inputs
+        : [];
+      const expectedAllowedInputs =
+        caseConfig.expectedCandidateV2ReflectionGate.allowedInputsExact;
+
+      if (
+        JSON.stringify(actualAllowedInputs) !==
+        JSON.stringify(expectedAllowedInputs)
+      ) {
+        throw new Error(
+          `${path.basename(caseConfig.proposalPath)} dry-run candidate_v2 reflection gate allowed_inputs must be ${JSON.stringify(expectedAllowedInputs)}, but got ${JSON.stringify(actualAllowedInputs)}`
+        );
+      }
+    }
+
+    for (const expectedInput of caseConfig.expectedCandidateV2ReflectionGate
+      .disallowedInputsIncludes ?? []) {
+      if (!(gate.disallowed_inputs ?? []).includes(expectedInput)) {
+        throw new Error(
+          `${path.basename(caseConfig.proposalPath)} dry-run candidate_v2 reflection gate must disallow input ${expectedInput}, but got: ${(gate.disallowed_inputs ?? []).join(", ")}`
+        );
+      }
+    }
+
+    for (const expectedNoteSubstring of caseConfig.expectedCandidateV2ReflectionGate
+      .noteSubstrings ?? []) {
+      const hasMatchingNote = (gate.notes ?? []).some((note) =>
+        note.includes(expectedNoteSubstring)
+      );
+
+      if (!hasMatchingNote) {
+        throw new Error(
+          `${path.basename(caseConfig.proposalPath)} dry-run candidate_v2 reflection gate notes must include substring ${JSON.stringify(expectedNoteSubstring)}, but got: ${(gate.notes ?? []).join(" | ")}`
         );
       }
     }
