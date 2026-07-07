@@ -470,5 +470,26 @@
       }
     ]
   },
+  "candidate_v2_reflection_gate": {
+    "decision": "review_required",
+    "reasons": [
+      "QUESTION_ROLE_UNRESOLVED",
+      "QUESTION_ROLE_REVIEW_REQUIRED",
+      "CITY_ANSWER_ROLE_CONFIRMED_ONLY",
+      "SPEAKER_METADATA_REVIEW_REQUIRED",
+      "CONFIRMED_FACTS_REQUIRE_EDITORIAL_REVIEW"
+    ],
+    "safe_to_generate_topic_update": false,
+    "allowed_inputs": [],
+    "disallowed_inputs": [
+      "question",
+      "unresolved_or_not_confirmed",
+      "public_draft.summary_detailed"
+    ],
+    "notes": [
+      "Review-only gate. Does not imply public JSON is updated.",
+      "This gate does not authorize DB import or revalidation."
+    ]
+  },
   "blocks": []
 }

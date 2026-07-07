@@ -176,6 +176,13 @@ Phase 1-C では、dry-run artifact に
 これは `structured_candidate_v2` の置き換えではなく、
 review-only の要約レイヤーです。
 
+Phase 1-D では、dry-run artifact に
+`candidate_v2_reflection_gate` を追加し、`candidate_v2` 候補が
+Topic update 候補生成へ機械的に進める状態かを
+`auto_ready` / `review_required` / `blocked` で要約します。
+これは publication-readiness summary であり、
+public JSON 更新済み・DB import 済み・revalidation 済みを意味しません。
+
 - `structured_candidate_v2`
   - proposal に書かれた元の `candidate_v2` payload
 - `anchor_role_summary`
@@ -185,6 +192,13 @@ review-only の要約レイヤーです。
 - `candidate_v2_reflection_context`
   - Topic 更新判断前に question / city answer / confirmed / unresolved /
     recommended reflection を読むための整理済み context
+- `candidate_v2_reflection_gate`
+  - review artifact 上の publication-readiness summary
+  - `auto_ready` でも import / DB / revalidation は別フェーズ
+  - `review_required` は人間確認が必要
+  - `blocked` は candidate_v2 を Topic update 候補生成に使わない
+  - `unresolved_or_not_confirmed` は public wording の根拠に使わない
+  - `CITY_ANSWER_ROLE_CONFIRMED` 単独では gate を通さない
 
 ## Validator responsibilities
 

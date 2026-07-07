@@ -143,5 +143,6 @@
   },
   "structured_candidate_v2": null,
   "candidate_v2_reflection_context": null,
+  "candidate_v2_reflection_gate": null,
   "blocks": []
 }
