@@ -1,0 +1,379 @@
+{
+  "schema_version": "issue-publisher-export-dry-run.v1",
+  "dry_run": true,
+  "proposal": {
+    "id": "fixture.r8-dai4.former-cityhall.shiuezato-auto-ready-topic-target.v2.001",
+    "title": "旧庁舎跡地の活用",
+    "source_path": "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-former-cityhall-shiuezato-auto-ready-topic-target-v2.proposal.json",
+    "proposal_kind": "fixture",
+    "publication_status": "approved_for_export"
+  },
+  "approval_state": {
+    "is_approved": true,
+    "review_status": "approved",
+    "publication_status": "approved_for_export",
+    "export_readiness": "ready_for_export",
+    "needs_human_review": false,
+    "reviewer": "issue-publisher-reviewer",
+    "reviewed_at": "2026-07-07T00:00:00+09:00",
+    "approval_note": "Narrow former-cityhall candidate limited to the verified Shiuezato question / city answer pair. auto_ready is review-only gate metadata and does not imply public JSON, DB, or revalidation work.",
+    "export_blockers": []
+  },
+  "application_status": {
+    "applied": false,
+    "public_json_written": false,
+    "db_written": false,
+    "revalidation_needed": false,
+    "note": "Review-only dry-run. No public source-of-truth JSON was modified."
+  },
+  "target_resolution": {
+    "status": "resolved",
+    "surface": "topic",
+    "surface_label": "Topic",
+    "target_id": "ishigaki-old-city-hall",
+    "target_file": "docs/ishigaki_gikai_topics_dev_set/old_city_hall.topic.json",
+    "target_label": "石垣市庁舎跡地活用",
+    "target_title": "石垣市庁舎跡地活用",
+    "resolved_by": "explicit_proposal_field",
+    "resolution_note": "Exact topic target resolved from proposal.export.target and proposal.export.target_slug."
+  },
+  "reviewer_guidance": {
+    "ready_for_editor_review": true,
+    "next_step": "Compare content_preview, approval metadata, and evidence_summary before any manual public JSON editing in a later phase.",
+    "note": "Resolved dry-run artifacts are still review-only and must not be treated as applied public content."
+  },
+  "candidate_v2_review_warnings": [],
+  "would_write": [
+    {
+      "operation": "review_candidate_only",
+      "target_file": "docs/ishigaki_gikai_topics_dev_set/old_city_hall.topic.json",
+      "target_field": "review_only_not_public_json",
+      "content_preview": {
+        "surface": "topic",
+        "surface_label": "Topic",
+        "target_id": "ishigaki-old-city-hall",
+        "target_label": "石垣市庁舎跡地活用",
+        "source_proposal_id": "fixture.r8-dai4.former-cityhall.shiuezato-auto-ready-topic-target.v2.001",
+        "proposal_type": "discussion_point",
+        "claim_type": "attributed_speech",
+        "issue_id": "issue-r8d4-former-cityhall",
+        "issue_title": "旧庁舎跡地の活用",
+        "summary_easy": "旧庁舎跡地利用の現状について、一般質問の答弁では維持管理や優先交渉権者決定の考え方が説明されました。",
+        "summary_detailed": "令和8年第4回定例会の一般質問では、旧庁舎跡地利用の現状について、跡地の維持管理、優先交渉権者の決定経緯、公募条件と変更可否に関する説明がありました。これは narrow candidate の review-only dry-run fixture であり、事業の最終状態そのものを transcript だけで確定するものではありません.",
+        "related_question_slugs": [
+          "ishigaki-r8-dai4-ippan-shiuezato-atsushi"
+        ],
+        "related_bill_ids": []
+      }
+    }
+  ],
+  "evidence_summary": {
+    "anchors": [
+      {
+        "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+        "source_type": "general_question_minutes",
+        "evidence_role": "primary",
+        "mode": "paraphrase",
+        "resolved": true,
+        "resolved_by": "utterance_id",
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+        "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+        "line_start": 72,
+        "line_end": 98,
+        "source_minutes_file": "2026-06-16/石垣市議会　令和８年６月１５日　６月定例会　後上里厚司議員　一般質問_minutes.md",
+        "speaker_hint": "建設部長下地俊一",
+        "speaker_role_hint": "executive",
+        "speech_kind": "answer",
+        "item_number_candidate": 3,
+        "item_title_candidate": "旧庁舎跡地利用の現状について"
+      }
+    ],
+    "claims": [
+      {
+        "claim_type": "attributed_speech",
+        "proposal_type": "discussion_point",
+        "summary_easy": "旧庁舎跡地利用の現状について、一般質問の答弁では維持管理や優先交渉権者決定の考え方が説明されました。",
+        "summary_detailed": "令和8年第4回定例会の一般質問では、旧庁舎跡地利用の現状について、跡地の維持管理、優先交渉権者の決定経緯、公募条件と変更可否に関する説明がありました。これは narrow candidate の review-only dry-run fixture であり、事業の最終状態そのものを transcript だけで確定するものではありません."
+      }
+    ]
+  },
+  "anchor_role_summary": {
+    "proposal_evidence": [
+      {
+        "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+        "source_type": "general_question_minutes",
+        "resolved": true,
+        "speaker_role_hint": "executive",
+        "speech_kind": "answer",
+        "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+        "item_number_candidate": 3,
+        "item_title_candidate": "旧庁舎跡地利用の現状について"
+      }
+    ],
+    "candidate_v2": {
+      "source_scope": {
+        "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+        "question_date": "2026-06-15",
+        "item_number": 3,
+        "item_title": "旧庁舎跡地利用の現状について"
+      },
+      "question": [
+        {
+          "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0003",
+          "resolved": true,
+          "expected_speaker_role": "questioner",
+          "actual_speaker_role": "questioner",
+          "speech_kind": "question_item",
+          "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+          "item_number_candidate": 3,
+          "item_title_candidate": "旧庁舎跡地利用の現状について",
+          "role_match": true
+        }
+      ],
+      "city_answer": [
+        {
+          "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+          "resolved": true,
+          "expected_speaker_role": "executive",
+          "actual_speaker_role": "executive",
+          "speech_kind": "answer",
+          "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+          "item_number_candidate": 3,
+          "item_title_candidate": "旧庁舎跡地利用の現状について",
+          "role_match": true
+        }
+      ],
+      "confirmed_facts": [
+        {
+          "statement": "跡地の維持管理として仮囲いを継続設置し、令和7年度の経費が説明されました。",
+          "anchors": [
+            {
+              "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+              "resolved": true,
+              "expected_speaker_role": null,
+              "actual_speaker_role": "executive",
+              "speech_kind": "answer",
+              "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+              "item_number_candidate": 3,
+              "item_title_candidate": "旧庁舎跡地利用の現状について",
+              "role_match": null
+            }
+          ]
+        },
+        {
+          "statement": "優先交渉権者の決定経緯や公募条件の整理、評価に関わる変更は基本的に認めないことが答弁で説明されました。",
+          "anchors": [
+            {
+              "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+              "resolved": true,
+              "expected_speaker_role": null,
+              "actual_speaker_role": "executive",
+              "speech_kind": "answer",
+              "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+              "item_number_candidate": 3,
+              "item_title_candidate": "旧庁舎跡地利用の現状について",
+              "role_match": null
+            }
+          ]
+        }
+      ],
+      "unresolved_or_not_confirmed": []
+    }
+  },
+  "structured_candidate_v2": {
+    "source_scope": {
+      "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+      "question_date": "2026-06-15",
+      "item_number": 3,
+      "item_title": "旧庁舎跡地利用の現状について"
+    },
+    "question": {
+      "summary": "議員は、跡地維持管理の予算、優先交渉権者決定の経緯、公募条件、決定内容の変更可否を質問しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0003"
+      ],
+      "expected_speaker_role": "questioner"
+    },
+    "city_answer": {
+      "summary": "市は、跡地管理の実施状況、優先交渉権者決定の進め方、公募条件の整理、評価に関わる変更は基本的に認めない考え方を答弁で説明しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+      ],
+      "expected_speaker_role": "executive"
+    },
+    "confirmed_facts": [
+      {
+        "statement": "跡地の維持管理として仮囲いを継続設置し、令和7年度の経費が説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      },
+      {
+        "statement": "優先交渉権者の決定経緯や公募条件の整理、評価に関わる変更は基本的に認めないことが答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      }
+    ],
+    "unresolved_or_not_confirmed": [],
+    "recommended_reflection": {
+      "surface": "topic_update",
+      "target": {
+        "type": "topic_json",
+        "slug": "ishigaki-old-city-hall"
+      },
+      "kind": "council",
+      "status_label": "議会で確認",
+      "safe_scope": "city_answer_only",
+      "avoid": [
+        "current_status_overwrite",
+        "related_bill_ids_inference"
+      ]
+    }
+  },
+  "candidate_v2_reflection_context": {
+    "source_scope": {
+      "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+      "question_date": "2026-06-15",
+      "item_number": 3,
+      "item_title": "旧庁舎跡地利用の現状について"
+    },
+    "question": {
+      "summary": "議員は、跡地維持管理の予算、優先交渉権者決定の経緯、公募条件、決定内容の変更可否を質問しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0003"
+      ],
+      "anchor_count": 1,
+      "expected_speaker_role": "questioner",
+      "role_observation": {
+        "resolved_anchor_count": 1,
+        "unresolved_anchor_count": 0,
+        "actual_speaker_roles": [
+          "questioner"
+        ],
+        "speech_kinds": [
+          "question_item"
+        ],
+        "role_status": "confirmed"
+      }
+    },
+    "city_answer": {
+      "summary": "市は、跡地管理の実施状況、優先交渉権者決定の進め方、公募条件の整理、評価に関わる変更は基本的に認めない考え方を答弁で説明しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+      ],
+      "anchor_count": 1,
+      "expected_speaker_role": "executive",
+      "role_observation": {
+        "resolved_anchor_count": 1,
+        "unresolved_anchor_count": 0,
+        "actual_speaker_roles": [
+          "executive"
+        ],
+        "speech_kinds": [
+          "answer"
+        ],
+        "role_status": "confirmed"
+      }
+    },
+    "confirmed_facts": [
+      {
+        "statement": "跡地の維持管理として仮囲いを継続設置し、令和7年度の経費が説明されました。",
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate",
+        "reason": null,
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+        ],
+        "anchor_count": 1,
+        "anchor_observation": {
+          "resolved_anchor_count": 1,
+          "unresolved_anchor_count": 0,
+          "actual_speaker_roles": [
+            "executive"
+          ],
+          "speech_kinds": [
+            "answer"
+          ],
+          "role_status": null
+        }
+      },
+      {
+        "statement": "優先交渉権者の決定経緯や公募条件の整理、評価に関わる変更は基本的に認めないことが答弁で説明されました。",
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate",
+        "reason": null,
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+        ],
+        "anchor_count": 1,
+        "anchor_observation": {
+          "resolved_anchor_count": 1,
+          "unresolved_anchor_count": 0,
+          "actual_speaker_roles": [
+            "executive"
+          ],
+          "speech_kinds": [
+            "answer"
+          ],
+          "role_status": null
+        }
+      }
+    ],
+    "unresolved_or_not_confirmed": [],
+    "recommended_reflection": {
+      "surface": "topic_update",
+      "target": {
+        "type": "topic_json",
+        "slug": "ishigaki-old-city-hall"
+      },
+      "kind": "council",
+      "status_label": "議会で確認",
+      "safe_scope": "city_answer_only",
+      "avoid": [
+        "current_status_overwrite",
+        "related_bill_ids_inference"
+      ]
+    },
+    "review_notes": [
+      {
+        "code": "CITY_ANSWER_ROLE_CONFIRMED",
+        "severity": "info",
+        "summary": "City answer anchors resolved as executive answer utterances in the current utterance metadata.",
+        "anchor_count": 1
+      }
+    ]
+  },
+  "candidate_v2_reflection_gate": {
+    "decision": "auto_ready",
+    "reasons": [
+      "APPROVED_FOR_EXPORT",
+      "TARGET_RESOLVED",
+      "QUESTION_ROLE_CONFIRMED",
+      "CITY_ANSWER_ROLE_CONFIRMED",
+      "CONFIRMED_FACTS_PRESENT",
+      "SAFE_SCOPE_CITY_ANSWER_ONLY",
+      "NO_CANDIDATE_V2_WARNINGS"
+    ],
+    "safe_to_generate_topic_update": true,
+    "allowed_inputs": [
+      "city_answer",
+      "confirmed_facts",
+      "recommended_reflection"
+    ],
+    "disallowed_inputs": [
+      "question",
+      "unresolved_or_not_confirmed",
+      "public_draft.summary_detailed"
+    ],
+    "notes": [
+      "Review-only gate. Does not imply public JSON is updated.",
+      "This gate does not authorize DB import or revalidation."
+    ]
+  },
+  "blocks": []
+}

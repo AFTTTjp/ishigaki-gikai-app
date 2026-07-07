@@ -57,6 +57,10 @@ const POSITIVE_SAMPLE_PATHS = [
     ROOT,
     "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-former-cityhall-real-topic-target-v2.proposal.json"
   ),
+  resolve(
+    ROOT,
+    "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-former-cityhall-shiuezato-auto-ready-topic-target-v2.proposal.json"
+  ),
 ];
 
 const NEGATIVE_SAMPLES_DIR = resolve(
@@ -141,6 +145,44 @@ const DRY_RUN_CASES = [
         "CITY_ANSWER_ROLE_CONFIRMED_ONLY",
         "SPEAKER_METADATA_REVIEW_REQUIRED",
         "CONFIRMED_FACTS_REQUIRE_EDITORIAL_REVIEW",
+      ],
+    },
+  },
+  {
+    proposalPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-former-cityhall-shiuezato-auto-ready-topic-target-v2.proposal.json"
+    ),
+    outputPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-export-dry-runs/approved-attributed-speech-former-cityhall-shiuezato-auto-ready-topic-target-v2.dry-run.json"
+    ),
+    expectedStatus: "resolved",
+    expectedSurface: "topic",
+    expectedTargetId: "ishigaki-old-city-hall",
+    expectedTargetFile:
+      "docs/ishigaki_gikai_topics_dev_set/old_city_hall.topic.json",
+    expectedTargetLabel: "石垣市庁舎跡地活用",
+    expectedBlockCodes: [],
+    expectedStructuredCandidateV2: true,
+    expectedCandidateV2WarningCount: 0,
+    expectedCandidateV2ReflectionContext: {
+      questionRoleStatus: "confirmed",
+      cityAnswerRoleStatus: "confirmed",
+      reviewNoteCodes: ["CITY_ANSWER_ROLE_CONFIRMED"],
+      warningSeverityCount: 0,
+    },
+    expectedCandidateV2ReflectionGate: {
+      decision: "auto_ready",
+      safeToGenerateTopicUpdate: true,
+      reasonCodes: [
+        "APPROVED_FOR_EXPORT",
+        "TARGET_RESOLVED",
+        "QUESTION_ROLE_CONFIRMED",
+        "CITY_ANSWER_ROLE_CONFIRMED",
+        "CONFIRMED_FACTS_PRESENT",
+        "SAFE_SCOPE_CITY_ANSWER_ONLY",
+        "NO_CANDIDATE_V2_WARNINGS",
       ],
     },
   },
@@ -437,9 +479,23 @@ function assertDryRunCase(caseConfig) {
     }
   }
 
+  if (caseConfig.expectedCandidateV2WarningCount !== undefined) {
+    const warningCount = Array.isArray(artifact.candidate_v2_review_warnings)
+      ? artifact.candidate_v2_review_warnings.length
+      : 0;
+    if (warningCount !== caseConfig.expectedCandidateV2WarningCount) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} dry-run candidate_v2 review warning count must be ${caseConfig.expectedCandidateV2WarningCount}, but got ${warningCount}`
+      );
+    }
+  }
+
   if (caseConfig.expectedCandidateV2ReflectionContext) {
     const context = artifact.candidate_v2_reflection_context;
     const noteCodes = (context.review_notes ?? []).map((entry) => entry.code);
+    const warningSeverityCount = (context.review_notes ?? []).filter(
+      (entry) => entry?.severity === "warning"
+    ).length;
 
     if (
       context.question?.role_observation?.role_status !==
@@ -466,6 +522,17 @@ function assertDryRunCase(caseConfig) {
           `${path.basename(caseConfig.proposalPath)} dry-run must include candidate_v2 reflection note ${expectedCode}, but got: ${noteCodes.join(", ")}`
         );
       }
+    }
+
+    if (
+      caseConfig.expectedCandidateV2ReflectionContext.warningSeverityCount !==
+        undefined &&
+      warningSeverityCount !==
+        caseConfig.expectedCandidateV2ReflectionContext.warningSeverityCount
+    ) {
+      throw new Error(
+        `${path.basename(caseConfig.proposalPath)} dry-run candidate_v2 reflection warning severity count must be ${caseConfig.expectedCandidateV2ReflectionContext.warningSeverityCount}, but got ${warningSeverityCount}`
+      );
     }
   }
 
