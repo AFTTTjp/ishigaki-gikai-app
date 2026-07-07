@@ -231,6 +231,10 @@ public JSON 更新済み・DB import 済み・revalidation 済みを意味しま
   revalidation → UI 反映確認の通常フローで扱うこと
 
 `review_required` の場合は automatic reflection を試みません。
+`confirmed_facts` が存在しても、それだけで `auto_ready` にはしません。
+question 側 speaker role が unresolved、または
+`candidate_v2_review_warnings` が残る場合は `review_required` として止め、
+automatic reflection ではなく人間レビューに回します。
 allowed inputs だけでは支えきれない場合は止めて、人手の editorial review /
 manual work として扱います。
 
