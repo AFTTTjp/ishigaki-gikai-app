@@ -1,0 +1,107 @@
+{
+  "schema_version": "issue-publisher-proposal.v0",
+  "proposal_id": "fixture.r8-dai4.former-cityhall.shiuezato-auto-ready-topic-target.v2.001",
+  "proposal_kind": "fixture",
+  "publication_status": "approved_for_export",
+  "note": "This is a review-only v2 auto-ready fixture for former-cityhall, limited to the verified Shiuezato question and city answer pair. It is not published content.",
+  "issue_id": "issue-r8d4-former-cityhall",
+  "issue_title": "旧庁舎跡地の活用",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "claim_type": "attributed_speech",
+  "proposal_type": "discussion_point",
+  "public_draft": {
+    "summary_easy": "旧庁舎跡地利用の現状について、一般質問の答弁では維持管理や優先交渉権者決定の考え方が説明されました。",
+    "summary_detailed": "令和8年第4回定例会の一般質問では、旧庁舎跡地利用の現状について、跡地の維持管理、優先交渉権者の決定経緯、公募条件と変更可否に関する説明がありました。これは narrow candidate の review-only dry-run fixture であり、事業の最終状態そのものを transcript だけで確定するものではありません."
+  },
+  "evidence": [
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+      "evidence_role": "primary",
+      "mode": "paraphrase",
+      "note": "Transcript evidence supports that an explanation about former city hall site management, selection background, and change constraints was given in response."
+    }
+  ],
+  "links": {
+    "related_bill_ids": [],
+    "related_question_slugs": [
+      "ishigaki-r8-dai4-ippan-shiuezato-atsushi"
+    ]
+  },
+  "candidate_v2": {
+    "source_scope": {
+      "question_slug": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+      "question_date": "2026-06-15",
+      "item_number": 3,
+      "item_title": "旧庁舎跡地利用の現状について"
+    },
+    "question": {
+      "summary": "議員は、跡地維持管理の予算、優先交渉権者決定の経緯、公募条件、決定内容の変更可否を質問しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0003"
+      ],
+      "expected_speaker_role": "questioner"
+    },
+    "city_answer": {
+      "summary": "市は、跡地管理の実施状況、優先交渉権者決定の進め方、公募条件の整理、評価に関わる変更は基本的に認めない考え方を答弁で説明しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+      ],
+      "expected_speaker_role": "executive"
+    },
+    "confirmed_facts": [
+      {
+        "statement": "跡地の維持管理として仮囲いを継続設置し、令和7年度の経費が説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      },
+      {
+        "statement": "優先交渉権者の決定経緯や公募条件の整理、評価に関わる変更は基本的に認めないことが答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      }
+    ],
+    "unresolved_or_not_confirmed": [],
+    "recommended_reflection": {
+      "surface": "topic_update",
+      "target": {
+        "type": "topic_json",
+        "slug": "ishigaki-old-city-hall"
+      },
+      "kind": "council",
+      "status_label": "議会で確認",
+      "safe_scope": "city_answer_only",
+      "avoid": [
+        "current_status_overwrite",
+        "related_bill_ids_inference"
+      ]
+    }
+  },
+  "review": {
+    "status": "approved",
+    "needs_human_review": false,
+    "review_reason": [
+      "real_issue_candidate",
+      "transcript_derived",
+      "attributed_speech_only",
+      "candidate_v2_auto_ready_fixture"
+    ],
+    "reviewer": "issue-publisher-reviewer",
+    "reviewed_at": "2026-07-07T00:00:00+09:00",
+    "approval_note": "Narrow former-cityhall candidate limited to the verified Shiuezato question / city answer pair. auto_ready is review-only gate metadata and does not imply public JSON, DB, or revalidation work.",
+    "export_readiness": "ready_for_export",
+    "export_blockers": []
+  },
+  "export": {
+    "target": "topic_json",
+    "target_slug": "ishigaki-old-city-hall",
+    "source_proposal_id": "fixture.r8-dai4.former-cityhall.shiuezato-auto-ready-topic-target.v2.001",
+    "notes": "Dry-run only. Public JSON must not be edited automatically."
+  }
+}
