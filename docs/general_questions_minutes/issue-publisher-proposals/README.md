@@ -216,6 +216,24 @@ public JSON 更新済み・DB import 済み・revalidation 済みを意味しま
   - 最終的な public Topic update は、人間確認のうえで JSON 正本編集 →
     import → revalidation の通常フローで扱う
 
+### `auto_ready` reviewer checklist
+
+`candidate_v2_reflection_gate.decision = auto_ready` の場合でも、
+次を reviewer が確認してから通常の JSON 正本編集フェーズへ進みます。
+
+- 反映候補が `city_answer` / `confirmed_facts` /
+  `recommended_reflection` だけで支えられること
+- `question` を confirmed city information として扱っていないこと
+- `unresolved_or_not_confirmed` を事実として書いていないこと
+- `public_draft.summary_detailed` をそのまま public Topic 文面へ流用しないこと
+- 反映候補が既存 Topic の文脈と矛盾しないこと
+- 進める場合も、人間確認のうえで JSON 正本編集 → import →
+  revalidation → UI 反映確認の通常フローで扱うこと
+
+`review_required` の場合は automatic reflection を試みません。
+allowed inputs だけでは支えきれない場合は止めて、人手の editorial review /
+manual work として扱います。
+
 ## Validator responsibilities
 
 現在の validator (`scripts/issue-publisher/validate-proposal-anchors.mjs`) は、
