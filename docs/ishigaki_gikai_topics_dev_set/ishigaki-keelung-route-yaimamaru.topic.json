@@ -124,6 +124,16 @@
       "status_label": null,
       "source_url": "https://www.y-mainichi.co.jp/news/42245/",
       "source_label": "八重山毎日新聞"
+    },
+    {
+      "published_at": "2026-06-22T00:00:00+09:00",
+      "kind": "council",
+      "title": "市議会で初就航後の運航計画と貨物取扱い準備が説明される",
+      "summary": "2026年6月定例会の一般質問では、石垣－基隆定期航路について、5月28日の初就航後、6月末までは週1便、7月からは週2便を予定していることに加え、貨物取扱い開始に向けた確認作業や旅行商品造成、船内サービス充実を段階的に進める必要があると説明されました。",
+      "content": null,
+      "status_label": "議会で確認",
+      "source_url": null,
+      "source_label": "令和8年第4回定例会 一般質問"
     }
   ],
   "topic_bill_candidates": [
