@@ -61,6 +61,10 @@ const POSITIVE_SAMPLE_PATHS = [
     ROOT,
     "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-former-cityhall-shiuezato-auto-ready-topic-target-v2.proposal.json"
   ),
+  resolve(
+    ROOT,
+    "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-keelung-route-nagahama-auto-ready-topic-target-v2.proposal.json"
+  ),
 ];
 
 const NEGATIVE_SAMPLES_DIR = resolve(
@@ -169,6 +173,59 @@ const DRY_RUN_CASES = [
     expectedTargetFile:
       "docs/ishigaki_gikai_topics_dev_set/old_city_hall.topic.json",
     expectedTargetLabel: "石垣市庁舎跡地活用",
+    expectedBlockCodes: [],
+    expectedStructuredCandidateV2: true,
+    expectedCandidateV2WarningCount: 0,
+    expectedCandidateV2ReflectionContext: {
+      questionRoleStatus: "confirmed",
+      cityAnswerRoleStatus: "confirmed",
+      reviewNoteCodes: ["CITY_ANSWER_ROLE_CONFIRMED"],
+      warningSeverityCount: 0,
+    },
+    expectedCandidateV2ReflectionGate: {
+      decision: "auto_ready",
+      safeToGenerateTopicUpdate: true,
+      allowedInputsExact: [
+        "city_answer",
+        "confirmed_facts",
+        "recommended_reflection",
+      ],
+      disallowedInputsIncludes: [
+        "question",
+        "unresolved_or_not_confirmed",
+        "public_draft.summary_detailed",
+      ],
+      noteSubstrings: [
+        "Review-only gate",
+        "Does not imply public JSON is updated",
+        "does not authorize DB import or revalidation",
+      ],
+      reasonCodes: [
+        "APPROVED_FOR_EXPORT",
+        "TARGET_RESOLVED",
+        "QUESTION_ROLE_CONFIRMED",
+        "CITY_ANSWER_ROLE_CONFIRMED",
+        "CONFIRMED_FACTS_PRESENT",
+        "SAFE_SCOPE_CITY_ANSWER_ONLY",
+        "NO_CANDIDATE_V2_WARNINGS",
+      ],
+    },
+  },
+  {
+    proposalPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/positive/approved-attributed-speech-keelung-route-nagahama-auto-ready-topic-target-v2.proposal.json"
+    ),
+    outputPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-export-dry-runs/approved-attributed-speech-keelung-route-nagahama-auto-ready-topic-target-v2.dry-run.json"
+    ),
+    expectedStatus: "resolved",
+    expectedSurface: "topic",
+    expectedTargetId: "ishigaki-keelung-route-yaimamaru",
+    expectedTargetFile:
+      "docs/ishigaki_gikai_topics_dev_set/ishigaki-keelung-route-yaimamaru.topic.json",
+    expectedTargetLabel: "石垣－基隆航路とやいま丸",
     expectedBlockCodes: [],
     expectedStructuredCandidateV2: true,
     expectedCandidateV2WarningCount: 0,

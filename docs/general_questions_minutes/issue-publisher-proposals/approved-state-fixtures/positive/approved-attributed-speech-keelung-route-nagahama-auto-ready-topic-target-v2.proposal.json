@@ -1,0 +1,132 @@
+{
+  "schema_version": "issue-publisher-proposal.v0",
+  "proposal_id": "fixture.r8-dai4.keelung-route.nagahama-auto-ready-topic-target.v2.001",
+  "proposal_kind": "fixture",
+  "publication_status": "approved_for_export",
+  "note": "This is a review-only v2 auto-ready fixture for the keelung-route topic, limited to verified Nagahama question and executive answer anchors. It is not published content.",
+  "issue_id": "issue-r8d4-keelung-route",
+  "issue_title": "台湾・基隆定期航路と八重山丸（やいま丸）",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "claim_type": "attributed_speech",
+  "proposal_type": "discussion_point",
+  "public_draft": {
+    "summary_easy": "石垣－基隆定期航路について、一般質問の答弁では初就航後の運航計画や今後の運航安定化に向けた課題が説明されました。",
+    "summary_detailed": "令和8年第4回定例会の一般質問では、石垣－基隆定期航路について、5月28日の初就航、6月末までの週1便、7月からの週2便予定、貨物取扱い開始や旅行商品造成、船内サービス充実に向けた取組が説明されました。これは narrow candidate の review-only dry-run fixture であり、航路の長期的な採算や最終的な成功を transcript だけで確定するものではありません."
+  },
+  "evidence": [
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0010",
+      "evidence_role": "primary",
+      "mode": "paraphrase",
+      "note": "Transcript evidence supports that an executive answer described the initial sailing, June-to-July operating schedule, and staged work needed for route stabilization."
+    },
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0036",
+      "evidence_role": "primary",
+      "mode": "paraphrase",
+      "note": "Transcript evidence supports that an executive answer described preparation work for cargo handling and Taiwan-side procurement support."
+    }
+  ],
+  "links": {
+    "related_bill_ids": [],
+    "related_question_slugs": [
+      "ishigaki-r8-dai4-ippan-nagahama-nobuo"
+    ]
+  },
+  "candidate_v2": {
+    "source_scope": {
+      "question_slug": "ishigaki-r8-dai4-ippan-nagahama-nobuo",
+      "question_date": "2026-06-22",
+      "item_number": 4,
+      "item_title": "台湾・石垣定期船就航について"
+    },
+    "question": {
+      "summary": "議員は、週2便への移行見通しや利用促進策を踏まえ、定期航路の本格運航と需要確保の見通しを質問しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0032"
+      ],
+      "expected_speaker_role": "questioner"
+    },
+    "city_answer": {
+      "summary": "市は、5月28日に初就航し、6月末までは週1便、7月からは週2便体制を予定していることに加え、貨物取扱い開始に向けた確認作業や旅行商品造成、船内サービス充実を段階的に進める必要があると答弁で説明しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0010",
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0036"
+      ],
+      "expected_speaker_role": "executive"
+    },
+    "confirmed_facts": [
+      {
+        "statement": "石垣－基隆定期航路は5月28日に初就航し、6月末までは週1便、7月からは週2便体制を予定していることが答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0010"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      },
+      {
+        "statement": "貨物取扱い開始に向けた確認作業を進めていることが答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0036"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      },
+      {
+        "statement": "旅行商品造成や船内サービス充実などを段階的に進める必要があることが答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0010"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      }
+    ],
+    "unresolved_or_not_confirmed": [
+      {
+        "statement": "航路の長期的な採算改善や経営の成否までは、この答弁だけで確定しません。",
+        "reason": "answer_is_explanatory_not_profitability_confirmation",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0010"
+        ]
+      }
+    ],
+    "recommended_reflection": {
+      "surface": "topic_update",
+      "target": {
+        "type": "topic_json",
+        "slug": "ishigaki-keelung-route-yaimamaru"
+      },
+      "kind": "council",
+      "status_label": "議会で確認",
+      "safe_scope": "city_answer_only",
+      "avoid": [
+        "current_status_overwrite",
+        "source_url_inference",
+        "related_bill_ids_inference"
+      ]
+    }
+  },
+  "review": {
+    "status": "approved",
+    "needs_human_review": false,
+    "review_reason": [
+      "real_issue_candidate",
+      "transcript_derived",
+      "attributed_speech_only",
+      "candidate_v2_auto_ready_fixture"
+    ],
+    "reviewer": "issue-publisher-reviewer",
+    "reviewed_at": "2026-07-07T00:00:00+09:00",
+    "approval_note": "Narrow keelung-route candidate limited to the verified Nagahama question and executive answer anchors. auto_ready is review-only gate metadata and does not imply public JSON, DB, or revalidation work.",
+    "export_readiness": "ready_for_export",
+    "export_blockers": []
+  },
+  "export": {
+    "target": "topic_json",
+    "target_slug": "ishigaki-keelung-route-yaimamaru",
+    "source_proposal_id": "fixture.r8-dai4.keelung-route.nagahama-auto-ready-topic-target.v2.001",
+    "notes": "Dry-run only. Public JSON must not be edited automatically."
+  }
+}
