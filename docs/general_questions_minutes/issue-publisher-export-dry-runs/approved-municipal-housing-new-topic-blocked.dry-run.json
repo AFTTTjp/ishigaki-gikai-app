@@ -1,0 +1,732 @@
+{
+  "schema_version": "issue-publisher-export-dry-run.v1",
+  "dry_run": true,
+  "proposal": {
+    "id": "fixture.r8-dai4.municipal-housing.new-topic-blocked.001",
+    "title": "市営住宅・住まいの確保",
+    "source_path": "docs/general_questions_minutes/issue-publisher-proposals/approved-state-fixtures/negative/approved-municipal-housing-new-topic-blocked.proposal.json",
+    "proposal_kind": "fixture",
+    "publication_status": "approved_for_export"
+  },
+  "approval_state": {
+    "is_approved": true,
+    "review_status": "approved",
+    "publication_status": "approved_for_export",
+    "export_readiness": "ready_for_export",
+    "needs_human_review": false,
+    "reviewer": "issue-publisher-reviewer",
+    "reviewed_at": "2026-07-09T00:00:00+09:00",
+    "approval_note": "Approved-state negative fixture for a new municipal-housing topic candidate. Proposal approval is complete, but dry-run export should still block because the exact public topic target does not yet exist.",
+    "export_blockers": []
+  },
+  "application_status": {
+    "applied": false,
+    "public_json_written": false,
+    "db_written": false,
+    "revalidation_needed": false,
+    "note": "Review-only dry-run. No public source-of-truth JSON was modified."
+  },
+  "target_resolution": {
+    "status": "blocked",
+    "surface": "topic",
+    "surface_label": "Topic",
+    "target_id": "ishigaki-municipal-housing",
+    "target_file": null,
+    "target_label": null,
+    "target_title": null,
+    "resolved_by": "blocked_target_not_found",
+    "resolution_note": "The proposal named a topic target, but no exact topic slug match was found in the public topic JSON set."
+  },
+  "reviewer_guidance": {
+    "ready_for_editor_review": false,
+    "next_step": "Check proposal.export.target_slug against docs/ishigaki_gikai_topics_dev_set/*.topic.json and rerun the dry-run export.",
+    "note": "Blocked dry-run artifacts stop before any public write and should remain unapplied until all blockers are resolved."
+  },
+  "candidate_v2_review_warnings": [
+    {
+      "code": "CANDIDATE_V2_QUESTION_ROLE_UNRESOLVED",
+      "severity": "warning",
+      "field_path": "proposal.candidate_v2.question",
+      "summary": "Question anchor resolved, but speaker role could not be confirmed as questioner.",
+      "anchors": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0002"
+      ],
+      "reviewer_action": "Confirm whether this anchor is acceptable as the question-side reference before public reflection."
+    }
+  ],
+  "would_write": [],
+  "evidence_summary": {
+    "anchors": [
+      {
+        "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+        "source_type": "general_question_minutes",
+        "evidence_role": "primary",
+        "mode": "paraphrase",
+        "resolved": true,
+        "resolved_by": "utterance_id",
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+        "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+        "line_start": 167,
+        "line_end": 204,
+        "source_minutes_file": "2026-06-25/石垣市議会　令和８年６月２２日　６月定例会　仲間均議員　一般質問_minutes.md",
+        "speaker_hint": "建設部長 下地俊幸",
+        "speaker_role_hint": "executive",
+        "speech_kind": "answer",
+        "item_number_candidate": 2,
+        "item_title_candidate": "シニア向け市営団地建設"
+      },
+      {
+        "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0007",
+        "source_type": "general_question_minutes",
+        "evidence_role": "secondary",
+        "mode": "paraphrase",
+        "resolved": true,
+        "resolved_by": "utterance_id",
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0007",
+        "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+        "line_start": 132,
+        "line_end": 165,
+        "source_minutes_file": "2026-06-25/石垣市議会　令和８年６月２２日　６月定例会　仲間均議員　一般質問_minutes.md",
+        "speaker_hint": "福祉部長 内原英生",
+        "speaker_role_hint": "executive",
+        "speech_kind": "answer",
+        "item_number_candidate": 2,
+        "item_title_candidate": "シニア向け市営団地建設"
+      }
+    ],
+    "claims": [
+      {
+        "claim_type": "attributed_speech",
+        "proposal_type": "discussion_point",
+        "summary_easy": "シニア向け市営団地建設に関する一般質問の答弁では、市営住宅の申込み制度や住まい支援の考え方が説明されました。",
+        "summary_detailed": "令和8年第4回定例会の一般質問では、シニア向け市営団地建設に関する答弁として、市営住宅に高齢者特化の申込み枠はないこと、住宅困窮度を評価する点数評価方式案を上程していること、市営住宅を住宅セーフティーネットとして位置づけていること、新規建設が難しい理由、居住支援協議会の設立に向けた取組が説明されました。これは approved-state negative regression fixture であり、新設方針や制度成立を transcript だけで確定するものではありません。"
+      }
+    ]
+  },
+  "anchor_role_summary": {
+    "proposal_evidence": [
+      {
+        "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+        "source_type": "general_question_minutes",
+        "resolved": true,
+        "speaker_role_hint": "executive",
+        "speech_kind": "answer",
+        "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+        "item_number_candidate": 2,
+        "item_title_candidate": "シニア向け市営団地建設"
+      },
+      {
+        "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0007",
+        "source_type": "general_question_minutes",
+        "resolved": true,
+        "speaker_role_hint": "executive",
+        "speech_kind": "answer",
+        "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+        "item_number_candidate": 2,
+        "item_title_candidate": "シニア向け市営団地建設"
+      }
+    ],
+    "candidate_v2": {
+      "source_scope": {
+        "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+        "question_date": "2026-06-22",
+        "item_number": 2,
+        "item_title": "シニア向け市営団地建設"
+      },
+      "question": [
+        {
+          "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0002",
+          "resolved": true,
+          "expected_speaker_role": "questioner",
+          "actual_speaker_role": "unknown",
+          "speech_kind": "unknown",
+          "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+          "item_number_candidate": null,
+          "item_title_candidate": null,
+          "role_match": null
+        }
+      ],
+      "city_answer": [
+        {
+          "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+          "resolved": true,
+          "expected_speaker_role": "executive",
+          "actual_speaker_role": "executive",
+          "speech_kind": "answer",
+          "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+          "item_number_candidate": 2,
+          "item_title_candidate": "シニア向け市営団地建設",
+          "role_match": true
+        },
+        {
+          "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0007",
+          "resolved": true,
+          "expected_speaker_role": "executive",
+          "actual_speaker_role": "executive",
+          "speech_kind": "answer",
+          "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+          "item_number_candidate": 2,
+          "item_title_candidate": "シニア向け市営団地建設",
+          "role_match": true
+        }
+      ],
+      "confirmed_facts": [
+        {
+          "statement": "市営住宅には高齢者特化の申込み枠はなく、条例上の資格に該当する人が申し込み可能であることが答弁で説明されました。",
+          "anchors": [
+            {
+              "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+              "resolved": true,
+              "expected_speaker_role": null,
+              "actual_speaker_role": "executive",
+              "speech_kind": "answer",
+              "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+              "item_number_candidate": 2,
+              "item_title_candidate": "シニア向け市営団地建設",
+              "role_match": null
+            }
+          ]
+        },
+        {
+          "statement": "従来の抽選方式に加え、住宅困窮度をより評価できる点数評価方式案を本議会に上程していることが答弁で説明されました。",
+          "anchors": [
+            {
+              "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+              "resolved": true,
+              "expected_speaker_role": null,
+              "actual_speaker_role": "executive",
+              "speech_kind": "answer",
+              "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+              "item_number_candidate": 2,
+              "item_title_candidate": "シニア向け市営団地建設",
+              "role_match": null
+            }
+          ]
+        },
+        {
+          "statement": "市営住宅は、低所得高齢者や身寄りのない高齢者などにとって住宅セーフティーネットとしての役割を担うと答弁で説明されました。",
+          "anchors": [
+            {
+              "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+              "resolved": true,
+              "expected_speaker_role": null,
+              "actual_speaker_role": "executive",
+              "speech_kind": "answer",
+              "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+              "item_number_candidate": 2,
+              "item_title_candidate": "シニア向け市営団地建設",
+              "role_match": null
+            }
+          ]
+        },
+        {
+          "statement": "市営住宅の新規建設は、市街地で適切な敷地が限られることや津波浸水予測区域、建築可能戸数の制約などで困難と答弁で説明されました。",
+          "anchors": [
+            {
+              "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+              "resolved": true,
+              "expected_speaker_role": null,
+              "actual_speaker_role": "executive",
+              "speech_kind": "answer",
+              "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+              "item_number_candidate": 2,
+              "item_title_candidate": "シニア向け市営団地建設",
+              "role_match": null
+            }
+          ]
+        },
+        {
+          "statement": "居住支援協議会の設立に向けた取組を進め、関係部局や民間事業者と連携して支援体制を構築していくことが答弁で説明されました。",
+          "anchors": [
+            {
+              "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+              "resolved": true,
+              "expected_speaker_role": null,
+              "actual_speaker_role": "executive",
+              "speech_kind": "answer",
+              "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+              "item_number_candidate": 2,
+              "item_title_candidate": "シニア向け市営団地建設",
+              "role_match": null
+            }
+          ]
+        }
+      ],
+      "unresolved_or_not_confirmed": [
+        {
+          "statement": "高齢者向け申込み枠を増やす方針があるかは、この答弁だけでは確定しません。",
+          "reason": "question_request_not_policy_confirmation",
+          "anchors": [
+            {
+              "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0002",
+              "resolved": true,
+              "expected_speaker_role": null,
+              "actual_speaker_role": "unknown",
+              "speech_kind": "unknown",
+              "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+              "item_number_candidate": null,
+              "item_title_candidate": null,
+              "role_match": null
+            }
+          ]
+        },
+        {
+          "statement": "新しい市営住宅建設を実施する方針が固まっているかは、この答弁だけでは確定しません。",
+          "reason": "new_construction_not_committed",
+          "anchors": [
+            {
+              "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+              "resolved": true,
+              "expected_speaker_role": null,
+              "actual_speaker_role": "executive",
+              "speech_kind": "answer",
+              "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+              "item_number_candidate": 2,
+              "item_title_candidate": "シニア向け市営団地建設",
+              "role_match": null
+            }
+          ]
+        },
+        {
+          "statement": "点数評価方式案が成立し施行されるかは、この答弁だけでは確定しません。",
+          "reason": "bill_ordinance_process_not_completed",
+          "anchors": [
+            {
+              "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+              "resolved": true,
+              "expected_speaker_role": null,
+              "actual_speaker_role": "executive",
+              "speech_kind": "answer",
+              "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+              "item_number_candidate": 2,
+              "item_title_candidate": "シニア向け市営団地建設",
+              "role_match": null
+            }
+          ]
+        },
+        {
+          "statement": "居住支援協議会の設立時期や実効性は、この答弁だけでは確定しません。",
+          "reason": "implementation_timing_not_confirmed",
+          "anchors": [
+            {
+              "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+              "resolved": true,
+              "expected_speaker_role": null,
+              "actual_speaker_role": "executive",
+              "speech_kind": "answer",
+              "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+              "item_number_candidate": 2,
+              "item_title_candidate": "シニア向け市営団地建設",
+              "role_match": null
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "structured_candidate_v2": {
+    "source_scope": {
+      "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+      "question_date": "2026-06-22",
+      "item_number": 2,
+      "item_title": "シニア向け市営団地建設"
+    },
+    "question": {
+      "summary": "議員は、低所得高齢者の住まい確保を踏まえ、高齢者向けの申込み枠や公営住宅建設の必要性を問い、市営住宅制度の運用や住宅支援の現状を確認しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0002"
+      ],
+      "expected_speaker_role": "questioner"
+    },
+    "city_answer": {
+      "summary": "市は、市営住宅に高齢者特化の申込み枠はなく、住宅困窮度を評価する点数評価方式案を本議会に上程していること、市営住宅は住宅セーフティーネットとしての役割を担うこと、新規建設は敷地条件や津波浸水予測区域、建築可能戸数の制約で困難であること、居住支援協議会の設立に向けた取組を進めていることを答弁で説明しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0007"
+      ],
+      "expected_speaker_role": "executive"
+    },
+    "confirmed_facts": [
+      {
+        "statement": "市営住宅には高齢者特化の申込み枠はなく、条例上の資格に該当する人が申し込み可能であることが答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      },
+      {
+        "statement": "従来の抽選方式に加え、住宅困窮度をより評価できる点数評価方式案を本議会に上程していることが答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      },
+      {
+        "statement": "市営住宅は、低所得高齢者や身寄りのない高齢者などにとって住宅セーフティーネットとしての役割を担うと答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      },
+      {
+        "statement": "市営住宅の新規建設は、市街地で適切な敷地が限られることや津波浸水予測区域、建築可能戸数の制約などで困難と答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      },
+      {
+        "statement": "居住支援協議会の設立に向けた取組を進め、関係部局や民間事業者と連携して支援体制を構築していくことが答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      }
+    ],
+    "unresolved_or_not_confirmed": [
+      {
+        "statement": "高齢者向け申込み枠を増やす方針があるかは、この答弁だけでは確定しません。",
+        "reason": "question_request_not_policy_confirmation",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0002"
+        ]
+      },
+      {
+        "statement": "新しい市営住宅建設を実施する方針が固まっているかは、この答弁だけでは確定しません。",
+        "reason": "new_construction_not_committed",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ]
+      },
+      {
+        "statement": "点数評価方式案が成立し施行されるかは、この答弁だけでは確定しません。",
+        "reason": "bill_ordinance_process_not_completed",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ]
+      },
+      {
+        "statement": "居住支援協議会の設立時期や実効性は、この答弁だけでは確定しません。",
+        "reason": "implementation_timing_not_confirmed",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ]
+      }
+    ],
+    "recommended_reflection": {
+      "surface": "topic_update",
+      "target": {
+        "type": "topic_json",
+        "slug": "ishigaki-municipal-housing"
+      },
+      "kind": "council",
+      "status_label": "議会で確認",
+      "safe_scope": "city_answer_only",
+      "avoid": [
+        "current_status_overwrite",
+        "source_url_inference",
+        "related_bill_ids_inference"
+      ]
+    }
+  },
+  "candidate_v2_reflection_context": {
+    "source_scope": {
+      "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+      "question_date": "2026-06-22",
+      "item_number": 2,
+      "item_title": "シニア向け市営団地建設"
+    },
+    "question": {
+      "summary": "議員は、低所得高齢者の住まい確保を踏まえ、高齢者向けの申込み枠や公営住宅建設の必要性を問い、市営住宅制度の運用や住宅支援の現状を確認しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0002"
+      ],
+      "anchor_count": 1,
+      "expected_speaker_role": "questioner",
+      "role_observation": {
+        "resolved_anchor_count": 1,
+        "unresolved_anchor_count": 0,
+        "actual_speaker_roles": [
+          "unknown"
+        ],
+        "speech_kinds": [
+          "unknown"
+        ],
+        "role_status": "unresolved"
+      }
+    },
+    "city_answer": {
+      "summary": "市は、市営住宅に高齢者特化の申込み枠はなく、住宅困窮度を評価する点数評価方式案を本議会に上程していること、市営住宅は住宅セーフティーネットとしての役割を担うこと、新規建設は敷地条件や津波浸水予測区域、建築可能戸数の制約で困難であること、居住支援協議会の設立に向けた取組を進めていることを答弁で説明しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0007"
+      ],
+      "anchor_count": 2,
+      "expected_speaker_role": "executive",
+      "role_observation": {
+        "resolved_anchor_count": 2,
+        "unresolved_anchor_count": 0,
+        "actual_speaker_roles": [
+          "executive"
+        ],
+        "speech_kinds": [
+          "answer"
+        ],
+        "role_status": "confirmed"
+      }
+    },
+    "confirmed_facts": [
+      {
+        "statement": "市営住宅には高齢者特化の申込み枠はなく、条例上の資格に該当する人が申し込み可能であることが答弁で説明されました。",
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate",
+        "reason": null,
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "anchor_count": 1,
+        "anchor_observation": {
+          "resolved_anchor_count": 1,
+          "unresolved_anchor_count": 0,
+          "actual_speaker_roles": [
+            "executive"
+          ],
+          "speech_kinds": [
+            "answer"
+          ],
+          "role_status": null
+        }
+      },
+      {
+        "statement": "従来の抽選方式に加え、住宅困窮度をより評価できる点数評価方式案を本議会に上程していることが答弁で説明されました。",
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate",
+        "reason": null,
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "anchor_count": 1,
+        "anchor_observation": {
+          "resolved_anchor_count": 1,
+          "unresolved_anchor_count": 0,
+          "actual_speaker_roles": [
+            "executive"
+          ],
+          "speech_kinds": [
+            "answer"
+          ],
+          "role_status": null
+        }
+      },
+      {
+        "statement": "市営住宅は、低所得高齢者や身寄りのない高齢者などにとって住宅セーフティーネットとしての役割を担うと答弁で説明されました。",
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate",
+        "reason": null,
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "anchor_count": 1,
+        "anchor_observation": {
+          "resolved_anchor_count": 1,
+          "unresolved_anchor_count": 0,
+          "actual_speaker_roles": [
+            "executive"
+          ],
+          "speech_kinds": [
+            "answer"
+          ],
+          "role_status": null
+        }
+      },
+      {
+        "statement": "市営住宅の新規建設は、市街地で適切な敷地が限られることや津波浸水予測区域、建築可能戸数の制約などで困難と答弁で説明されました。",
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate",
+        "reason": null,
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "anchor_count": 1,
+        "anchor_observation": {
+          "resolved_anchor_count": 1,
+          "unresolved_anchor_count": 0,
+          "actual_speaker_roles": [
+            "executive"
+          ],
+          "speech_kinds": [
+            "answer"
+          ],
+          "role_status": null
+        }
+      },
+      {
+        "statement": "居住支援協議会の設立に向けた取組を進め、関係部局や民間事業者と連携して支援体制を構築していくことが答弁で説明されました。",
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate",
+        "reason": null,
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "anchor_count": 1,
+        "anchor_observation": {
+          "resolved_anchor_count": 1,
+          "unresolved_anchor_count": 0,
+          "actual_speaker_roles": [
+            "executive"
+          ],
+          "speech_kinds": [
+            "answer"
+          ],
+          "role_status": null
+        }
+      }
+    ],
+    "unresolved_or_not_confirmed": [
+      {
+        "statement": "高齢者向け申込み枠を増やす方針があるかは、この答弁だけでは確定しません。",
+        "status": null,
+        "public_use": null,
+        "reason": "question_request_not_policy_confirmation",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0002"
+        ],
+        "anchor_count": 1,
+        "anchor_observation": {
+          "resolved_anchor_count": 1,
+          "unresolved_anchor_count": 0,
+          "actual_speaker_roles": [
+            "unknown"
+          ],
+          "speech_kinds": [
+            "unknown"
+          ],
+          "role_status": null
+        }
+      },
+      {
+        "statement": "新しい市営住宅建設を実施する方針が固まっているかは、この答弁だけでは確定しません。",
+        "status": null,
+        "public_use": null,
+        "reason": "new_construction_not_committed",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "anchor_count": 1,
+        "anchor_observation": {
+          "resolved_anchor_count": 1,
+          "unresolved_anchor_count": 0,
+          "actual_speaker_roles": [
+            "executive"
+          ],
+          "speech_kinds": [
+            "answer"
+          ],
+          "role_status": null
+        }
+      },
+      {
+        "statement": "点数評価方式案が成立し施行されるかは、この答弁だけでは確定しません。",
+        "status": null,
+        "public_use": null,
+        "reason": "bill_ordinance_process_not_completed",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "anchor_count": 1,
+        "anchor_observation": {
+          "resolved_anchor_count": 1,
+          "unresolved_anchor_count": 0,
+          "actual_speaker_roles": [
+            "executive"
+          ],
+          "speech_kinds": [
+            "answer"
+          ],
+          "role_status": null
+        }
+      },
+      {
+        "statement": "居住支援協議会の設立時期や実効性は、この答弁だけでは確定しません。",
+        "status": null,
+        "public_use": null,
+        "reason": "implementation_timing_not_confirmed",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "anchor_count": 1,
+        "anchor_observation": {
+          "resolved_anchor_count": 1,
+          "unresolved_anchor_count": 0,
+          "actual_speaker_roles": [
+            "executive"
+          ],
+          "speech_kinds": [
+            "answer"
+          ],
+          "role_status": null
+        }
+      }
+    ],
+    "recommended_reflection": {
+      "surface": "topic_update",
+      "target": {
+        "type": "topic_json",
+        "slug": "ishigaki-municipal-housing"
+      },
+      "kind": "council",
+      "status_label": "議会で確認",
+      "safe_scope": "city_answer_only",
+      "avoid": [
+        "current_status_overwrite",
+        "source_url_inference",
+        "related_bill_ids_inference"
+      ]
+    },
+    "review_notes": [
+      {
+        "code": "QUESTION_ROLE_UNRESOLVED",
+        "severity": "warning",
+        "summary": "Question-side anchor is present, but reviewer should confirm that it is acceptable as the question reference because speaker role metadata is unresolved.",
+        "related_warning_codes": [
+          "CANDIDATE_V2_QUESTION_ROLE_UNRESOLVED"
+        ]
+      },
+      {
+        "code": "CITY_ANSWER_ROLE_CONFIRMED",
+        "severity": "info",
+        "summary": "City answer anchors resolved as executive answer utterances in the current utterance metadata.",
+        "anchor_count": 2
+      }
+    ]
+  },
+  "candidate_v2_reflection_gate": {
+    "decision": "blocked",
+    "reasons": [
+      "TARGET_NOT_RESOLVED"
+    ],
+    "safe_to_generate_topic_update": false,
+    "allowed_inputs": [],
+    "disallowed_inputs": [
+      "question",
+      "unresolved_or_not_confirmed",
+      "public_draft.summary_detailed"
+    ],
+    "notes": [
+      "Review-only gate. Does not imply public JSON is updated.",
+      "This gate does not authorize DB import or revalidation."
+    ]
+  },
+  "blocks": [
+    {
+      "code": "TOPIC_TARGET_NOT_FOUND",
+      "message": "Exact topic target not found for proposal.export.target_slug=ishigaki-municipal-housing.",
+      "reviewer_action": "Check proposal.export.target_slug against docs/ishigaki_gikai_topics_dev_set/*.topic.json and rerun the dry-run export."
+    }
+  ]
+}
