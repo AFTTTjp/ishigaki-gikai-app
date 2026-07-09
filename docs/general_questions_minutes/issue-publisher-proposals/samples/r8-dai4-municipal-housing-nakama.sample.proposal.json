@@ -1,0 +1,165 @@
+{
+  "schema_version": "issue-publisher-proposal.v0",
+  "proposal_id": "sample.r8-dai4.municipal-housing.nakama.001",
+  "proposal_kind": "sample",
+  "publication_status": "not_published",
+  "note": "This is a review-only sample proposal for a new municipal housing topic candidate. It is not published content.",
+  "issue_id": "issue-r8d4-municipal-housing",
+  "issue_title": "市営住宅・住まいの確保",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "claim_type": "attributed_speech",
+  "proposal_type": "discussion_point",
+  "public_draft": {
+    "summary_easy": "シニア向け市営団地建設に関する一般質問の答弁では、市営住宅の申込み制度や住まい支援の考え方が説明されました。",
+    "summary_detailed": "令和8年第4回定例会の一般質問では、シニア向け市営団地建設に関する答弁として、市営住宅に高齢者特化の申込み枠はないこと、住宅困窮度を評価する点数評価方式案を上程していること、市営住宅を住宅セーフティーネットとして位置づけていること、新規建設が難しい理由、居住支援協議会の設立に向けた取組が説明されました。これは新規 topic 候補を review するための sample proposal であり、新設方針や制度成立を transcript だけで確定するものではありません。"
+  },
+  "evidence": [
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+      "evidence_role": "primary",
+      "mode": "paraphrase",
+      "note": "Transcript evidence supports that an executive answer described the municipal housing application rules, the proposed point-based evaluation method, the safety-net role of municipal housing, and why new construction is difficult."
+    },
+    {
+      "source_type": "general_question_minutes",
+      "anchor": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0007",
+      "evidence_role": "secondary",
+      "mode": "paraphrase",
+      "note": "Transcript evidence supports that an executive answer described existing housing support and the current difficulty of securing housing within support thresholds."
+    }
+  ],
+  "links": {
+    "related_bill_ids": [],
+    "related_question_slugs": [
+      "ishigaki-r8-dai4-ippan-nakama-hitoshi"
+    ]
+  },
+  "candidate_v2": {
+    "source_scope": {
+      "question_slug": "ishigaki-r8-dai4-ippan-nakama-hitoshi",
+      "question_date": "2026-06-22",
+      "item_number": 2,
+      "item_title": "シニア向け市営団地建設"
+    },
+    "question": {
+      "summary": "議員は、低所得高齢者の住まい確保を踏まえ、高齢者向けの申込み枠や公営住宅建設の必要性を問い、市営住宅制度の運用や住宅支援の現状を確認しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0002"
+      ],
+      "expected_speaker_role": "questioner"
+    },
+    "city_answer": {
+      "summary": "市は、市営住宅に高齢者特化の申込み枠はなく、住宅困窮度を評価する点数評価方式案を本議会に上程していること、市営住宅は住宅セーフティーネットとしての役割を担うこと、新規建設は敷地条件や津波浸水予測区域、建築可能戸数の制約で困難であること、居住支援協議会の設立に向けた取組を進めていることを答弁で説明しました。",
+      "anchor_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008",
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0007"
+      ],
+      "expected_speaker_role": "executive"
+    },
+    "confirmed_facts": [
+      {
+        "statement": "市営住宅には高齢者特化の申込み枠はなく、条例上の資格に該当する人が申し込み可能であることが答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      },
+      {
+        "statement": "従来の抽選方式に加え、住宅困窮度をより評価できる点数評価方式案を本議会に上程していることが答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      },
+      {
+        "statement": "市営住宅は、低所得高齢者や身寄りのない高齢者などにとって住宅セーフティーネットとしての役割を担うと答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      },
+      {
+        "statement": "市営住宅の新規建設は、市街地で適切な敷地が限られることや津波浸水予測区域、建築可能戸数の制約などで困難と答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      },
+      {
+        "statement": "居住支援協議会の設立に向けた取組を進め、関係部局や民間事業者と連携して支援体制を構築していくことが答弁で説明されました。",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ],
+        "status": "confirmed_in_city_answer",
+        "public_use": "topic_update_candidate"
+      }
+    ],
+    "unresolved_or_not_confirmed": [
+      {
+        "statement": "高齢者向け申込み枠を増やす方針があるかは、この答弁だけでは確定しません。",
+        "reason": "question_request_not_policy_confirmation",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0002"
+        ]
+      },
+      {
+        "statement": "新しい市営住宅建設を実施する方針が固まっているかは、この答弁だけでは確定しません。",
+        "reason": "new_construction_not_committed",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ]
+      },
+      {
+        "statement": "点数評価方式案が成立し施行されるかは、この答弁だけでは確定しません。",
+        "reason": "bill_ordinance_process_not_completed",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ]
+      },
+      {
+        "statement": "居住支援協議会の設立時期や実効性は、この答弁だけでは確定しません。",
+        "reason": "implementation_timing_not_confirmed",
+        "anchor_ids": [
+          "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0008"
+        ]
+      }
+    ],
+    "recommended_reflection": {
+      "surface": "topic_update",
+      "target": {
+        "type": "topic_json",
+        "slug": "ishigaki-municipal-housing"
+      },
+      "kind": "council",
+      "status_label": "議会で確認",
+      "safe_scope": "city_answer_only",
+      "avoid": [
+        "current_status_overwrite",
+        "source_url_inference",
+        "related_bill_ids_inference"
+      ]
+    }
+  },
+  "review": {
+    "status": "pending",
+    "needs_human_review": true,
+    "review_reason": [
+      "sample_proposal",
+      "transcript_derived",
+      "attributed_speech_only",
+      "new_topic_needed",
+      "question_role_unresolved"
+    ],
+    "export_readiness": "blocked",
+    "export_blockers": [
+      "new_topic_not_created",
+      "target_slug_is_candidate_only",
+      "question_anchor_speaker_role_unresolved"
+    ]
+  }
+}
