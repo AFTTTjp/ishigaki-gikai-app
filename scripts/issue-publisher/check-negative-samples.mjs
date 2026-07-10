@@ -357,6 +357,19 @@ const EXPECTED_ERROR_CODES_BY_FILE = {
   "approved-ready-with-export-blockers.proposal.json": [
     "READY_EXPORT_HAS_BLOCKERS",
   ],
+  "approved-municipal-housing-new-topic-blocked.proposal.json": [
+    "TOPIC_TARGET_NOT_FOUND",
+    "CANDIDATE_V2_QUESTION_ROLE_UNRESOLVED",
+  ],
+};
+
+const DRY_RUN_NEGATIVE_CASES_BY_FILE = {
+  "approved-municipal-housing-new-topic-blocked.proposal.json": {
+    outputPath: resolve(
+      ROOT,
+      "docs/general_questions_minutes/issue-publisher-export-dry-runs/approved-municipal-housing-new-topic-blocked.dry-run.json"
+    ),
+  },
 };
 
 function loadJson(filePath) {
@@ -402,6 +415,34 @@ function assertNegative(index, baseDir, fileName) {
   const result = validateProposalAnchors(index, proposal);
   const codes = summarizeCodes(result);
   const expectedCodes = getExpectedErrorCodes(fileName);
+  const dryRunNegativeCase = DRY_RUN_NEGATIVE_CASES_BY_FILE[fileName];
+
+  if (dryRunNegativeCase) {
+    const artifact = exportApprovedProposalDryRun({
+      proposalPath,
+      outPath: dryRunNegativeCase.outputPath,
+    });
+    const actualCodes = [
+      ...artifact.blocks.map((entry) => entry.code),
+      ...(artifact.candidate_v2_review_warnings ?? []).map((entry) => entry.code),
+    ];
+
+    for (const expectedCode of expectedCodes) {
+      if (!actualCodes.includes(expectedCode)) {
+        throw new Error(
+          `${fileName} dry-run must include code ${expectedCode}, but got: ${actualCodes.join(", ")}`
+        );
+      }
+    }
+
+    return {
+      file: fileName,
+      ok: result.ok,
+      expected_error_codes: expectedCodes,
+      actual_error_codes: actualCodes,
+      dry_run_target_status: artifact.target_resolution?.status,
+    };
+  }
 
   if (result.ok) {
     throw new Error(`${fileName} must fail validation, but passed`);
