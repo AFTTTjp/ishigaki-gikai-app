@@ -92,6 +92,11 @@
           "theme",
           "question_summary",
           "city_answer_summary",
+          "city_answer_anchor",
+          "city_answer_excerpt",
+          "city_answer_missing",
+          "answer_anchor_confidence",
+          "answer_anchor_source",
           "confirmed_facts",
           "unconfirmed_or_not_decided",
           "recommended_reflection",
@@ -130,6 +135,75 @@
           },
           "city_answer_summary": {
             "type": "string"
+          },
+          "city_answer_anchor": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "required": [
+              "utterance_id",
+              "source_file",
+              "speaker",
+              "speaker_role",
+              "line_or_time_hint"
+            ],
+            "properties": {
+              "utterance_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "source_file": {
+                "type": "string",
+                "minLength": 1
+              },
+              "speaker": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "speaker_role": {
+                "type": "string",
+                "enum": [
+                  "city",
+                  "executive",
+                  "unknown"
+                ]
+              },
+              "line_or_time_hint": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "city_answer_excerpt": {
+            "type": "string"
+          },
+          "city_answer_missing": {
+            "type": "boolean"
+          },
+          "answer_anchor_confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "answer_anchor_source": {
+            "type": "string",
+            "enum": [
+              "direct_item_match",
+              "unknown_answer_like",
+              "null_item_proximity",
+              "none"
+            ]
           },
           "confirmed_facts": {
             "type": "array",
