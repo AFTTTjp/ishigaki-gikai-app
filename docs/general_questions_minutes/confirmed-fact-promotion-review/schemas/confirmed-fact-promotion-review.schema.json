@@ -1,0 +1,467 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://afttt.jp/schemas/ishigaki-gikai-confirmed-fact-promotion-review.schema.json",
+  "title": "Confirmed Fact Promotion Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "session_slug",
+    "artifact_type",
+    "artifact_origin",
+    "review_status",
+    "source_inventory",
+    "source_utterance_index",
+    "generated_from_commit",
+    "summary",
+    "ready_for_final_review",
+    "needs_wording_or_source_resolution",
+    "transcription_review_queue",
+    "excluded_from_promotion"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "confirmed-fact-promotion-review.v1"
+    },
+    "session_slug": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact_type": {
+      "const": "confirmed_fact_promotion_review"
+    },
+    "artifact_origin": {
+      "const": "hand_authored_review"
+    },
+    "review_status": {
+      "const": "reviewer_only"
+    },
+    "source_inventory": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_utterance_index": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_from_commit": {
+      "type": "string",
+      "minLength": 7
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reviewed_candidate_total",
+        "promotion_ready_total",
+        "context_required_total",
+        "hold_total",
+        "transcription_review_total",
+        "reject_total"
+      ],
+      "properties": {
+        "reviewed_candidate_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "promotion_ready_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "context_required_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hold_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "transcription_review_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reject_total": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "ready_for_final_review": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/promotionCandidate"
+      }
+    },
+    "needs_wording_or_source_resolution": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/promotionCandidate"
+      }
+    },
+    "transcription_review_queue": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/transcriptionReviewCandidate"
+      }
+    },
+    "excluded_from_promotion": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/excludedCandidate"
+      }
+    }
+  },
+  "$defs": {
+    "cityAnswerAnchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "utterance_id",
+        "source_file",
+        "speaker",
+        "speaker_role",
+        "line_or_time_hint"
+      ],
+      "properties": {
+        "utterance_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_file": {
+          "type": "string",
+          "minLength": 1
+        },
+        "speaker": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "speaker_role": {
+          "type": "string",
+          "enum": [
+            "city",
+            "executive",
+            "unknown"
+          ]
+        },
+        "line_or_time_hint": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "questionAnchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_file",
+        "quote_or_excerpt",
+        "speaker",
+        "line_or_time_hint"
+      ],
+      "properties": {
+        "source_file": {
+          "type": "string",
+          "minLength": 1
+        },
+        "quote_or_excerpt": {
+          "type": "string"
+        },
+        "speaker": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "line_or_time_hint": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "promotionCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "entry_id",
+        "council_member",
+        "theme_group",
+        "theme",
+        "item_title",
+        "original_candidate",
+        "review_category",
+        "proposed_confirmed_fact",
+        "support_excerpt",
+        "source_utterance_id",
+        "city_answer_anchor",
+        "question_anchor",
+        "speaker_role",
+        "answer_anchor_source",
+        "answer_anchor_confidence",
+        "confidence",
+        "unresolved_note",
+        "source_resolution_required",
+        "final_approval_status"
+      ],
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entry_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "council_member": {
+          "type": "string",
+          "minLength": 1
+        },
+        "theme_group": {
+          "type": "string",
+          "minLength": 1
+        },
+        "theme": {
+          "type": "string",
+          "minLength": 1
+        },
+        "item_title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "original_candidate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "review_category": {
+          "type": "string",
+          "enum": [
+            "A",
+            "B"
+          ]
+        },
+        "proposed_confirmed_fact": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "support_excerpt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_utterance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "city_answer_anchor": {
+          "$ref": "#/$defs/cityAnswerAnchor"
+        },
+        "question_anchor": {
+          "$ref": "#/$defs/questionAnchor"
+        },
+        "speaker_role": {
+          "type": "string",
+          "enum": [
+            "executive"
+          ]
+        },
+        "answer_anchor_source": {
+          "type": "string",
+          "enum": [
+            "direct_item_match"
+          ]
+        },
+        "answer_anchor_confidence": {
+          "type": "string",
+          "enum": [
+            "high"
+          ]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "unresolved_note": {
+          "type": "string"
+        },
+        "source_resolution_required": {
+          "type": "boolean"
+        },
+        "final_approval_status": {
+          "type": "string",
+          "enum": [
+            "not_approved"
+          ]
+        }
+      }
+    },
+    "transcriptionReviewCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "entry_id",
+        "council_member",
+        "theme_group",
+        "theme",
+        "item_title",
+        "original_candidate",
+        "source_utterance_id",
+        "surrounding_excerpt",
+        "suspicious_token",
+        "review_reason",
+        "audio_or_original_minutes_confirmation_required",
+        "promotion_eligibility",
+        "final_approval_status"
+      ],
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entry_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "council_member": {
+          "type": "string",
+          "minLength": 1
+        },
+        "theme_group": {
+          "type": "string",
+          "minLength": 1
+        },
+        "theme": {
+          "type": "string",
+          "minLength": 1
+        },
+        "item_title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "original_candidate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_utterance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "surrounding_excerpt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "suspicious_token": {
+          "type": "string",
+          "minLength": 1
+        },
+        "review_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audio_or_original_minutes_confirmation_required": {
+          "type": "boolean"
+        },
+        "promotion_eligibility": {
+          "type": "boolean",
+          "const": false
+        },
+        "final_approval_status": {
+          "type": "string",
+          "enum": [
+            "not_approved"
+          ]
+        }
+      }
+    },
+    "excludedCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "entry_id",
+        "council_member",
+        "theme_group",
+        "theme",
+        "item_title",
+        "original_candidate",
+        "category",
+        "exclusion_reason",
+        "reconsideration_allowed",
+        "source_utterance_id",
+        "supporting_excerpt",
+        "final_approval_status"
+      ],
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entry_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "council_member": {
+          "type": "string",
+          "minLength": 1
+        },
+        "theme_group": {
+          "type": "string",
+          "minLength": 1
+        },
+        "theme": {
+          "type": "string",
+          "minLength": 1
+        },
+        "item_title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "original_candidate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "C",
+            "E"
+          ]
+        },
+        "exclusion_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reconsideration_allowed": {
+          "type": "boolean"
+        },
+        "source_utterance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "supporting_excerpt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "final_approval_status": {
+          "type": "string",
+          "enum": [
+            "not_approved"
+          ]
+        }
+      }
+    }
+  }
+}
