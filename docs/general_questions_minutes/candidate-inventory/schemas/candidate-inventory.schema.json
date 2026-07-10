@@ -97,6 +97,7 @@
           "city_answer_missing",
           "answer_anchor_confidence",
           "answer_anchor_source",
+          "recoverable_answer_candidates",
           "confirmed_facts",
           "unconfirmed_or_not_decided",
           "recommended_reflection",
@@ -204,6 +205,66 @@
               "null_item_proximity",
               "none"
             ]
+          },
+          "recoverable_answer_candidates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "utterance_id",
+                "source_file",
+                "speaker",
+                "speaker_role",
+                "excerpt",
+                "reason",
+                "confidence"
+              ],
+              "properties": {
+                "utterance_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "source_file": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "speaker": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "speaker_role": {
+                  "type": "string",
+                  "enum": [
+                    "city",
+                    "executive",
+                    "unknown"
+                  ]
+                },
+                "excerpt": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string",
+                  "enum": [
+                    "null_item_proximity",
+                    "segmentation_mixed",
+                    "later_followup_answer",
+                    "unknown_answer_like"
+                  ]
+                },
+                "confidence": {
+                  "type": "string",
+                  "enum": [
+                    "low"
+                  ]
+                }
+              }
+            }
           },
           "confirmed_facts": {
             "type": "array",

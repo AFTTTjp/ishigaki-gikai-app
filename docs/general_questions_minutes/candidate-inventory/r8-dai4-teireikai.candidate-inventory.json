@@ -2,7 +2,7 @@
   "schema_version": "candidate-inventory.v1",
   "session": "令和8年第4回定例会",
   "diet_session_slug": "ishigaki-r8-dai4-teireikai",
-  "generated_at": "2026-07-10T06:29:12.490Z",
+  "generated_at": "2026-07-10T07:04:03.581Z",
   "generated_from": [
     "docs/general_questions/r8-dai4-teireikai.general-questions.json",
     "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json"
@@ -47,6 +47,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -89,6 +90,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -130,6 +132,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -171,6 +174,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -212,6 +216,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -254,6 +259,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -295,6 +301,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "medium",
       "answer_anchor_source": "unknown_answer_like",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
@@ -338,6 +345,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "medium",
       "answer_anchor_source": "unknown_answer_like",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
@@ -381,6 +389,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -419,6 +428,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -451,6 +461,17 @@
       "city_answer_missing": true,
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
+      "recoverable_answer_candidates": [
+        {
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0010",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "企画部長 菅沼副",
+          "speaker_role": "executive",
+          "excerpt": "石垣・キールン定期航路について3点ご質問がありますので 順を追ってお答えします 1点目の就航に係る費用については 年度費や石垣港・キールン港の港費など運航に関する費用 船員費 潤滑油費 船舶保険料などの船にかかる費用 船舶代理店や警備等の委託費用など それらをすべて計上し 航行にかかる費用として算出する必要があります 5月28日の初就航日直後であることから 実績ベースの生産額は確定していませんの…",
+          "reason": "null_item_proximity",
+          "confidence": "low"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。",
@@ -494,6 +515,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -527,6 +549,7 @@
       "city_answer_missing": true,
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -568,6 +591,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -607,6 +631,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -648,6 +673,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -689,6 +715,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -730,6 +757,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -770,6 +798,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -811,6 +840,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -852,6 +882,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "medium",
       "answer_anchor_source": "unknown_answer_like",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
@@ -894,6 +925,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "medium",
       "answer_anchor_source": "unknown_answer_like",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
@@ -936,6 +968,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -977,6 +1010,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1018,6 +1052,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1058,6 +1093,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1098,6 +1134,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1133,6 +1170,7 @@
       "city_answer_missing": true,
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。",
@@ -1176,6 +1214,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1211,6 +1250,26 @@
       "city_answer_missing": true,
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
+      "recoverable_answer_candidates": [
+        {
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0012",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "教育部長小永淳",
+          "speaker_role": "executive",
+          "excerpt": "平秀幸議員ご質問ご項目目 教育支援センターアヤパニ学級について ご質問ございますのでお答えいたします アイパニ学級は平成6年4月に開設され、今年で32年目となります。 開設当時の平成初期は、全国的に登校拒否から不登校への概念転換がなされた時期で、 本市においても不登校児童生徒数が毎年増加していたこと、 学校だけでは対応しきれない事例が増加していたこと、 早期介入、段階的支援の必要性などから、同学…",
+          "reason": "null_item_proximity",
+          "confidence": "low"
+        },
+        {
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0055",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "学校教育課長 石垣 英一",
+          "speaker_role": "executive",
+          "excerpt": "再質問にお答えいたします まずアヤパニ学級は教育委員会の学校教育課が 青少年センターは教育委員会の生き生き花火課が所管しております 対象者につきましては アヤパニ学級が石垣市内の小中学校に通う児童生徒 青少年センターは0歳から39歳までの子ども若者が対象となります あやぱに学級におきましては教員や教員免許状を所持している指導員による学習支援や個々の状況に応じたきめ細かな対応を行っております 青少…",
+          "reason": "null_item_proximity",
+          "confidence": "low"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。",
@@ -1254,6 +1313,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1290,6 +1350,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1326,6 +1387,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1362,6 +1424,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1398,6 +1461,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1434,6 +1498,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1470,6 +1535,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -1504,6 +1570,7 @@
       "city_answer_missing": true,
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -1545,6 +1612,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -1585,6 +1653,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1621,6 +1690,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1651,6 +1721,7 @@
       "city_answer_missing": true,
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -1692,6 +1763,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1728,6 +1800,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1764,6 +1837,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1800,6 +1874,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1836,6 +1911,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1872,6 +1948,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1908,6 +1985,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1944,6 +2022,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1980,6 +2059,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2016,6 +2096,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2052,6 +2133,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "medium",
       "answer_anchor_source": "unknown_answer_like",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "city/executive 側答弁 anchor は unknown answer-like として抽出しており、人間確認が必要です。"
@@ -2092,6 +2174,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "medium",
       "answer_anchor_source": "unknown_answer_like",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "city/executive 側答弁 anchor は unknown answer-like として抽出しており、人間確認が必要です。"
@@ -2132,6 +2215,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2168,6 +2252,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2204,6 +2289,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2240,6 +2326,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2282,6 +2369,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2324,6 +2412,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2366,6 +2455,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2408,6 +2498,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2450,6 +2541,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2490,6 +2582,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2531,6 +2624,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2565,6 +2659,7 @@
       "city_answer_missing": true,
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。",
@@ -2608,6 +2703,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2644,6 +2740,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2680,6 +2777,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2716,6 +2814,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "medium",
       "answer_anchor_source": "unknown_answer_like",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
@@ -2758,6 +2857,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2799,6 +2899,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2840,6 +2941,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2881,6 +2983,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2921,6 +3024,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2957,6 +3061,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2987,6 +3092,7 @@
       "city_answer_missing": true,
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -3028,6 +3134,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3064,6 +3171,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3100,6 +3208,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3141,6 +3250,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3181,6 +3291,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3221,6 +3332,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3255,6 +3367,7 @@
       "city_answer_missing": true,
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。",
@@ -3298,6 +3411,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3338,6 +3452,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3378,6 +3493,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3418,6 +3534,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3454,6 +3571,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3490,6 +3608,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3526,6 +3645,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3556,6 +3676,7 @@
       "city_answer_missing": true,
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -3597,6 +3718,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3633,6 +3755,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3674,6 +3797,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3714,6 +3838,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3755,6 +3880,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3796,6 +3922,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3837,6 +3964,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3877,6 +4005,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3918,6 +4047,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -3959,6 +4089,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3997,6 +4128,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -4035,6 +4167,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -4076,6 +4209,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -4117,6 +4251,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -4157,6 +4292,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -4198,6 +4334,7 @@
       "city_answer_missing": false,
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
+      "recoverable_answer_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
