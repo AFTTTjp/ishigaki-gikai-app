@@ -22,9 +22,10 @@ const OUTPUT_PATH = resolve(
 const ANCHOR_SOURCE_FILE =
   "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json";
 const ANSWER_LIKE_REGEX =
-  /ご質問にお答え|お答えいたします|お答えします|答弁|説明します|本市では|当局として/;
+  /ご質問にお答え|再質問にお答え|お答えいたします|お答えします|説明いたします|説明します|本市では|当局として/;
 const QUESTION_PROMPT_REGEX =
   /ご答弁願います|答弁を求めます|お尋ねいたします|お伺いします|質問します|質問いたします/;
+const EXECUTIVE_LABEL_REGEX = /課長|部長|市長|副市長|教育長|委員長|所長|局長|館長/;
 const GENERIC_ANSWER_MATCH_TERMS = new Set([
   "について",
   "現状",
@@ -46,6 +47,9 @@ const GENERIC_ANSWER_MATCH_TERMS = new Set([
   "推進",
   "確保",
 ]);
+
+const TERM_SPLIT_REGEX =
+  /[・「」『』（）()\/、,，。\s]|について|における|どのように|並びに|及び|として|による|に対する|との|から|まで|ため|こと|もの|など|する|した|して|ある|いる/;
 
 function loadJson(filePath) {
   return JSON.parse(readFileSync(filePath, "utf8"));
@@ -87,6 +91,10 @@ function formatLineHint(utterance) {
 function isAnswerLikeText(entry) {
   const text = normalizeWhitespace(entry?.text);
   return ANSWER_LIKE_REGEX.test(text) && !QUESTION_PROMPT_REGEX.test(text);
+}
+
+function hasExecutiveLabel(value) {
+  return EXECUTIVE_LABEL_REGEX.test(normalizeWhitespace(value));
 }
 
 function isQuestionSideUtterance(entry) {
@@ -160,7 +168,26 @@ function extractAnswerMatchTerms(item) {
   return Array.from(
     new Set(
       source
-        .split(/[・「」『』（）()\/、,，。\s]+/)
+        .split(TERM_SPLIT_REGEX)
+        .map((term) => term.trim())
+        .filter(
+          (term) => term.length >= 3 && !GENERIC_ANSWER_MATCH_TERMS.has(term)
+        )
+    )
+  ).slice(0, 8);
+}
+
+function compactText(value) {
+  return normalizeWhitespace(value).replace(/[・「」『』（）()\/、,，。:：]/g, "");
+}
+
+function extractSubItemMatchTerms(item) {
+  return Array.from(
+    new Set(
+      (item.sub_items ?? [])
+        .map(normalizeWhitespace)
+        .join(" ")
+        .split(TERM_SPLIT_REGEX)
         .map((term) => term.trim())
         .filter(
           (term) => term.length >= 3 && !GENERIC_ANSWER_MATCH_TERMS.has(term)
@@ -269,6 +296,139 @@ function buildCityAnswerAnchor(entry) {
   };
 }
 
+function buildRecoverableAnswerCandidate(entry, reason) {
+  return {
+    utterance_id: entry.utterance_id ?? null,
+    source_file: ANCHOR_SOURCE_FILE,
+    speaker: entry.speaker_hint ?? null,
+    speaker_role:
+      entry.speaker_role_hint === "city"
+        ? "city"
+        : entry.speaker_role_hint === "executive"
+          ? "executive"
+          : "unknown",
+    excerpt: buildExcerpt(entry.text, 200),
+    reason,
+    confidence: "low",
+  };
+}
+
+function scoreRelatedTerms(text, terms) {
+  const normalized = normalizeWhitespace(text);
+  const matchedTerms = terms.filter((term) => normalized.includes(term));
+  return {
+    matchedTerms,
+    matchedCount: matchedTerms.length,
+    hasLongTerm: matchedTerms.some((term) => term.length >= 5),
+  };
+}
+
+function hasStrongRelatedTermMatch(text, terms) {
+  const { matchedCount, hasLongTerm } = scoreRelatedTerms(text, terms);
+  return matchedCount >= 2 || hasLongTerm;
+}
+
+function hasTitleOrSubItemMatch(text, item, terms) {
+  const normalized = normalizeWhitespace(text);
+  const compact = compactText(text);
+  const titleCompact = compactText(item.title);
+  const subItemTerms = extractSubItemMatchTerms(item);
+  return (
+    (titleCompact.length >= 5 && compact.includes(titleCompact)) ||
+    subItemTerms.some((term) => normalized.includes(term)) ||
+    hasStrongRelatedTermMatch(text, terms)
+  );
+}
+
+function hasEarlyThematicMatch(text, item, terms) {
+  return hasTitleOrSubItemMatch(normalizeWhitespace(text).slice(0, 180), item, terms);
+}
+
+function collectRecoverableAnswerCandidates(
+  questionUtterances,
+  utterancesForItem,
+  questionAnchor,
+  item,
+  selectedAnswerAnchor
+) {
+  if (selectedAnswerAnchor) {
+    return [];
+  }
+
+  const terms = extractAnswerMatchTerms(item);
+  const lineCandidates = [
+    ...utterancesForItem
+      .map((entry) => entry?.line_end)
+      .filter((value) => typeof value === "number"),
+    typeof questionAnchor?.line_end === "number" ? questionAnchor.line_end : null,
+  ].filter((value) => typeof value === "number");
+  const referenceLine =
+    lineCandidates.length > 0 ? Math.max(...lineCandidates) : null;
+  const nextNumberedLine =
+    typeof referenceLine === "number"
+      ? questionUtterances
+          .filter(
+            (entry) =>
+              Number.isInteger(entry.item_number_candidate) &&
+              entry.item_number_candidate > item.item_number &&
+              typeof entry.line_start === "number" &&
+              entry.line_start > referenceLine
+          )
+          .map((entry) => entry.line_start)
+          .sort((left, right) => left - right)[0]
+      : null;
+
+  const candidates = [];
+  const seen = new Set();
+  const pushCandidate = (entry, reason) => {
+    if (!entry?.utterance_id || seen.has(entry.utterance_id)) {
+      return;
+    }
+    seen.add(entry.utterance_id);
+    candidates.push(buildRecoverableAnswerCandidate(entry, reason));
+  };
+
+  for (const entry of questionUtterances) {
+    const text = normalizeWhitespace(entry?.text);
+    const looksAnswerLike = isAnswerLikeText(entry);
+    const strongMatch =
+      terms.length > 0 && hasTitleOrSubItemMatch(text, item, terms);
+    const lineStart = typeof entry?.line_start === "number" ? entry.line_start : null;
+    const afterReference =
+      typeof referenceLine !== "number" ||
+      (typeof lineStart === "number" && lineStart > referenceLine);
+
+    if (
+      looksAnswerLike &&
+      hasExecutiveLabel(`${entry?.speaker_hint ?? ""} ${text}`) &&
+      (entry?.speech_kind === "question_item" || entry?.speaker_role_hint === "unknown") &&
+      (strongMatch || terms.length === 0)
+    ) {
+      pushCandidate(entry, "segmentation_mixed");
+      continue;
+    }
+
+    if (
+      entry?.item_number_candidate === null &&
+      afterReference &&
+      isPotentialAnswerAnchor(entry) &&
+      strongMatch &&
+      hasEarlyThematicMatch(text, item, terms)
+    ) {
+      const reason =
+        typeof referenceLine === "number" &&
+        typeof nextNumberedLine === "number" &&
+        typeof lineStart === "number" &&
+        lineStart > nextNumberedLine
+          ? "later_followup_answer"
+          : "null_item_proximity";
+      pushCandidate(entry, reason);
+    }
+  }
+
+  return candidates.slice(0, 3);
+}
+
 function buildEntry(question, item, utterancesForItem, questionUtterances) {
   const directQuestionAnchor = chooseQuestionAnchor(utterancesForItem);
   const fallbackQuestionAnchor =
@@ -314,6 +474,13 @@ function buildEntry(question, item, utterancesForItem, questionUtterances) {
       : selectedAnswerAnchor
         ? [selectedAnswerAnchor]
         : [];
+  const recoverableAnswerCandidates = collectRecoverableAnswerCandidates(
+    questionUtterances,
+    utterancesForItem,
+    questionAnchor,
+    item,
+    selectedAnswerAnchor
+  );
   const riskFlags = [];
 
   if (!questionAnchor) {
@@ -408,6 +575,7 @@ function buildEntry(question, item, utterancesForItem, questionUtterances) {
     city_answer_missing: !selectedAnswerAnchor,
     answer_anchor_confidence: answerAnchorConfidence,
     answer_anchor_source: answerAnchorSource,
+    recoverable_answer_candidates: recoverableAnswerCandidates,
     confirmed_facts: [],
     unconfirmed_or_not_decided: unconfirmed,
     recommended_reflection: {
