@@ -98,6 +98,7 @@
           "answer_anchor_confidence",
           "answer_anchor_source",
           "recoverable_answer_candidates",
+          "confirmed_fact_candidates",
           "confirmed_facts",
           "unconfirmed_or_not_decided",
           "recommended_reflection",
@@ -261,6 +262,68 @@
                   "type": "string",
                   "enum": [
                     "low"
+                  ]
+                }
+              }
+            }
+          },
+          "confirmed_fact_candidates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "fact",
+                "utterance_id",
+                "source_file",
+                "speaker",
+                "speaker_role",
+                "excerpt",
+                "reason",
+                "confidence"
+              ],
+              "properties": {
+                "fact": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "utterance_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "source_file": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "speaker": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "speaker_role": {
+                  "type": "string",
+                  "enum": [
+                    "city",
+                    "executive",
+                    "unknown"
+                  ]
+                },
+                "excerpt": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string",
+                  "enum": [
+                    "direct_item_match_sentence"
+                  ]
+                },
+                "confidence": {
+                  "type": "string",
+                  "enum": [
+                    "medium"
                   ]
                 }
               }

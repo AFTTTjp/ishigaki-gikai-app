@@ -50,6 +50,40 @@ const GENERIC_ANSWER_MATCH_TERMS = new Set([
 
 const TERM_SPLIT_REGEX =
   /[・「」『』（）()\/、,，。\s]|について|における|どのように|並びに|及び|として|による|に対する|との|から|まで|ため|こと|もの|など|する|した|して|ある|いる/;
+const FACT_CANDIDATE_SKIP_REGEX =
+  /ご質問|再質問|お答えいたします|お答えします|答弁|続きまして|順を追って|まず|次に|以上です|以上で|項目目|議員の|議員ご質問|ご質問がありますので|ご質問がございますので/;
+const FACT_CANDIDATE_FUTURE_OR_OPINION_REGEX =
+  /考えております|考えています|考えます|認識しております|認識しています|認識している|予定しております|予定しています|予定です|見込んでおります|見込んでいます|努めてまいります|努めています|努めているところです|取り組んでまいります|取り組んでいます|取り組んでおります|検討してまいります|検討しています|必要があります|必要である|必要となります|想定しております|想定しています|方針です|したいと考えて|してまいりました/;
+const FACT_CANDIDATE_QUESTION_REGEX =
+  /ですか|でしょうか|伺います|お伺いします|お伺いいたします|お伺いしたいと思います|お聞きします|お聞きいたします|お尋ね|なぜ|求めます|願います|考えをお聞かせ|どうなっている|いかがですか/;
+const FACT_CANDIDATE_EVALUATIVE_REGEX =
+  /極めて|意義深い|重要|望ましい|必要である|受け止めております|受け止めています|高く評価しております|評価しております|評価しています/;
+const FACT_CANDIDATE_DANGLING_ENDING_REGEX =
+  /(?:によりますと|において|について|についてです|としては|としましては|ため|で|と|は)$/;
+const FACT_CANDIDATE_CLOSED_ENDING_REGEX =
+  /(?:です|ます|でした|ました|あります|ございます|であります|しております|しています|いたします|いたしました|となっています|となっております|行いました|実施しました|実施しております|開始しました|開始しております|完了しました|完了しております|設置されています|設置しております|継続しています)$/;
+const FACT_CANDIDATE_GENERIC_ACTION_REGEX =
+  /(?:関係部局と連携しながら対応しているところであります|今後も取り組んでまいります|適切に対応してまいります|努めてまいります|検討してまいります|推進してまいります|連携してまいります|対応しているところであります|待っているところでございます|受入れを行っています|指定できるとしています|取り組んでおります|努めているところです)$/;
+const FACT_CANDIDATE_CONTEXT_DEPENDENT_REGEX =
+  /これについて|このことについて|そのため|そのように|同事業|当該|これら|その後/;
+const FACT_CANDIDATE_BARE_METRIC_REGEX =
+  /^(?:件数|金額|寄付額|予算額|高齢化率|持ち家率|割合|人数|戸数|回数|約?[0-9０-９]+(?:\.[0-9０-９]+)?%?)(?:は|が|で|となって)/;
+const FACT_CANDIDATE_BARE_HOUSEHOLD_REGEX =
+  /^[0-9０-９一二三四五六七八九十]+人から[0-9０-９一二三四五六七八九十]+人世帯が/;
+const FACT_CANDIDATE_TRANSCRIPTION_NOISE_REGEX =
+  /証書類|観光町船|講習ごと|各部屋体育/;
+const FACT_CANDIDATE_WEAK_ACTION_REGEX =
+  /運行計画の見直しを検討していました|現在発注に係る事務手続きを進めております|計画としております|検討していました|進めております/;
+const FACT_CANDIDATE_PLANNED_OR_INTENT_REGEX =
+  /予定しているところです|予定しております|計画しております|見込んでおります|見込みです/;
+const FACT_CANDIDATE_WEAK_SUBJECT_REGEX =
+  /^(?:令和[0-9０-９一二三四五六七八九十]+年度の新規事業でございます|[1-3１２３一二三]つ目は|同年|[0-9０-９一二三四五六七八九十]+回目は)/;
+const FACT_CANDIDATE_CONCRETE_KEYWORD_REGEX =
+  /事業|制度|計画|条例|予算|助成|支援|給付|補助|工事|施設|病院|学校|公園|住宅|市営住宅|航路|ごみ袋|バース|食肉センター|交通|トイレ|税|寄附金|ふるさと納税|基金|バードピア|防犯灯|公設市場|公共交通計画|運動公園|クーポン|離島患者|職員宿舎|基本協定書|市民会館|登山道|文化財|避難施設|救急|診療体制|脳神経外科|外来診療|統計調査/;
+const FACT_CANDIDATE_CONCRETE_ACTION_REGEX =
+  /実施|開始|継続|助成|給付|配布|設置|整備|導入|発注|完了|決定|上程|規定|支給|利用|認定|寄贈|予約|寄港|対象|確保|派遣|設立|建設|締結|更新|運行|受診|診療|発足/;
+const FACT_CANDIDATE_SELF_CONTAINED_SPECIFICITY_REGEX =
+  /令和[0-9０-９一二三四五六七八九十]+年|[0-9０-９]{4}年|[0-9０-９]+月(?:[0-9０-９]+日)?|[0-9０-９]+(?:件|戸|人|円|%|％|便)|市営住宅|宿泊税|公共交通計画|地域公共交通|離島甲子園|ごみ袋|バードピア|公設市場|運動公園|職員宿舎|市民会館|診療体制|脳神経外科|外来診療|救急車|救助車|火葬場|下水道|介護認定|GIGA|サンゴ|請願/;
 
 function loadJson(filePath) {
   return JSON.parse(readFileSync(filePath, "utf8"));
@@ -196,6 +230,25 @@ function extractSubItemMatchTerms(item) {
   ).slice(0, 8);
 }
 
+function extractThemeTerms(item) {
+  return Array.from(
+    new Set(
+      [item.title, ...(item.sub_items ?? [])]
+        .map(normalizeWhitespace)
+        .join(" ")
+        .split(TERM_SPLIT_REGEX)
+        .map((term) => term.trim())
+        .filter((term) => term.length >= 2 && !GENERIC_ANSWER_MATCH_TERMS.has(term))
+    )
+  ).slice(0, 12);
+}
+
+function hasThemeOverlap(text, item) {
+  const normalized = normalizeWhitespace(text);
+  const themeTerms = extractThemeTerms(item);
+  return themeTerms.some((term) => normalized.includes(term));
+}
+
 function isPotentialAnswerAnchor(entry) {
   return (
     entry &&
@@ -311,6 +364,160 @@ function buildRecoverableAnswerCandidate(entry, reason) {
     reason,
     confidence: "low",
   };
+}
+
+function buildConfirmedFactCandidate(fact, entry) {
+  return {
+    fact,
+    utterance_id: entry.utterance_id ?? null,
+    source_file: ANCHOR_SOURCE_FILE,
+    speaker: entry.speaker_hint ?? null,
+    speaker_role:
+      entry.speaker_role_hint === "city"
+        ? "city"
+        : entry.speaker_role_hint === "executive"
+          ? "executive"
+          : "unknown",
+    excerpt: buildExcerpt(entry.text, 200),
+    reason: "direct_item_match_sentence",
+    confidence: "medium",
+  };
+}
+
+function splitFactCandidateSegments(text) {
+  const raw = typeof text === "string" ? text : "";
+  const lineSegments = raw
+    .split(/\n+/)
+    .map((segment) => normalizeWhitespace(segment))
+    .filter(Boolean);
+  if (lineSegments.length > 1) {
+    return lineSegments;
+  }
+  return normalizeWhitespace(raw)
+    .split(/[。！？]/)
+    .map((segment) => normalizeWhitespace(segment))
+    .filter(Boolean);
+}
+
+function sanitizeFactCandidateSegment(segment) {
+  let text = normalizeWhitespace(segment);
+  while (/^.*?(?:お答えいたします|お答えします)\s*/.test(text)) {
+    text = text.replace(/^.*?(?:お答えいたします|お答えします)\s*/, "");
+  }
+  text = text.replace(/^(?:まず|次に|続きまして)\s*/, "");
+  text = text.replace(
+    /^[0-9０-９一二三四五六七八九十]+点目(?:.*?)(?:について|については)\s*/,
+    ""
+  );
+  text = text.replace(/[、,，]+$/g, "");
+  return normalizeWhitespace(text);
+}
+
+function looksLikeFactCandidateSegment(segment, item) {
+  const normalized = sanitizeFactCandidateSegment(segment);
+  if (!normalized || normalized.length < 12) {
+    return false;
+  }
+  if (FACT_CANDIDATE_TRANSCRIPTION_NOISE_REGEX.test(normalized)) {
+    return false;
+  }
+  if (FACT_CANDIDATE_SKIP_REGEX.test(normalized)) {
+    return false;
+  }
+  if (FACT_CANDIDATE_WEAK_SUBJECT_REGEX.test(normalized)) {
+    return false;
+  }
+  if (QUESTION_PROMPT_REGEX.test(normalized)) {
+    return false;
+  }
+  if (FACT_CANDIDATE_QUESTION_REGEX.test(normalized)) {
+    return false;
+  }
+  if (FACT_CANDIDATE_FUTURE_OR_OPINION_REGEX.test(normalized)) {
+    return false;
+  }
+  if (FACT_CANDIDATE_GENERIC_ACTION_REGEX.test(normalized)) {
+    return false;
+  }
+  if (FACT_CANDIDATE_EVALUATIVE_REGEX.test(normalized)) {
+    return false;
+  }
+  if (FACT_CANDIDATE_CONTEXT_DEPENDENT_REGEX.test(normalized)) {
+    return false;
+  }
+  if (FACT_CANDIDATE_BARE_METRIC_REGEX.test(normalized)) {
+    return false;
+  }
+  if (FACT_CANDIDATE_BARE_HOUSEHOLD_REGEX.test(normalized)) {
+    return false;
+  }
+  if (FACT_CANDIDATE_WEAK_ACTION_REGEX.test(normalized)) {
+    return false;
+  }
+  if (FACT_CANDIDATE_PLANNED_OR_INTENT_REGEX.test(normalized)) {
+    return false;
+  }
+  if (/については?$/.test(normalized)) {
+    return false;
+  }
+  if (FACT_CANDIDATE_DANGLING_ENDING_REGEX.test(normalized)) {
+    return false;
+  }
+  if (/^1点目|^2点目|^3点目|^4点目|^5点目/.test(normalized)) {
+    return false;
+  }
+  if (!FACT_CANDIDATE_CLOSED_ENDING_REGEX.test(normalized)) {
+    return false;
+  }
+  const hasConcreteKeyword = FACT_CANDIDATE_CONCRETE_KEYWORD_REGEX.test(normalized);
+  const hasConcreteAction = FACT_CANDIDATE_CONCRETE_ACTION_REGEX.test(normalized);
+  if (!hasConcreteKeyword && !hasConcreteAction) {
+    return false;
+  }
+  const themeOverlap = hasThemeOverlap(normalized, item);
+  const hasSelfContainedSpecificity =
+    FACT_CANDIDATE_SELF_CONTAINED_SPECIFICITY_REGEX.test(normalized) &&
+    (hasConcreteKeyword || hasConcreteAction);
+  if (!themeOverlap && !hasSelfContainedSpecificity) {
+    return false;
+  }
+  return true;
+}
+
+function collectConfirmedFactCandidates(
+  directAnswerUtterances,
+  answerAnchorSource,
+  answerAnchorConfidence,
+  cityAnswerMissing,
+  item
+) {
+  if (
+    answerAnchorSource !== "direct_item_match" ||
+    answerAnchorConfidence !== "high" ||
+    cityAnswerMissing
+  ) {
+    return [];
+  }
+
+  const candidates = [];
+  const seen = new Set();
+  for (const entry of directAnswerUtterances) {
+    for (const segment of splitFactCandidateSegments(entry.text)) {
+      if (!looksLikeFactCandidateSegment(segment, item)) {
+        continue;
+      }
+      const normalized = sanitizeFactCandidateSegment(segment);
+      if (seen.has(normalized)) {
+        continue;
+      }
+      seen.add(normalized);
+      candidates.push(buildConfirmedFactCandidate(normalized, entry));
+      if (candidates.length >= 3) {
+        return candidates;
+      }
+    }
+  }
+  return candidates;
 }
 
 function scoreRelatedTerms(text, terms) {
@@ -481,6 +688,13 @@ function buildEntry(question, item, utterancesForItem, questionUtterances) {
     item,
     selectedAnswerAnchor
   );
+  const confirmedFactCandidates = collectConfirmedFactCandidates(
+    directAnswerUtterances,
+    answerAnchorSource,
+    answerAnchorConfidence,
+    !selectedAnswerAnchor,
+    item
+  );
   const riskFlags = [];
 
   if (!questionAnchor) {
@@ -576,6 +790,7 @@ function buildEntry(question, item, utterancesForItem, questionUtterances) {
     answer_anchor_confidence: answerAnchorConfidence,
     answer_anchor_source: answerAnchorSource,
     recoverable_answer_candidates: recoverableAnswerCandidates,
+    confirmed_fact_candidates: confirmedFactCandidates,
     confirmed_facts: [],
     unconfirmed_or_not_decided: unconfirmed,
     recommended_reflection: {

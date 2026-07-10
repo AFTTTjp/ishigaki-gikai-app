@@ -2,7 +2,7 @@
   "schema_version": "candidate-inventory.v1",
   "session": "令和8年第4回定例会",
   "diet_session_slug": "ishigaki-r8-dai4-teireikai",
-  "generated_at": "2026-07-10T07:04:03.581Z",
+  "generated_at": "2026-07-10T08:09:15.322Z",
   "generated_from": [
     "docs/general_questions/r8-dai4-teireikai.general-questions.json",
     "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json"
@@ -48,6 +48,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -91,6 +92,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -133,6 +135,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -175,6 +178,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -217,6 +221,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -260,6 +265,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -302,6 +308,7 @@
       "answer_anchor_confidence": "medium",
       "answer_anchor_source": "unknown_answer_like",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
@@ -346,6 +353,7 @@
       "answer_anchor_confidence": "medium",
       "answer_anchor_source": "unknown_answer_like",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
@@ -390,6 +398,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -429,6 +438,18 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [
+        {
+          "fact": "工事は令和7年2月に完了しております",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "建設部長下地俊一",
+          "speaker_role": "executive",
+          "excerpt": "市井上里厚市議員のご質問3項目目 庁舎跡地活用事業の現況について 4点のご質問に順を追ってお答えいたします 1点目跡地の維持管理については 本事業の当初スケジュールに合わせ 建物解体や基礎具合撤去を実施しており 工事は令和7年2月に完了しております これ以降所管する契約管財課においては 適切な敷地管理のため仮囲いを継続して設置しており この経費は令和7年度において250万8000円となっておりま…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -472,6 +493,7 @@
           "confidence": "low"
         }
       ],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。",
@@ -516,6 +538,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -550,6 +573,7 @@
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -592,6 +616,18 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [
+        {
+          "fact": "派遣事業として2014年の第7回大会から中学生選抜チームを結成して派遣してきました",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0011",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "企画部長 菅沼副",
+          "speaker_role": "executive",
+          "excerpt": "次に7項目目 離島甲子園のご質問にお答えします 全国離島交流中学生野球大会 通称離島甲子園は 地理的環境から当該との交流機会が少ない 全国の離島中学生が一層に会し 野球を通じて島と島との交流を図ることにより 新たな人間形成や健全な青少年の育成を促進し 将来を通じた離島地域の振興に寄与することを目的として開催され 本市においても離島甲子園の開催目的に賛同し 派遣事業として2014年の第7回大会から…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -632,6 +668,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -674,6 +711,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -716,6 +754,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -758,6 +797,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -799,6 +839,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -841,6 +882,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -883,6 +925,7 @@
       "answer_anchor_confidence": "medium",
       "answer_anchor_source": "unknown_answer_like",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
@@ -926,6 +969,7 @@
       "answer_anchor_confidence": "medium",
       "answer_anchor_source": "unknown_answer_like",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
@@ -969,6 +1013,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1011,6 +1056,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1053,6 +1099,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1094,6 +1141,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1135,6 +1183,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1171,6 +1220,7 @@
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。",
@@ -1215,6 +1265,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1270,6 +1321,7 @@
           "confidence": "low"
         }
       ],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。",
@@ -1314,6 +1366,28 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [
+        {
+          "fact": "お子様1人当たり24,000円のクーポン券を配布しております",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-takara-munenori.u0010",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "市民保健部長 富浜",
+          "speaker_role": "executive",
+          "excerpt": "高田宗則議員の1項目目 日本一安心して子育てできる街 若い方々が帰れる街 住み続けられる街に向けた取り組みについて 2点の質問がございますので 順を追ってお答えいたします 1点目のクーポンを用いたスクスク応援事業 利用状況及び利用者の声についてお答えいたします 本事業は入児を持つ世帯の経済的負担軽減を図るとともに 子育ての不安解消・孤立・虐待防止等の早期発見につなげ 入児のいる保護者等が安心して…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        },
+        {
+          "fact": "中学生の保護者を対象に月額3250円を補助する負担軽減策を講じました",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-takara-munenori.u0017",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "教育部長小永俊",
+          "speaker_role": "executive",
+          "excerpt": "高田宗則議員ご質問の1項目目 日本一安心して子育てできる街 若い方々が帰れる街 住み続けられる街に向けた取り組みについて 2点のご質問がございますので 順を追ってお答えいたします 要旨の3点目の 食物アレルギーを持つ子どもたちへの支援の現状について お答えいたします 食物アレルギーとやむを得ない理由により 学校給食を食べずに 弁当を持参対応する保護者への支援につきましては 令和8年4月に 石垣市…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1351,6 +1425,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1388,6 +1463,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1425,6 +1501,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1462,6 +1539,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1499,6 +1577,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1536,6 +1615,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -1571,6 +1651,7 @@
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -1613,6 +1694,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -1654,6 +1736,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1691,6 +1774,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1722,6 +1806,7 @@
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -1764,6 +1849,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1801,6 +1887,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1838,6 +1925,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1875,6 +1963,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1912,6 +2001,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1949,6 +2039,18 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [
+        {
+          "fact": "レイト施設の増設に係る費用を令和8年度当初予算に計上してございます",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0014",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "農林水産総合部長 米森博文",
+          "speaker_role": "executive",
+          "excerpt": "東内原智子議員の4項目目 畜産農家の衛生環境の改善と母牛改良への支援策について 1点目、大秘処理施設の充実や運搬体制の充実への具体的対策についてお答えします 本市では、畜産業により発生する牛糞について 資源循環型農業の推進を図る観点から 大秘センターでは事前に登録された農家を対象として 牛糞の収集運搬を行っています また農家が自ら搬入した牛糞についても受け入れ適正な処理をし 完熟体育として農家等…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1986,6 +2088,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2023,6 +2126,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2060,6 +2164,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2097,6 +2202,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2134,6 +2240,7 @@
       "answer_anchor_confidence": "medium",
       "answer_anchor_source": "unknown_answer_like",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "city/executive 側答弁 anchor は unknown answer-like として抽出しており、人間確認が必要です。"
@@ -2175,6 +2282,7 @@
       "answer_anchor_confidence": "medium",
       "answer_anchor_source": "unknown_answer_like",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "city/executive 側答弁 anchor は unknown answer-like として抽出しており、人間確認が必要です。"
@@ -2216,6 +2324,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2253,6 +2362,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2290,6 +2400,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2327,6 +2438,28 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [
+        {
+          "fact": "いわゆる第三セクターの定義に含まれていますが 独立した法人として事業運営を行っています",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-miyara-misao.u0004",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "企画部長菅沼徹",
+          "speaker_role": "executive",
+          "excerpt": "三原美沙夫議員の1項目目 石垣キールン定期航路について 3点のご質問に順を追ってお答えします 1点目の第3セクターにおける情報開示についてお答えします 第3セクターについては 法的に規定されているものではありませんが 地方公共団体が出資を行っている会社法人等を 第3セクターと呼んでいます 株式会社商船ヤイマは 本市を含む複数の団体が出資をしていることから いわゆる第三セクターの定義に含まれていま…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        },
+        {
+          "fact": "5月28日初就航から定期運行をしています",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-miyara-misao.u0004",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "企画部長菅沼徹",
+          "speaker_role": "executive",
+          "excerpt": "三原美沙夫議員の1項目目 石垣キールン定期航路について 3点のご質問に順を追ってお答えします 1点目の第3セクターにおける情報開示についてお答えします 第3セクターについては 法的に規定されているものではありませんが 地方公共団体が出資を行っている会社法人等を 第3セクターと呼んでいます 株式会社商船ヤイマは 本市を含む複数の団体が出資をしていることから いわゆる第三セクターの定義に含まれていま…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2370,6 +2503,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2413,6 +2547,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2456,6 +2591,18 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [
+        {
+          "fact": "改めて検討を行った結果、6月補正予算要求に関連経費を計上したところです",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-miyara-misao.u0005",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "企画部長菅沼徹",
+          "speaker_role": "executive",
+          "excerpt": "次に4項目目 スポーツ行政についての1点目 離島甲子園派遣についてのご質問にお答えします 中学生を対象として離島甲子園へ派遣する 全国離島交流中学生野球大会派遣事業については 2014年の第7回大会から実施しており 単年度事業ではありますが 本市中学生選抜チーム石垣島パイイーグルズを 毎年度を結成し継続して派遣してきた経緯があります 令和8年度当初予算においても 本事業に係る事業費を要求していま…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2499,6 +2646,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2542,6 +2690,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2583,6 +2732,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2625,6 +2775,28 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [
+        {
+          "fact": "人材確保が追いつかない状況が見られます",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagayama-ieyasu.u0013",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "農林水産商工部長 米森博文",
+          "speaker_role": "executive",
+          "excerpt": "長山家康議員の3項目目 持続可能な地域づくりと人材確保について 1点目 市内各産業における人手不足の現状について 5点目 住宅不足が人材確保に与える影響についてお答えします 市内各産業における人手不足の現状についてですが 本市において観光関連産業をはじめ 宿泊業 飲食サービス業 小売業 建設業 運輸業 介護 福祉分野など 幅広い産業において人手不足が深刻化しております 特に観光需要の回復に伴い…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        },
+        {
+          "fact": "企業における人材確保の障壁の一つとなっております",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagayama-ieyasu.u0013",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "農林水産商工部長 米森博文",
+          "speaker_role": "executive",
+          "excerpt": "長山家康議員の3項目目 持続可能な地域づくりと人材確保について 1点目 市内各産業における人手不足の現状について 5点目 住宅不足が人材確保に与える影響についてお答えします 市内各産業における人手不足の現状についてですが 本市において観光関連産業をはじめ 宿泊業 飲食サービス業 小売業 建設業 運輸業 介護 福祉分野など 幅広い産業において人手不足が深刻化しております 特に観光需要の回復に伴い…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2660,6 +2832,7 @@
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。",
@@ -2704,6 +2877,18 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [
+        {
+          "fact": "約17ヘクタールを都市計画公園として決定されております",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tonoshiro-konomi.u0008",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "建設部長下地俊幸",
+          "speaker_role": "executive",
+          "excerpt": "とのしろこのみ議員の1項目目の1点目 崎原公園の名称決定の経緯や地域関係者との関わりについてのご質問にお答えいたします 大浜小学校の東側に位置する酒原公園は 昭和52年に現在の芝生広場や津波石 親家赤鉢の被部分などの陸域と海域を合わせた 約17ヘクタールを都市計画公園として決定されております 都市計画決定の際には 審議会や広告縦覧などの手続きがございますことから 名称につきましては地域由来の小技…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2741,6 +2926,18 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [
+        {
+          "fact": "令和2年度に最新式の温水洗浄便座機能を持つトイレを導入しました",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tonoshiro-konomi.u0011",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "企画部長 菅沼博史",
+          "speaker_role": "executive",
+          "excerpt": "とのしろこの議員のご質問の2項目目 石垣市民会館の安全で快適な利用環境の確保に係る4点について 順を追ってお答えします 市民会館のトイレにおいて イベント開催時など利用中に不具合が生じ ご心配ご不便をおかけしましたことに対して お詫び申し上げます 市民会館は市民はじめ多くの皆様にご利用いただく 文化芸術活動の拠点であり その施設を安全で快適にご利用いただくことは 重要な行政サービスであると承知し…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2778,6 +2975,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2815,6 +3013,7 @@
       "answer_anchor_confidence": "medium",
       "answer_anchor_source": "unknown_answer_like",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
@@ -2858,6 +3057,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2900,6 +3100,28 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [
+        {
+          "fact": "八島小学校が90人減の194人などがございます",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-hanatani-shiro.u0007",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "教育部長 尾長俊",
+          "speaker_role": "executive",
+          "excerpt": "花谷志郎議員ご質問の3項目目 私立小中学校の党配合について2点のご質問に順を追ってお答えいたします まず1点目人口減少に伴う党配合の考え方についてお答えいたします 全国的に少子化が進む中 本市の児童生徒数も平成2年度の7111人をピークに年々減少しており 今年度は4624人でピーク時と比較し約35%2487人の減少となりました 近年1学年あたり500人から600人で推移していた児童生徒数も 今年…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        },
+        {
+          "fact": "北部小中学校の今後の在り方についての意見交換会を開催いたしました",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-hanatani-shiro.u0007",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "教育部長 尾長俊",
+          "speaker_role": "executive",
+          "excerpt": "花谷志郎議員ご質問の3項目目 私立小中学校の党配合について2点のご質問に順を追ってお答えいたします まず1点目人口減少に伴う党配合の考え方についてお答えいたします 全国的に少子化が進む中 本市の児童生徒数も平成2年度の7111人をピークに年々減少しており 今年度は4624人でピーク時と比較し約35%2487人の減少となりました 近年1学年あたり500人から600人で推移していた児童生徒数も 今年…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2942,6 +3164,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2984,6 +3207,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3025,6 +3249,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3062,6 +3287,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3093,6 +3319,7 @@
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -3135,6 +3362,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3172,6 +3400,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3209,6 +3438,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3251,6 +3481,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3292,6 +3523,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3333,6 +3565,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3368,6 +3601,7 @@
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。",
@@ -3412,6 +3646,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3453,6 +3688,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3494,6 +3730,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3535,6 +3772,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3572,6 +3810,38 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [
+        {
+          "fact": "丁寧に聞き取りを行い、必要な支援内容の把握に努めております",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-ishigaki-tatsuya.u0017",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "教育部長小永俊",
+          "speaker_role": "executive",
+          "excerpt": "石垣達也議員ご質問2項目目 引きこもりや孤立を防ぐ支援体制の構築について 2点のご質問に理論を持ってお答えいたします まず1点目 本市における引きこもり状態にある若者及び中高年層の実態を どのように把握しているかについてお答えいたします 本市における引きこもり状態にある方の実態につきましては 令和2年7月に石垣市子ども若者支援に係る 引きこもり等の実態に関するアンケート調査を実施し 把握に努めた…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        },
+        {
+          "fact": "潜在的な対象者の把握は容易ではない現状にあります",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-ishigaki-tatsuya.u0018",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "福祉部長 内原英生",
+          "speaker_role": "executive",
+          "excerpt": "石垣達也議員の2項目目 引きこもりや孤立を防ぐ支援体制の構築について 2点目のご質問にお答えいたします 福祉総務課ではアウトリーチ等の充実による 充実相談支援機能の強化を図るため 令和4年度よりアウトリーチ支援員を配置し 40歳から64歳までの引きこもり状態にある方や そのご家族に対する相談支援に取り組んでおります 引きこもり状態にある方の実態把握につきましては ご家族や関係者からの相談を通じて…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        },
+        {
+          "fact": "地域の実態把握に努めるとともに適切な支援につなげてまいります",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-ishigaki-tatsuya.u0018",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "福祉部長 内原英生",
+          "speaker_role": "executive",
+          "excerpt": "石垣達也議員の2項目目 引きこもりや孤立を防ぐ支援体制の構築について 2点目のご質問にお答えいたします 福祉総務課ではアウトリーチ等の充実による 充実相談支援機能の強化を図るため 令和4年度よりアウトリーチ支援員を配置し 40歳から64歳までの引きこもり状態にある方や そのご家族に対する相談支援に取り組んでおります 引きこもり状態にある方の実態把握につきましては ご家族や関係者からの相談を通じて…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3609,6 +3879,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3646,6 +3917,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3677,6 +3949,7 @@
       "answer_anchor_confidence": "low",
       "answer_anchor_source": "none",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -3719,6 +3992,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -3756,6 +4030,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3798,6 +4073,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3839,6 +4115,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3881,6 +4158,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3923,6 +4201,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3965,6 +4244,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -4006,6 +4286,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -4048,6 +4329,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -4090,6 +4372,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -4129,6 +4412,18 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [
+        {
+          "fact": "令和8年度当初予算への計上が見送られたところです",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0009",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "市民保健部長 富浜",
+          "speaker_role": "executive",
+          "excerpt": "次に3項目目 離島甲子園大会出場の1点目 本大会不参加の経緯についてのご質問にお答えします 離島甲子園については 令和8年度当初予算編成において 全国離島交流中学生野球大会事業として 予算要求を行っていましたが 当事業が当初になっていた一定の役割や目的が達成されたことに加え 現状の財政状況から必要性を総合的に判断した結果 令和8年度当初予算への計上が見送られたところです",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -4168,6 +4463,18 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [
+        {
+          "fact": "週2便の運行スケジュールとフェアタイプの料金を公表しました",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0010",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "市民保健部長 富浜",
+          "speaker_role": "executive",
+          "excerpt": "次に4項目目 本格的な就航に向けた事業の展望及び見解についてお答えします 当初ゴールデンウィークでの就航を目標にしていましたが 国際フェリーとして運航するにあたり、定期検査において、CR選挙、KR選挙、パナマ政府が認める基準を満たすために必要となる船舶検査、安全設備、船内設備等の確認などを丁寧に行ったこと、 船舶代理店・港湾関係やCI級機関・警備体制・二役事業者など多くの関係機関との受入れ体制調…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -4210,6 +4517,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -4252,6 +4560,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -4293,6 +4602,7 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -4335,6 +4645,18 @@
       "answer_anchor_confidence": "high",
       "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
+      "confirmed_fact_candidates": [
+        {
+          "fact": "本年4月に業務委託契約を締結いたしました",
+          "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0009",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "speaker": "教育部長 尾長俊",
+          "speaker_role": "executive",
+          "excerpt": "中間人氏議員ご質問の3項目目 東バル幼少市寄附金活用についての 一般財団法人設立に伴う事業の取り組みについてお答えいたします 昨年8月東バル幼少市より額面13億円の 日本国債の寄附の申し出があり 現在運用している東バル幼少奨学基金の増額分として 受け入れを行いました 寄附贈呈式の際東バル市より奨学金事業だけでなく 本市を含む八重山県域の人材育成 文化振興支援事業等に有効活用するための手法について…",
+          "reason": "direct_item_match_sentence",
+          "confidence": "medium"
+        }
+      ],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
