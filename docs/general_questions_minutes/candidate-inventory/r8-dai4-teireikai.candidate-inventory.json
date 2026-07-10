@@ -2,7 +2,7 @@
   "schema_version": "candidate-inventory.v1",
   "session": "令和8年第4回定例会",
   "diet_session_slug": "ishigaki-r8-dai4-teireikai",
-  "generated_at": "2026-07-10T05:14:15.267Z",
+  "generated_at": "2026-07-10T06:29:12.490Z",
   "generated_from": [
     "docs/general_questions/r8-dai4-teireikai.general-questions.json",
     "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json"
@@ -14,16 +14,17 @@
       "council_member": 108
     },
     "recommended_reflection_counts": {
-      "needs_review": 37,
-      "general_question_only": 71
+      "needs_review": 32,
+      "general_question_only": 76
     },
     "risk_flag_counts": {
       "question_anchor_fallback_used": 30,
       "speaker_role_unknown": 53,
-      "target_topic_uncertain": 20,
-      "city_answer_missing": 17,
-      "question_only": 17,
-      "question_anchor_missing": 9
+      "target_topic_uncertain": 22,
+      "answer_role_unknown": 7,
+      "question_anchor_missing": 9,
+      "city_answer_missing": 10,
+      "question_only": 10
     }
   },
   "entries": [
@@ -35,6 +36,17 @@
       "theme": "石垣、基隆定期航路について",
       "question_summary": "石垣、基隆定期航路について: 石垣、基隆定期航路の現状と課題と展望 / (株)商船やいまのこれまでの負債額は。",
       "city_answer_summary": "小野瀬映像議員の1項目目 石垣キールン定期航路について2点ご質問がありますので 順を追ってお答えします 1点目の商船八重間の現況については 当初ゴールデンウィークでの就航を目指していましたが 国際フェリーとして運航するにあたり 定期検査においてCR1000級、KR1000級 パナマ政府が認める基準を満たすために必要となる船舶検査 安全設備船内設備等の確認などを丁寧に行ったこと 船舶代理店公安関係…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0009",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼裕樹",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L28-L113"
+      },
+      "city_answer_excerpt": "小野瀬映像議員の1項目目 石垣キールン定期航路について2点ご質問がありますので 順を追ってお答えします 1点目の商船八重間の現況については 当初ゴールデンウィークでの就航を目指していましたが 国際フェリーとして運航するにあたり 定期検査においてCR1000級、KR1000級 パナマ政府が認める基準を満たすために必要となる船舶検査 安全設備船内設備等の確認などを丁寧に行ったこと 船舶代理店公安関係…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -66,6 +78,17 @@
       "theme": "旧庁舎跡地開発について",
       "question_summary": "旧庁舎跡地開発について: 進捗状況 / 市民の意見はどう反映されるか。 / 美崎町再開発との関連は。",
       "city_answer_summary": "友康映像議員の2項目目 旧庁舎跡地開発について 3点のご質問に順を追ってお答えいたします 1点目 進捗状況について 庁舎跡地活用事業は 令和5年7月に 有限会社グルーマリン石垣共同体を優先交渉権利に決定し 協議を継続してまいりました 令和7年12月には事業実施に係る審査を行いましたが 基本協定書の締結にはいたらず再度の見直しとなっております 先般見直し最終案の提出期限を本年6月16日とし 当該企…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0011",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長 下地俊幸",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L116-L134"
+      },
+      "city_answer_excerpt": "友康映像議員の2項目目 旧庁舎跡地開発について 3点のご質問に順を追ってお答えいたします 1点目 進捗状況について 庁舎跡地活用事業は 令和5年7月に 有限会社グルーマリン石垣共同体を優先交渉権利に決定し 協議を継続してまいりました 令和7年12月には事業実施に係る審査を行いましたが 基本協定書の締結にはいたらず再度の見直しとなっております 先般見直し最終案の提出期限を本年6月16日とし 当該企…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -96,6 +119,17 @@
       "theme": "教育行政",
       "question_summary": "教育行政: 学校適正化計画について / 平和教育は偏っていないか。",
       "city_answer_summary": "友寄せ映像議員ご質問の3項目目 教育行政について2点のご質問がございますので 順を追ってお答えいたします まず1点目 学校適正化計画についてお答えいたします 昨年6月の市議会定例会において 友吉委員より同様のご質問をいただき 教育委員会として教育部内における学校の適正規模 適正配置についての調査検討を進めること また北部地域での意見交換会開催に向け 取り組んでいく旨をお答えしておりますが 昨年1…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0015",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長 尾長俊",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L158-L204"
+      },
+      "city_answer_excerpt": "友寄せ映像議員ご質問の3項目目 教育行政について2点のご質問がございますので 順を追ってお答えいたします まず1点目 学校適正化計画についてお答えいたします 昨年6月の市議会定例会において 友吉委員より同様のご質問をいただき 教育委員会として教育部内における学校の適正規模 適正配置についての調査検討を進めること また北部地域での意見交換会開催に向け 取り組んでいく旨をお答えしておりますが 昨年1…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -126,6 +160,17 @@
       "theme": "環境行政",
       "question_summary": "環境行政: ごみ袋について / ごみ分別の簡素化について",
       "city_answer_summary": "友寄せ映像議員の4項目目 環境行政について2点のご質問がありますので 順を追ってお答えいたします まず1点目の本市指定ゴミ袋についてお答えいたします 現在中東情勢の緊迫感に伴い ゴミ袋の原材料等が全国的に不足しているため 当面の間本市指定袋の印字をなくし 燃やすゴミは薄い赤色袋 燃やさないゴミは薄い青色袋として対応いたします 市民の皆様には買い溜め等はせず必要な分だけ購入して",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0016",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富浜",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L206-L215"
+      },
+      "city_answer_excerpt": "友寄せ映像議員の4項目目 環境行政について2点のご質問がありますので 順を追ってお答えいたします まず1点目の本市指定ゴミ袋についてお答えいたします 現在中東情勢の緊迫感に伴い ゴミ袋の原材料等が全国的に不足しているため 当面の間本市指定袋の印字をなくし 燃やすゴミは薄い赤色袋 燃やさないゴミは薄い青色袋として対応いたします 市民の皆様には買い溜め等はせず必要な分だけ購入して",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -156,6 +201,17 @@
       "theme": "船舶の係留地（ヨットハーバー）確保について",
       "question_summary": "船舶の係留地（ヨットハーバー）確保について: 現況と対策について",
       "city_answer_summary": "続きまして、5項目目、船舶の経由地確保について、現況と対策についてお答えいたします 港湾下所管のプレジャーボート等の受入施設の現状といたしましては 浜崎町小型船溜り、戸の城小型船溜り、戸の城東小型船溜りの3カ所において 経由92隻、陸沖306隻、合わせて398隻の船舶が利用可能となっております また小型船だまりの利用におきましては 陸沖・渓流ともに多くの利用希望申請をいただいており 現在では20…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0012",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長 下地俊幸",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L135-L150"
+      },
+      "city_answer_excerpt": "続きまして、5項目目、船舶の経由地確保について、現況と対策についてお答えいたします 港湾下所管のプレジャーボート等の受入施設の現状といたしましては 浜崎町小型船溜り、戸の城小型船溜り、戸の城東小型船溜りの3カ所において 経由92隻、陸沖306隻、合わせて398隻の船舶が利用可能となっております また小型船だまりの利用におきましては 陸沖・渓流ともに多くの利用希望申請をいただいており 現在では20…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -187,6 +243,17 @@
       "theme": "バスケットコート設置について",
       "question_summary": "バスケットコート設置について: 進捗状況",
       "city_answer_summary": "続きまして6項目目 バスケットコート設置について進捗状況についてお答えいたします バスケットコートについては、船倉公園において、市役市まちづくり支援寄付金活用事業を導入し、整備に取り組んでおります。 本年4月には実施設計業務委託を発注し、7月末までの完了予定となっており、作業を進めております。 所管課においては、実施設計完了後、速やかに工事に着手するとしており、今年度内の完成に向け、事業の適切な…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0013",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長 下地俊幸",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L151-L155"
+      },
+      "city_answer_excerpt": "続きまして6項目目 バスケットコート設置について進捗状況についてお答えいたします バスケットコートについては、船倉公園において、市役市まちづくり支援寄付金活用事業を導入し、整備に取り組んでおります。 本年4月には実施設計業務委託を発注し、7月末までの完了予定となっており、作業を進めております。 所管課においては、実施設計完了後、速やかに工事に着手するとしており、今年度内の完成に向け、事業の適切な…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -216,22 +283,33 @@
       "general_question_slug_or_id": "ishigaki-r8-dai4-ippan-tomoyose-eizo",
       "theme": "コンサル業務について",
       "question_summary": "コンサル業務について: コンサル業務の推移について",
-      "city_answer_summary": "",
+      "city_answer_summary": "友予製造議員の質問7項目目の コンサル業務の推移についてお答えいたします 本市におきましては 施設の維持管理建設事業に関連する設計管理 さらには地域振興や環境保全社会福祉など 多岐にわたる業務に対して委託を行っております これらの業務は専門的な知見や技術を要するものであり 外部の専門家への委託を通じて より高い専門性を確保し 効率的な業務運営を図ることを目的としているところでございます コンサル…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0019",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "総務省田原治",
+        "speaker_role": "unknown",
+        "line_or_time_hint": "L224-L244"
+      },
+      "city_answer_excerpt": "友予製造議員の質問7項目目の コンサル業務の推移についてお答えいたします 本市におきましては 施設の維持管理建設事業に関連する設計管理 さらには地域振興や環境保全社会福祉など 多岐にわたる業務に対して委託を行っております これらの業務は専門的な知見や技術を要するものであり 外部の専門家への委託を通じて より高い専門性を確保し 効率的な業務運営を図ることを目的としているところでございます コンサル…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "medium",
+      "answer_anchor_source": "unknown_answer_like",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
-        "市側答弁 anchor をこの inventory builder では確認できていません。",
-        "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
+        "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
+        "city/executive 側答弁 anchor は unknown answer-like として抽出しており、人間確認が必要です。"
       ],
       "recommended_reflection": {
         "type": "needs_review",
         "target_topic_slug": null,
         "suggested_new_topic_slug": null,
-        "reason": "この inventory では市側答弁 anchor を機械的に確認できず、public reflection 候補としては保留です。"
+        "reason": "question 単位の topic_slugs はあるが、item 単位で既存 Topic へ exact に落とす判断はこの inventory では行いません。"
       },
       "risk_flags": [
         "speaker_role_unknown",
-        "city_answer_missing",
-        "question_only"
+        "answer_role_unknown",
+        "target_topic_uncertain"
       ],
       "anchor": {
         "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
@@ -248,22 +326,33 @@
       "general_question_slug_or_id": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
       "theme": "市職員の窓口での対応について",
       "question_summary": "市職員の窓口での対応について: 対応向上のための人材育成について",
-      "city_answer_summary": "",
+      "city_answer_summary": "市委員長と厚生労働省の質問の1項目目 市職員の窓口での対応についてお答えいたします 職員の窓口対応につきましては これまでも機会あるごとに研修等を実施するなどして 接遇マナーの向上に努めているところですが 依然として市民より職員の対応に対する苦情が多数寄せられております 市民意見箱やメール等で実際にいただいているご意見といたしましては 窓口に出向いた際に職員が出てこない 担当者が不在のため対応が…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0006",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "総務省田原総務",
+        "speaker_role": "unknown",
+        "line_or_time_hint": "L25-L48"
+      },
+      "city_answer_excerpt": "市委員長と厚生労働省の質問の1項目目 市職員の窓口での対応についてお答えいたします 職員の窓口対応につきましては これまでも機会あるごとに研修等を実施するなどして 接遇マナーの向上に努めているところですが 依然として市民より職員の対応に対する苦情が多数寄せられております 市民意見箱やメール等で実際にいただいているご意見といたしましては 窓口に出向いた際に職員が出てこない 担当者が不在のため対応が…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "medium",
+      "answer_anchor_source": "unknown_answer_like",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
-        "市側答弁 anchor をこの inventory builder では確認できていません。",
-        "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
+        "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
+        "city/executive 側答弁 anchor は unknown answer-like として抽出しており、人間確認が必要です。"
       ],
       "recommended_reflection": {
         "type": "needs_review",
         "target_topic_slug": null,
         "suggested_new_topic_slug": null,
-        "reason": "この inventory では市側答弁 anchor を機械的に確認できず、public reflection 候補としては保留です。"
+        "reason": "question 単位の topic_slugs はあるが、item 単位で既存 Topic へ exact に落とす判断はこの inventory では行いません。"
       },
       "risk_flags": [
         "speaker_role_unknown",
-        "city_answer_missing",
-        "question_only"
+        "answer_role_unknown",
+        "target_topic_uncertain"
       ],
       "anchor": {
         "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
@@ -281,6 +370,17 @@
       "theme": "八重山食肉センターの現状について",
       "question_summary": "八重山食肉センターの現状について: 過去半年の月ごとのカット頭数 / 八重山食肉センターを民営化する事はできないか。",
       "city_answer_summary": "市営座と厚木市議員の2項目目 八重山食肉センターの現状について 2点の質問がございますので順を追ってお答えします 1点目 過去半年毎月のカット等数についてお答えします 令和7年10月から令和8年3月までのカット等数としましては 順に100等 74等 85等 47等 46等 54等で合計106等のカット等数となってございます 2点目の八重山食肉センターを民営化することができないかについてお答えしま…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0007",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産省庫部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L50-L70"
+      },
+      "city_answer_excerpt": "市営座と厚木市議員の2項目目 八重山食肉センターの現状について 2点の質問がございますので順を追ってお答えします 1点目 過去半年毎月のカット等数についてお答えします 令和7年10月から令和8年3月までのカット等数としましては 順に100等 74等 85等 47等 46等 54等で合計106等のカット等数となってございます 2点目の八重山食肉センターを民営化することができないかについてお答えしま…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -308,6 +408,17 @@
       "theme": "旧庁舎跡地利用の現状について",
       "question_summary": "旧庁舎跡地利用の現状について: 前年度、跡地の維持管理等に対して支出された本市予算 / 跡地利用の優先交渉権者を決定した経緯 / プロポーザル１回目と２回目の基準の違い / 決定された内容の変更はあるか。",
       "city_answer_summary": "市井上里厚市議員のご質問3項目目 庁舎跡地活用事業の現況について 4点のご質問に順を追ってお答えいたします 1点目跡地の維持管理については 本事業の当初スケジュールに合わせ 建物解体や基礎具合撤去を実施しており 工事は令和7年2月に完了しております これ以降所管する契約管財課においては 適切な敷地管理のため仮囲いを継続して設置しており この経費は令和7年度において250万8000円となっておりま… 旧庁舎跡地利用の現状について 前年度と跡地の維持管理等に対して石垣市が出した支出した金額なんですけど これ大体どのくらいで今全部で出ますかね 全部全部",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0008",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長下地俊一",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L72-L98"
+      },
+      "city_answer_excerpt": "市井上里厚市議員のご質問3項目目 庁舎跡地活用事業の現況について 4点のご質問に順を追ってお答えいたします 1点目跡地の維持管理については 本事業の当初スケジュールに合わせ 建物解体や基礎具合撤去を実施しており 工事は令和7年2月に完了しております これ以降所管する契約管財課においては 適切な敷地管理のため仮囲いを継続して設置しており この経費は令和7年度において250万8000円となっておりま…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -335,6 +446,11 @@
       "theme": "石垣・台湾定期航路",
       "question_summary": "石垣・台湾定期航路: 航行にかかる費用 / 人流だけで採算はとれるのか。 / どの程度の物流があれば採算がとれるのか。",
       "city_answer_summary": "",
+      "city_answer_anchor": null,
+      "city_answer_excerpt": "",
+      "city_answer_missing": true,
+      "answer_anchor_confidence": "low",
+      "answer_anchor_source": "none",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。",
@@ -367,6 +483,17 @@
       "theme": "クルーズ船専用バースの利用状況について",
       "question_summary": "クルーズ船専用バースの利用状況について: クルーズ船入港回数、今後の予約状況",
       "city_answer_summary": "続きまして、5項目目、クルーズ船専用バースの利用状況について、クルーズ船入港回数、今後の予約状況についてお答えいたします 令和8年のクルーズ船の状況につきましては 6月11日現在で125回のご予約をいただいており 50回寄港済みとなっております 令和9年については179回のご予約をいただいており 令和10年については令和8年6月17日から 第1次の予約申請受付を開始する予定となっております また…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0009",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長下地俊一",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L99-L111"
+      },
+      "city_answer_excerpt": "続きまして、5項目目、クルーズ船専用バースの利用状況について、クルーズ船入港回数、今後の予約状況についてお答えいたします 令和8年のクルーズ船の状況につきましては 6月11日現在で125回のご予約をいただいており 50回寄港済みとなっております 令和9年については179回のご予約をいただいており 令和10年については令和8年6月17日から 第1次の予約申請受付を開始する予定となっております また…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -395,6 +522,11 @@
       "theme": "石垣浄水場の老朽化について",
       "question_summary": "石垣浄水場の老朽化について: 建替えの進捗状況",
       "city_answer_summary": "",
+      "city_answer_anchor": null,
+      "city_answer_excerpt": "",
+      "city_answer_missing": true,
+      "answer_anchor_confidence": "low",
+      "answer_anchor_source": "none",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -425,6 +557,17 @@
       "theme": "離島甲子園について",
       "question_summary": "離島甲子園について",
       "city_answer_summary": "次に7項目目 離島甲子園のご質問にお答えします 全国離島交流中学生野球大会 通称離島甲子園は 地理的環境から当該との交流機会が少ない 全国の離島中学生が一層に会し 野球を通じて島と島との交流を図ることにより 新たな人間形成や健全な青少年の育成を促進し 将来を通じた離島地域の振興に寄与することを目的として開催され 本市においても離島甲子園の開催目的に賛同し 派遣事業として2014年の第7回大会から…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0011",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼副",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L134-L152"
+      },
+      "city_answer_excerpt": "次に7項目目 離島甲子園のご質問にお答えします 全国離島交流中学生野球大会 通称離島甲子園は 地理的環境から当該との交流機会が少ない 全国の離島中学生が一層に会し 野球を通じて島と島との交流を図ることにより 新たな人間形成や健全な青少年の育成を促進し 将来を通じた離島地域の振興に寄与することを目的として開催され 本市においても離島甲子園の開催目的に賛同し 派遣事業として2014年の第7回大会から…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -453,6 +596,17 @@
       "theme": "人口減少対策及び子育て支援としての本市独自の出産祝金制度の創設について",
       "question_summary": "人口減少対策及び子育て支援としての本市独自の出産祝金制度の創設について: 現金による出産・子育て応援金等の創設を検討すべきか、当局の見解を問う。",
       "city_answer_summary": "新里雄貴議員の1項目目 次に、人口減少対策及び子育て支援としての本市独自の出産祝い金制度の創設について、出生数の減少を踏まえた本市独自の出産子育て応援施策についてお答えいたします。 出産に関する支給としましては、各医療保険制度での出産育児一時金として、出産費用約50万円の支給がございます。 そのほか、本市では、令和5年度に石垣市出産子育て応援給付金事業として、妊産期に5万円、子育て期にはお子様1…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shinzato-yuki.u0005",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富山紀美夫",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L99-L105"
+      },
+      "city_answer_excerpt": "新里雄貴議員の1項目目 次に、人口減少対策及び子育て支援としての本市独自の出産祝い金制度の創設について、出生数の減少を踏まえた本市独自の出産子育て応援施策についてお答えいたします。 出産に関する支給としましては、各医療保険制度での出産育児一時金として、出産費用約50万円の支給がございます。 そのほか、本市では、令和5年度に石垣市出産子育て応援給付金事業として、妊産期に5万円、子育て期にはお子様1…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -483,6 +637,17 @@
       "theme": "進学等で島を離れざるを得ない構造の改善に向けた高等教育機関等の誘致・連携について",
       "question_summary": "進学等で島を離れざるを得ない構造の改善に向けた高等教育機関等の誘致・連携について: 進学等で島を離れざるを得ない構造について（人口減少・若者流出・人材不足の観点からの認識） / 保育、医療、福祉、介護分野における人材確保について",
       "city_answer_summary": "続きまして、2項目目、進学等で島を離れざるを得ない構造の改善に向けた高等教育機関等の誘致・連携についての2点目、保育・医療・福祉・介護分野における人材確保についてお答えいたします。 医療分野の医療職の一つである看護師になるためには、国家資格である看護師資格が必要になり、看護師資格を取得するには、文部科学大臣指定の学校、もしくは厚生労働大臣指定の看護師養成所を卒業し、看護師国家試験に合格する必要が… 新里由紀議員のご質問の2項目目 新学等で島を離れざるを得ない構造の改善に向けた 高等教育機関等の誘致連携についての1点目 進学や資格取得、専門的な学びを希望する場合には 当該へ出ざるを得ない状況についてお答えします 本市においては高校卒業後に市内で就職する若者もいますが 市内に大学や専門学校などの高等教育機関がないことから 多くの若者が進学を機に当該へ転出している状況となっています 進学は若者の…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shinzato-yuki.u0006",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富山紀美夫",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L106-L111"
+      },
+      "city_answer_excerpt": "続きまして、2項目目、進学等で島を離れざるを得ない構造の改善に向けた高等教育機関等の誘致・連携についての2点目、保育・医療・福祉・介護分野における人材確保についてお答えいたします。 医療分野の医療職の一つである看護師になるためには、国家資格である看護師資格が必要になり、看護師資格を取得するには、文部科学大臣指定の学校、もしくは厚生労働大臣指定の看護師養成所を卒業し、看護師国家試験に合格する必要が…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -513,6 +678,17 @@
       "theme": "屋外公共施設における暑熱対策及びスポーツ環境の整備について",
       "question_summary": "屋外公共施設における暑熱対策及びスポーツ環境の整備について: 真栄里公園への東屋設置について / 石垣市中央運動公園サブグラウンドへのナイター整備について",
       "city_answer_summary": "次に3項目目、屋外公共施設における車熱対策及びスポーツ環境の整備についての2点目、石垣市中央運動公園サブグラウンドへのナイター整備についてお答えします。 石垣市中央運動公園サブグラウンドは、正式名称を多目的広場といい、約4600平方メートルの土のグラウンドであり、主に小中学生や一般チームの野球練習などに利用されています。 現在、石垣市中央運動公園内において照明設備を有する施設としては、第2野球場… 新里有紀議員の3項目目の1点目 前里公園へのあずま屋設置についてのご質問にお答えいたします 本市には前里公園を含む近隣公園は4カ所ございますが 所管課においては補助事業を適用し これら公園施設の延命化に取り組んでおります 延命化事業においては長寿命化計画に基づき 既存施設の改修や更新を行っているところであり あずま屋の新設につきましては公園の利用状況も考慮した上で 補助事業の導入による整備が可能…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shinzato-yuki.u0009",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼博之",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L139-L145"
+      },
+      "city_answer_excerpt": "次に3項目目、屋外公共施設における車熱対策及びスポーツ環境の整備についての2点目、石垣市中央運動公園サブグラウンドへのナイター整備についてお答えします。 石垣市中央運動公園サブグラウンドは、正式名称を多目的広場といい、約4600平方メートルの土のグラウンドであり、主に小中学生や一般チームの野球練習などに利用されています。 現在、石垣市中央運動公園内において照明設備を有する施設としては、第2野球場…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -543,6 +719,17 @@
       "theme": "自転車交通ルール改正に伴う本市の対応について",
       "question_summary": "自転車交通ルール改正に伴う本市の対応について: 自転車交通ルール改正に伴う周知対策及び安全対策について",
       "city_answer_summary": "続きまして、4項目目、自転車交通ルール改正に伴う本市の対応についての周知対策及び安全対策についてお答えいたします。 高校生を含む16歳以上を対象とする自転車の交通反則通告制度、青切符の周知と安全対策につきましては、八重山警察署と連携を図りつつ、市民の安全・安心な交通環境の確保を最優先に、実効性のある周知・安全対策を推進してまいります。 まず、周知につきましては、春・夏・秋、年末年始の交通安全運動…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shinzato-yuki.u0007",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富山紀美夫",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L112-L120"
+      },
+      "city_answer_excerpt": "続きまして、4項目目、自転車交通ルール改正に伴う本市の対応についての周知対策及び安全対策についてお答えいたします。 高校生を含む16歳以上を対象とする自転車の交通反則通告制度、青切符の周知と安全対策につきましては、八重山警察署と連携を図りつつ、市民の安全・安心な交通環境の確保を最優先に、実効性のある周知・安全対策を推進してまいります。 まず、周知につきましては、春・夏・秋、年末年始の交通安全運動…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -572,6 +759,17 @@
       "theme": "地の利を生かした地域資源の磨き上げと観光スポットの創出について",
       "question_summary": "地の利を生かした地域資源の磨き上げと観光スポットの創出について: 観光資源の掘り起こしと活用について / 観光財源を活用した景観環境整備について",
       "city_answer_summary": "次にご質問の5項目目、地域資源の磨き上げと観光スポットの創出に係る2点について順を追ってお答えします。 まず1点目の観光資源の掘り起こしと活用について、写真や動画を投稿するSNSアプリを検索すると、多様なスタイルで石垣島の魅力を紹介している投稿がたくさん確認できます。 景勝地、グルメ、観光スポット、星空との記念写真など、本市の滞在魅力を改めて築き、また新たに再発見することができます。 一方で、投…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shinzato-yuki.u0010",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼博之",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L146-L156"
+      },
+      "city_answer_excerpt": "次にご質問の5項目目、地域資源の磨き上げと観光スポットの創出に係る2点について順を追ってお答えします。 まず1点目の観光資源の掘り起こしと活用について、写真や動画を投稿するSNSアプリを検索すると、多様なスタイルで石垣島の魅力を紹介している投稿がたくさん確認できます。 景勝地、グルメ、観光スポット、星空との記念写真など、本市の滞在魅力を改めて築き、また新たに再発見することができます。 一方で、投…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -602,6 +800,17 @@
       "theme": "地域産業を支える人材確保と島外人材の呼び込みについて",
       "question_summary": "地域産業を支える人材確保と島外人材の呼び込みについて: 地域産業における人手不足対策について",
       "city_answer_summary": "新里有紀議員の6項目目 地域産業を支える人材確保と当該人材の呼び込みについて 1点目 地域産業における人手不足対策について 現状と課題 これまでの取り組み及び今後の人材確保策についてお答えいたします 本市においては観光関連産業をはじめ 飲食業 宿泊業 建設業 小売業 サービス業など幅広い分野において 人手不足が状態化しており 事業活動や地域経済の維持・発展に大きな影響を及ぼす重要な課題であると認…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shinzato-yuki.u0014",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産商工部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L210-L233"
+      },
+      "city_answer_excerpt": "新里有紀議員の6項目目 地域産業を支える人材確保と当該人材の呼び込みについて 1点目 地域産業における人手不足対策について 現状と課題 これまでの取り組み及び今後の人材確保策についてお答えいたします 本市においては観光関連産業をはじめ 飲食業 宿泊業 建設業 小売業 サービス業など幅広い分野において 人手不足が状態化しており 事業活動や地域経済の維持・発展に大きな影響を及ぼす重要な課題であると認…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -631,22 +840,32 @@
       "general_question_slug_or_id": "ishigaki-r8-dai4-ippan-nakamine-tadashi",
       "theme": "基金管理について",
       "question_summary": "基金管理について: 各種基金の詳細について / 各種基金の活用並びに運用状況について",
-      "city_answer_summary": "",
+      "city_answer_summary": "中峰忠史議員の1項目目のご質問について2点順をお答えいたします 1点目 各資金の詳細についてお答えいたします 本市の基金につきましては 各条例の定めに基づいて 特定の目的のために資金を積み立て または定額の資金を運用するために基金が設置されており 会計課では財政調整基金をはじめ 28種類の基金を保管しております 本年5月末現在基金残高の総計は 53億6635万8174円となっております 2点目の…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0006",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "会計監査吉村吉",
+        "speaker_role": "unknown",
+        "line_or_time_hint": "L27-L43"
+      },
+      "city_answer_excerpt": "中峰忠史議員の1項目目のご質問について2点順をお答えいたします 1点目 各資金の詳細についてお答えいたします 本市の基金につきましては 各条例の定めに基づいて 特定の目的のために資金を積み立て または定額の資金を運用するために基金が設置されており 会計課では財政調整基金をはじめ 28種類の基金を保管しております 本年5月末現在基金残高の総計は 53億6635万8174円となっております 2点目の…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "medium",
+      "answer_anchor_source": "unknown_answer_like",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
-        "市側答弁 anchor をこの inventory builder では確認できていません。",
-        "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
+        "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
+        "city/executive 側答弁 anchor は unknown answer-like として抽出しており、人間確認が必要です。"
       ],
       "recommended_reflection": {
-        "type": "needs_review",
+        "type": "general_question_only",
         "target_topic_slug": null,
         "suggested_new_topic_slug": null,
-        "reason": "この inventory では市側答弁 anchor を機械的に確認できず、public reflection 候補としては保留です。"
+        "reason": "市側答弁 anchor はあるが、item 単位で既存 Topic への exact target は未確定のため、まず一般質問側の整理候補として扱います。"
       },
       "risk_flags": [
         "speaker_role_unknown",
-        "city_answer_missing",
-        "question_only"
+        "answer_role_unknown"
       ],
       "anchor": {
         "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
@@ -663,22 +882,32 @@
       "general_question_slug_or_id": "ishigaki-r8-dai4-ippan-nakamine-tadashi",
       "theme": "物価高騰対策について",
       "question_summary": "物価高騰対策について: 観光事業者支援について",
-      "city_answer_summary": "",
+      "city_answer_summary": "中峰忠史議員のご質問の2項目目 物価高騰対策の観光事業者支援についてお答えします 観光事業者の範囲としては、宿泊事業者、バス、タクシー、レンタカー、クルーズ船関連事業者、離島フェリー関連事業者、旅行代理店、観光施設、お土産施設関連、マリンレジャー、体験施設、体験アクティビティ事業者、リゾートウェディング、 その他、観光客に対して提供するサービス・商品等を有する事業を営む事業者など、多岐に及ぶもの…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0007",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "会計監査吉村吉",
+        "speaker_role": "unknown",
+        "line_or_time_hint": "L44-L55"
+      },
+      "city_answer_excerpt": "中峰忠史議員のご質問の2項目目 物価高騰対策の観光事業者支援についてお答えします 観光事業者の範囲としては、宿泊事業者、バス、タクシー、レンタカー、クルーズ船関連事業者、離島フェリー関連事業者、旅行代理店、観光施設、お土産施設関連、マリンレジャー、体験施設、体験アクティビティ事業者、リゾートウェディング、 その他、観光客に対して提供するサービス・商品等を有する事業を営む事業者など、多岐に及ぶもの…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "medium",
+      "answer_anchor_source": "unknown_answer_like",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
-        "市側答弁 anchor をこの inventory builder では確認できていません。",
-        "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
+        "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
+        "city/executive 側答弁 anchor は unknown answer-like として抽出しており、人間確認が必要です。"
       ],
       "recommended_reflection": {
-        "type": "needs_review",
+        "type": "general_question_only",
         "target_topic_slug": null,
         "suggested_new_topic_slug": null,
-        "reason": "この inventory では市側答弁 anchor を機械的に確認できず、public reflection 候補としては保留です。"
+        "reason": "市側答弁 anchor はあるが、item 単位で既存 Topic への exact target は未確定のため、まず一般質問側の整理候補として扱います。"
       },
       "risk_flags": [
         "speaker_role_unknown",
-        "city_answer_missing",
-        "question_only"
+        "answer_role_unknown"
       ],
       "anchor": {
         "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
@@ -696,6 +925,17 @@
       "theme": "市道整備について",
       "question_summary": "市道整備について: 市道横３号線の舗装劣化について",
       "city_answer_summary": "中峰忠史議員の3項目目 指導整備について指導横3号線の補足の劣化のご質問にお答えいたします 指導横3号線は中道交差点を起点とし 指導縦1号線から縦4号線 県道富野大川線通称宮原存知通りの 指導縦5号線から縦8号線と交差し 石垣小学校東側の縦道にあたる 県道石垣浅田線を終点とする 延長約1036m 平均幅員4.3mの道路で 対象10年12月に指導認定を受け 昭和57年に整備を完了し 供用された指導…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0008",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長 下地俊彦",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L57-L79"
+      },
+      "city_answer_excerpt": "中峰忠史議員の3項目目 指導整備について指導横3号線の補足の劣化のご質問にお答えいたします 指導横3号線は中道交差点を起点とし 指導縦1号線から縦4号線 県道富野大川線通称宮原存知通りの 指導縦5号線から縦8号線と交差し 石垣小学校東側の縦道にあたる 県道石垣浅田線を終点とする 延長約1036m 平均幅員4.3mの道路で 対象10年12月に指導認定を受け 昭和57年に整備を完了し 供用された指導…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -726,6 +966,17 @@
       "theme": "新栄町旧船溜まり土地利用計画について",
       "question_summary": "新栄町旧船溜まり土地利用計画について: 土地利用計画の進捗状況について / 宅地分譲予定地の分譲方法について / 宅地分譲予定時期について",
       "city_answer_summary": "中峰忠史議員の4項目目 新栄町旧船溜り土地利用計画について 3点の質問を順を追ってお答えいたします まず1点目の土地利用計画の進捗状況であります これまで新栄町旧船溜り土地利用計画策定委員会を 4回開催し 土地利用計画について協議を重ねてまいりました また漁業関係者を対象としたアンケート調査を実施し その結果を反映した土地利用計画案について 昨年度パブリックコメントを実施しております 今後につき…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0009",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産商工部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L81-L105"
+      },
+      "city_answer_excerpt": "中峰忠史議員の4項目目 新栄町旧船溜り土地利用計画について 3点の質問を順を追ってお答えいたします まず1点目の土地利用計画の進捗状況であります これまで新栄町旧船溜り土地利用計画策定委員会を 4回開催し 土地利用計画について協議を重ねてまいりました また漁業関係者を対象としたアンケート調査を実施し その結果を反映した土地利用計画案について 昨年度パブリックコメントを実施しております 今後につき…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -756,6 +1007,17 @@
       "theme": "ハーリー広場整備について",
       "question_summary": "ハーリー広場整備について: ハーリー広場遊具設置について",
       "city_answer_summary": "続きまして5項目目 ハーディ広場整備についての質問にお答えします ハーディ広場の遊具につきましては 既存遊具の経年劣化による老朽化や腐食が進行し 修繕による対応が困難であることから 昨年度撤去を行ったところであります 議員ご指摘のとおり新たな遊具設置につきましては現在近隣の子ども園を対象にアンケート調査を実施しております 就学前の幼児が安全に利用できる遊具整備を目指し調査結果を踏まえながら設置に…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0010",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産商工部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L106-L112"
+      },
+      "city_answer_excerpt": "続きまして5項目目 ハーディ広場整備についての質問にお答えします ハーディ広場の遊具につきましては 既存遊具の経年劣化による老朽化や腐食が進行し 修繕による対応が困難であることから 昨年度撤去を行ったところであります 議員ご指摘のとおり新たな遊具設置につきましては現在近隣の子ども園を対象にアンケート調査を実施しております 就学前の幼児が安全に利用できる遊具整備を目指し調査結果を踏まえながら設置に…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -785,6 +1047,17 @@
       "theme": "ナフサを原料とする部材不足による本市への影響と対策について",
       "question_summary": "ナフサを原料とする部材不足による本市への影響と対策について: 石垣市の公共工事並びに民間事業への影響について / ナフサを原料とする部材不足で大幅な減収となった事業者における市税の徴収猶予並びに延滞金の免除について",
       "city_answer_summary": "平秀幸議員の1項目目、ナフスタを減量とする部材不足による本市への影響と対策についての1点目、本市公共工事並びに民間事業への影響についてお答えいたします。 本市発注の公共工事につきましては、ナフスタを減量とする資材不足による影響が一部生じている状況でございます。 また、本年4月には、石垣地区アスファルト事業共同組合から、アスファルト豪材の価格改定に関する通知があったところでございます。 国・県から…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0006",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長下地俊幸",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L45-L56"
+      },
+      "city_answer_excerpt": "平秀幸議員の1項目目、ナフスタを減量とする部材不足による本市への影響と対策についての1点目、本市公共工事並びに民間事業への影響についてお答えいたします。 本市発注の公共工事につきましては、ナフスタを減量とする資材不足による影響が一部生じている状況でございます。 また、本年4月には、石垣地区アスファルト事業共同組合から、アスファルト豪材の価格改定に関する通知があったところでございます。 国・県から…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -814,6 +1087,17 @@
       "theme": "旧平久保小学校の活用並びに高齢者が集う「憩いの場」について",
       "question_summary": "旧平久保小学校の活用並びに高齢者が集う「憩いの場」について: 北西部地域住民の年齢別人口構成並びに高齢化率 / 行政が開催した地域住民との意見交換会で介護施設並びに介護サービスを提供する事業を望む意見への当局の見解 / 地域に「憩いの場」を提供することは有効な施策と考えるが当局の見解を問う。",
       "city_answer_summary": "平秀幸議員の2項目目、旧平久保小学校の活用並びに高齢者活動・憩いの場について、3点のご質問に順を追ってお答えします。 1点目、北西部地域住民の年齢別人口構成並びに高齢化率については、本年5月末時点での平久保、茨間、野底、遠里、深井、上田、先枝の北西部地域の年齢別人口は、15歳未満が226人、15歳以上65歳未満が1,341人、 65歳以上が810人です また高齢化率は34.2%で 市全体の25%… 2項目目の3点目 高齢者が自宅に閉じこもりがちになることで 身体機能・認知機能が急速に低下すると言われている 地域に憩いの場を提供することは 有効な施策と考えるが当局の見解を伺うについてお答えいたします ご質問のとおり高齢者が自宅に閉じこもりごちになることは 身体活動量の低下や社会的つながりの契約化につながり 身体機能や認知機能の低下を招く要因の一つになるものと認識しております そのため高齢者が…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0008",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼博史",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L85-L135"
+      },
+      "city_answer_excerpt": "平秀幸議員の2項目目、旧平久保小学校の活用並びに高齢者活動・憩いの場について、3点のご質問に順を追ってお答えします。 1点目、北西部地域住民の年齢別人口構成並びに高齢化率については、本年5月末時点での平久保、茨間、野底、遠里、深井、上田、先枝の北西部地域の年齢別人口は、15歳未満が226人、15歳以上65歳未満が1,341人、 65歳以上が810人です また高齢化率は34.2%で 市全体の25%…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -844,6 +1128,11 @@
       "theme": "石垣市ごみ収集業務委託費について",
       "question_summary": "石垣市ごみ収集業務委託費について: 一般廃棄物収集運搬業務委託事業における人件費の算出根拠を問う。",
       "city_answer_summary": "",
+      "city_answer_anchor": null,
+      "city_answer_excerpt": "",
+      "city_answer_missing": true,
+      "answer_anchor_confidence": "low",
+      "answer_anchor_source": "none",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。",
@@ -876,6 +1165,17 @@
       "theme": "子どもの健康相談・オンライン診療アプリ「キッズドクター」石垣市版の時間拡大について",
       "question_summary": "子どもの健康相談・オンライン診療アプリ「キッズドクター」石垣市版の時間拡大について: 深夜・早朝の時間拡大の開始時期を問う。",
       "city_answer_summary": "続きまして4項目目 子どもの健康相談 オンライン診療アプリ キッズドクター 石垣市版の時間拡大の開始時期についてお答えいたします 令和6年1月 株式会社ノースターとの包括連携協定に基づき 看護師によるチャットでの健康相談 並びにオンライン診療を実施しております 本取組により小児科の閉まる夜間休日の時間帯の 子どもたちの健康不安を速やかに解消するなど 家庭の負担軽減につながり 初期的な症状の観察・…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0011",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "福祉部長 内原英生",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L168-L184"
+      },
+      "city_answer_excerpt": "続きまして4項目目 子どもの健康相談 オンライン診療アプリ キッズドクター 石垣市版の時間拡大の開始時期についてお答えいたします 令和6年1月 株式会社ノースターとの包括連携協定に基づき 看護師によるチャットでの健康相談 並びにオンライン診療を実施しております 本取組により小児科の閉まる夜間休日の時間帯の 子どもたちの健康不安を速やかに解消するなど 家庭の負担軽減につながり 初期的な症状の観察・…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -906,6 +1206,11 @@
       "theme": "教育支援センター「あやぱに学級」について",
       "question_summary": "教育支援センター「あやぱに学級」について: 教育環境並びに場所を含めた将来的な計画を問う。",
       "city_answer_summary": "",
+      "city_answer_anchor": null,
+      "city_answer_excerpt": "",
+      "city_answer_missing": true,
+      "answer_anchor_confidence": "low",
+      "answer_anchor_source": "none",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。",
@@ -938,6 +1243,17 @@
       "theme": "日本一安心して子育てできる街・若い方々が帰れる街・住み続けられる街に向けた取組について",
       "question_summary": "日本一安心して子育てできる街・若い方々が帰れる街・住み続けられる街に向けた取組について: クーポンを用いた「すくすく応援事業」利用状況及び利用者の声について / 雨天時及び猛暑時にも利用可能な公園や室内遊戯施設整備について / 食物アレルギーを持つ子どもへの支援の現状について / 保育園等入園入所に係るオンライン申請の進捗について / 多胎児家庭への支援の現状及び今後の拡充について / 「部活動等指導環境充実化構築事業」終了後の財源確保について",
       "city_answer_summary": "高田宗則議員の1項目目 日本一安心して子育てできる街 若い方々が帰れる街 住み続けられる街に向けた取り組みについて 2点の質問がございますので 順を追ってお答えいたします 1点目のクーポンを用いたスクスク応援事業 利用状況及び利用者の声についてお答えいたします 本事業は入児を持つ世帯の経済的負担軽減を図るとともに 子育ての不安解消・孤立・虐待防止等の早期発見につなげ 入児のいる保護者等が安心して… 宝室室議員の1項目目 日本一安心して子育てができる街 若い方々が帰れる街 住み続けられる街に向けた取り組みについての2点目 雨天時及び日差しの強い日に利用可能な公園や 室内遊戯施設整備についてのご質問にお答えいたします 屋根の設置については 前里公園の大型複合遊具を想定しておりますが 日差しや工具を防ぎつつ 遊具の利用を妨げない構造とした場合 屋根面積が大きく屋根の高さも高くなることから 多額の…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-takara-munenori.u0010",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富浜",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L41-L83"
+      },
+      "city_answer_excerpt": "高田宗則議員の1項目目 日本一安心して子育てできる街 若い方々が帰れる街 住み続けられる街に向けた取り組みについて 2点の質問がございますので 順を追ってお答えいたします 1点目のクーポンを用いたスクスク応援事業 利用状況及び利用者の声についてお答えいたします 本事業は入児を持つ世帯の経済的負担軽減を図るとともに 子育ての不安解消・孤立・虐待防止等の早期発見につなげ 入児のいる保護者等が安心して…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -963,6 +1279,17 @@
       "theme": "スポーツ振興策について",
       "question_summary": "スポーツ振興策について: スピードガンコンテスト開催によるスポーツ振興について / プロ野球オープン戦の石垣島開催に向けた取組について",
       "city_answer_summary": "高田宗則議員の2項目目 スポーツ振興について2点のご質問に順を追ってお答えします まず1点目スピードガンコンテスト開催によるスポーツ振興についてお答えします 本市ではスポーツ環境の充実を図るため 昨年度ロートスタジアム石垣にスピードガンを設置しました これにより利用者の競技力向上や スポーツへの意欲向上につながっているものと認識しています 議員ご提案のスピードガンコンテストについては 市民が気軽…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-takara-munenori.u0018",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼裕樹",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L234-L263"
+      },
+      "city_answer_excerpt": "高田宗則議員の2項目目 スポーツ振興について2点のご質問に順を追ってお答えします まず1点目スピードガンコンテスト開催によるスポーツ振興についてお答えします 本市ではスポーツ環境の充実を図るため 昨年度ロートスタジアム石垣にスピードガンを設置しました これにより利用者の競技力向上や スポーツへの意欲向上につながっているものと認識しています 議員ご提案のスピードガンコンテストについては 市民が気軽…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -988,6 +1315,17 @@
       "theme": "双葉・真喜良地域の道路狭隘化対策について",
       "question_summary": "双葉・真喜良地域の道路狭隘化対策について: 街路事業進捗について / 交通量増加及び交通渋滞に対する認識について / 湾岸道路整備の進捗について",
       "city_answer_summary": "続きまして3項目目 二葉・牧田地域の道路共和化対策について 3点のご質問がございますので順を追ってお答えいたします 1点目3・5・11号街路の進捗につきましては 令和7年3月定例会でも答弁しておりますが 牧田郵便局の東側に位置し 起点の海岸側3・5・27号街路から 首都観音道線までの160mの区間で 平成27年度に事業認可を受け 現在事業を実施しているところであります 進捗につきましては 令和7…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-takara-munenori.u0014",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長下地俊樹",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L120-L153"
+      },
+      "city_answer_excerpt": "続きまして3項目目 二葉・牧田地域の道路共和化対策について 3点のご質問がございますので順を追ってお答えいたします 1点目3・5・11号街路の進捗につきましては 令和7年3月定例会でも答弁しておりますが 牧田郵便局の東側に位置し 起点の海岸側3・5・27号街路から 首都観音道線までの160mの区間で 平成27年度に事業認可を受け 現在事業を実施しているところであります 進捗につきましては 令和7…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1013,6 +1351,17 @@
       "theme": "福祉行政について",
       "question_summary": "福祉行政について: 「重層的支援体制整備事業」導入に向けた進捗について / 「居住支援協議会」設置に向けた取組について / 県立八重山病院脳神経外科常勤医不在の現状及び確保に向けた取組について",
       "city_answer_summary": "続きまして4項目目 福祉行政についての八重山病院脳神経下化 常勤医不在の現状及び確保に向けた取り組みについてお答えいたします 令和8年4月以降の脳神経下化の診療体制は 琉球大学病院及び県立南部医療センターからの医師派遣により 週1回金曜日の外来診療を継続し 外来診療後は翌土曜日まで医師が待機する体制を確保することで 緊急時への対応をしております 常勤医が不在となっている期間中の救急対応体制につき… 続きまして4項目目 福祉行政についての2点目 居住支援協議会設置に向けた取り組みについてお答えいたします 居住支援協議会とは 住宅確保要配慮者に対する住まいに関する相談支援や 入居前から入居中、退居時までの居住支援について 住宅部局や福祉部局をはじめとする行政機関と 民間団体、不動産関係事業者等が連携し 地域における総合的かつ包括的な居住支援体制の構築に向けて 協議・検討を行う会議体でございます…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-takara-munenori.u0011",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富浜",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L84-L97"
+      },
+      "city_answer_excerpt": "続きまして4項目目 福祉行政についての八重山病院脳神経下化 常勤医不在の現状及び確保に向けた取り組みについてお答えいたします 令和8年4月以降の脳神経下化の診療体制は 琉球大学病院及び県立南部医療センターからの医師派遣により 週1回金曜日の外来診療を継続し 外来診療後は翌土曜日まで医師が待機する体制を確保することで 緊急時への対応をしております 常勤医が不在となっている期間中の救急対応体制につき…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1038,6 +1387,17 @@
       "theme": "消防行政について",
       "question_summary": "消防行政について: 消防力強化に向けた職員72名体制後の中長期的な人員体制について / 消防本庁舎及び西出張所に係る基本計画、財源確保について",
       "city_answer_summary": "消防行政について2点のご質問がございますので 順を追ってお答えいたします 1点目の消防力強化に向けた職員72名体制後の 中長期的な人員体制につきましては 本市における観光客の増加や救急需要の増大 多様化する大規模災害の備え また職員の労務管理の適正化を勘案しますと 中長期的には時代のニーズに合った消防体制を確立できるよう 段階的に人員体制の拡充を図ると同時に 適正な人員配置を含めた人員計画の策定…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-takara-munenori.u0020",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "福祉部長 内原英生",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L282-L302"
+      },
+      "city_answer_excerpt": "消防行政について2点のご質問がございますので 順を追ってお答えいたします 1点目の消防力強化に向けた職員72名体制後の 中長期的な人員体制につきましては 本市における観光客の増加や救急需要の増大 多様化する大規模災害の備え また職員の労務管理の適正化を勘案しますと 中長期的には時代のニーズに合った消防体制を確立できるよう 段階的に人員体制の拡充を図ると同時に 適正な人員配置を含めた人員計画の策定…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1063,6 +1423,17 @@
       "theme": "定期航路事業について",
       "question_summary": "定期航路事業について: 採算性について（初年度・2年目・3年目それぞれの収入・支出） / 船舶購入から就航までに係った費用（修繕費・ドック費用・基隆港停泊料・その他費用） / ワゴングループへの委託料 / 船舶購入費について（2回目の支払日・商船やいまの支払金額・石垣市の補助金） / 7月以降の運行スケジュール / 小人運賃、シルバー運賃、障がい者割引について / 経営の責任について",
       "city_answer_summary": "大道夏代議員の1項目目、秘書機器輪定期航路について7点ご質問がありますので、順を追ってお答えします。 1点目の再産生について、ホルムズ海峡の船舶航行制限に伴い、各国は原油価格の高騰のみならず供給不足に悩まされており、 原油高の局面において計画通り週3往復することは難しい状況であるため、運航計画の見直しも検討していました。 そして、5年に1度の定期ドック等の終了と省書類がすべて整い、正式に運航可能…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-omichi-natsuyo.u0006",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼博之",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L63-L127"
+      },
+      "city_answer_excerpt": "大道夏代議員の1項目目、秘書機器輪定期航路について7点ご質問がありますので、順を追ってお答えします。 1点目の再産生について、ホルムズ海峡の船舶航行制限に伴い、各国は原油価格の高騰のみならず供給不足に悩まされており、 原油高の局面において計画通り週3往復することは難しい状況であるため、運航計画の見直しも検討していました。 そして、5年に1度の定期ドック等の終了と省書類がすべて整い、正式に運航可能…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1088,6 +1459,17 @@
       "theme": "離島へのフェリー運賃割引について",
       "question_summary": "離島へのフェリー運賃割引について: 石垣市民への離島フェリー運賃補助制度の導入を検討すべきだと考えるが市の見解は。",
       "city_answer_summary": "次にご質問の2項目目 石垣市民への離島フェリー運賃補助制度の導入に対する見解についてお答えします 現在地理的に不利な状況にある離島住民の割高な航空運賃や船賃を軽減し 移動の利便性向上や生活の安定を図ることを目的に 沖縄離島住民等交通コスト負担軽減事業が実施されています そのため、石垣市民等は、石垣空港と那覇空港などの航空路線を利用する場合、通常運賃よりも割安な料金で利用することができます。 一方…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-omichi-natsuyo.u0007",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼博之",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L128-L173"
+      },
+      "city_answer_excerpt": "次にご質問の2項目目 石垣市民への離島フェリー運賃補助制度の導入に対する見解についてお答えします 現在地理的に不利な状況にある離島住民の割高な航空運賃や船賃を軽減し 移動の利便性向上や生活の安定を図ることを目的に 沖縄離島住民等交通コスト負担軽減事業が実施されています そのため、石垣市民等は、石垣空港と那覇空港などの航空路線を利用する場合、通常運賃よりも割安な料金で利用することができます。 一方…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -1117,6 +1499,11 @@
       "theme": "学校図書費について",
       "question_summary": "学校図書費について: 学校図書費は過去５年間でどのように推移しているか。 / 学校図書館整備における石垣市の現状と課題 / 学校図書館を教育上、どう位置付けているか。 / 図書費減少における教育環境への影響をどう認識しているか。",
       "city_answer_summary": "",
+      "city_answer_anchor": null,
+      "city_answer_excerpt": "",
+      "city_answer_missing": true,
+      "answer_anchor_confidence": "low",
+      "answer_anchor_source": "none",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -1147,6 +1534,17 @@
       "theme": "バナナスカイラインについて",
       "question_summary": "バナナスカイラインについて: 管理体制及び維持管理について",
       "city_answer_summary": "大道夏代議員の4項目目 バンナスカイラインの管理体制及び維持管理についてお答えいたします バンナ公園内を南北に縦断する通称バンナスカイラインは 沖縄県により整備され市が管理する2路線の主導でございます 県道石垣浅田線側にある公園南口から エメラルド展望台を抜け渡り鳥観測所までの区間を 指導UHF線渡り取り探察場から南の島展望台を抜け 指導三原産業道路側の公園北口までの区間を 指導第二UHF線とし…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-omichi-natsuyo.u0008",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼博之",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L174-L186"
+      },
+      "city_answer_excerpt": "大道夏代議員の4項目目 バンナスカイラインの管理体制及び維持管理についてお答えいたします バンナ公園内を南北に縦断する通称バンナスカイラインは 沖縄県により整備され市が管理する2路線の主導でございます 県道石垣浅田線側にある公園南口から エメラルド展望台を抜け渡り鳥観測所までの区間を 指導UHF線渡り取り探察場から南の島展望台を抜け 指導三原産業道路側の公園北口までの区間を 指導第二UHF線とし…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -1176,6 +1574,17 @@
       "theme": "観光地におけるバリアフリー環境整備について",
       "question_summary": "観光地におけるバリアフリー環境整備について: ユーグレナモールのバリアフリートイレの現状認識について / 関係機関との連携及び今後の利用環境改善に向けた取組について",
       "city_answer_summary": "大道夏代議員の5項目目 観光地におけるバリアフリー環境整備について 1点目、夕暮れなモールのバリアフリートイレの現状認識について 2点目、関係機関との連携及び今後の利用環境改善に向けた取組についてお答えします 夕暮れなモールは、本市を代表する商店街として、市民はもとより多くの観光客が訪れる重要な交流拠点となっております。 そのため、高齢者や障害のある方、乳幼児連れの方など、誰もが安心して利用でき…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-omichi-natsuyo.u0009",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産商工部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L188-L203"
+      },
+      "city_answer_excerpt": "大道夏代議員の5項目目 観光地におけるバリアフリー環境整備について 1点目、夕暮れなモールのバリアフリートイレの現状認識について 2点目、関係機関との連携及び今後の利用環境改善に向けた取組についてお答えします 夕暮れなモールは、本市を代表する商店街として、市民はもとより多くの観光客が訪れる重要な交流拠点となっております。 そのため、高齢者や障害のある方、乳幼児連れの方など、誰もが安心して利用でき…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1201,6 +1610,17 @@
       "theme": "児童生徒の起立性調節障害について",
       "question_summary": "児童生徒の起立性調節障害について: 疾患の概要・現状について伺う。 / 学校においてどのような対応をされているのか。",
       "city_answer_summary": "イラブ・カズマ議員ご質問1項目目 児童生徒の規律性調節障害について2点のご質問に順を追ってお答えいたします まず1点目の起立性調節障害とは何かについてお答えいたします 起立性調節障害につきましては 思春期の児童生徒に多く見られる自律神経の機能の乱れにより 起立時に血圧や脈拍の調整がうまくいかず 立ちくらみやめまい 全身のだるみ 朝起きられないといった症状が現れる疾患であると認識しております 特に…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-irabu-kazuma.u0007",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長小永俊",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L55-L77"
+      },
+      "city_answer_excerpt": "イラブ・カズマ議員ご質問1項目目 児童生徒の規律性調節障害について2点のご質問に順を追ってお答えいたします まず1点目の起立性調節障害とは何かについてお答えいたします 起立性調節障害につきましては 思春期の児童生徒に多く見られる自律神経の機能の乱れにより 起立時に血圧や脈拍の調整がうまくいかず 立ちくらみやめまい 全身のだるみ 朝起きられないといった症状が現れる疾患であると認識しております 特に…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1226,6 +1646,11 @@
       "theme": "石垣市宿泊税基金条例と税の活用について",
       "question_summary": "石垣市宿泊税基金条例と税の活用について: 条例の制定趣旨について / 税収の使い道及び活用について",
       "city_answer_summary": "",
+      "city_answer_anchor": null,
+      "city_answer_excerpt": "",
+      "city_answer_missing": true,
+      "answer_anchor_confidence": "low",
+      "answer_anchor_source": "none",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -1256,6 +1681,17 @@
       "theme": "台湾との物流・交流促進について",
       "question_summary": "台湾との物流・交流促進について: 取組予定について / 輸出入機会増大・人材育成事業の概要 / 石垣市農業国際交流発展支援事業の概要",
       "city_answer_summary": "平部一馬議員の3項目目 台湾との物流交流促進について 2点目 輸出機械増大人材育成事業の概要についてお答えします 本事業は地域未来交付金を活用し 石垣市における持続可能な輸出体制の構築を目的とした 令和8年度の新規事業でございます 具体的には石垣空港及び石垣港国際流通機能を最大限に活用し 市内事業者の輸出機会を拡大することを目的としております 本年度は主に次の3つの柱で取り組みを進めてまいります…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-irabu-kazuma.u0010",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産商工部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L128-L174"
+      },
+      "city_answer_excerpt": "平部一馬議員の3項目目 台湾との物流交流促進について 2点目 輸出機械増大人材育成事業の概要についてお答えします 本事業は地域未来交付金を活用し 石垣市における持続可能な輸出体制の構築を目的とした 令和8年度の新規事業でございます 具体的には石垣空港及び石垣港国際流通機能を最大限に活用し 市内事業者の輸出機会を拡大することを目的としております 本年度は主に次の3つの柱で取り組みを進めてまいります…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1281,6 +1717,17 @@
       "theme": "畜産行政について",
       "question_summary": "畜産行政について: 八重山食肉センター輸出環境整備推進事業の進捗状況について伺う。 / 残渣物・死亡牛等の処理について",
       "city_answer_summary": "引き続き4項目目 畜産行政について2点の質問がありますので 順を追ってお答えします 1点目 八重山食肉センター輸送環境整備推進事業の 進捗状況についてお答えします 新たな輸出先国として目指します 台湾向け施設認定取得に向け認定要件に適合する施設整備 衛生管理体制及び作業手順書の整備などにつきまして 八重山食肉センター及び関係機関との調整を図りながら 申請に向けて作業を進めているところでございます…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-irabu-kazuma.u0011",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産商工部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L175-L212"
+      },
+      "city_answer_excerpt": "引き続き4項目目 畜産行政について2点の質問がありますので 順を追ってお答えします 1点目 八重山食肉センター輸送環境整備推進事業の 進捗状況についてお答えします 新たな輸出先国として目指します 台湾向け施設認定取得に向け認定要件に適合する施設整備 衛生管理体制及び作業手順書の整備などにつきまして 八重山食肉センター及び関係機関との調整を図りながら 申請に向けて作業を進めているところでございます…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1306,6 +1753,17 @@
       "theme": "不登校児童生徒への支援体制について",
       "question_summary": "不登校児童生徒への支援体制について: 校内教育支援センターパイロット校の成果について / 校内教育支援センターの設置状況について",
       "city_answer_summary": "東内原智子議員ご質問1項目目 不登校児童生徒への支援体制について2点のご質問に順を追ってお答えいたします まず1点目の校内教育支援センターパイロット校の成果についてお答えいたします 令和7年度小学校1校中学校2校にパイロット校を設置し 校内教育支援センターの運営に関する実証研究を行いました その成果の一つとして 不登校者数は令和6年度289名から259名と 30名減少しております またこれまで不… まず教育委員会の不登校児童生徒への支援体制についてお聞きいたします 教育長をはじめそして教育委員会の皆様には 不登校児童生徒の支援について 本当にユイルームを10校へ設置していただきながら 関係の先生たちと連携を取っていただいていることを 本当に感謝申し上げます 開設から2ヶ月という短い期間ですが 既に利用状況や子どもたちの変化など 多くの成果が見られているということで とても嬉しく思います そ…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0010",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長小倉俊",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L35-L68"
+      },
+      "city_answer_excerpt": "東内原智子議員ご質問1項目目 不登校児童生徒への支援体制について2点のご質問に順を追ってお答えいたします まず1点目の校内教育支援センターパイロット校の成果についてお答えいたします 令和7年度小学校1校中学校2校にパイロット校を設置し 校内教育支援センターの運営に関する実証研究を行いました その成果の一つとして 不登校者数は令和6年度289名から259名と 30名減少しております またこれまで不…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1331,6 +1789,17 @@
       "theme": "幼児の弱視早期発見について",
       "question_summary": "幼児の弱視早期発見について: 実施状況について / 早期発見・早期治療に向けた取組について",
       "city_answer_summary": "東内原智子議員ご質問の2項目目 幼児の弱子早期発見について 2点のご質問がございますので 順を追ってお答えいたします 1点目の本市における 幼児の弱視早期発見の実施状況につきましては 令和7年度及び令和8年度において 3歳以上の子どもを預かる保育園・認定子ども園等に対し 視力検査を確実に実施するよう通知を発出し 各施設での検査体制の徹底を図ってまいりました 併せて各施設における視力検査の実施状況…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0012",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長小倉俊",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L93-L118"
+      },
+      "city_answer_excerpt": "東内原智子議員ご質問の2項目目 幼児の弱子早期発見について 2点のご質問がございますので 順を追ってお答えいたします 1点目の本市における 幼児の弱視早期発見の実施状況につきましては 令和7年度及び令和8年度において 3歳以上の子どもを預かる保育園・認定子ども園等に対し 視力検査を確実に実施するよう通知を発出し 各施設での検査体制の徹底を図ってまいりました 併せて各施設における視力検査の実施状況…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1356,6 +1825,17 @@
       "theme": "保育施設のICT導入による業務効率化について",
       "question_summary": "保育施設のICT導入による業務効率化について: 導入の進捗状況について / 保育士の業務負担軽減と今後の取組について",
       "city_answer_summary": "続きまして3項目目 保育業務のICT導入による業務効率化について 2点のご質問に順を追ってお答えいたします はじめに1点目のICT導入の進捗状況についてお答えいたします 現在公立の保育施設におきましては 大川保育所においてWi-Fiを整備し 保護者連絡アプリこどもを導入しております 一方、荒川子ども園、平心子ども園、大浜子ども園、 カビラ子ども園、茨間子ども園の5つの子ども園につきましては 導入…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0013",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長小倉俊",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L119-L144"
+      },
+      "city_answer_excerpt": "続きまして3項目目 保育業務のICT導入による業務効率化について 2点のご質問に順を追ってお答えいたします はじめに1点目のICT導入の進捗状況についてお答えいたします 現在公立の保育施設におきましては 大川保育所においてWi-Fiを整備し 保護者連絡アプリこどもを導入しております 一方、荒川子ども園、平心子ども園、大浜子ども園、 カビラ子ども園、茨間子ども園の5つの子ども園につきましては 導入…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1381,6 +1861,17 @@
       "theme": "畜産農家の衛生環境の改善と母牛改良への支援策について",
       "question_summary": "畜産農家の衛生環境の改善と母牛改良への支援策について: 堆肥処理施設の充実や運搬体制の充実への具体的対策について / 堆肥の回収遅れにより発生する害虫に対する肉用牛害虫対策について / 家畜焼却炉の建設について / 優れた血統の母牛を増やすため受精卵移植への補助について",
       "city_answer_summary": "東内原智子議員の4項目目 畜産農家の衛生環境の改善と母牛改良への支援策について 1点目、大秘処理施設の充実や運搬体制の充実への具体的対策についてお答えします 本市では、畜産業により発生する牛糞について 資源循環型農業の推進を図る観点から 大秘センターでは事前に登録された農家を対象として 牛糞の収集運搬を行っています また農家が自ら搬入した牛糞についても受け入れ適正な処理をし 完熟体育として農家等…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0014",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産総合部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L146-L199"
+      },
+      "city_answer_excerpt": "東内原智子議員の4項目目 畜産農家の衛生環境の改善と母牛改良への支援策について 1点目、大秘処理施設の充実や運搬体制の充実への具体的対策についてお答えします 本市では、畜産業により発生する牛糞について 資源循環型農業の推進を図る観点から 大秘センターでは事前に登録された農家を対象として 牛糞の収集運搬を行っています また農家が自ら搬入した牛糞についても受け入れ適正な処理をし 完熟体育として農家等…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1406,6 +1897,17 @@
       "theme": "登山道整備の進捗状況について",
       "question_summary": "登山道整備の進捗状況について: 整備の進捗について",
       "city_answer_summary": "次に5項目目 おもとだけ登山道整備の進捗状況についてお答えします おもと登山道の整備については 両表石垣国立公園内に当たるため 自然公園法に基づく環境省中央審議会へ 国立公園事業の決定手続きが必要とされております 中央審議会への諮問手続きについては 基本計画や実施設計等の詳細な図面等が必要であることから 現在、気温計画策定のための事業者を選定するための作業を進めているところであります 気温計画策… 次 登山道整備の進捗状況についてお聞きいたします これまで継続して擁護してまいりました おもとだけど残土整備が基本計画策定に向けて着実に進められていること 大変嬉しく思います 基本計画の策定はいつごろ目指しているのか 目処としているのか またその後の国立公園事業決定までの お寄せのスケジュールをお聞かせください",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0015",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産総合部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L200-L211"
+      },
+      "city_answer_excerpt": "次に5項目目 おもとだけ登山道整備の進捗状況についてお答えします おもと登山道の整備については 両表石垣国立公園内に当たるため 自然公園法に基づく環境省中央審議会へ 国立公園事業の決定手続きが必要とされております 中央審議会への諮問手続きについては 基本計画や実施設計等の詳細な図面等が必要であることから 現在、気温計画策定のための事業者を選定するための作業を進めているところであります 気温計画策…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1431,6 +1933,17 @@
       "theme": "白保中学校前バス停上屋設置に向けた取組について",
       "question_summary": "白保中学校前バス停上屋設置に向けた取組について: 設置に向けた現在の進捗状況について",
       "city_answer_summary": "東内原智子議員の6項目目 白穂中学校前バス停具屋設置に向けた取組についてお答えいたします バス停具屋については設置環境や利用頻度を踏まえ 道路管理者である沖縄県及び本市により整備されております 白穂地区においては白穂小学校前に設置されておりますが これに加え白穂中学校前のバス停上屋設置についての要請がございました 道路管理者である沖縄県においては 既存バス停上屋の延命化に取り組むこととしており…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0016",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長 下地俊幸",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L213-L227"
+      },
+      "city_answer_excerpt": "東内原智子議員の6項目目 白穂中学校前バス停具屋設置に向けた取組についてお答えいたします バス停具屋については設置環境や利用頻度を踏まえ 道路管理者である沖縄県及び本市により整備されております 白穂地区においては白穂小学校前に設置されておりますが これに加え白穂中学校前のバス停上屋設置についての要請がございました 道路管理者である沖縄県においては 既存バス停上屋の延命化に取り組むこととしており…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1456,6 +1969,17 @@
       "theme": "多良間田保存管理等のスケジュールについて",
       "question_summary": "多良間田保存管理等のスケジュールについて: 現在の保存管理の状況について / 今後の保存管理スケジュールについて",
       "city_answer_summary": "次に7項目目 たらまだ保存管理等のスケジュールについて 2点のご質問に順を追ってお答えいたします 1点目 現在の保存管理状況につきましては タラマダートは指定文化財ではありませんが タラマ島との交流を示す歴史的文化的に重要な価値を持つ場所として これまでタラマ共有会や地域の関係者の取り組みに賛同して 文化財指示編集課としても保存管理活用に協力してまいりました 日頃の管理体制といたしましては定期的…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0011",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長小倉俊",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L69-L92"
+      },
+      "city_answer_excerpt": "次に7項目目 たらまだ保存管理等のスケジュールについて 2点のご質問に順を追ってお答えいたします 1点目 現在の保存管理状況につきましては タラマダートは指定文化財ではありませんが タラマ島との交流を示す歴史的文化的に重要な価値を持つ場所として これまでタラマ共有会や地域の関係者の取り組みに賛同して 文化財指示編集課としても保存管理活用に協力してまいりました 日頃の管理体制といたしましては定期的…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1481,6 +2005,17 @@
       "theme": "自衛隊配備問題について",
       "question_summary": "自衛隊配備問題について: 日米共同訓練・演習についての説明会について / 電子戦部隊の配備と住民説明会について / 自衛隊による中学校への広報活動について",
       "city_answer_summary": "おはようございます。井上美智子議員のご質問の1項目目の3点目。 自衛隊による中学校への広報活動についてのご質問にお答えいたします 自衛隊は防衛省が所管する国の組織であり 特定の組織のみを区別して対応しているものではございません こうした考えのもと井上議員ご指摘の件につきましては 今年2月に市内中学校において海上自衛隊から南極の小売を提供していただき 理科の授業が行われました この授業は滅多に触れ… それでは初めに自衛隊配備問題について再質問いたします この訓練のことなんですが 中途に違いでの訓練については どこで何をするか説明を受けていますか",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0018",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長 尾長知事",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L166-L206"
+      },
+      "city_answer_excerpt": "おはようございます。井上美智子議員のご質問の1項目目の3点目。 自衛隊による中学校への広報活動についてのご質問にお答えいたします 自衛隊は防衛省が所管する国の組織であり 特定の組織のみを区別して対応しているものではございません こうした考えのもと井上議員ご指摘の件につきましては 今年2月に市内中学校において海上自衛隊から南極の小売を提供していただき 理科の授業が行われました この授業は滅多に触れ…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1505,20 +2040,30 @@
       "general_question_slug_or_id": "ishigaki-r8-dai4-ippan-inoue-michiko",
       "theme": "国民保護計画について",
       "question_summary": "国民保護計画について: 現在の避難実施要領の中での要支援者の避難並びに畜産農家や自営業者などの避難及び補償について",
-      "city_answer_summary": "",
+      "city_answer_summary": "続きまして、2項目目、国民保護計画について、現在の避難実施要領の中で、要配慮者の避難並びに畜産農家や自営業者などの避難及び保障についてお答えいたします。 国民保護計画に基づく避難実施要領は、武力攻撃予測事態等が発生した際に、住民の避難を円滑かつ的確に実施するため、市町村が避難経路、避難手段、避難誘導に係る職員の配置などを具体的に定めるものでございます。 その中でも、高齢者、障害のある方、入院時、…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0016",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "総務省田原治",
+        "speaker_role": "unknown",
+        "line_or_time_hint": "L152-L160"
+      },
+      "city_answer_excerpt": "続きまして、2項目目、国民保護計画について、現在の避難実施要領の中で、要配慮者の避難並びに畜産農家や自営業者などの避難及び保障についてお答えいたします。 国民保護計画に基づく避難実施要領は、武力攻撃予測事態等が発生した際に、住民の避難を円滑かつ的確に実施するため、市町村が避難経路、避難手段、避難誘導に係る職員の配置などを具体的に定めるものでございます。 その中でも、高齢者、障害のある方、入院時、…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "medium",
+      "answer_anchor_source": "unknown_answer_like",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
-        "市側答弁 anchor をこの inventory builder では確認できていません。"
+        "city/executive 側答弁 anchor は unknown answer-like として抽出しており、人間確認が必要です。"
       ],
       "recommended_reflection": {
-        "type": "needs_review",
+        "type": "general_question_only",
         "target_topic_slug": null,
         "suggested_new_topic_slug": null,
-        "reason": "この inventory では市側答弁 anchor を機械的に確認できず、public reflection 候補としては保留です。"
+        "reason": "市側答弁 anchor はあるが、item 単位で既存 Topic への exact target は未確定のため、まず一般質問側の整理候補として扱います。"
       },
       "risk_flags": [
-        "city_answer_missing",
-        "question_only"
+        "answer_role_unknown"
       ],
       "anchor": {
         "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
@@ -1535,20 +2080,30 @@
       "general_question_slug_or_id": "ishigaki-r8-dai4-ippan-inoue-michiko",
       "theme": "会計年度任用職員について",
       "question_summary": "会計年度任用職員について: 会計年度任用職員の退職者数と退職理由について",
-      "city_answer_summary": "",
+      "city_answer_summary": "続きまして3項目目 会計年度任用職員の退職者数と退職自由についてお答えいたします 令和8年3月末の退職者数は55人となっており 退職理由につきましては、任期満了による者が26人、事故都合による者が29人となっております。",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0017",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "総務省田原治",
+        "speaker_role": "unknown",
+        "line_or_time_hint": "L161-L164"
+      },
+      "city_answer_excerpt": "続きまして3項目目 会計年度任用職員の退職者数と退職自由についてお答えいたします 令和8年3月末の退職者数は55人となっており 退職理由につきましては、任期満了による者が26人、事故都合による者が29人となっております。",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "medium",
+      "answer_anchor_source": "unknown_answer_like",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
-        "市側答弁 anchor をこの inventory builder では確認できていません。"
+        "city/executive 側答弁 anchor は unknown answer-like として抽出しており、人間確認が必要です。"
       ],
       "recommended_reflection": {
-        "type": "needs_review",
+        "type": "general_question_only",
         "target_topic_slug": null,
         "suggested_new_topic_slug": null,
-        "reason": "この inventory では市側答弁 anchor を機械的に確認できず、public reflection 候補としては保留です。"
+        "reason": "市側答弁 anchor はあるが、item 単位で既存 Topic への exact target は未確定のため、まず一般質問側の整理候補として扱います。"
       },
       "risk_flags": [
-        "city_answer_missing",
-        "question_only"
+        "answer_role_unknown"
       ],
       "anchor": {
         "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
@@ -1566,6 +2121,17 @@
       "theme": "教育行政について",
       "question_summary": "教育行政について: 学校図書館の図書費の大幅減について / 女子トイレへの生理用品の設置について / 児童・生徒が他校のプールなどを使用する際の移動手段について",
       "city_answer_summary": "それでは次に教育行政について再質問いたします 学校図書館の図書費の大幅減について 昨日の尾道議員と重なりますが 再度お尋ねいたします 図書費はなぜこんなに大幅減になったのですか",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0033",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "総務課長 中間 則人",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L544-L547"
+      },
+      "city_answer_excerpt": "それでは次に教育行政について再質問いたします 学校図書館の図書費の大幅減について 昨日の尾道議員と重なりますが 再度お尋ねいたします 図書費はなぜこんなに大幅減になったのですか",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1591,6 +2157,17 @@
       "theme": "水道行政について",
       "question_summary": "水道行政について: 水道水のPFASへの対策について",
       "city_answer_summary": "井上美知子議員の5項目目水道水のPFASへの対策についてのご質問にお答えいたします 令和8年4月1日の水道法改正により、有機物素化合物PFASが水質管理設定項目から水質基準項目へ引き上げられ、検査が法的に義務化されております。 基準値が1リットルあたり57グラム、検査頻度は原則として3ヶ月に1回と定められております。 石垣市の現状といたしましては、国の方針を受け、令和2年度より各水源地の減水にお… それでは水道行政について再質問いたします 先ほどの答弁で 今年4月からPFOSが水質基準項目へ引き上げられ 3ヶ月に1回検査が行われるとのことですが 今水道水は安心して使えますとのことで 安心いたしましたが、今後基準値の1リットルあたり50ナノグラムを超えることになった場合、どのように対応しますか。",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0020",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長 尾長知事",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L217-L228"
+      },
+      "city_answer_excerpt": "井上美知子議員の5項目目水道水のPFASへの対策についてのご質問にお答えいたします 令和8年4月1日の水道法改正により、有機物素化合物PFASが水質管理設定項目から水質基準項目へ引き上げられ、検査が法的に義務化されております。 基準値が1リットルあたり57グラム、検査頻度は原則として3ヶ月に1回と定められております。 石垣市の現状といたしましては、国の方針を受け、令和2年度より各水源地の減水にお…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1616,6 +2193,17 @@
       "theme": "北部振興策について",
       "question_summary": "北部振興策について: 北部の幼稚園跡地の利活用について",
       "city_answer_summary": "次に6項目目 北部の幼稚園跡地の利活用についてお答えいたします 北部の幼稚園は全部で4つあります 平久保幼稚園は令和5年で閉園し 旧小学校も含め今後の利活用について検討が進められております 野底幼稚園 赤市幼稚園 井の田幼稚園は 昨年度末に閉園になり 旧野底幼稚園は現在放課後児童クラブが利活用しております 残りの旧赤市幼稚園 旧井の田幼稚園は 今後利活用について検討をしてまいります",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0019",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長 尾長知事",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L207-L216"
+      },
+      "city_answer_excerpt": "次に6項目目 北部の幼稚園跡地の利活用についてお答えいたします 北部の幼稚園は全部で4つあります 平久保幼稚園は令和5年で閉園し 旧小学校も含め今後の利活用について検討が進められております 野底幼稚園 赤市幼稚園 井の田幼稚園は 昨年度末に閉園になり 旧野底幼稚園は現在放課後児童クラブが利活用しております 残りの旧赤市幼稚園 旧井の田幼稚園は 今後利活用について検討をしてまいります",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1641,6 +2229,17 @@
       "theme": "定期航路事業について",
       "question_summary": "定期航路事業について: 第三セクターにおける情報開示について / ふるさと納税石垣市まちづくり支援事業について / 今回の補正予算について / プロポーザル事業発注について / 令和7年度決算について / 出資金とこれまでの経営状況について",
       "city_answer_summary": "三原美沙夫議員の1項目目 石垣キールン定期航路について 3点のご質問に順を追ってお答えします 1点目の第3セクターにおける情報開示についてお答えします 第3セクターについては 法的に規定されているものではありませんが 地方公共団体が出資を行っている会社法人等を 第3セクターと呼んでいます 株式会社商船ヤイマは 本市を含む複数の団体が出資をしていることから いわゆる第三セクターの定義に含まれていま… 宮良 三沢議員の1項目目 定期航路事業について 2点目 今回の補正予算について プロポーラル事業発注についてお答えします 今定例会補正予算において計上しております 令和8年度石垣市における輸出機械増大人材育成事業は 石垣空港及び石垣港の国際物流機能を最大限に活用し 市内事業者の輸出機械の拡大と貿易に係る人材育成を図ることを目的としており 本年4月に国より交付決定を受けた 地域未来交付金採択新規事…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-miyara-misao.u0004",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長菅沼徹",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L63-L147"
+      },
+      "city_answer_excerpt": "三原美沙夫議員の1項目目 石垣キールン定期航路について 3点のご質問に順を追ってお答えします 1点目の第3セクターにおける情報開示についてお答えします 第3セクターについては 法的に規定されているものではありませんが 地方公共団体が出資を行っている会社法人等を 第3セクターと呼んでいます 株式会社商船ヤイマは 本市を含む複数の団体が出資をしていることから いわゆる第三セクターの定義に含まれていま…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1672,6 +2271,17 @@
       "theme": "畜産行政について",
       "question_summary": "畜産行政について: 八重山食肉センターの運営について / HACCP事業と台湾への輸出に関する事業の進捗について / 枝肉カット職員とカット率について",
       "city_answer_summary": "続きまして2項目目畜産行政について3点の質問がございますので順を追ってお答えします 1点目八重山食肉センターの運営についてお答えします 八重山食肉センターの経営状況については これまで累積欠損により負債が資産を上回る債務超過の状態が続いており 令和6年度第25期決算報告52期 訂正します 令和6年度第52期決算報告では、債務超過額は1億5,380万円余りとなっております。 早急な債務解消に向けた…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-miyara-misao.u0008",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産商工部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L215-L256"
+      },
+      "city_answer_excerpt": "続きまして2項目目畜産行政について3点の質問がございますので順を追ってお答えします 1点目八重山食肉センターの運営についてお答えします 八重山食肉センターの経営状況については これまで累積欠損により負債が資産を上回る債務超過の状態が続いており 令和6年度第25期決算報告52期 訂正します 令和6年度第52期決算報告では、債務超過額は1億5,380万円余りとなっております。 早急な債務解消に向けた…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1703,6 +2313,17 @@
       "theme": "農業行政について",
       "question_summary": "農業行政について: サトウキビ増産対策について / 単収減少や耕畜連携や土づくりについて",
       "city_answer_summary": "次に3項目目 農業行政について 1点目 サトウキビ増産対策について 2点目 短種減少や構築連携や土造りについてお答えいたします 本市の基幹作物であるサトウキビにつきましては 近年気候変動による干ばつや集中豪雨台湾の台風の大型化に加え 生産者の高齢化や担い手不足農地の地力低下などを背景として 一部地域において短種の低下が課題となっております また収穫期における度重なる豪雨や天候不順により収穫作業が…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-miyara-misao.u0009",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産商工部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L257-L288"
+      },
+      "city_answer_excerpt": "次に3項目目 農業行政について 1点目 サトウキビ増産対策について 2点目 短種減少や構築連携や土造りについてお答えいたします 本市の基幹作物であるサトウキビにつきましては 近年気候変動による干ばつや集中豪雨台湾の台風の大型化に加え 生産者の高齢化や担い手不足農地の地力低下などを背景として 一部地域において短種の低下が課題となっております また収穫期における度重なる豪雨や天候不順により収穫作業が…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1734,6 +2355,17 @@
       "theme": "スポーツ行政について",
       "question_summary": "スポーツ行政について: 離島甲子園大会派遣について",
       "city_answer_summary": "次に4項目目 スポーツ行政についての1点目 離島甲子園派遣についてのご質問にお答えします 中学生を対象として離島甲子園へ派遣する 全国離島交流中学生野球大会派遣事業については 2014年の第7回大会から実施しており 単年度事業ではありますが 本市中学生選抜チーム石垣島パイイーグルズを 毎年度を結成し継続して派遣してきた経緯があります 令和8年度当初予算においても 本事業に係る事業費を要求していま…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-miyara-misao.u0005",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長菅沼徹",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L148-L168"
+      },
+      "city_answer_excerpt": "次に4項目目 スポーツ行政についての1点目 離島甲子園派遣についてのご質問にお答えします 中学生を対象として離島甲子園へ派遣する 全国離島交流中学生野球大会派遣事業については 2014年の第7回大会から実施しており 単年度事業ではありますが 本市中学生選抜チーム石垣島パイイーグルズを 毎年度を結成し継続して派遣してきた経緯があります 令和8年度当初予算においても 本事業に係る事業費を要求していま…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1765,6 +2397,17 @@
       "theme": "旧県立八重山病院跡地利用計画について",
       "question_summary": "旧県立八重山病院跡地利用計画について: これまでの経過と今後の対応について",
       "city_answer_summary": "次に5項目目、旧八重間病院跡地の利用に係るこれまでの経過と今後の対応についてお答えします 旧県立八重間病院の跡地については 管理者である沖縄県病院事業局が 敷地南側の約1万1千平方メートルに 職員宿舎の建設を予定しており 残りの北側の余剰地1万3千6百平方メートルについては 昨年11月に本市に対して こういう財産の取得要望の紹介がありました 本市としては石垣市議会において 令和7年3月に旧県立八…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-miyara-misao.u0006",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長菅沼徹",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L169-L189"
+      },
+      "city_answer_excerpt": "次に5項目目、旧八重間病院跡地の利用に係るこれまでの経過と今後の対応についてお答えします 旧県立八重間病院の跡地については 管理者である沖縄県病院事業局が 敷地南側の約1万1千平方メートルに 職員宿舎の建設を予定しており 残りの北側の余剰地1万3千6百平方メートルについては 昨年11月に本市に対して こういう財産の取得要望の紹介がありました 本市としては石垣市議会において 令和7年3月に旧県立八…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1796,6 +2439,17 @@
       "theme": "ウェルビーイングのまちづくりについて",
       "question_summary": "ウェルビーイングのまちづくりについて: 市政運営におけるウェルビーイングの考え方について / 市民の幸福度や暮らしの満足度を把握する指標について / 障がい者及び高齢者が生きがいを持って暮らせる地域づくりについて / 地域コミュニティの維持及び伝統文化継承における公民館の役割と支援の在り方について",
       "city_answer_summary": "長山家康議員の1項目目 ウェルビングのまちづくりについて2点のご質問がありますので順を追ってお答えします 1点目の支援運営におけるウェルビーングの考え方についてです 私たちが日々の生活において求める幸福度や満足度 さらには地域のつながりなど多面的な要素から成り立つ重要な概念であり 特に地方創生や地域活性化に関する支援運営において 住民一人一人が豊かさを実感し 地域全体が活気づくための土台となり得… 長山家康議員のご質問1項目目 ベルビーイングのまちづくりについて 3点目 障害者及び高齢者が生きがいを持って暮らせる地域づくりについてお答えいたします 本市では石垣市障害者福祉計画及び石垣市高齢者福祉計画に基づき 産協の頃で作る夢未来石垣 住みられた地域でともに支え合い 安心して健やかに暮らすゆいまある石垣 という基本理念を掲げております この理念のもと 障害者や高齢者が生きがいをもって 生活で…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagayama-ieyasu.u0008",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長菅沼博之",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L69-L84"
+      },
+      "city_answer_excerpt": "長山家康議員の1項目目 ウェルビングのまちづくりについて2点のご質問がありますので順を追ってお答えします 1点目の支援運営におけるウェルビーングの考え方についてです 私たちが日々の生活において求める幸福度や満足度 さらには地域のつながりなど多面的な要素から成り立つ重要な概念であり 特に地方創生や地域活性化に関する支援運営において 住民一人一人が豊かさを実感し 地域全体が活気づくための土台となり得…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1825,6 +2479,17 @@
       "theme": "離島医療と患者支援について",
       "question_summary": "離島医療と患者支援について: 離島患者等通院支援事業の利用状況について / 制度運用後に見えてきた課題について / 年度末の受診等により申請や利用回数に影響が生じる事例への対応について / 患者及び家族の負担軽減に向けたさらなる制度改善について",
       "city_answer_summary": "長山家康議員の2項目目 離島医療と患者支援について 4点の質問がありますので順を追ってお答えいたします 1点目の離島患者等通院支援事業の利用状況についてお答えいたします 石垣市では、本市以外の医療機関で通院治療を余儀なくされている方の経済的負担軽減のため、通院費等の一部を助成しております。 令和8年4月1日現在、本事業の対象者としましては、指定難病患者、特定疾患患者、小児慢性特定疾病児童等、悪性…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagayama-ieyasu.u0012",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富浜紀美男",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L156-L184"
+      },
+      "city_answer_excerpt": "長山家康議員の2項目目 離島医療と患者支援について 4点の質問がありますので順を追ってお答えいたします 1点目の離島患者等通院支援事業の利用状況についてお答えいたします 石垣市では、本市以外の医療機関で通院治療を余儀なくされている方の経済的負担軽減のため、通院費等の一部を助成しております。 令和8年4月1日現在、本事業の対象者としましては、指定難病患者、特定疾患患者、小児慢性特定疾病児童等、悪性…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1855,6 +2520,17 @@
       "theme": "持続可能な地域づくりと人材確保について",
       "question_summary": "持続可能な地域づくりと人材確保について: 市内各産業における人手不足の現状について / 介護・福祉分野における人材確保について / ケアマネジャー不足への対応について / アクティブシニアの活躍促進について / 住宅不足が人材確保に与える影響について",
       "city_answer_summary": "次に3項目目 持続可能な地域づくりと人材確保についてお答えいたします 2点目の介護福祉分野における人材確保につきましては 本市において、令和6年度より介護職員初任者研修と介護職員実務者研修を実施し、介護現場を担う人材育成確保に取り組んでいるところです。 併せて沖縄県と連携し、介護分野への関心・興味を持つ当内人材の掘り起こしを行うため、離島高校生を対象とした初任者研修や社会人向けの入門的研修を行っ… 長山家康議員の3項目目 持続可能な地域づくりと人材確保について 1点目 市内各産業における人手不足の現状について 5点目 住宅不足が人材確保に与える影響についてお答えします 市内各産業における人手不足の現状についてですが 本市において観光関連産業をはじめ 宿泊業 飲食サービス業 小売業 建設業 運輸業 介護 福祉分野など 幅広い産業において人手不足が深刻化しております 特に観光需要の回復に伴い…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagayama-ieyasu.u0010",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "福祉部長 内原英生",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L118-L129"
+      },
+      "city_answer_excerpt": "次に3項目目 持続可能な地域づくりと人材確保についてお答えいたします 2点目の介護福祉分野における人材確保につきましては 本市において、令和6年度より介護職員初任者研修と介護職員実務者研修を実施し、介護現場を担う人材育成確保に取り組んでいるところです。 併せて沖縄県と連携し、介護分野への関心・興味を持つ当内人材の掘り起こしを行うため、離島高校生を対象とした初任者研修や社会人向けの入門的研修を行っ…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -1884,6 +2560,11 @@
       "theme": "持続可能な行政運営について",
       "question_summary": "持続可能な行政運営について: 職員の時間外勤務の実態について / 時間外勤務手当及び代休取得の状況について / 時間外勤務に係る課題認識について",
       "city_answer_summary": "",
+      "city_answer_anchor": null,
+      "city_answer_excerpt": "",
+      "city_answer_missing": true,
+      "answer_anchor_confidence": "low",
+      "answer_anchor_source": "none",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。",
@@ -1916,6 +2597,17 @@
       "theme": "崎原公園について",
       "question_summary": "崎原公園について: 崎原公園の名称はどのような経緯で決定されたのか。また、地域や関係者の関わりはあったのか。 / 津波石周辺の管理は現在どのようにされているのか。 / 津波石の損傷している階段の補修及び安全対策について / 津波石周辺の樹木伐採、見通しの改善についてどのように考えるか。 / 公園名称の由来や地域の歴史、崎原御嶽との関わりを含めた総合的な案内看板の設置についてどう考えるか。",
       "city_answer_summary": "とのしろこのみ議員の1項目目の1点目 崎原公園の名称決定の経緯や地域関係者との関わりについてのご質問にお答えいたします 大浜小学校の東側に位置する酒原公園は 昭和52年に現在の芝生広場や津波石 親家赤鉢の被部分などの陸域と海域を合わせた 約17ヘクタールを都市計画公園として決定されております 都市計画決定の際には 審議会や広告縦覧などの手続きがございますことから 名称につきましては地域由来の小技… とのしろこのみ議員の1項目目 先原公園に関するご質問のうち 津波石及びその周辺に関する4点のご質問に 順を追ってお答えいたします 2点目 現在の津波石周辺の管理についてお答えいたします 崎原公園の北側に所在する津波石は 平成25年に国の天然記念物 石垣島東海岸の津波石群の一つとして 津波ウフ石の名称で指定されています 指定範囲である土地産物は石垣石誘致で 教育部所管の行政財産となっています 現在…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tonoshiro-konomi.u0008",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長下地俊幸",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L60-L76"
+      },
+      "city_answer_excerpt": "とのしろこのみ議員の1項目目の1点目 崎原公園の名称決定の経緯や地域関係者との関わりについてのご質問にお答えいたします 大浜小学校の東側に位置する酒原公園は 昭和52年に現在の芝生広場や津波石 親家赤鉢の被部分などの陸域と海域を合わせた 約17ヘクタールを都市計画公園として決定されております 都市計画決定の際には 審議会や広告縦覧などの手続きがございますことから 名称につきましては地域由来の小技…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1941,6 +2633,17 @@
       "theme": "石垣市民会館の安全で快適な利用環境の確保について",
       "question_summary": "石垣市民会館の安全で快適な利用環境の確保について: 大ホールの女子トイレ及び中ホールにおいて発生したトイレ使用不能の経緯と原因について / 石垣市民会館における設備点検及び維持管理体制について / 老朽化設備の把握状況及び修繕計画について / 利用者の利便性確保及び再発防止策について",
       "city_answer_summary": "とのしろこの議員のご質問の2項目目 石垣市民会館の安全で快適な利用環境の確保に係る4点について 順を追ってお答えします 市民会館のトイレにおいて イベント開催時など利用中に不具合が生じ ご心配ご不便をおかけしましたことに対して お詫び申し上げます 市民会館は市民はじめ多くの皆様にご利用いただく 文化芸術活動の拠点であり その施設を安全で快適にご利用いただくことは 重要な行政サービスであると承知し…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tonoshiro-konomi.u0011",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼博史",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L165-L212"
+      },
+      "city_answer_excerpt": "とのしろこの議員のご質問の2項目目 石垣市民会館の安全で快適な利用環境の確保に係る4点について 順を追ってお答えします 市民会館のトイレにおいて イベント開催時など利用中に不具合が生じ ご心配ご不便をおかけしましたことに対して お詫び申し上げます 市民会館は市民はじめ多くの皆様にご利用いただく 文化芸術活動の拠点であり その施設を安全で快適にご利用いただくことは 重要な行政サービスであると承知し…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1966,6 +2669,17 @@
       "theme": "郷土の伝承文化継承事業（三線等整備事業）について",
       "question_summary": "郷土の伝承文化継承事業（三線等整備事業）について: 事業の進捗状況について / 各学校への配備状況について / 学校での活用状況について / 今後の事業展開と課題について",
       "city_answer_summary": "次に3項目目 郷土の伝統文化継承事業について 4点のご質問がございますので 順を追ってお答えいたします 1点目 郷土の伝統文化継承事業の進捗状況について 本事業は子どもたちが 郷土の歴史や文化に対する理解を深めるとともに 伝統文化継承の意識を育むことを目的としております 令和7年度より 沖縄振興特別推進市町村交付金を活用し 郷土の伝統文化継承事業 三振と整備事業として 令和7年度から8年度にかけ… では3項目目 郷土の伝承文化継承事業についてお伺いしたいと思います 三振や金銀センスの配備が進み 12月には各学校に配備が完了ということですね 今年の2月の教育の日には 市民会館でとのしろ小学校の生徒たちが 三振を弾きセンスを持ち 和紙の釣りを踊り披露してくれました 非常に感動的でした これからもいろんな場所でお披露目をすることと思います では各学校では音楽や総合的な学習の時間を 活用されている…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tonoshiro-konomi.u0010",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長小永俊",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L128-L163"
+      },
+      "city_answer_excerpt": "次に3項目目 郷土の伝統文化継承事業について 4点のご質問がございますので 順を追ってお答えいたします 1点目 郷土の伝統文化継承事業の進捗状況について 本事業は子どもたちが 郷土の歴史や文化に対する理解を深めるとともに 伝統文化継承の意識を育むことを目的としております 令和7年度より 沖縄振興特別推進市町村交付金を活用し 郷土の伝統文化継承事業 三振と整備事業として 令和7年度から8年度にかけ…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -1990,22 +2704,32 @@
       "general_question_slug_or_id": "ishigaki-r8-dai4-ippan-hanatani-shiro",
       "theme": "県道石垣空港線（アクセス道路）について",
       "question_summary": "県道石垣空港線（アクセス道路）について: 全線開通時期の見通しや現状の進捗状況（ア全線開通時期、イ沖縄県との連携強化） / 石垣空港跡地区画整理事業（ア新設道路計画の進捗状況、イ新博物館建設計画との整合性） / 旧大浜町浄水場跡地の取壊し時期",
-      "city_answer_summary": "",
+      "city_answer_summary": "花谷志郎議員の1項目目 県道石垣空港線アクセス道路について 3点のご質問に順を追ってお答えいたします 1点目 県道石垣空港線アクセス道路の前線開通時期の見通しや現状の進捗について 前線開通時期につきましては 県道石垣空港線を管理する沖縄県八重山道区事務所に確認しましたところ 現時点で明確にお示しすることが難しい状況であるという回答を得ております 引き続き当初予算補正予算を含めた予算の確保に努め…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-hanatani-shiro.u0004",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "花谷志郎",
+        "speaker_role": "unknown",
+        "line_or_time_hint": "L54-L92"
+      },
+      "city_answer_excerpt": "花谷志郎議員の1項目目 県道石垣空港線アクセス道路について 3点のご質問に順を追ってお答えいたします 1点目 県道石垣空港線アクセス道路の前線開通時期の見通しや現状の進捗について 前線開通時期につきましては 県道石垣空港線を管理する沖縄県八重山道区事務所に確認しましたところ 現時点で明確にお示しすることが難しい状況であるという回答を得ております 引き続き当初予算補正予算を含めた予算の確保に努め…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "medium",
+      "answer_anchor_source": "unknown_answer_like",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
-        "市側答弁 anchor をこの inventory builder では確認できていません。",
-        "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
+        "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
+        "city/executive 側答弁 anchor は unknown answer-like として抽出しており、人間確認が必要です。"
       ],
       "recommended_reflection": {
-        "type": "needs_review",
+        "type": "general_question_only",
         "target_topic_slug": null,
         "suggested_new_topic_slug": null,
-        "reason": "この inventory では市側答弁 anchor を機械的に確認できず、public reflection 候補としては保留です。"
+        "reason": "市側答弁 anchor はあるが、item 単位で既存 Topic への exact target は未確定のため、まず一般質問側の整理候補として扱います。"
       },
       "risk_flags": [
         "speaker_role_unknown",
-        "city_answer_missing",
-        "question_only"
+        "answer_role_unknown"
       ],
       "anchor": {
         "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
@@ -2023,6 +2747,17 @@
       "theme": "本市の人口・出生数減少に対する市長の考え",
       "question_summary": "本市の人口・出生数減少に対する市長の考え: 出生数減少について（ア減少原因などの分析状況、イ出生数増加に向けた現時点での具体的取組） / 日本人人口の急激な減少への対策（ア人口5万人達成以降の急激な減少傾向、イ第5次石垣市総合計画との整合性や後期基本計画の大幅な見直し）",
       "city_answer_summary": "花谷志郎議員の2項目目 本市の人口出生数減少についての2点の質問に順を追ってお伺いします 1点目の出生数減少について 本市の出生数は令和6年が392人 令和7年が346人となり 2年連続で400人を下回る状況となっています 減少については少子化の影響と 進学や就職を契機とした若い世代の市外流出により 結婚・出産世代の人口が減少していることが 大きな要因の一つであると認識しています また未婚化・晩…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-hanatani-shiro.u0005",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼博",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L94-L159"
+      },
+      "city_answer_excerpt": "花谷志郎議員の2項目目 本市の人口出生数減少についての2点の質問に順を追ってお伺いします 1点目の出生数減少について 本市の出生数は令和6年が392人 令和7年が346人となり 2年連続で400人を下回る状況となっています 減少については少子化の影響と 進学や就職を契機とした若い世代の市外流出により 結婚・出産世代の人口が減少していることが 大きな要因の一つであると認識しています また未婚化・晩…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2053,6 +2788,17 @@
       "theme": "市立小中学校の統廃合",
       "question_summary": "市立小中学校の統廃合: 人口減少（出生数減）に伴う統廃合の考え方（ア児童生徒数の今後の見通し、イ特に減少傾向にある小中学校） / 統廃合計画の策定時期",
       "city_answer_summary": "花谷志郎議員ご質問の3項目目 私立小中学校の党配合について2点のご質問に順を追ってお答えいたします まず1点目人口減少に伴う党配合の考え方についてお答えいたします 全国的に少子化が進む中 本市の児童生徒数も平成2年度の7111人をピークに年々減少しており 今年度は4624人でピーク時と比較し約35%2487人の減少となりました 近年1学年あたり500人から600人で推移していた児童生徒数も 今年…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-hanatani-shiro.u0007",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長 尾長俊",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L209-L237"
+      },
+      "city_answer_excerpt": "花谷志郎議員ご質問の3項目目 私立小中学校の党配合について2点のご質問に順を追ってお答えいたします まず1点目人口減少に伴う党配合の考え方についてお答えいたします 全国的に少子化が進む中 本市の児童生徒数も平成2年度の7111人をピークに年々減少しており 今年度は4624人でピーク時と比較し約35%2487人の減少となりました 近年1学年あたり500人から600人で推移していた児童生徒数も 今年…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2083,6 +2829,17 @@
       "theme": "商船やいまについて",
       "question_summary": "商船やいまについて: やいま丸の所有者と商船やいまの役割 / 運行初年度の具体的収支計画",
       "city_answer_summary": "次に4項目目、商船ヤイマについて2点ご質問がありますので 順を追ってお答えします 1点目のヤイママルの所有者と株式会社商船ヤイマの役割について ヤイママルは株式会社商船ヤイマの子会社である 商船ヤイマパナマが所有しており 台湾のユニワゴンマリンと運航業務及び船舶管理業務を委託しています 株式会社商船エンマの役割としては 本事業の円滑な推進に向け 日本側における関係機関及び関係事業者との連絡調整な…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-hanatani-shiro.u0006",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼博",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L160-L207"
+      },
+      "city_answer_excerpt": "次に4項目目、商船ヤイマについて2点ご質問がありますので 順を追ってお答えします 1点目のヤイママルの所有者と株式会社商船ヤイマの役割について ヤイママルは株式会社商船ヤイマの子会社である 商船ヤイマパナマが所有しており 台湾のユニワゴンマリンと運航業務及び船舶管理業務を委託しています 株式会社商船エンマの役割としては 本事業の円滑な推進に向け 日本側における関係機関及び関係事業者との連絡調整な…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2113,6 +2870,17 @@
       "theme": "ホルムズ海峡封鎖における石油危機と平和政策に対する考え",
       "question_summary": "ホルムズ海峡封鎖における石油危機と平和政策に対する考え: 今後の市民生活への影響（ア すでに影響が出ている分野、イ 全庁的な対応、ウ 石垣市独自の政策） / 戦争（軍事攻撃）の早期終結に向けた市長のスタンス",
       "city_answer_summary": "原谷志郎議員の5項目目、ホルムズ海峡封鎖における石油危機と平和政策に対する考え、1点目、今後の市民生活への影響、あ、すでに影響が出ている分野、い、全庁的な対応、う、石垣市独自の政策についてお答えします。 現在、中東地域において緊張が高まる中、イランによるホルムズ海峡の船舶航行への制限処置が報じられており、世界のエネルギー供給や物流への影響が懸念されております。 本市は離島地域であり、燃料や生活物… ホルムズ海峡封鎖における石油危機と平和政策に対する考えということで すでに様々な業界で影響を出ているのを認識していると ただ全庁的な対応はまだ具体的なものがないということで ここで私が言いたいのは しっかりとこういう事態 今まだ極めて大変な事態 要するにみんなの生活が回らないとか そういうところに至っていないわけです 今改善の方向に向かっていってほしいなという状況ですけれども 少なくともこういっ…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-hanatani-shiro.u0008",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産商工部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L239-L246"
+      },
+      "city_answer_excerpt": "原谷志郎議員の5項目目、ホルムズ海峡封鎖における石油危機と平和政策に対する考え、1点目、今後の市民生活への影響、あ、すでに影響が出ている分野、い、全庁的な対応、う、石垣市独自の政策についてお答えします。 現在、中東地域において緊張が高まる中、イランによるホルムズ海峡の船舶航行への制限処置が報じられており、世界のエネルギー供給や物流への影響が懸念されております。 本市は離島地域であり、燃料や生活物…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2142,6 +2910,17 @@
       "theme": "若い世代が家を建てられる石垣市づくりについて",
       "question_summary": "若い世代が家を建てられる石垣市づくりについて: 石垣市における過去10年間の住宅着工件数及び住宅取得状況の推移について / 転出者アンケートによる住宅価格の上昇と住宅取得状況との関連性の分析について / 住宅建築費の高騰について市が把握している要因及び建築資材・生コン価格上昇の影響について / 石垣市と沖縄島との住宅建築コストの差について / 若年世帯や子育て世帯が住宅を取得しやすい環境づくりについて / 住宅取得環境の改善を通じた定住促進及び人口流出対策について",
       "city_answer_summary": "水底洋一議員の1項目目 若い世代が家を建てられる石垣市づくりについてのご質問に順を追ってお答えいたします まず1点目、石垣市における過去10年間の住宅着工件数及び住宅取得状況の推移についてお答えいたします 国土交通省公表の建築着工統計においては、2024年までのデータが公表されており 2015年が701件、2016年が929件 以降615件、931件、723件、548件 602件、286件、38… 水戸市議員の1項目目、若い世代が家を建てられる石垣市づくりについてのご質問の2点目、住宅価格の上昇と人口流出の関連性についてお答えします。 本市では、令和7年度に石垣市から転出する方を対象として、転出理由や生活上の課題、将来的なUターン移行等を把握し、今後の移住・定住施策や住み続けられるまちづくり施策の検討に活用することを目的にアンケート調査を実施しました。 本アンケートでは、石垣での暮らしやま…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-minosoko-yoichi.u0008",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長下地俊幸",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L51-L94"
+      },
+      "city_answer_excerpt": "水底洋一議員の1項目目 若い世代が家を建てられる石垣市づくりについてのご質問に順を追ってお答えいたします まず1点目、石垣市における過去10年間の住宅着工件数及び住宅取得状況の推移についてお答えいたします 国土交通省公表の建築着工統計においては、2024年までのデータが公表されており 2015年が701件、2016年が929件 以降615件、931件、723件、548件 602件、286件、38…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2167,6 +2946,17 @@
       "theme": "老朽化校舎の建替え及び危険校舎の解体について",
       "question_summary": "老朽化校舎の建替え及び危険校舎の解体について",
       "city_answer_summary": "水戸小吉議員の2項目目 老朽化校舎の建て替え及び解体について 安全性の確保物価高騰を背景とした長寿命化の妥当性の検証 老朽化校舎の解体及び建て替え計画の見直しについてお答えいたします 老朽化し使用が困難な校舎につきましては 安全性の観点から使用をやめるとともに 注意喚起をし安全確保を図っているところでございます 長寿命化の妥当性の検証につきましては 長寿命化の計画を立てることの背景や目的などをは…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-minosoko-yoichi.u0011",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長 尾長俊",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L112-L126"
+      },
+      "city_answer_excerpt": "水戸小吉議員の2項目目 老朽化校舎の建て替え及び解体について 安全性の確保物価高騰を背景とした長寿命化の妥当性の検証 老朽化校舎の解体及び建て替え計画の見直しについてお答えいたします 老朽化し使用が困難な校舎につきましては 安全性の観点から使用をやめるとともに 注意喚起をし安全確保を図っているところでございます 長寿命化の妥当性の検証につきましては 長寿命化の計画を立てることの背景や目的などをは…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2192,6 +2982,11 @@
       "theme": "八島養殖場浮桟橋及び種苗供給施設の更新について",
       "question_summary": "八島養殖場浮桟橋及び種苗供給施設の更新について",
       "city_answer_summary": "",
+      "city_answer_anchor": null,
+      "city_answer_excerpt": "",
+      "city_answer_missing": true,
+      "answer_anchor_confidence": "low",
+      "answer_anchor_source": "none",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -2222,6 +3017,17 @@
       "theme": "獲る漁業から育てる漁業へ　陸上養殖の推進について",
       "question_summary": "獲る漁業から育てる漁業へ　陸上養殖の推進について",
       "city_answer_summary": "次に4項目目 取る漁業から育てる漁業へ 陸上養殖の推進についてのご質問にお答えします 近年水産資源や漁業者の減少傾向 高齢化の振興など水産業を取り巻く環境は大きく変化しております このような状況に応じ安全安心な水産物を安定的に供給していくためには 養殖技術の確立と事業化に向けた取り組みを継続していくことが重要であると認識しております 本市においても自然環境に左右されず 安定的に生産できる陸上養殖…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-minosoko-yoichi.u0013",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産商工部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L151-L170"
+      },
+      "city_answer_excerpt": "次に4項目目 取る漁業から育てる漁業へ 陸上養殖の推進についてのご質問にお答えします 近年水産資源や漁業者の減少傾向 高齢化の振興など水産業を取り巻く環境は大きく変化しております このような状況に応じ安全安心な水産物を安定的に供給していくためには 養殖技術の確立と事業化に向けた取り組みを継続していくことが重要であると認識しております 本市においても自然環境に左右されず 安定的に生産できる陸上養殖…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2247,6 +3053,17 @@
       "theme": "暗闇の多い美崎町周辺の防犯灯設置及びタクシー乗り場案内整備について",
       "question_summary": "暗闇の多い美崎町周辺の防犯灯設置及びタクシー乗り場案内整備について",
       "city_answer_summary": "続きまして5項目目 三崎町周辺のタクシー乗り場についてお答えいたします 三崎町地区は市民や観光客が多く訪れる繁華街であることから タクシー乗り場など公共交通結接機能の向上が挙げられております そのため本市では三崎町再開発構想の中で 庁舎跡地と離島ターミナル周辺を公共結接拠点と位置づけ その構築を図るとしております 今後具体的な再開発手法の検討において タクシー乗り場の配置などにより 利用者の交通… 養育議員の質問項目5項目目 三崎町周辺の防犯塔設置及びタクシー乗り場案内設備についての 夜間における防犯面や安全面から環境改善を求める声についてお答えいたします 現在市内には1879基の防犯塔が設置されており 今年度も15基の防犯塔設置を進めております 今後も予算の範囲において通学路や新興住宅地など危険性等を考慮しながら 優先順位をつけ設置を検討してまいります 三崎町周辺におきましては現在街路等…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-minosoko-yoichi.u0009",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長下地俊幸",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L95-L102"
+      },
+      "city_answer_excerpt": "続きまして5項目目 三崎町周辺のタクシー乗り場についてお答えいたします 三崎町地区は市民や観光客が多く訪れる繁華街であることから タクシー乗り場など公共交通結接機能の向上が挙げられております そのため本市では三崎町再開発構想の中で 庁舎跡地と離島ターミナル周辺を公共結接拠点と位置づけ その構築を図るとしております 今後具体的な再開発手法の検討において タクシー乗り場の配置などにより 利用者の交通…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2272,6 +3089,17 @@
       "theme": "成長期における児童生徒の食生活及び生活習慣に関する実態調査について",
       "question_summary": "成長期における児童生徒の食生活及び生活習慣に関する実態調査について: アンケートの概要と目的 / アンケートの結果の見解 / アンケートの結果を踏まえて今後どのようにするのか。",
       "city_answer_summary": "石川雄則議員ご質問1項目目 成長期にある児童生徒の職生活及び生活習慣に関する実態調査について 3点ございますので順を追ってお答えいたします まず1点目のアンケートの概要と目的についてお答えいたします 本アンケート調査は 1.児童生徒の食生活・生活習慣の現状を把握すること 2.生活習慣と学習意欲等の関連を明らかにし 指導改善に役立てること 3.児童生徒自身が自らの生活を振り返る機会を提供し 主体的…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-ishikawa-yusaku.u0007",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長小永智",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L19-L99"
+      },
+      "city_answer_excerpt": "石川雄則議員ご質問1項目目 成長期にある児童生徒の職生活及び生活習慣に関する実態調査について 3点ございますので順を追ってお答えいたします まず1点目のアンケートの概要と目的についてお答えいたします 本アンケート調査は 1.児童生徒の食生活・生活習慣の現状を把握すること 2.生活習慣と学習意欲等の関連を明らかにし 指導改善に役立てること 3.児童生徒自身が自らの生活を振り返る機会を提供し 主体的…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2302,6 +3130,17 @@
       "theme": "本年度の児童生徒部活動等派遣費補助事業の変更点について",
       "question_summary": "本年度の児童生徒部活動等派遣費補助事業の変更点について: 変更された箇所とその理由",
       "city_answer_summary": "次に2項目目 本年度の児童生徒部活動と派遣費補助事業の変更点についてお答えいたします 本市における児童生徒の派遣費補助は 平成22年度にスタートし 制度の充実予算の拡充を図りながら 18年間継続実施してまいりました 現在は沖縄離島活性化推進事業費補助金を活用し 部活動等指導環境充実化構築事業として 部活動等の指導者の指導力向上 及び児童生徒の競技力向上を図ることを目的に実施しており 補助拡充や要…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-ishikawa-yusaku.u0008",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長小永智",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L100-L140"
+      },
+      "city_answer_excerpt": "次に2項目目 本年度の児童生徒部活動と派遣費補助事業の変更点についてお答えいたします 本市における児童生徒の派遣費補助は 平成22年度にスタートし 制度の充実予算の拡充を図りながら 18年間継続実施してまいりました 現在は沖縄離島活性化推進事業費補助金を活用し 部活動等指導環境充実化構築事業として 部活動等の指導者の指導力向上 及び児童生徒の競技力向上を図ることを目的に実施しており 補助拡充や要…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2331,6 +3170,17 @@
       "theme": "専用アプリを通じて決済やポイント還元ができるデジタル地域通貨の導入について",
       "question_summary": "専用アプリを通じて決済やポイント還元ができるデジタル地域通貨の導入について: クーポン券などを配布する場合、デジタルと紙ではどれくらい経費に差が出るのか。 / 石垣市がこれまでに実施したクーポンや商品券、ポイント配布事業はどのようなものがあるのか。",
       "city_answer_summary": "石川裕作議員の3項目目 専用アプリを通じて決済やポイント還元ができる デジタル地域通貨の導入について 1点目 クーポン券などを配布する場合 デジタルと紙ではどれぐらいの経費に差が出るか 2点目 これまで実施したクーポン券や商品券 ポイント配布事業はどのようなものがあるかについて 順を追ってお答えします 本市においてこれまで専用アプリ等を導入した実績がないため 現時点で紙とデジタルを比較することは…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-ishikawa-yusaku.u0009",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産商工部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L142-L172"
+      },
+      "city_answer_excerpt": "石川裕作議員の3項目目 専用アプリを通じて決済やポイント還元ができる デジタル地域通貨の導入について 1点目 クーポン券などを配布する場合 デジタルと紙ではどれぐらいの経費に差が出るか 2点目 これまで実施したクーポン券や商品券 ポイント配布事業はどのようなものがあるかについて 順を追ってお答えします 本市においてこれまで専用アプリ等を導入した実績がないため 現時点で紙とデジタルを比較することは…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2360,6 +3210,17 @@
       "theme": "農業行政について",
       "question_summary": "農業行政について: サトウキビの収穫が今期も4月までかかった原因について",
       "city_answer_summary": "農業行政についての サトウキビ収穫遅れの原因についてお答えします 2025・2026年期生徒期間につきましては 令和7年12月9日の創業開始から 令和8年4月28日までの141日間となっており 適正期間とされる100日前後を上回る長期創業となりました その主な要因は 収穫期における度重なる悪天候により収穫作業の停滞と 収穫機械であるハーベスターの収穫能力不足により 生徒工場への原料搬入が安定的に…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tamori-eishin.u0010",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産商工部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L57-L134"
+      },
+      "city_answer_excerpt": "農業行政についての サトウキビ収穫遅れの原因についてお答えします 2025・2026年期生徒期間につきましては 令和7年12月9日の創業開始から 令和8年4月28日までの141日間となっており 適正期間とされる100日前後を上回る長期創業となりました その主な要因は 収穫期における度重なる悪天候により収穫作業の停滞と 収穫機械であるハーベスターの収穫能力不足により 生徒工場への原料搬入が安定的に…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2389,6 +3250,11 @@
       "theme": "畜産行政について",
       "question_summary": "畜産行政について: 本市で畜産業を営む粗飼料生産者に対する支援強化の考えはあるか。 / 令和7年度の死亡牛の状況は。",
       "city_answer_summary": "",
+      "city_answer_anchor": null,
+      "city_answer_excerpt": "",
+      "city_answer_missing": true,
+      "answer_anchor_confidence": "low",
+      "answer_anchor_source": "none",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。",
@@ -2421,6 +3287,17 @@
       "theme": "スポーツ行政について",
       "question_summary": "スポーツ行政について: 石垣市中央運動公園陸上競技場にもAIカメラの計画はないか。",
       "city_answer_summary": "田森衛進議員の3項目目 スポーツ行政の1点のご質問についてお答えします 本市では離島特有の条件不利性を克服し 市民のスポーツ環境を充実させるため 国の離島活性化推進事業費補助金を活用し これまでにサッカーパークアカンマ ロートスタジアム石垣 そして中央運動公園総合体育館の3施設に AIカメラを導入しました これにより当該の専門家からの遠隔指導をはじめ 大会・合宿状況の配信が可能となり 本市の競技…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tamori-eishin.u0011",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼博之",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L136-L162"
+      },
+      "city_answer_excerpt": "田森衛進議員の3項目目 スポーツ行政の1点のご質問についてお答えします 本市では離島特有の条件不利性を克服し 市民のスポーツ環境を充実させるため 国の離島活性化推進事業費補助金を活用し これまでにサッカーパークアカンマ ロートスタジアム石垣 そして中央運動公園総合体育館の3施設に AIカメラを導入しました これにより当該の専門家からの遠隔指導をはじめ 大会・合宿状況の配信が可能となり 本市の競技…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2450,6 +3327,17 @@
       "theme": "観光行政について",
       "question_summary": "観光行政について: 観光地のトイレの環境整備について",
       "city_answer_summary": "田森衛進議員の4項目目 観光地のトイレの環境整備についてお答えいたします 建設部が所管する観光地のトイレにつきましては 北から平久保灯台 多摩トイレ崎展望台 井の田キャンプ場 米原緑地 米原屋敷群落駐車場 かびら公園、すくじ海水浴場、小岩崎灯台、灯陣場などがございます。 うち、玉取崎展望台トイレにつきましては、一括交付金を活用し、 かびら公園につきましては、都市公園補助で改築整備しているところで…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tamori-eishin.u0012",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長 下地俊一",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L164-L179"
+      },
+      "city_answer_excerpt": "田森衛進議員の4項目目 観光地のトイレの環境整備についてお答えいたします 建設部が所管する観光地のトイレにつきましては 北から平久保灯台 多摩トイレ崎展望台 井の田キャンプ場 米原緑地 米原屋敷群落駐車場 かびら公園、すくじ海水浴場、小岩崎灯台、灯陣場などがございます。 うち、玉取崎展望台トイレにつきましては、一括交付金を活用し、 かびら公園につきましては、都市公園補助で改築整備しているところで…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2479,6 +3367,17 @@
       "theme": "福祉行政について",
       "question_summary": "福祉行政について: 本市で実証運行が行われているデマンド交通の利用地区拡大の計画はあるか。",
       "city_answer_summary": "続きまして5項目目 デマンド交通の展開についてお答えいたします 本市では石垣市地域公共交通計画において 公共交通の利便性や効率性の向上を図るとし その手法の一つとして目的地や運行時間帯について 利用者のニーズに合わせた運行を可能とする デマンド交通の導入に取り組むとしております 令和6年度茨城区以北の赤石 福浦 吉野 平久保 平野の6地区を対象に デマンド交通の実証実験を行っており 一定の評価や…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tamori-eishin.u0013",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長 下地俊一",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L180-L194"
+      },
+      "city_answer_excerpt": "続きまして5項目目 デマンド交通の展開についてお答えいたします 本市では石垣市地域公共交通計画において 公共交通の利便性や効率性の向上を図るとし その手法の一つとして目的地や運行時間帯について 利用者のニーズに合わせた運行を可能とする デマンド交通の導入に取り組むとしております 令和6年度茨城区以北の赤石 福浦 吉野 平久保 平野の6地区を対象に デマンド交通の実証実験を行っており 一定の評価や…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2508,6 +3407,17 @@
       "theme": "かりゆし病院と徳洲会病院の統合に伴う医療体制の変化及び旧県立八重山病院跡地の活用について",
       "question_summary": "かりゆし病院と徳洲会病院の統合に伴う医療体制の変化及び旧県立八重山病院跡地の活用について: かりゆし病院と徳洲会病院の統合に関し、市への説明内容及び統合後の地域医療体制・市民サービスへの影響について / 旧県立八重山病院跡地の将来的な公共利用を見据えた土地取得に向けた検討継続について",
       "city_answer_summary": "石垣達也議員の1項目目 仮医師病院と特集会病院の統合に伴う 医療体制の変化及び 旧八重山病院跡地の活用について、 下流市病院と特集会病院の統合に関し、 石垣市は事業者側からどのような説明を受けているか、 また、統合後の地域医療体制や市民サービスへの影響について、 市と市でどのように認識しているかについてお答えいたします。 下流市病院と特集会病院の統合について、 事業運営に関する詳細な説明は受けて…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-ishigaki-tatsuya.u0012",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富浜",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L68-L84"
+      },
+      "city_answer_excerpt": "石垣達也議員の1項目目 仮医師病院と特集会病院の統合に伴う 医療体制の変化及び 旧八重山病院跡地の活用について、 下流市病院と特集会病院の統合に関し、 石垣市は事業者側からどのような説明を受けているか、 また、統合後の地域医療体制や市民サービスへの影響について、 市と市でどのように認識しているかについてお答えいたします。 下流市病院と特集会病院の統合について、 事業運営に関する詳細な説明は受けて…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2533,6 +3443,17 @@
       "theme": "ひきこもりや孤立を防ぐ支援体制の構築について",
       "question_summary": "ひきこもりや孤立を防ぐ支援体制の構築について: 本市におけるひきこもり状態にある若者及び中高年層の実態をどのように把握しているか。 / これまでの支援事業の実績と評価について",
       "city_answer_summary": "石垣達也議員ご質問2項目目 引きこもりや孤立を防ぐ支援体制の構築について 2点のご質問に理論を持ってお答えいたします まず1点目 本市における引きこもり状態にある若者及び中高年層の実態を どのように把握しているかについてお答えいたします 本市における引きこもり状態にある方の実態につきましては 令和2年7月に石垣市子ども若者支援に係る 引きこもり等の実態に関するアンケート調査を実施し 把握に努めた… 石垣達也議員の2項目目 引きこもりや孤立を防ぐ支援体制の構築について 2点目のご質問にお答えいたします 福祉総務課ではアウトリーチ等の充実による 充実相談支援機能の強化を図るため 令和4年度よりアウトリーチ支援員を配置し 40歳から64歳までの引きこもり状態にある方や そのご家族に対する相談支援に取り組んでおります 引きこもり状態にある方の実態把握につきましては ご家族や関係者からの相談を通じて…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-ishigaki-tatsuya.u0017",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長小永俊",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L144-L180"
+      },
+      "city_answer_excerpt": "石垣達也議員ご質問2項目目 引きこもりや孤立を防ぐ支援体制の構築について 2点のご質問に理論を持ってお答えいたします まず1点目 本市における引きこもり状態にある若者及び中高年層の実態を どのように把握しているかについてお答えいたします 本市における引きこもり状態にある方の実態につきましては 令和2年7月に石垣市子ども若者支援に係る 引きこもり等の実態に関するアンケート調査を実施し 把握に努めた…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2558,6 +3479,17 @@
       "theme": "真喜良地域公営住宅周辺における公共交通及び道路環境の改善について",
       "question_summary": "真喜良地域公営住宅周辺における公共交通及び道路環境の改善について: 真喜良地域の公営住宅入居者及び周辺住民の通院・買い物等の移動支援について市はどのような認識を持っているか。 / 公営住宅の整備が進む中で地域のバス路線の改善が必要だと考えるが見解を伺う。",
       "city_answer_summary": "石垣達也議員の3項目目 牧田地域公営住宅周辺の公共交通及び道路環境の改善について 2点ありますので順を追ってお答えいたします 1点目の高齢者や運転勉強を持たない住民への 移動支援に係る課題については 石垣市地域公共交通計画において 高齢者の医療・買い物等の外出機会を増加させるため 利便性の高い公共交通の確保が必要とし 既存公共交通の利便性や効率性の向上を図るため、路線バス事業者への支援や、北部地…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-ishigaki-tatsuya.u0020",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "建設部長下地俊一",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L228-L241"
+      },
+      "city_answer_excerpt": "石垣達也議員の3項目目 牧田地域公営住宅周辺の公共交通及び道路環境の改善について 2点ありますので順を追ってお答えいたします 1点目の高齢者や運転勉強を持たない住民への 移動支援に係る課題については 石垣市地域公共交通計画において 高齢者の医療・買い物等の外出機会を増加させるため 利便性の高い公共交通の確保が必要とし 既存公共交通の利便性や効率性の向上を図るため、路線バス事業者への支援や、北部地…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2583,6 +3515,17 @@
       "theme": "名蔵浦田原地区「バードピア」認定を活かした自然環境保全と地域振興について",
       "question_summary": "名蔵浦田原地区「バードピア」認定を活かした自然環境保全と地域振興について: 名蔵浦田原地区が水田地帯として全国初の「バードピア」に認定されたことに対する市の評価について / 石垣市の環境・観光・教育施策の中でどのような位置付けができるか。",
       "city_answer_summary": "続きまして4項目目、名倉浦田丸地区のバードピア認定を生かした自然環境保全と地域振興について、 名倉浦田丸地区が水田地帯として、全国初のバードピアに認定されたことに対する市の評価について、 次に、石垣市の環境・観光・教育施策の中で、どのような位置づけができるか考えを伺うの2点の質問に順を追ってお答えいたします。 まず1点目の市の評価についてお答えいたします。 名倉浦田原地区が水田地帯として全国初の…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-ishigaki-tatsuya.u0013",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富浜",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L85-L99"
+      },
+      "city_answer_excerpt": "続きまして4項目目、名倉浦田丸地区のバードピア認定を生かした自然環境保全と地域振興について、 名倉浦田丸地区が水田地帯として、全国初のバードピアに認定されたことに対する市の評価について、 次に、石垣市の環境・観光・教育施策の中で、どのような位置づけができるか考えを伺うの2点の質問に順を追ってお答えいたします。 まず1点目の市の評価についてお答えいたします。 名倉浦田原地区が水田地帯として全国初の…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2608,6 +3551,11 @@
       "theme": "家賃高騰下における生活保護制度と住まいの確保、生活支援の課題について",
       "question_summary": "家賃高騰下における生活保護制度と住まいの確保、生活支援の課題について: 石垣市における生活保護受給者の住宅扶助基準額について / 市内の家賃相場との乖離についてどのように認識しているか伺う。",
       "city_answer_summary": "",
+      "city_answer_anchor": null,
+      "city_answer_excerpt": "",
+      "city_answer_missing": true,
+      "answer_anchor_confidence": "low",
+      "answer_anchor_source": "none",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "市側答弁 anchor をこの inventory builder では確認できていません。"
@@ -2638,6 +3586,17 @@
       "theme": "「世界平和の鐘設置40周年」に向けた取組について",
       "question_summary": "「世界平和の鐘設置40周年」に向けた取組について: 2028年に迎える「世界平和の鐘設置40周年」に対する市の認識について / 記念式典の開催について",
       "city_answer_summary": "続きまして6項目目、世界平和の鐘設置40周年に向けた取り組みについて、2点のご質問がございますので、順を追ってお答えいたします。 まず1点目の、2028年に迎える世界平和の鐘設置40周年に対する市の認識についてお答えいたします。 世界平和の鐘は、戦争の悲惨さを後世に伝え、平和を願うため、中川千代寺氏の提唱により、国連加盟国から集めたコインやメダルを材料として受蔵され、1954年に国連本部へ寄贈さ…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-ishigaki-tatsuya.u0014",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富浜",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L100-L118"
+      },
+      "city_answer_excerpt": "続きまして6項目目、世界平和の鐘設置40周年に向けた取り組みについて、2点のご質問がございますので、順を追ってお答えいたします。 まず1点目の、2028年に迎える世界平和の鐘設置40周年に対する市の認識についてお答えいたします。 世界平和の鐘は、戦争の悲惨さを後世に伝え、平和を願うため、中川千代寺氏の提唱により、国連加盟国から集めたコインやメダルを材料として受蔵され、1954年に国連本部へ寄贈さ…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2663,6 +3622,17 @@
       "theme": "気候変動適応策（樹木の管理や林業振興）",
       "question_summary": "気候変動適応策（樹木の管理や林業振興）: 気候変動適応策に対する市の見解と取組 / 樹木管理に関する「緑の戸籍簿」改訂の進捗と林業振興に対する市の取組",
       "city_answer_summary": "内原秀俊議員の1項目目の2点目 地獄管理に関する緑の戸籍簿改定の進捗と 林業振興に対する市の取組についてお答えします 緑の戸籍簿は平成9年に当時の石垣市経済部緑推進課が 石垣市居住居牧古牧等調査委員会を設置して 2年間の調査を得て発行した冊子でございます 海底の進捗につきましては 現代のところ海底には至っておりません 次に林業振興についてお答えします 本市の森林は地域の防災水源関与 生物多様性の…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-uchihara-hidetoshi.u0009",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "農林水産商工部長 米森博文",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L120-L150"
+      },
+      "city_answer_excerpt": "内原秀俊議員の1項目目の2点目 地獄管理に関する緑の戸籍簿改定の進捗と 林業振興に対する市の取組についてお答えします 緑の戸籍簿は平成9年に当時の石垣市経済部緑推進課が 石垣市居住居牧古牧等調査委員会を設置して 2年間の調査を得て発行した冊子でございます 海底の進捗につきましては 現代のところ海底には至っておりません 次に林業振興についてお答えします 本市の森林は地域の防災水源関与 生物多様性の…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2693,6 +3663,17 @@
       "theme": "ふるさと納税の有効活用",
       "question_summary": "ふるさと納税の有効活用: ふるさと納税の現状（2026年6月10日時点での今年度の寄付額と件数） / 事業区分「市長におまかせ（使途を指定されない方）」と関係法令の整合性",
       "city_answer_summary": "内原秀俊議員の2項目目 ふるさと納税の有効活用について 2点のご質問に順を追ってお答えします 1点目のふるさと納税の現状についてです 令和8年6月10日現在での今年度の寄付額は 12億1832万3800円で 件数は5694件となっています 2点目の事業区分市長にお任せ 首都を指定されない方と関係法令の整合についてです ふるさと納税による寄附金の使い道は 石垣市まちづくり支援条例第2条において 寄…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-uchihara-hidetoshi.u0010",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼博史",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L152-L177"
+      },
+      "city_answer_excerpt": "内原秀俊議員の2項目目 ふるさと納税の有効活用について 2点のご質問に順を追ってお答えします 1点目のふるさと納税の現状についてです 令和8年6月10日現在での今年度の寄付額は 12億1832万3800円で 件数は5694件となっています 2点目の事業区分市長にお任せ 首都を指定されない方と関係法令の整合についてです ふるさと納税による寄附金の使い道は 石垣市まちづくり支援条例第2条において 寄…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2722,6 +3703,17 @@
       "theme": "教育・文化行政の現状と課題",
       "question_summary": "教育・文化行政の現状と課題: 小中学校：各校割当（配当）予算の過去3年間の推移と課題 / 学校給食費の無償化に向けた2026年度の市の取組 / 市立図書館：視聴覚ライブラリーの拡充に向けた市の取組",
       "city_answer_summary": "内原秀俊議員3項目目 教育文化行政の現状と課題についての3点 3点ありますので続けてお答えいたします 1点目小中学校の学校割当予算のうち 学校管理費の過去3年間の推移と課題についてお答えいたします 小中学校の学校割当予算のうち 学校管理費の当初予算額は令和6年度は3089万8000円 令和7年度は2876万9000円 令和8年度は2342万円となっております 課題は予算の確保だと考えております…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-uchihara-hidetoshi.u0012",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長 尾長知恵",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L198-L258"
+      },
+      "city_answer_excerpt": "内原秀俊議員3項目目 教育文化行政の現状と課題についての3点 3点ありますので続けてお答えいたします 1点目小中学校の学校割当予算のうち 学校管理費の過去3年間の推移と課題についてお答えいたします 小中学校の学校割当予算のうち 学校管理費の当初予算額は令和6年度は3089万8000円 令和7年度は2876万9000円 令和8年度は2342万円となっております 課題は予算の確保だと考えております…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2752,6 +3744,17 @@
       "theme": "医療（治療）・介護分野への支援拡充",
       "question_summary": "医療（治療）・介護分野への支援拡充: 石垣市離島患者等に係る通院費等の一部助成事業について直近の改善点と課題 / 医療（治療）・介護に関連して行政が実施する事業の周知方法",
       "city_answer_summary": "続きまして4項目目 医療介護分野への支援拡充について 2点の質問がございますので順を追ってお答えいたします 1点目 石垣市離島患者等に係る通院費等の一部助成事業について 直近の改善点と課題についてお答えいたします 石垣市では本市以外の医療機関で通院治療を余儀なくされている方の 経済的負担軽減のため通院費等の一部を助成しております 令和8年4月1日現在本事業の対象としましては 指定難病患者特定疾患…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-uchihara-hidetoshi.u0008",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富浜紀美夫",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L68-L118"
+      },
+      "city_answer_excerpt": "続きまして4項目目 医療介護分野への支援拡充について 2点の質問がございますので順を追ってお答えいたします 1点目 石垣市離島患者等に係る通院費等の一部助成事業について 直近の改善点と課題についてお答えいたします 石垣市では本市以外の医療機関で通院治療を余儀なくされている方の 経済的負担軽減のため通院費等の一部を助成しております 令和8年4月1日現在本事業の対象としましては 指定難病患者特定疾患…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2782,6 +3785,17 @@
       "theme": "旧県立八重山病院跡地利用（県有地における現状）",
       "question_summary": "旧県立八重山病院跡地利用（県有地における現状）: 県有地取得手続きの進捗及び跡地利用計画の策定状況 / 民間医療機関の体制変更に伴う跡地提供への影響",
       "city_answer_summary": "次に5項目目 旧県立八重間病院跡地利用について2点のご質問がありますので 順を追ってお答えします 1点目 県有地取得手続の進捗及び 跡地利用計画の策定状況についてです 管理者である沖縄県病院事業局が 敷地南側の約1万1000平方メートルに 職員宿舎の建設を予定しており 残りの北側の余剰地1万3600平方メートルについては 昨年11月に本市に対して公有財産の取得要望の紹介がありました 本市としては…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-uchihara-hidetoshi.u0011",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長 菅沼博史",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L178-L196"
+      },
+      "city_answer_excerpt": "次に5項目目 旧県立八重間病院跡地利用について2点のご質問がありますので 順を追ってお答えします 1点目 県有地取得手続の進捗及び 跡地利用計画の策定状況についてです 管理者である沖縄県病院事業局が 敷地南側の約1万1000平方メートルに 職員宿舎の建設を予定しており 残りの北側の余剰地1万3600平方メートルについては 昨年11月に本市に対して公有財産の取得要望の紹介がありました 本市としては…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2812,6 +3826,17 @@
       "theme": "地震津波の避難の在り方",
       "question_summary": "地震津波の避難の在り方: 津波注意報が発表されたとき市民がとるべき行動と避難経路をめぐる課題",
       "city_answer_summary": "内原秀俊議員の6項目目 地震・津波の避難の在り方について 津波注意報が発表されたとき 市民がとるべき行動と避難経路をめぐる課題について お答えいたします 津波警報・注意報の基本的な情報として 気象庁は地震発生後のその規模や 位置から津波の高さを予測し 大津波警報・津波警報・津波注意報の 3段階で発表いたします 津波注意報は予想される津波の高さが 20センチ以上1メートル以下の場合に発表され 海の…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-uchihara-hidetoshi.u0013",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "総務部長 田中治",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L260-L282"
+      },
+      "city_answer_excerpt": "内原秀俊議員の6項目目 地震・津波の避難の在り方について 津波注意報が発表されたとき 市民がとるべき行動と避難経路をめぐる課題について お答えいたします 津波警報・注意報の基本的な情報として 気象庁は地震発生後のその規模や 位置から津波の高さを予測し 大津波警報・津波警報・津波注意報の 3段階で発表いたします 津波注意報は予想される津波の高さが 20センチ以上1メートル以下の場合に発表され 海の…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2841,6 +3866,17 @@
       "theme": "有事「国民保護」の課題",
       "question_summary": "有事「国民保護」の課題: 特定臨時避難施設（地下シェルター）の使途や市民との合意形成について",
       "city_answer_summary": "7項目目、有事国民保護の課題について 特定臨時避難施設地下シェルターの使徒や市民との合意形成についてお答えいたします 特定臨時避難施設地下シェルターの使徒につきましては 平時には駐車場として活用し 武力攻撃予測事態等においては 全住民の避難を基本としておりますが 万一の備えとして、避難誘導にあたる職員やライフラインの維持に関わる業務にあたる職員等が避難できなかった場合、一定期間避難するための施設…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-uchihara-hidetoshi.u0014",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "総務部長 田中治",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L283-L290"
+      },
+      "city_answer_excerpt": "7項目目、有事国民保護の課題について 特定臨時避難施設地下シェルターの使徒や市民との合意形成についてお答えいたします 特定臨時避難施設地下シェルターの使徒につきましては 平時には駐車場として活用し 武力攻撃予測事態等においては 全住民の避難を基本としておりますが 万一の備えとして、避難誘導にあたる職員やライフラインの維持に関わる業務にあたる職員等が避難できなかった場合、一定期間避難するための施設…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -2871,6 +3907,17 @@
       "theme": "本市指定家庭用ごみ袋の供給について",
       "question_summary": "本市指定家庭用ごみ袋の供給について: 本市ごみ袋の在庫、供給について、現状説明を求める。",
       "city_answer_summary": "長浜信夫議員の1項目目 本市指定家庭用ゴミ袋の供給についてお答えいたします 現在中東情勢の緊迫化に伴い ゴミ袋の原材料等が全国的に不足しているため 当面の間本市指定袋の印字をなくし 燃やすゴミは薄い赤色袋 燃やさないゴミは薄い青色袋として対応いたします 市民の皆様には買い溜め等はせず 必要な分だけ購入して なるべく多くの人が購入できるように",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0005",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富浜",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L88-L97"
+      },
+      "city_answer_excerpt": "長浜信夫議員の1項目目 本市指定家庭用ゴミ袋の供給についてお答えいたします 現在中東情勢の緊迫化に伴い ゴミ袋の原材料等が全国的に不足しているため 当面の間本市指定袋の印字をなくし 燃やすゴミは薄い赤色袋 燃やさないゴミは薄い青色袋として対応いたします 市民の皆様には買い溜め等はせず 必要な分だけ購入して なるべく多くの人が購入できるように",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -2901,6 +3948,17 @@
       "theme": "物価高騰対策について",
       "question_summary": "物価高騰対策について: 中東情勢悪化による物価高騰に対する本市の取組について見解を求める。",
       "city_answer_summary": "長浜の防護議員のご質問の2項目目 物価高騰対策についてお答えします 昨今の中東情勢の緊迫化は 原油価格の高騰のみならず あらゆる原材料価格の押し上げなど 市民生活や事業経営において 大きな影響を与えていると認識しています 本市においてはこれまでも 国の物価高騰対応重点支援地方創生臨時交付金を活用して 様々な支援策を展開してきました 昨年度においては全市民を対象とした 石垣市物価高騰対応生活応援給…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0008",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富浜",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L104-L125"
+      },
+      "city_answer_excerpt": "長浜の防護議員のご質問の2項目目 物価高騰対策についてお答えします 昨今の中東情勢の緊迫化は 原油価格の高騰のみならず あらゆる原材料価格の押し上げなど 市民生活や事業経営において 大きな影響を与えていると認識しています 本市においてはこれまでも 国の物価高騰対応重点支援地方創生臨時交付金を活用して 様々な支援策を展開してきました 昨年度においては全市民を対象とした 石垣市物価高騰対応生活応援給…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2928,6 +3986,17 @@
       "theme": "離島甲子園大会出場について",
       "question_summary": "離島甲子園大会出場について: 本大会不参加の経緯について、説明を求める。",
       "city_answer_summary": "次に3項目目 離島甲子園大会出場の1点目 本大会不参加の経緯についてのご質問にお答えします 離島甲子園については 令和8年度当初予算編成において 全国離島交流中学生野球大会事業として 予算要求を行っていましたが 当事業が当初になっていた一定の役割や目的が達成されたことに加え 現状の財政状況から必要性を総合的に判断した結果 令和8年度当初予算への計上が見送られたところです",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0009",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富浜",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L126-L135"
+      },
+      "city_answer_excerpt": "次に3項目目 離島甲子園大会出場の1点目 本大会不参加の経緯についてのご質問にお答えします 離島甲子園については 令和8年度当初予算編成において 全国離島交流中学生野球大会事業として 予算要求を行っていましたが 当事業が当初になっていた一定の役割や目的が達成されたことに加え 現状の財政状況から必要性を総合的に判断した結果 令和8年度当初予算への計上が見送られたところです",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [],
       "recommended_reflection": {
@@ -2955,6 +4024,17 @@
       "theme": "台湾・石垣定期船就航について",
       "question_summary": "台湾・石垣定期船就航について: 本船の本格的な運航に向け、本事業の展望及び見解を伺う。",
       "city_answer_summary": "次に4項目目 本格的な就航に向けた事業の展望及び見解についてお答えします 当初ゴールデンウィークでの就航を目標にしていましたが 国際フェリーとして運航するにあたり、定期検査において、CR選挙、KR選挙、パナマ政府が認める基準を満たすために必要となる船舶検査、安全設備、船内設備等の確認などを丁寧に行ったこと、 船舶代理店・港湾関係やCI級機関・警備体制・二役事業者など多くの関係機関との受入れ体制調…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0010",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富浜",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L136-L172"
+      },
+      "city_answer_excerpt": "次に4項目目 本格的な就航に向けた事業の展望及び見解についてお答えします 当初ゴールデンウィークでの就航を目標にしていましたが 国際フェリーとして運航するにあたり、定期検査において、CR選挙、KR選挙、パナマ政府が認める基準を満たすために必要となる船舶検査、安全設備、船内設備等の確認などを丁寧に行ったこと、 船舶代理店・港湾関係やCI級機関・警備体制・二役事業者など多くの関係機関との受入れ体制調…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -2985,6 +4065,17 @@
       "theme": "有機フッ素化合物（PFAS）の汚染源調査について",
       "question_summary": "有機フッ素化合物（PFAS）の汚染源調査について: PFASの取組と今後の市の対応を伺う。",
       "city_answer_summary": "続きまして5項目目 有機物素化合物FIFASの汚染源調査についてお答えいたします 石垣市最終処分場進出水処理施設で処理された進出水について 今年3月に民間団体による浸出水・水質検査が行われ、その結果、PFOS・P4と総称してPFASが検出されております。 最終処分上の浸出水・排出基準において、法令上、PFOS・P4は検査項目の対象に該当しておりませんが、原因究明に向け調査・検証してまいります。",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagahama-nobuo.u0007",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "市民保健部長 富浜",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L99-L103"
+      },
+      "city_answer_excerpt": "続きまして5項目目 有機物素化合物FIFASの汚染源調査についてお答えいたします 石垣市最終処分場進出水処理施設で処理された進出水について 今年3月に民間団体による浸出水・水質検査が行われ、その結果、PFOS・P4と総称してPFASが検出されております。 最終処分上の浸出水・排出基準において、法令上、PFOS・P4は検査項目の対象に該当しておりませんが、原因究明に向け調査・検証してまいります。",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor をこの inventory builder では機械的に特定できていません。"
@@ -3015,6 +4106,17 @@
       "theme": "尖閣諸島問題",
       "question_summary": "尖閣諸島問題: 尖閣諸島領有権についての市長の考え方 / 領海侵犯を繰り返す中国艦艇の対応について / 尖閣諸島上陸による標柱設置の実施について / 近隣諸国との摩擦を生じないための対策について / 石垣市の尖閣諸島並びに周辺海域の保全及び利活用に関する条例についての市長の考え方",
       "city_answer_summary": "中間人志議員の1項目目 尖閣諸島について5点のご質問がありますので 順を追ってお答えします 1点目 尖閣諸島領有権に対する考え方についてです 尖閣諸島が日本固有の領土であることは 歴史的にも国際法上も明らかであり 現に我が国はこれを有効に支配しています したがって尖閣諸島をめぐって解決しなければならない 領有権の問題はそもそも存在ものと認識しています 2点目 領海侵入を繰り返す 中国官邸の対応に…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0005",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "企画部長菅沼博",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L90-L129"
+      },
+      "city_answer_excerpt": "中間人志議員の1項目目 尖閣諸島について5点のご質問がありますので 順を追ってお答えします 1点目 尖閣諸島領有権に対する考え方についてです 尖閣諸島が日本固有の領土であることは 歴史的にも国際法上も明らかであり 現に我が国はこれを有効に支配しています したがって尖閣諸島をめぐって解決しなければならない 領有権の問題はそもそも存在ものと認識しています 2点目 領海侵入を繰り返す 中国官邸の対応に…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3044,6 +4146,17 @@
       "theme": "シニア向け市営団地建設",
       "question_summary": "シニア向け市営団地建設: 65歳以上の高齢者の持ち家率について / 低所得高齢者に対する住宅支援について / 市営団地における高齢者の申込み枠について / 民間アパート等における家賃相場について / 生活保護世帯の家賃相場の民間アパート等供給量について / 低所得高齢者に対する市営団地建設の必要性について",
       "city_answer_summary": "シニア向け市営団地建設について3点ございますので 順を持ってお答えいたします 1点目の65歳以上の高齢者の持ち家率についてですが 令和5年に実施された住宅土地統計調査によりますと 本市の65歳以上の高齢者の持ち家率は 66.7%となっております 次に2点目の低所得高齢者に対する住宅支援についてですが 低所得高齢者の住宅支援につきましては 関係部局と連携しながら対応しているところであります 介護分… 中間人氏議員の2項目目 シニア向け市営団地建設に関するご質問に順を追ってお答えいたします 3点目の、市営住宅における高齢者の申し込み枠につきまして、市営住宅の入居申し込みにつきましては、石垣市営住宅の設置及び管理に関する条例第6条に入居者の資格が定められており、資格に該当する方が申し込み可能となります。 高齢者につきましても同様の申し込みとなり、高齢者に特化した枠の設定はございませんが、入居選考…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0007",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "福祉部長 内原英生",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L132-L165"
+      },
+      "city_answer_excerpt": "シニア向け市営団地建設について3点ございますので 順を持ってお答えいたします 1点目の65歳以上の高齢者の持ち家率についてですが 令和5年に実施された住宅土地統計調査によりますと 本市の65歳以上の高齢者の持ち家率は 66.7%となっております 次に2点目の低所得高齢者に対する住宅支援についてですが 低所得高齢者の住宅支援につきましては 関係部局と連携しながら対応しているところであります 介護分…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
@@ -3074,6 +4187,17 @@
       "theme": "桃原用昇氏寄付金活用",
       "question_summary": "桃原用昇氏寄付金活用: 一般財団法人設立に伴う事業の取組について",
       "city_answer_summary": "中間人氏議員ご質問の3項目目 東バル幼少市寄附金活用についての 一般財団法人設立に伴う事業の取り組みについてお答えいたします 昨年8月東バル幼少市より額面13億円の 日本国債の寄附の申し出があり 現在運用している東バル幼少奨学基金の増額分として 受け入れを行いました 寄附贈呈式の際東バル市より奨学金事業だけでなく 本市を含む八重山県域の人材育成 文化振興支援事業等に有効活用するための手法について…",
+      "city_answer_anchor": {
+        "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakama-hitoshi.u0009",
+        "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+        "speaker": "教育部長 尾長俊",
+        "speaker_role": "executive",
+        "line_or_time_hint": "L206-L233"
+      },
+      "city_answer_excerpt": "中間人氏議員ご質問の3項目目 東バル幼少市寄附金活用についての 一般財団法人設立に伴う事業の取り組みについてお答えいたします 昨年8月東バル幼少市より額面13億円の 日本国債の寄附の申し出があり 現在運用している東バル幼少奨学基金の増額分として 受け入れを行いました 寄附贈呈式の際東バル市より奨学金事業だけでなく 本市を含む八重山県域の人材育成 文化振興支援事業等に有効活用するための手法について…",
+      "city_answer_missing": false,
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
         "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
