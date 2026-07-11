@@ -475,6 +475,7 @@ export type Database = {
       }
       general_question_items: {
         Row: {
+          confirmed_facts: string[]
           created_at: string
           general_question_id: string
           id: string
@@ -484,6 +485,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          confirmed_facts?: string[]
           created_at?: string
           general_question_id: string
           id?: string
@@ -493,6 +495,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          confirmed_facts?: string[]
           created_at?: string
           general_question_id?: string
           id?: string

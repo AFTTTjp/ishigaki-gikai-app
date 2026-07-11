@@ -51,6 +51,23 @@ export function GeneralQuestionCard({ question }: Props) {
                     ))}
                   </ul>
                 )}
+                {item.confirmed_facts.length > 0 && (
+                  <div className="ml-5 rounded-xl bg-mirai-surface-grouped px-3 py-3">
+                    <p className="text-xs font-semibold tracking-[0.02em] text-mirai-text">
+                      市の答弁で確認できたこと
+                    </p>
+                    <ul className="mt-2 flex list-disc flex-col gap-1 pl-4">
+                      {item.confirmed_facts.map((fact, idx) => (
+                        <li
+                          key={`${item.id}-fact-${idx}`}
+                          className="text-xs leading-relaxed text-mirai-text-secondary"
+                        >
+                          {fact}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </li>
             ))}
           </ol>

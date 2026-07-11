@@ -4,6 +4,7 @@ export type GeneralQuestionItem = {
   item_number: number;
   title: string;
   sub_items: string[];
+  confirmed_facts: string[];
 };
 
 export type GeneralQuestion = {
