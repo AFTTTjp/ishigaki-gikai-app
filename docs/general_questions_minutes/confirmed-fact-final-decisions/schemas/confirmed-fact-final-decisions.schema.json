@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://afttt.jp/schemas/ishigaki-gikai-confirmed-fact-final-decisions.schema.json",
+  "title": "Confirmed Fact Final Decisions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "session_slug",
+    "artifact_type",
+    "artifact_origin",
+    "decision_status",
+    "source_promotion_review",
+    "source_utterance_index",
+    "source_general_questions",
+    "reviewed_from_commit",
+    "summary",
+    "decisions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "confirmed-fact-final-decisions.v1"
+    },
+    "session_slug": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact_type": {
+      "const": "confirmed_fact_final_decisions"
+    },
+    "artifact_origin": {
+      "const": "hand_authored_reviewer_decision"
+    },
+    "decision_status": {
+      "const": "reviewer_only"
+    },
+    "source_promotion_review": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_utterance_index": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_general_questions": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewed_from_commit": {
+      "type": "string",
+      "minLength": 7
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reviewed_total",
+        "approve_as_written_total",
+        "approve_with_revision_total",
+        "hold_total",
+        "reject_total"
+      ],
+      "properties": {
+        "reviewed_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "approve_as_written_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "approve_with_revision_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hold_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reject_total": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/finalDecision"
+      }
+    }
+  },
+  "$defs": {
+    "finalDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_id",
+        "candidate_id",
+        "entry_id",
+        "source_utterance_id",
+        "council_member",
+        "theme_group",
+        "theme",
+        "item_title",
+        "original_candidate",
+        "source_review_proposed_fact",
+        "decision",
+        "final_recommended_fact",
+        "decision_reason",
+        "source_basis",
+        "speaker_role",
+        "answer_anchor_source",
+        "answer_anchor_confidence",
+        "confidence",
+        "unresolved_note",
+        "public_reflection_status",
+        "proposal_status",
+        "reviewed_at",
+        "reviewer_note"
+      ],
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "candidate_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entry_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_utterance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "council_member": {
+          "type": "string",
+          "minLength": 1
+        },
+        "theme_group": {
+          "type": "string",
+          "minLength": 1
+        },
+        "theme": {
+          "type": "string",
+          "minLength": 1
+        },
+        "item_title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "original_candidate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_review_proposed_fact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "approve_as_written",
+            "approve_with_revision",
+            "hold",
+            "reject"
+          ]
+        },
+        "final_recommended_fact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "speaker_role": {
+          "type": "string",
+          "enum": [
+            "city",
+            "executive",
+            "unknown"
+          ]
+        },
+        "answer_anchor_source": {
+          "type": "string",
+          "enum": [
+            "direct_item_match",
+            "unknown_answer_like",
+            "none"
+          ]
+        },
+        "answer_anchor_confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "unresolved_note": {
+          "type": "string"
+        },
+        "public_reflection_status": {
+          "const": "not_reflected"
+        },
+        "proposal_status": {
+          "const": "not_created"
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "reviewer_note": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
