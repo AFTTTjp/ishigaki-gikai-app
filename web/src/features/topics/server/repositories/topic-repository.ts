@@ -4,6 +4,7 @@ import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/type
 import { normalizeDietSession } from "@/features/bills/server/repositories/bill-repository";
 import type { BillWithContent } from "@/features/bills/shared/types";
 import { findPublishedCouncilActionsByTopicId } from "@/features/council-actions/server/repositories/council-action-repository";
+import type { GeneralQuestionItem } from "@/features/general-questions/shared/types";
 import type {
   GeneralQuestionForTopic,
   TopicListItem,
@@ -11,6 +12,26 @@ import type {
 } from "../../shared/types";
 
 type TopicRow = Database["public"]["Tables"]["topics"]["Row"];
+
+function normalizeGeneralQuestionItem(
+  item: Partial<GeneralQuestionItem> & {
+    id: string;
+    general_question_id: string;
+    item_number: number;
+    title: string;
+  }
+): GeneralQuestionItem {
+  return {
+    id: item.id,
+    general_question_id: item.general_question_id,
+    item_number: item.item_number,
+    title: item.title,
+    sub_items: Array.isArray(item.sub_items) ? item.sub_items : [],
+    confirmed_facts: Array.isArray(item.confirmed_facts)
+      ? item.confirmed_facts
+      : [],
+  };
+}
 
 export async function findActiveTopicsWithBillCounts(): Promise<
   TopicListItem[]
@@ -194,7 +215,8 @@ export async function findRelatedPublishedGeneralQuestionsByTopicId(
         general_question_id,
         item_number,
         title,
-        sub_items
+        sub_items,
+        confirmed_facts
       )
     `
     )
@@ -220,7 +242,9 @@ export async function findRelatedPublishedGeneralQuestionsByTopicId(
       {
         ...rest,
         diet_session: { slug: session.slug, name: session.name },
-        items: (items ?? []).sort((a, b) => a.item_number - b.item_number),
+        items: (items ?? [])
+          .map(normalizeGeneralQuestionItem)
+          .sort((a, b) => a.item_number - b.item_number),
       } as GeneralQuestionForTopic,
     ];
   });

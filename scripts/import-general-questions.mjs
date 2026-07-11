@@ -4,6 +4,7 @@
  *
  * 使い方:
  *   node scripts/import-general-questions.mjs --dry-run  # 挿入内容を確認のみ
+ *   node scripts/import-general-questions.mjs --input /tmp/general-questions.json
  *   node scripts/import-general-questions.mjs            # ローカルSupabaseに挿入
  *
  * 前提:
@@ -21,6 +22,118 @@ const ROOT = resolve(__dirname, "..");
 
 const DRY_RUN = process.argv.includes("--dry-run");
 const PROD_CONFIRMED = process.argv.includes("--prod");
+const INPUT_ARG_INDEX = process.argv.indexOf("--input");
+const INPUT_JSON_PATH =
+  INPUT_ARG_INDEX >= 0
+    ? process.argv[INPUT_ARG_INDEX + 1]
+    : "docs/general_questions/r8-dai4-teireikai.general-questions.json";
+
+if (INPUT_ARG_INDEX >= 0 && !INPUT_JSON_PATH) {
+  console.error("ERROR: --input にはJSONファイルパスが必要です");
+  process.exit(1);
+}
+
+function isNonEmptyString(value) {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function validateStringArray(value, fieldPath) {
+  if (!Array.isArray(value)) {
+    throw new Error(`${fieldPath} must be an array`);
+  }
+
+  for (const [index, entry] of value.entries()) {
+    if (typeof entry !== "string") {
+      throw new Error(`${fieldPath}[${index}] must be a string`);
+    }
+    if (entry.trim().length === 0) {
+      throw new Error(`${fieldPath}[${index}] must not be empty or whitespace-only`);
+    }
+  }
+
+  return value;
+}
+
+function validateAndNormalizeGeneralQuestionsDocument(raw, jsonPath) {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
+    throw new Error(`${jsonPath} must be a JSON object`);
+  }
+
+  if (!isNonEmptyString(raw.diet_session_slug)) {
+    throw new Error(`${jsonPath}.diet_session_slug must be a non-empty string`);
+  }
+
+  if (!Array.isArray(raw.questions)) {
+    throw new Error(`${jsonPath}.questions must be an array`);
+  }
+
+  const questions = raw.questions.map((question, questionIndex) => {
+    const questionPath = `${jsonPath}.questions[${questionIndex}]`;
+
+    if (!question || typeof question !== "object" || Array.isArray(question)) {
+      throw new Error(`${questionPath} must be an object`);
+    }
+
+    if (!isNonEmptyString(question.slug)) {
+      throw new Error(`${questionPath}.slug must be a non-empty string`);
+    }
+
+    if (!Array.isArray(question.items)) {
+      throw new Error(`${questionPath}.items must be an array`);
+    }
+
+    if (
+      question.topic_slugs !== undefined &&
+      (!Array.isArray(question.topic_slugs) ||
+        question.topic_slugs.some((slug) => !isNonEmptyString(slug)))
+    ) {
+      throw new Error(
+        `${questionPath}.topic_slugs must be an array of non-empty strings when present`
+      );
+    }
+
+    const items = question.items.map((item, itemIndex) => {
+      const itemPath = `${questionPath}.items[${itemIndex}]`;
+
+      if (!item || typeof item !== "object" || Array.isArray(item)) {
+        throw new Error(`${itemPath} must be an object`);
+      }
+
+      if (!Number.isInteger(item.item_number) || item.item_number < 1) {
+        throw new Error(`${itemPath}.item_number must be a positive integer`);
+      }
+
+      if (!isNonEmptyString(item.title)) {
+        throw new Error(`${itemPath}.title must be a non-empty string`);
+      }
+
+      const subItems = validateStringArray(item.sub_items, `${itemPath}.sub_items`);
+
+      const confirmedFactsRaw = item.confirmed_facts;
+      const confirmedFacts =
+        confirmedFactsRaw === undefined
+          ? []
+          : validateStringArray(confirmedFactsRaw, `${itemPath}.confirmed_facts`);
+
+      return {
+        ...item,
+        sub_items: subItems,
+        confirmed_facts: confirmedFacts,
+      };
+    });
+
+    return {
+      ...question,
+      items,
+      topic_slugs: question.topic_slugs ?? [],
+    };
+  });
+
+  return {
+    diet_session_slug: raw.diet_session_slug,
+    questions,
+  };
+}
 
 // -------------------------------------------------------------------------
 // 環境変数チェック
@@ -57,9 +170,22 @@ console.log("");
 // -------------------------------------------------------------------------
 const JSON_PATH = resolve(
   ROOT,
-  "docs/general_questions/r8-dai4-teireikai.general-questions.json"
+  INPUT_JSON_PATH
 );
-const data = JSON.parse(readFileSync(JSON_PATH, "utf-8"));
+let data;
+
+try {
+  data = validateAndNormalizeGeneralQuestionsDocument(
+    JSON.parse(readFileSync(JSON_PATH, "utf-8")),
+    JSON_PATH
+  );
+} catch (error) {
+  console.error(
+    `ERROR: 一般質問JSONの読み込みまたは検証に失敗しました: ${error instanceof Error ? error.message : String(error)}`
+  );
+  process.exit(1);
+}
+
 const { diet_session_slug, questions } = data;
 
 console.log(`JSONファイル: ${JSON_PATH}`);
@@ -78,6 +204,9 @@ if (DRY_RUN) {
       console.log(`       ${item.item_number}. ${item.title}`);
       for (const sub of item.sub_items) {
         console.log(`          - ${sub}`);
+      }
+      for (const fact of item.confirmed_facts) {
+        console.log(`          * 市の答弁で確認できたこと: ${fact}`);
       }
     }
   }
@@ -184,6 +313,7 @@ for (const q of questions) {
     item_number: item.item_number,
     title: item.title,
     sub_items: item.sub_items,
+    confirmed_facts: item.confirmed_facts,
   }));
 
   if (itemRows.length > 0) {

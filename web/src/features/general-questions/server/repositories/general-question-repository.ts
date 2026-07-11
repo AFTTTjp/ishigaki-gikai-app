@@ -1,6 +1,30 @@
 import "server-only";
 import { createAdminClient } from "@mirai-gikai/supabase";
-import type { DietSessionInfo, GeneralQuestion } from "../../shared/types";
+import type {
+  DietSessionInfo,
+  GeneralQuestion,
+  GeneralQuestionItem,
+} from "../../shared/types";
+
+function normalizeGeneralQuestionItem(
+  item: Partial<GeneralQuestionItem> & {
+    id: string;
+    general_question_id: string;
+    item_number: number;
+    title: string;
+  }
+): GeneralQuestionItem {
+  return {
+    id: item.id,
+    general_question_id: item.general_question_id,
+    item_number: item.item_number,
+    title: item.title,
+    sub_items: Array.isArray(item.sub_items) ? item.sub_items : [],
+    confirmed_facts: Array.isArray(item.confirmed_facts)
+      ? item.confirmed_facts
+      : [],
+  };
+}
 
 export async function findPublishedGeneralQuestionsBySessionSlug(
   sessionSlug: string
@@ -36,7 +60,8 @@ export async function findPublishedGeneralQuestionsBySessionSlug(
         general_question_id,
         item_number,
         title,
-        sub_items
+        sub_items,
+        confirmed_facts
       )
     `
     )
@@ -53,9 +78,9 @@ export async function findPublishedGeneralQuestionsBySessionSlug(
   return (data ?? []).map((row) => ({
     ...row,
     seat_type: row.seat_type as "floor" | "seat",
-    items: (row.general_question_items ?? []).sort(
-      (a, b) => a.item_number - b.item_number
-    ),
+    items: (row.general_question_items ?? [])
+      .map(normalizeGeneralQuestionItem)
+      .sort((a, b) => a.item_number - b.item_number),
   }));
 }
 
