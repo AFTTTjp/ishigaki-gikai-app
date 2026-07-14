@@ -1,0 +1,590 @@
+{
+  "schema_version": "answer-summary-candidates.v1",
+  "session": "令和8年第4回定例会",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "artifact_type": "answer_summary_candidates",
+  "artifact_origin": "generated_from_candidate_inventory",
+  "review_status": "reviewer_only",
+  "generated_at": "2026-07-14T14:15:38.082Z",
+  "generated_from": [
+    "docs/general_questions_minutes/candidate-inventory/r8-dai4-teireikai.candidate-inventory.json",
+    "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+    "docs/general_questions/r8-dai4-teireikai.general-questions.json"
+  ],
+  "source_inventory_summary": {
+    "entries": 108,
+    "direct_item_answer_anchors": 91,
+    "unknown_answer_like": 7,
+    "city_answer_missing": 10,
+    "recoverable_answer_entries": 2,
+    "recoverable_answer_candidates": 3,
+    "question_anchor_missing": 9,
+    "speaker_role_unknown_warnings": 53
+  },
+  "summary": {
+    "source_entry_count": 9,
+    "generated_entry_count": 9,
+    "source_candidate_count": 10,
+    "generated_candidate_count": 10,
+    "summaries_generated": 3,
+    "summaries_held_or_null": 7,
+    "review_status_counts": {
+      "hold_attribution": 7,
+      "pending_review": 3
+    },
+    "recommended_action_counts": {
+      "resolve_speaker_role": 7,
+      "review_for_city_answer_summary": 3
+    },
+    "risk_flag_counts": {
+      "answer_role_unknown": 7,
+      "speaker_role_unknown": 7,
+      "target_topic_uncertain": 2,
+      "city_answer_missing": 3,
+      "item_match_uncertain": 3,
+      "low_confidence_answer_anchor": 3,
+      "question_anchor_missing": 3,
+      "question_only": 3,
+      "recoverable_answer_candidate": 3
+    }
+  },
+  "entries": [
+    {
+      "entry_id": "ishigaki-r8-dai4-ippan-tomoyose-eizo.item07",
+      "question_id": "ishigaki-r8-dai4-ippan-tomoyose-eizo",
+      "question_order": 1,
+      "questioner_name": "友寄永三",
+      "item_index": 7,
+      "item_title": "コンサル業務について",
+      "question_text": "コンサル業務について: コンサル業務の推移について",
+      "inventory_answer_state": {
+        "answer_anchor_source": "unknown_answer_like",
+        "answer_anchor_confidence": "medium",
+        "city_answer_missing": false
+      },
+      "entry_risk_flags": [
+        "answer_role_unknown",
+        "speaker_role_unknown",
+        "target_topic_uncertain"
+      ],
+      "review_status": "hold_attribution",
+      "recommended_action": "resolve_speaker_role",
+      "review_notes": "confirmed_facts phase close 後の reviewer-only answer summary 候補です。公開反映の承認データではありません。",
+      "candidates": [
+        {
+          "candidate_id": "ishigaki-r8-dai4-ippan-tomoyose-eizo.item07::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0019::unknown_answer_like",
+          "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0019",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "source_speaker_name": "総務省田原治",
+          "source_speaker_role": "unknown",
+          "source_text": "友予製造議員の質問7項目目の\nコンサル業務の推移についてお答えいたします\n本市におきましては\n施設の維持管理建設事業に関連する設計管理\nさらには地域振興や環境保全社会福祉など\n多岐にわたる業務に対して委託を行っております\nこれらの業務は専門的な知見や技術を要するものであり\n外部の専門家への委託を通じて\nより高い専門性を確保し\n効率的な業務運営を図ることを目的としているところでございます\nコンサルティング事業者への業務委託につきましては\n主に本市が策定する各種計画の策定等に係る業務支援について委託を行っております\n本市のコンサルティング業務委託を含めた全委託に係る決算額につきましては\n令和3年度37億2419万円、令和4年度38億9267万円、令和5年度36億2302万円、\n令和6年度41億7523万円、令和7年度44億7136万円となっております。\nそのうち、各種構想や計画策定に係るコンサルティング事業の委託額の推移につきましては、\n同じく決算ベースで令和3年度1億1,842万6千円\n令和4年度5,851万7千円\n令和5年度8,952万4千円\n令和6年度1億3,101万7千円\n令和7年度5,089万1千円となっております",
+          "source_line_start": 224,
+          "source_line_end": 244,
+          "anchor_type": "unknown_answer_like",
+          "answer_confidence": "medium",
+          "fallback_used": false,
+          "summary_basis": null,
+          "reviewed_speaker_name": "総務省田原治",
+          "reviewed_speaker_role": "executive",
+          "attribution_confidence": "medium",
+          "attribution_basis": "議長側の答弁要求後に、当該itemへの「お答えいたします」で始まり、次発話で答弁終了が示されている。ただしspeaker表記が文字起こし上「総務省田原治」となっており、正確な役職名を確定できない。",
+          "attribution_review_notes": "市側答弁ブロックとしては妥当だが、役職名の文字起こし崩れが残るためsummary化は保留。",
+          "item_match_confidence": "high",
+          "item_match_basis": "source utteranceが「7項目目のコンサル業務の推移について」と明示している。",
+          "item_match_review_notes": "item 7との対応は直接確認できる。",
+          "candidate_summary": null,
+          "candidate_review_status": "hold_attribution",
+          "recommended_action": "resolve_speaker_role",
+          "risk_flags": [
+            "answer_role_unknown",
+            "speaker_role_unknown",
+            "target_topic_uncertain"
+          ],
+          "review_notes": "speaker attribution remains medium; keep summary null until role/name is confirmed."
+        }
+      ]
+    },
+    {
+      "entry_id": "ishigaki-r8-dai4-ippan-shiuezato-atsushi.item01",
+      "question_id": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+      "question_order": 2,
+      "questioner_name": "後上里厚司",
+      "item_index": 1,
+      "item_title": "市職員の窓口での対応について",
+      "question_text": "市職員の窓口での対応について: 対応向上のための人材育成について",
+      "inventory_answer_state": {
+        "answer_anchor_source": "unknown_answer_like",
+        "answer_anchor_confidence": "medium",
+        "city_answer_missing": false
+      },
+      "entry_risk_flags": [
+        "answer_role_unknown",
+        "speaker_role_unknown",
+        "target_topic_uncertain"
+      ],
+      "review_status": "hold_attribution",
+      "recommended_action": "resolve_speaker_role",
+      "review_notes": "confirmed_facts phase close 後の reviewer-only answer summary 候補です。公開反映の承認データではありません。",
+      "candidates": [
+        {
+          "candidate_id": "ishigaki-r8-dai4-ippan-shiuezato-atsushi.item01::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0006::unknown_answer_like",
+          "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0006",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "source_speaker_name": "総務省田原総務",
+          "source_speaker_role": "unknown",
+          "source_text": "市委員長と厚生労働省の質問の1項目目\n市職員の窓口での対応についてお答えいたします\n職員の窓口対応につきましては\nこれまでも機会あるごとに研修等を実施するなどして\n接遇マナーの向上に努めているところですが\n依然として市民より職員の対応に対する苦情が多数寄せられております\n市民意見箱やメール等で実際にいただいているご意見といたしましては\n窓口に出向いた際に職員が出てこない\n担当者が不在のため対応ができない\n接客態度が横平で上から目線の物言いをされたなどのご指摘を受けております\n職員に対しましては常に丁寧な対応を心がけるよう文書にて通知を行うとともに\n管理監督者においては所属職員に対する見出し並みを含めた\n接遇指導にあたるよう周知徹底に努めているところでございます\n職員ご指摘の接遇対応向上のため\nこれまでも接遇研修を実施してまいりました\n研修では職員一人一人が相手の立場に配慮した\n思いやりの行動や言葉遣い等を実践するための\n知識やスキルの習得を行います\nまた各職場においては管理監督者が率先推判して\n接遇を実践することや部下の能力や性格に応じた指導を行うことにより\n組織全体の接遇力の底上げにつながるものと考えます\n本市といたしましては窓口対応に対する市民の皆様からのご意見を真摯に受け止め\n接遇面を含めた窓口業務の改善\n職員の意識改革に引き続き取り組んでまいります",
+          "source_line_start": 25,
+          "source_line_end": 48,
+          "anchor_type": "unknown_answer_like",
+          "answer_confidence": "medium",
+          "fallback_used": false,
+          "summary_basis": null,
+          "reviewed_speaker_name": "総務省田原総務",
+          "reviewed_speaker_role": "executive",
+          "attribution_confidence": "medium",
+          "attribution_basis": "議長側の答弁要求後に、item 1「市職員の窓口での対応について」へ回答している。ただしspeaker表記が文字起こし上「総務省田原総務」と崩れており、正確な役職・氏名を確定できない。",
+          "attribution_review_notes": "市側答弁としての位置付けは強いが、役職名の確度不足によりsummary化は保留。",
+          "item_match_confidence": "high",
+          "item_match_basis": "source utteranceが「1項目目 市職員の窓口での対応について」と明示している。",
+          "item_match_review_notes": "item 1との対応は直接確認できる。",
+          "candidate_summary": null,
+          "candidate_review_status": "hold_attribution",
+          "recommended_action": "resolve_speaker_role",
+          "risk_flags": [
+            "answer_role_unknown",
+            "speaker_role_unknown",
+            "target_topic_uncertain"
+          ],
+          "review_notes": "speaker attribution remains medium; keep summary null until role/name is confirmed."
+        }
+      ]
+    },
+    {
+      "entry_id": "ishigaki-r8-dai4-ippan-shiuezato-atsushi.item04",
+      "question_id": "ishigaki-r8-dai4-ippan-shiuezato-atsushi",
+      "question_order": 2,
+      "questioner_name": "後上里厚司",
+      "item_index": 4,
+      "item_title": "石垣・台湾定期航路",
+      "question_text": "石垣・台湾定期航路: 航行にかかる費用 / 人流だけで採算はとれるのか。 / どの程度の物流があれば採算がとれるのか。",
+      "inventory_answer_state": {
+        "answer_anchor_source": "none",
+        "answer_anchor_confidence": "low",
+        "city_answer_missing": true
+      },
+      "entry_risk_flags": [
+        "city_answer_missing",
+        "item_match_uncertain",
+        "low_confidence_answer_anchor",
+        "question_anchor_missing",
+        "question_only",
+        "recoverable_answer_candidate"
+      ],
+      "review_status": "pending_review",
+      "recommended_action": "review_for_city_answer_summary",
+      "review_notes": "confirmed_facts phase close 後の reviewer-only answer summary 候補です。公開反映の承認データではありません。",
+      "candidates": [
+        {
+          "candidate_id": "ishigaki-r8-dai4-ippan-shiuezato-atsushi.item04::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0010::null_item_proximity",
+          "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0010",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "source_speaker_name": "企画部長 菅沼副",
+          "source_speaker_role": "executive",
+          "source_text": "石垣・キールン定期航路について3点ご質問がありますので\n順を追ってお答えします\n1点目の就航に係る費用については\n年度費や石垣港・キールン港の港費など運航に関する費用\n船員費 潤滑油費 船舶保険料などの船にかかる費用\n船舶代理店や警備等の委託費用など\nそれらをすべて計上し\n航行にかかる費用として算出する必要があります\n5月28日の初就航日直後であることから\n実績ベースの生産額は確定していませんので\nお答えできません\n2点目の人流だけでの採算についてと\n3点目の物流の採算性については\n検討委員会の報告書にも記載されているように\n旅客運送に加え貨物も積載することが\n安定的な運行に不可欠であり\n当初のシミュレーションにおいても\n乗船率50%貨物約10%程度は必要であると想定しています\n昨今の原油高の状況を鑑みると\n原油価格や為替動向等の外部環境を踏まえながら\n利用促進及び収支改善に取り組む必要があると認識しています",
+          "source_line_start": 113,
+          "source_line_end": 133,
+          "anchor_type": "null_item_proximity",
+          "answer_confidence": "low",
+          "fallback_used": true,
+          "summary_basis": [
+            "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0010"
+          ],
+          "reviewed_speaker_name": "企画部長 菅沼副",
+          "reviewed_speaker_role": "executive",
+          "attribution_confidence": "high",
+          "attribution_basis": "utterance index上のspeaker_roleがexecutiveで、speakerも企画部長として記録されている。",
+          "attribution_review_notes": "役職・市側答弁性を確認できる。",
+          "item_match_confidence": "high",
+          "item_match_basis": "source utteranceが「石垣・キールン定期航路について」として、当該itemの石垣・台湾定期航路に直接回答している。",
+          "item_match_review_notes": "null item proximity由来だが、本文上のitem対応は直接確認できる。",
+          "candidate_summary": "石垣・基隆定期航路について、就航費用には港費、船員費、燃料・保険料、代理店・警備等の委託費用などを含めて算出する必要があると説明している。初就航直後で実績ベースの採算額は確定しておらず、旅客に加え貨物の積載が安定運航に不可欠だとしている。",
+          "candidate_review_status": "pending_review",
+          "recommended_action": "review_for_city_answer_summary",
+          "risk_flags": [
+            "city_answer_missing",
+            "item_match_uncertain",
+            "low_confidence_answer_anchor",
+            "question_anchor_missing",
+            "question_only",
+            "recoverable_answer_candidate"
+          ],
+          "review_notes": "summary_verdict=approve_as_written. Source supports cost components, unsettled post-launch actual profitability, and the need for passenger plus cargo loading; wording remains reviewer-only."
+        }
+      ]
+    },
+    {
+      "entry_id": "ishigaki-r8-dai4-ippan-nakamine-tadashi.item01",
+      "question_id": "ishigaki-r8-dai4-ippan-nakamine-tadashi",
+      "question_order": 4,
+      "questioner_name": "仲嶺忠師",
+      "item_index": 1,
+      "item_title": "基金管理について",
+      "question_text": "基金管理について: 各種基金の詳細について / 各種基金の活用並びに運用状況について",
+      "inventory_answer_state": {
+        "answer_anchor_source": "unknown_answer_like",
+        "answer_anchor_confidence": "medium",
+        "city_answer_missing": false
+      },
+      "entry_risk_flags": [
+        "answer_role_unknown",
+        "speaker_role_unknown"
+      ],
+      "review_status": "hold_attribution",
+      "recommended_action": "resolve_speaker_role",
+      "review_notes": "confirmed_facts phase close 後の reviewer-only answer summary 候補です。公開反映の承認データではありません。",
+      "candidates": [
+        {
+          "candidate_id": "ishigaki-r8-dai4-ippan-nakamine-tadashi.item01::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0006::unknown_answer_like",
+          "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0006",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "source_speaker_name": "会計監査吉村吉",
+          "source_speaker_role": "unknown",
+          "source_text": "中峰忠史議員の1項目目のご質問について2点順をお答えいたします\n1点目 各資金の詳細についてお答えいたします\n本市の基金につきましては 各条例の定めに基づいて\n特定の目的のために資金を積み立て または定額の資金を運用するために基金が設置されており\n会計課では財政調整基金をはじめ 28種類の基金を保管しております\n本年5月末現在基金残高の総計は\n53億6635万8174円となっております\n2点目の各式金の活用並びに運用状況についてお答えいたします\n各式金は当該課が条例を定めるところにより\n特定の目的に応じ活用しておりますが\nうち東原養生小学基金 東原養生高等学校小学基金\nまちづくり支援基金においては 一部は再建として運用しております\nまた会計課では一般会計における 金融機関からの一時借り入れ以外に\n一時的な資金不足時に財政調整基金と まちづくり支援基金から\n各々の条例に基づき 繰り返し運用を行っているところです\n以上です\n企画部長 菅沼博彦",
+          "source_line_start": 27,
+          "source_line_end": 43,
+          "anchor_type": "unknown_answer_like",
+          "answer_confidence": "medium",
+          "fallback_used": false,
+          "summary_basis": null,
+          "reviewed_speaker_name": "会計監査吉村吉",
+          "reviewed_speaker_role": "executive",
+          "attribution_confidence": "medium",
+          "attribution_basis": "議長側の答弁要求後に、仲嶺忠師議員のitem 1「基金管理について」へ回答している。ただしspeaker表記が文字起こし上「会計監査吉村吉」と崩れており、正確な役職名を確定できない。",
+          "attribution_review_notes": "市側答弁ブロックとしては妥当だが、speaker metadataの崩れが残る。",
+          "item_match_confidence": "high",
+          "item_match_basis": "source utteranceが「1項目目、基金管理について」と明示している。",
+          "item_match_review_notes": "item 1との対応は直接確認できる。",
+          "candidate_summary": null,
+          "candidate_review_status": "hold_attribution",
+          "recommended_action": "resolve_speaker_role",
+          "risk_flags": [
+            "answer_role_unknown",
+            "speaker_role_unknown"
+          ],
+          "review_notes": "speaker attribution remains medium; keep summary null until role/name is confirmed."
+        }
+      ]
+    },
+    {
+      "entry_id": "ishigaki-r8-dai4-ippan-nakamine-tadashi.item02",
+      "question_id": "ishigaki-r8-dai4-ippan-nakamine-tadashi",
+      "question_order": 4,
+      "questioner_name": "仲嶺忠師",
+      "item_index": 2,
+      "item_title": "物価高騰対策について",
+      "question_text": "物価高騰対策について: 観光事業者支援について",
+      "inventory_answer_state": {
+        "answer_anchor_source": "unknown_answer_like",
+        "answer_anchor_confidence": "medium",
+        "city_answer_missing": false
+      },
+      "entry_risk_flags": [
+        "answer_role_unknown",
+        "speaker_role_unknown"
+      ],
+      "review_status": "hold_attribution",
+      "recommended_action": "resolve_speaker_role",
+      "review_notes": "confirmed_facts phase close 後の reviewer-only answer summary 候補です。公開反映の承認データではありません。",
+      "candidates": [
+        {
+          "candidate_id": "ishigaki-r8-dai4-ippan-nakamine-tadashi.item02::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0007::unknown_answer_like",
+          "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0007",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "source_speaker_name": "会計監査吉村吉",
+          "source_speaker_role": "unknown",
+          "source_text": "中峰忠史議員のご質問の2項目目\n物価高騰対策の観光事業者支援についてお答えします\n観光事業者の範囲としては、宿泊事業者、バス、タクシー、レンタカー、クルーズ船関連事業者、離島フェリー関連事業者、旅行代理店、観光施設、お土産施設関連、マリンレジャー、体験施設、体験アクティビティ事業者、リゾートウェディング、\nその他、観光客に対して提供するサービス・商品等を有する事業を営む事業者など、多岐に及ぶものと承知しています。\n物価高騰によるコスト増は、観光需要が回復傾向にある中において、収益へ影響を及ぼす要因になります。\nまた、事業者側だけでなく、旅行者側の消費行動や旅行動機への影響も懸念されます。\n国の物価高騰対応重点支援地方創生臨時交付金の推奨事業メニューには、地域公共交通、物流事業者や地域観光事業者等へのエネルギー価格高騰に対する影響緩和、省エネ対策、地域に不可欠な交通手段の確保、地域特性を踏まえた生産性向上に向けた取組などの支援が対象として挙げられています。\nしかしながら、交付金の配分額や上限もあり、これまで観光事業者に特化した直接的な支援は行っていません。\n他に現在、国が観光事業者や中小事業者向けに行っている補助金としては、省力化・交付化価値化を対象とする傾向があります。\nその中で、小規模事業者持続化補助金は、販路開拓を対象としますが、燃費向上につながる掃除導入も生産性向上、コスト削減による経営持続化のための設備投資として認められる場合があると承知しています。\n面的な観光事業者支援として、寮から出入りの転換という課題もありますが、一定の寮の確保として、換算機対策、観光事業の平準化に取り組んでいくことで、観光事業の市場形成を支援していきたいと考えています。\n以上です。",
+          "source_line_start": 44,
+          "source_line_end": 55,
+          "anchor_type": "unknown_answer_like",
+          "answer_confidence": "medium",
+          "fallback_used": false,
+          "summary_basis": null,
+          "reviewed_speaker_name": "企画部長 菅沼博彦",
+          "reviewed_speaker_role": "executive",
+          "attribution_confidence": "medium",
+          "attribution_basis": "source utteranceは仲嶺忠師議員のitem 2「物価高騰対策について」に回答している。直前utterance末尾に「企画部長 菅沼博彦」とあるが、当該source metadataは別speaker名のままであり、発話境界とspeaker attributionに不確実性が残る。",
+          "attribution_review_notes": "市側答弁性は高いが、発話者の確定には原文再確認が必要。",
+          "item_match_confidence": "high",
+          "item_match_basis": "source utteranceが「2項目目 物価高騰対策について」と明示している。",
+          "item_match_review_notes": "item 2との対応は直接確認できる。",
+          "candidate_summary": null,
+          "candidate_review_status": "hold_attribution",
+          "recommended_action": "resolve_speaker_role",
+          "risk_flags": [
+            "answer_role_unknown",
+            "speaker_role_unknown"
+          ],
+          "review_notes": "speaker attribution remains medium; keep summary null until role/name is confirmed."
+        }
+      ]
+    },
+    {
+      "entry_id": "ishigaki-r8-dai4-ippan-taira-hideyuki.item05",
+      "question_id": "ishigaki-r8-dai4-ippan-taira-hideyuki",
+      "question_order": 5,
+      "questioner_name": "平良秀之",
+      "item_index": 5,
+      "item_title": "教育支援センター「あやぱに学級」について",
+      "question_text": "教育支援センター「あやぱに学級」について: 教育環境並びに場所を含めた将来的な計画を問う。",
+      "inventory_answer_state": {
+        "answer_anchor_source": "none",
+        "answer_anchor_confidence": "low",
+        "city_answer_missing": true
+      },
+      "entry_risk_flags": [
+        "city_answer_missing",
+        "item_match_uncertain",
+        "low_confidence_answer_anchor",
+        "question_anchor_missing",
+        "question_only",
+        "recoverable_answer_candidate"
+      ],
+      "review_status": "pending_review",
+      "recommended_action": "review_for_city_answer_summary",
+      "review_notes": "confirmed_facts phase close 後の reviewer-only answer summary 候補です。公開反映の承認データではありません。",
+      "candidates": [
+        {
+          "candidate_id": "ishigaki-r8-dai4-ippan-taira-hideyuki.item05::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0012::null_item_proximity",
+          "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0012",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "source_speaker_name": "教育部長小永淳",
+          "source_speaker_role": "executive",
+          "source_text": "平秀幸議員ご質問ご項目目\n教育支援センターアヤパニ学級について\nご質問ございますのでお答えいたします\nアイパニ学級は平成6年4月に開設され、今年で32年目となります。\n開設当時の平成初期は、全国的に登校拒否から不登校への概念転換がなされた時期で、\n本市においても不登校児童生徒数が毎年増加していたこと、\n学校だけでは対応しきれない事例が増加していたこと、\n早期介入、段階的支援の必要性などから、同学級を開設することになりました。\nあやぱね学級では、様々な要因により登校が難しい児童生徒に対して、\n社会的自立や学校復帰に向けた支援を行う当時に、安心できる居場所としての役割を果たしてきました。\n所長1名指導教諭1名指導員2名の4名体制で学習活動をはじめ\n政策活動栽培飼育活動自然体験社会体験スポーツ体験などの体験学習も大切に支援を進めているところです\n施設面につきましては開設当初より旧八重山幼稚園2階を使用しておりますが\n当該施設につきましては、老朽化が進んでおり、これまでも必要に応じて修繕等を行いながら活用している状況にあります。\nこのような状況を踏まえ、より良い教育環境の確保に向けては、他の教育施設の活用も含め、今後も検討事項であると考えております。\n引き続き、児童生徒にとって安心して過ごすことができるよう、環境の充実に努めてまいります。",
+          "source_line_start": 186,
+          "source_line_end": 201,
+          "anchor_type": "null_item_proximity",
+          "answer_confidence": "low",
+          "fallback_used": true,
+          "summary_basis": [
+            "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0012"
+          ],
+          "reviewed_speaker_name": "教育部長小永淳",
+          "reviewed_speaker_role": "executive",
+          "attribution_confidence": "high",
+          "attribution_basis": "utterance index上のspeaker_roleがexecutiveで、教育部長として記録されている。",
+          "attribution_review_notes": "役職・市側答弁性を確認できる。",
+          "item_match_confidence": "high",
+          "item_match_basis": "source utteranceが教育支援センター「あやぱに学級」について回答している。",
+          "item_match_review_notes": "item 5との対応は直接確認できる。",
+          "candidate_summary": "教育支援センター「あやぱに学級」について、開設の背景、現在の支援内容、4名体制での学習・体験活動支援、旧八重山幼稚園2階を活用しながら必要に応じて修繕している状況が説明されている。施設環境については、他の教育施設の活用も含め今後の検討事項だとしている。",
+          "candidate_review_status": "pending_review",
+          "recommended_action": "review_for_city_answer_summary",
+          "risk_flags": [
+            "city_answer_missing",
+            "item_match_uncertain",
+            "low_confidence_answer_anchor",
+            "question_anchor_missing",
+            "question_only",
+            "recoverable_answer_candidate"
+          ],
+          "review_notes": "summary_verdict=approve_as_written. Source supports opening background, support content, staffing, current facility use, repairs, and future consideration of facility environment; wording remains reviewer-only."
+        },
+        {
+          "candidate_id": "ishigaki-r8-dai4-ippan-taira-hideyuki.item05::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0055::null_item_proximity",
+          "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0055",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "source_speaker_name": "学校教育課長 石垣 英一",
+          "source_speaker_role": "executive",
+          "source_text": "再質問にお答えいたします\nまずアヤパニ学級は教育委員会の学校教育課が\n青少年センターは教育委員会の生き生き花火課が所管しております\n対象者につきましては\nアヤパニ学級が石垣市内の小中学校に通う児童生徒\n青少年センターは0歳から39歳までの子ども若者が対象となります\nあやぱに学級におきましては教員や教員免許状を所持している指導員による学習支援や個々の状況に応じたきめ細かな対応を行っております\n青少年センターにおきましてはユースワーカーやスクールライフサポーターによる学校復帰や社会的自立に向けた支援を行っております\n施設での過ごし方など細かな違いもありますけれども\nどちらも不登校児童生徒の学校外における居場所としての役割という点において共通しております\nまた利用希望者の判定に係る検討委員会も合同で開催しておりまして\n本市における不登校支援について日頃からの連携により行っております\nあやぱに学級と青少年センター双方の機能や特性を生かした支援が展開されており\nどちらの施設を利用するかは\n児童生徒が実際に両施設を見学して決めることが一般的です\nもう一点今後の展望見通しにつきましてです\nあやぱに学級の施設につきましては\n老朽化が見られる部分はあるものの\n児童生徒が安全安心に過ごすことができるよう\n日常的に点検を行うとともに\n必要に応じて修繕を実施しながら運用しているところでございます\nまた掲示物や黒板アートなどの工夫により\n児童生徒が落ち着いて過ごすことができる\n温かな空間づくりにも努めております\nさらに令和7年度においては\n傷んだ床の張り替えやトイレ2基の様式化など\n必要な箇所について予算を確保し\n環境改善を行っているところであります\nこのように安全面の確保と環境整備に\n努めているところではありますが\n施設のあり方については課題として認識しております\n施設の移転を含め具体的な検討時期について\n現時点でお示しできる段階にはございませんけれども\n児童生徒の利用状況等も踏まえながら\n関係部局とも連携をし\nより良い環境の確保に向けて\n適切に対応してまいりたいと考えております\n締めてください\n以上\n平田\n答弁ありがとうございました",
+          "source_line_start": 1002,
+          "source_line_end": 1042,
+          "anchor_type": "null_item_proximity",
+          "answer_confidence": "low",
+          "fallback_used": true,
+          "summary_basis": [
+            "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0055"
+          ],
+          "reviewed_speaker_name": "学校教育課長 石垣 英一",
+          "reviewed_speaker_role": "executive",
+          "attribution_confidence": "high",
+          "attribution_basis": "utterance index上のspeaker_roleがexecutiveで、学校教育課長として記録されている。",
+          "attribution_review_notes": "役職・市側答弁性を確認できる。",
+          "item_match_confidence": "high",
+          "item_match_basis": "直前の再質問があやぱに学級と青少年センターの違い、施設整備、移転検討に関するもので、source utteranceが同じ論点に回答している。",
+          "item_match_review_notes": "item 5の再質問ブロックへの回答として対応を確認できる。",
+          "candidate_summary": "あやぱに学級と青少年センターは、所管や対象者、支援内容に違いがある一方、どちらも不登校児童生徒の学校外の居場所としての役割を持つと説明している。あやぱに学級の施設は修繕しながら運用しており、移転を含む具体的な検討時期は現時点で示せないとしている。",
+          "candidate_review_status": "pending_review",
+          "recommended_action": "review_for_city_answer_summary",
+          "risk_flags": [
+            "city_answer_missing",
+            "item_match_uncertain",
+            "low_confidence_answer_anchor",
+            "question_anchor_missing",
+            "question_only",
+            "recoverable_answer_candidate"
+          ],
+          "review_notes": "summary_verdict=approve_with_revision. Revised to avoid carrying or normalizing the ASR-noisy department name while preserving the source-supported distinction in jurisdiction, target users, and support content."
+        }
+      ]
+    },
+    {
+      "entry_id": "ishigaki-r8-dai4-ippan-inoue-michiko.item02",
+      "question_id": "ishigaki-r8-dai4-ippan-inoue-michiko",
+      "question_order": 10,
+      "questioner_name": "井上美智子",
+      "item_index": 2,
+      "item_title": "国民保護計画について",
+      "question_text": "国民保護計画について: 現在の避難実施要領の中での要支援者の避難並びに畜産農家や自営業者などの避難及び補償について",
+      "inventory_answer_state": {
+        "answer_anchor_source": "unknown_answer_like",
+        "answer_anchor_confidence": "medium",
+        "city_answer_missing": false
+      },
+      "entry_risk_flags": [
+        "answer_role_unknown",
+        "speaker_role_unknown"
+      ],
+      "review_status": "hold_attribution",
+      "recommended_action": "resolve_speaker_role",
+      "review_notes": "confirmed_facts phase close 後の reviewer-only answer summary 候補です。公開反映の承認データではありません。",
+      "candidates": [
+        {
+          "candidate_id": "ishigaki-r8-dai4-ippan-inoue-michiko.item02::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0016::unknown_answer_like",
+          "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0016",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "source_speaker_name": "総務省田原治",
+          "source_speaker_role": "unknown",
+          "source_text": "続きまして、2項目目、国民保護計画について、現在の避難実施要領の中で、要配慮者の避難並びに畜産農家や自営業者などの避難及び保障についてお答えいたします。\n国民保護計画に基づく避難実施要領は、武力攻撃予測事態等が発生した際に、住民の避難を円滑かつ的確に実施するため、市町村が避難経路、避難手段、避難誘導に係る職員の配置などを具体的に定めるものでございます。\nその中でも、高齢者、障害のある方、入院時、その他、自ら避難することが困難な方々、いわゆる要配慮者への対応は重要な項目でございます。\nこのため、本市といたしましても、国民保護計画及び避難実施要領の中で、要配慮者の避難については、先発避難としており、対象者の把握・移動手段の確保、福祉・医療関係機関との連携など、実効性の向上に努めているところでございます。\n畜産農家・自営業者の方々の避難につきましては、基本的に航空機による避難を想定しております。\nなお、武力攻撃による国民の被害には様々な場合があり、個別・具体的な判断が必要であることから、\n武力攻撃事態等が終了した後\n復興施策のあり方の一環として\n国においてその状況下で可能な検討がされることとなるものと認識をしております",
+          "source_line_start": 152,
+          "source_line_end": 160,
+          "anchor_type": "unknown_answer_like",
+          "answer_confidence": "medium",
+          "fallback_used": false,
+          "summary_basis": null,
+          "reviewed_speaker_name": "総務省田原治",
+          "reviewed_speaker_role": "executive",
+          "attribution_confidence": "medium",
+          "attribution_basis": "item 1からitem 3まで連続する市側答弁ブロック内で、source utteranceがitem 2「国民保護計画について」に回答している。ただしspeaker表記が文字起こし上「総務省田原治」と崩れており、正確な役職名を確定できない。",
+          "attribution_review_notes": "市側答弁ブロックとしては妥当だが、speaker metadataの崩れが残る。",
+          "item_match_confidence": "high",
+          "item_match_basis": "source utteranceが「2項目目、国民保護計画について」と明示している。",
+          "item_match_review_notes": "item 2との対応は直接確認できる。",
+          "candidate_summary": null,
+          "candidate_review_status": "hold_attribution",
+          "recommended_action": "resolve_speaker_role",
+          "risk_flags": [
+            "answer_role_unknown",
+            "speaker_role_unknown"
+          ],
+          "review_notes": "speaker attribution remains medium; keep summary null until role/name is confirmed."
+        }
+      ]
+    },
+    {
+      "entry_id": "ishigaki-r8-dai4-ippan-inoue-michiko.item03",
+      "question_id": "ishigaki-r8-dai4-ippan-inoue-michiko",
+      "question_order": 10,
+      "questioner_name": "井上美智子",
+      "item_index": 3,
+      "item_title": "会計年度任用職員について",
+      "question_text": "会計年度任用職員について: 会計年度任用職員の退職者数と退職理由について",
+      "inventory_answer_state": {
+        "answer_anchor_source": "unknown_answer_like",
+        "answer_anchor_confidence": "medium",
+        "city_answer_missing": false
+      },
+      "entry_risk_flags": [
+        "answer_role_unknown",
+        "speaker_role_unknown"
+      ],
+      "review_status": "hold_attribution",
+      "recommended_action": "resolve_speaker_role",
+      "review_notes": "confirmed_facts phase close 後の reviewer-only answer summary 候補です。公開反映の承認データではありません。",
+      "candidates": [
+        {
+          "candidate_id": "ishigaki-r8-dai4-ippan-inoue-michiko.item03::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0017::unknown_answer_like",
+          "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0017",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "source_speaker_name": "総務省田原治",
+          "source_speaker_role": "unknown",
+          "source_text": "続きまして3項目目\n会計年度任用職員の退職者数と退職自由についてお答えいたします\n令和8年3月末の退職者数は55人となっており\n退職理由につきましては、任期満了による者が26人、事故都合による者が29人となっております。",
+          "source_line_start": 161,
+          "source_line_end": 164,
+          "anchor_type": "unknown_answer_like",
+          "answer_confidence": "medium",
+          "fallback_used": false,
+          "summary_basis": null,
+          "reviewed_speaker_name": "総務省田原治",
+          "reviewed_speaker_role": "executive",
+          "attribution_confidence": "medium",
+          "attribution_basis": "item 1からitem 3まで連続する市側答弁ブロック内で、source utteranceがitem 3「会計年度任用職員について」に回答している。ただしspeaker表記が文字起こし上「総務省田原治」と崩れており、正確な役職名を確定できない。",
+          "attribution_review_notes": "市側答弁ブロックとしては妥当だが、speaker metadataの崩れが残る。",
+          "item_match_confidence": "high",
+          "item_match_basis": "source utteranceが「3項目目、会計年度任用職員について」と明示している。",
+          "item_match_review_notes": "item 3との対応は直接確認できる。",
+          "candidate_summary": null,
+          "candidate_review_status": "hold_attribution",
+          "recommended_action": "resolve_speaker_role",
+          "risk_flags": [
+            "answer_role_unknown",
+            "speaker_role_unknown"
+          ],
+          "review_notes": "speaker attribution remains medium; keep summary null until role/name is confirmed."
+        }
+      ]
+    },
+    {
+      "entry_id": "ishigaki-r8-dai4-ippan-hanatani-shiro.item01",
+      "question_id": "ishigaki-r8-dai4-ippan-hanatani-shiro",
+      "question_order": 14,
+      "questioner_name": "花谷史郎",
+      "item_index": 1,
+      "item_title": "県道石垣空港線（アクセス道路）について",
+      "question_text": "県道石垣空港線（アクセス道路）について: 全線開通時期の見通しや現状の進捗状況（ア全線開通時期、イ沖縄県との連携強化） / 石垣空港跡地区画整理事業（ア新設道路計画の進捗状況、イ新博物館建設計画との整合性） / 旧大浜町浄水場跡地の取壊し時期",
+      "inventory_answer_state": {
+        "answer_anchor_source": "unknown_answer_like",
+        "answer_anchor_confidence": "medium",
+        "city_answer_missing": false
+      },
+      "entry_risk_flags": [
+        "answer_role_unknown",
+        "speaker_role_unknown"
+      ],
+      "review_status": "hold_attribution",
+      "recommended_action": "resolve_speaker_role",
+      "review_notes": "confirmed_facts phase close 後の reviewer-only answer summary 候補です。公開反映の承認データではありません。",
+      "candidates": [
+        {
+          "candidate_id": "ishigaki-r8-dai4-ippan-hanatani-shiro.item01::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-hanatani-shiro.u0004::unknown_answer_like",
+          "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-hanatani-shiro.u0004",
+          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+          "source_speaker_name": "花谷志郎",
+          "source_speaker_role": "unknown",
+          "source_text": "花谷志郎議員の1項目目\n県道石垣空港線アクセス道路について\n3点のご質問に順を追ってお答えいたします\n1点目\n県道石垣空港線アクセス道路の前線開通時期の見通しや現状の進捗について\n前線開通時期につきましては\n県道石垣空港線を管理する沖縄県八重山道区事務所に確認しましたところ\n現時点で明確にお示しすることが難しい状況であるという回答を得ております\n引き続き当初予算補正予算を含めた予算の確保に努め\n早期供用に向けて取り組んでいくとの回答でございました\n沖縄県との連携強化につきましても\nこれまでと同様に八重山市長会及び石垣島の\n道づくり基本計画推進協議会での沖縄振興交付金の\n県道石垣空港線への重点配分による予算確保に\n取り組んでいただくよう要請してまいります\n次に2点目\n石垣空港跡地区画整理事業のご質問\n新設道路計画の進捗状況についてお答えいたします\n石垣空港跡地については国県私有地のほか一部民有地が点在していることから\n土地の形状配置等を整え合わせて道路を設置するとし\n土地規格整理事業を導入し効率的な土地利用による町づくりに取り組むとしております\n土地規格整理事業の導入にあたっては道路や公園の整備\n土地用途の線引きもあるため\n一体的な都市計画手続きが必要となってまいります\n都市計画道路の手続きについては\n県道石垣空港線及び国道390号線に接続する\n4路線及び外区道路7路線について\n県と協議を進めておりますが\n年度内には協議を整えたいとしており\nこれ以降住民説明会や都市計画審議会などを予定しております\n続いて新博物館建設計画との整合性について\n博物館美術館の建設については\n本年3月政令会において空港跡地地区への建設について決議があったところです\n同地区においては国・県有地が多くを占めており\n今後土地区画整理事業の手続きが進んだ場合においても\n国・県有地が大部分を占めることとなり\nそのため、当該地区において博物館・美術館を整備する場合、土地購入が必要になることに加え、道路や上下水道などインフラ整備の完了が前提であり、これには期間を要するとしております。\n今後、博物館・美術館建設準備室が事業を検討する中において、これらの課題も踏まえ精査していくものと認識しております。\n次に3点目。旧大浜浄水場跡地の取り壊し時期につきまして、沖縄県八重山土木事務所に確認しましたところ、浄水場跡地周辺の工事を進めている状況に変化はございませんが、浄水場跡の取り壊し工事は令和9年度以降を予定しているとの回答を得ております。",
+          "source_line_start": 54,
+          "source_line_end": 92,
+          "anchor_type": "unknown_answer_like",
+          "answer_confidence": "medium",
+          "fallback_used": false,
+          "summary_basis": null,
+          "reviewed_speaker_name": null,
+          "reviewed_speaker_role": "unknown",
+          "attribution_confidence": "unresolved",
+          "attribution_basis": "source utterance本文は「花谷志郎議員の1項目目…お答えいたします」で答弁形式だが、直前の議長指名・質問者自己紹介・質問要旨でも同じ「花谷志郎」表記が使われている。utterance metadata上も明確な行政役職者名がなく、u0004を特定の行政側speakerへ帰属させる根拠を確認できない。",
+          "attribution_review_notes": "行政側答弁本文である可能性はあるが、raw speakerが質問者名のOCR/ASR崩れと区別できず、答弁者の役職・氏名を明示確定できない。行政側answer summary候補としては未承認。",
+          "item_match_confidence": "high",
+          "item_match_basis": "source utteranceは「1項目目 県道石垣空港線アクセス道路について」と明示し、item titleと直接対応している。",
+          "item_match_review_notes": "item matchは明確だが、speaker attribution未解決のためsummary化しない。",
+          "candidate_summary": null,
+          "candidate_review_status": "hold_attribution",
+          "recommended_action": "resolve_speaker_role",
+          "risk_flags": [
+            "answer_role_unknown",
+            "speaker_role_unknown"
+          ],
+          "review_notes": "No.10 re-audit: speech content is answer-like and item match is high, but administrative speaker attribution is unresolved; previous executive classification corrected to unknown."
+        }
+      ]
+    }
+  ]
+}
