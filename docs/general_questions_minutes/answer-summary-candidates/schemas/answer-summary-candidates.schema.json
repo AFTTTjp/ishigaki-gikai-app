@@ -1,0 +1,420 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://afttt.jp/schemas/answer-summary-candidates.schema.json",
+  "title": "Answer Summary Candidates",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "session",
+    "diet_session_slug",
+    "artifact_type",
+    "artifact_origin",
+    "review_status",
+    "generated_at",
+    "generated_from",
+    "source_inventory_summary",
+    "summary",
+    "entries"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "answer-summary-candidates.v1"
+    },
+    "session": {
+      "type": "string",
+      "minLength": 1
+    },
+    "diet_session_slug": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact_type": {
+      "const": "answer_summary_candidates"
+    },
+    "artifact_origin": {
+      "const": "generated_from_candidate_inventory"
+    },
+    "review_status": {
+      "const": "reviewer_only"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "generated_from": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "source_inventory_summary": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_entry_count",
+        "generated_entry_count",
+        "source_candidate_count",
+        "generated_candidate_count",
+        "summaries_generated",
+        "summaries_held_or_null",
+        "review_status_counts",
+        "recommended_action_counts",
+        "risk_flag_counts"
+      ],
+      "properties": {
+        "source_entry_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "generated_entry_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "generated_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "summaries_generated": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "summaries_held_or_null": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "review_status_counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "recommended_action_counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "risk_flag_counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "entry_id",
+          "question_id",
+          "question_order",
+          "questioner_name",
+          "item_index",
+          "item_title",
+          "question_text",
+          "inventory_answer_state",
+          "entry_risk_flags",
+          "review_status",
+          "recommended_action",
+          "review_notes",
+          "candidates"
+        ],
+        "properties": {
+          "entry_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "question_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "question_order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "questioner_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "item_index": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "item_title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "question_text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "inventory_answer_state": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "answer_anchor_source",
+              "answer_anchor_confidence",
+              "city_answer_missing"
+            ],
+            "properties": {
+              "answer_anchor_source": {
+                "type": "string"
+              },
+              "answer_anchor_confidence": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "city_answer_missing": {
+                "type": "boolean"
+              }
+            }
+          },
+          "entry_risk_flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "review_status": {
+            "$ref": "#/$defs/review_status"
+          },
+          "recommended_action": {
+            "$ref": "#/$defs/recommended_action"
+          },
+          "review_notes": {
+            "type": "string"
+          },
+          "candidates": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/$defs/candidate"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "pending_review",
+        "hold_attribution",
+        "hold_item_match",
+        "hold_transcription",
+        "reject_not_answer",
+        "reject_duplicate",
+        "approved_for_summary"
+      ]
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "review_for_city_answer_summary",
+        "resolve_speaker_role",
+        "resolve_item_match",
+        "review_transcription",
+        "keep_unresolved",
+        "reject_not_answer",
+        "already_reflected"
+      ]
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "source_utterance_id",
+        "source_file",
+        "source_speaker_name",
+        "source_speaker_role",
+        "source_text",
+        "source_line_start",
+        "source_line_end",
+        "anchor_type",
+        "answer_confidence",
+        "fallback_used",
+        "risk_flags",
+        "reviewed_speaker_name",
+        "reviewed_speaker_role",
+        "attribution_confidence",
+        "attribution_basis",
+        "attribution_review_notes",
+        "item_match_confidence",
+        "item_match_basis",
+        "item_match_review_notes",
+        "candidate_summary",
+        "summary_basis",
+        "candidate_review_status",
+        "recommended_action",
+        "review_notes"
+      ],
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_utterance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_file": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_speaker_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_speaker_role": {
+          "type": "string",
+          "enum": [
+            "city",
+            "executive",
+            "unknown"
+          ]
+        },
+        "source_text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_line_start": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_line_end": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "anchor_type": {
+          "type": "string",
+          "enum": [
+            "unknown_answer_like",
+            "null_item_proximity"
+          ]
+        },
+        "answer_confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "fallback_used": {
+          "type": "boolean"
+        },
+        "risk_flags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "reviewed_speaker_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewed_speaker_role": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "city",
+            "executive",
+            "unknown",
+            null
+          ]
+        },
+        "attribution_confidence": {
+          "$ref": "#/$defs/review_confidence"
+        },
+        "attribution_basis": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "attribution_review_notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "item_match_confidence": {
+          "$ref": "#/$defs/review_confidence"
+        },
+        "item_match_basis": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "item_match_review_notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "candidate_summary": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "summary_basis": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "candidate_review_status": {
+          "$ref": "#/$defs/review_status"
+        },
+        "recommended_action": {
+          "$ref": "#/$defs/recommended_action"
+        },
+        "review_notes": {
+          "type": "string"
+        }
+      }
+    },
+    "review_confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unresolved"
+      ]
+    }
+  }
+}
