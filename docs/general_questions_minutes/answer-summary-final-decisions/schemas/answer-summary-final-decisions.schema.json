@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://afttt.jp/schemas/answer-summary-final-decisions.schema.json",
+  "title": "Answer Summary Final Decisions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "session",
+    "diet_session_slug",
+    "artifact_type",
+    "artifact_origin",
+    "review_status",
+    "source_answer_summary_candidates",
+    "source_utterance_index",
+    "source_general_questions",
+    "reviewed_from_commit",
+    "summary",
+    "decisions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "answer-summary-final-decisions.v1"
+    },
+    "session": {
+      "type": "string",
+      "minLength": 1
+    },
+    "diet_session_slug": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact_type": {
+      "const": "answer_summary_final_decisions"
+    },
+    "artifact_origin": {
+      "const": "hand_authored_reviewer_decision"
+    },
+    "review_status": {
+      "const": "reviewer_only"
+    },
+    "source_answer_summary_candidates": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_utterance_index": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_general_questions": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewed_from_commit": {
+      "type": "string",
+      "minLength": 7
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reviewed_total",
+        "approve_as_written_total",
+        "approve_with_revision_total",
+        "hold_attribution_total",
+        "reject_total",
+        "final_summary_non_null_total",
+        "final_summary_null_total",
+        "approved_for_public_json_total",
+        "not_approved_total"
+      ],
+      "properties": {
+        "reviewed_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "approve_as_written_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "approve_with_revision_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hold_attribution_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reject_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "final_summary_non_null_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "final_summary_null_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "approved_for_public_json_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "not_approved_total": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/decision"
+      }
+    }
+  },
+  "$defs": {
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_id",
+        "candidate_id",
+        "question_id",
+        "item_number",
+        "source_utterance_id",
+        "decision",
+        "final_summary",
+        "revision_reason",
+        "attribution_confidence",
+        "item_match_confidence",
+        "speaker_name",
+        "speaker_role",
+        "evidence_excerpt",
+        "confirmed_facts_overlap",
+        "final_approval_status",
+        "review_notes"
+      ],
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "candidate_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "item_number": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_utterance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "approve_as_written",
+            "approve_with_revision",
+            "hold_attribution",
+            "reject"
+          ]
+        },
+        "final_summary": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "revision_reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "attribution_confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unresolved"
+          ]
+        },
+        "item_match_confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unresolved"
+          ]
+        },
+        "speaker_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "speaker_role": {
+          "type": "string",
+          "enum": [
+            "city",
+            "executive",
+            "unknown"
+          ]
+        },
+        "evidence_excerpt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confirmed_facts_overlap": {
+          "type": "string",
+          "enum": [
+            "none",
+            "partial",
+            "duplicate"
+          ]
+        },
+        "final_approval_status": {
+          "type": "string",
+          "enum": [
+            "not_approved",
+            "approved_for_public_json"
+          ]
+        },
+        "review_notes": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "decision": {
+                "const": "hold_attribution"
+              }
+            },
+            "required": [
+              "decision"
+            ]
+          },
+          "then": {
+            "properties": {
+              "final_summary": {
+                "type": "null"
+              },
+              "final_approval_status": {
+                "const": "not_approved"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "decision": {
+                "const": "reject"
+              }
+            },
+            "required": [
+              "decision"
+            ]
+          },
+          "then": {
+            "properties": {
+              "final_approval_status": {
+                "const": "not_approved"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "decision": {
+                "const": "approve_as_written"
+              }
+            },
+            "required": [
+              "decision"
+            ]
+          },
+          "then": {
+            "properties": {
+              "final_summary": {
+                "type": "string",
+                "minLength": 1
+              },
+              "revision_reason": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "decision": {
+                "const": "approve_with_revision"
+              }
+            },
+            "required": [
+              "decision"
+            ]
+          },
+          "then": {
+            "properties": {
+              "final_summary": {
+                "type": "string",
+                "minLength": 1
+              },
+              "revision_reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
