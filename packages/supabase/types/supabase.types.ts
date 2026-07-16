@@ -475,6 +475,7 @@ export type Database = {
       }
       general_question_items: {
         Row: {
+          city_answer_summaries: Json
           confirmed_facts: string[]
           created_at: string
           general_question_id: string
@@ -485,6 +486,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          city_answer_summaries?: Json
           confirmed_facts?: string[]
           created_at?: string
           general_question_id: string
@@ -495,6 +497,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          city_answer_summaries?: Json
           confirmed_facts?: string[]
           created_at?: string
           general_question_id?: string
@@ -1777,4 +1780,3 @@ export const Constants = {
     },
   },
 } as const
-

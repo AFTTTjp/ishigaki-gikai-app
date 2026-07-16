@@ -16,6 +16,7 @@ import { readFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createClient } from "@supabase/supabase-js";
+import { validateAndNormalizeGeneralQuestionsDocument } from "./import-general-questions-validation.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -31,108 +32,6 @@ const INPUT_JSON_PATH =
 if (INPUT_ARG_INDEX >= 0 && !INPUT_JSON_PATH) {
   console.error("ERROR: --input にはJSONファイルパスが必要です");
   process.exit(1);
-}
-
-function isNonEmptyString(value) {
-  return typeof value === "string" && value.trim().length > 0;
-}
-
-function validateStringArray(value, fieldPath) {
-  if (!Array.isArray(value)) {
-    throw new Error(`${fieldPath} must be an array`);
-  }
-
-  for (const [index, entry] of value.entries()) {
-    if (typeof entry !== "string") {
-      throw new Error(`${fieldPath}[${index}] must be a string`);
-    }
-    if (entry.trim().length === 0) {
-      throw new Error(`${fieldPath}[${index}] must not be empty or whitespace-only`);
-    }
-  }
-
-  return value;
-}
-
-function validateAndNormalizeGeneralQuestionsDocument(raw, jsonPath) {
-  if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
-    throw new Error(`${jsonPath} must be a JSON object`);
-  }
-
-  if (!isNonEmptyString(raw.diet_session_slug)) {
-    throw new Error(`${jsonPath}.diet_session_slug must be a non-empty string`);
-  }
-
-  if (!Array.isArray(raw.questions)) {
-    throw new Error(`${jsonPath}.questions must be an array`);
-  }
-
-  const questions = raw.questions.map((question, questionIndex) => {
-    const questionPath = `${jsonPath}.questions[${questionIndex}]`;
-
-    if (!question || typeof question !== "object" || Array.isArray(question)) {
-      throw new Error(`${questionPath} must be an object`);
-    }
-
-    if (!isNonEmptyString(question.slug)) {
-      throw new Error(`${questionPath}.slug must be a non-empty string`);
-    }
-
-    if (!Array.isArray(question.items)) {
-      throw new Error(`${questionPath}.items must be an array`);
-    }
-
-    if (
-      question.topic_slugs !== undefined &&
-      (!Array.isArray(question.topic_slugs) ||
-        question.topic_slugs.some((slug) => !isNonEmptyString(slug)))
-    ) {
-      throw new Error(
-        `${questionPath}.topic_slugs must be an array of non-empty strings when present`
-      );
-    }
-
-    const items = question.items.map((item, itemIndex) => {
-      const itemPath = `${questionPath}.items[${itemIndex}]`;
-
-      if (!item || typeof item !== "object" || Array.isArray(item)) {
-        throw new Error(`${itemPath} must be an object`);
-      }
-
-      if (!Number.isInteger(item.item_number) || item.item_number < 1) {
-        throw new Error(`${itemPath}.item_number must be a positive integer`);
-      }
-
-      if (!isNonEmptyString(item.title)) {
-        throw new Error(`${itemPath}.title must be a non-empty string`);
-      }
-
-      const subItems = validateStringArray(item.sub_items, `${itemPath}.sub_items`);
-
-      const confirmedFactsRaw = item.confirmed_facts;
-      const confirmedFacts =
-        confirmedFactsRaw === undefined
-          ? []
-          : validateStringArray(confirmedFactsRaw, `${itemPath}.confirmed_facts`);
-
-      return {
-        ...item,
-        sub_items: subItems,
-        confirmed_facts: confirmedFacts,
-      };
-    });
-
-    return {
-      ...question,
-      items,
-      topic_slugs: question.topic_slugs ?? [],
-    };
-  });
-
-  return {
-    diet_session_slug: raw.diet_session_slug,
-    questions,
-  };
 }
 
 // -------------------------------------------------------------------------
@@ -207,6 +106,9 @@ if (DRY_RUN) {
       }
       for (const fact of item.confirmed_facts) {
         console.log(`          * 市の答弁で確認できたこと: ${fact}`);
+      }
+      for (const answerSummary of item.city_answer_summaries) {
+        console.log(`          * 市の答弁要旨: ${answerSummary.summary}`);
       }
     }
   }
@@ -314,6 +216,7 @@ for (const q of questions) {
     title: item.title,
     sub_items: item.sub_items,
     confirmed_facts: item.confirmed_facts,
+    city_answer_summaries: item.city_answer_summaries,
   }));
 
   if (itemRows.length > 0) {
