@@ -112,6 +112,12 @@
             "航行にかかる費用",
             "人流だけで採算はとれるのか。",
             "どの程度の物流があれば採算がとれるのか。"
+          ],
+          "city_answer_summaries": [
+            {
+              "summary": "石垣・基隆定期航路について、就航費用には港費、船員費、燃料・保険料、代理店・警備等の委託費用などを含めて算出する必要があると説明している。初就航直後で実績ベースの採算額は確定しておらず、旅客に加え貨物の積載が安定運航に不可欠だとしている。",
+              "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-shiuezato-atsushi.u0010"
+            }
           ]
         },
         {
@@ -291,6 +297,16 @@
           "title": "教育支援センター「あやぱに学級」について",
           "sub_items": [
             "教育環境並びに場所を含めた将来的な計画を問う。"
+          ],
+          "city_answer_summaries": [
+            {
+              "summary": "教育支援センター「あやぱに学級」について、開設の背景、現在の支援内容、4名体制での学習・体験活動支援、旧八重山幼稚園2階を活用しながら必要に応じて修繕している状況が説明されている。施設環境については、他の教育施設の活用も含め今後の検討事項だとしている。",
+              "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0012"
+            },
+            {
+              "summary": "あやぱに学級と青少年センターは、対象者や支援内容に違いがある一方、どちらも不登校児童生徒の学校外の居場所としての役割を持つと説明している。あやぱに学級の施設は修繕しながら運用しており、移転を含む具体的な検討時期は現時点で示せないとしている。",
+              "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0055"
+            }
           ]
         }
       ]
