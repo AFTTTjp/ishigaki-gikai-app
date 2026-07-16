@@ -72,7 +72,7 @@
       "speaker_role": "executive",
       "evidence_excerpt": "就航に係る費用については、港費、船員費、潤滑油費、船舶保険料、船舶代理店や警備等の委託費用などをすべて計上し、航行にかかる費用として算出する必要があります。",
       "confirmed_facts_overlap": "none",
-      "final_approval_status": "not_approved",
+      "final_approval_status": "approved_for_public_json",
       "review_notes": "summary_verdict=approve_as_written。cost components、初就航直後で実績ベースの採算額が未確定であること、旅客と貨物の必要性をsourceで確認できる。"
     },
     {
@@ -126,7 +126,7 @@
       "speaker_role": "executive",
       "evidence_excerpt": "アイパニ学級は平成6年4月に開設され、今年で32年目となります。あやぱに学級では登校が難しい児童生徒に対して支援を行っております。",
       "confirmed_facts_overlap": "none",
-      "final_approval_status": "not_approved",
+      "final_approval_status": "approved_for_public_json",
       "review_notes": "summary_verdict=approve_as_written。開設背景、支援内容、4名体制、現施設の修繕運用、施設環境の今後検討がsourceで確認できる。"
     },
     {
@@ -144,7 +144,7 @@
       "speaker_role": "executive",
       "evidence_excerpt": "アヤパニ学級は教育委員会の学校教育課が、青少年センターは教育委員会の生き生き花火課が所管しております。対象者につきましては、アヤパニ学級が石垣市内の小中学校に通う児童生徒です。",
       "confirmed_facts_overlap": "none",
-      "final_approval_status": "not_approved",
+      "final_approval_status": "approved_for_public_json",
       "review_notes": "summary_verdict=approve_with_revision。ASRノイズのある所管課名をpublic候補summaryへ持ち込まず、source-supportedな対象者・支援内容・施設検討に限定した。"
     },
     {
