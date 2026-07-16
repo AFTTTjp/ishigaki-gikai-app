@@ -51,6 +51,26 @@ export function GeneralQuestionCard({ question }: Props) {
                     ))}
                   </ul>
                 )}
+                {item.city_answer_summaries.length > 0 && (
+                  <div className="ml-5 rounded-xl bg-mirai-surface-grouped px-3 py-3">
+                    <p className="text-xs font-semibold tracking-[0.02em] text-mirai-text">
+                      市の答弁要旨
+                    </p>
+                    <p className="mt-1 text-xs leading-relaxed text-mirai-text-muted">
+                      議会での市側答弁を要約しています。
+                    </p>
+                    <ul className="mt-2 flex list-disc flex-col gap-1 pl-4">
+                      {item.city_answer_summaries.map((answerSummary, idx) => (
+                        <li
+                          key={`${item.id}-answer-summary-${idx}`}
+                          className="text-xs leading-relaxed text-mirai-text-secondary"
+                        >
+                          {answerSummary.summary}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 {item.confirmed_facts.length > 0 && (
                   <div className="ml-5 rounded-xl bg-mirai-surface-grouped px-3 py-3">
                     <p className="text-xs font-semibold tracking-[0.02em] text-mirai-text">

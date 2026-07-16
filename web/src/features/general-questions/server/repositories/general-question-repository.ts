@@ -1,28 +1,68 @@
 import "server-only";
 import { createAdminClient } from "@mirai-gikai/supabase";
 import type {
+  CityAnswerSummary,
   DietSessionInfo,
   GeneralQuestion,
   GeneralQuestionItem,
 } from "../../shared/types";
 
-function normalizeGeneralQuestionItem(
-  item: Partial<GeneralQuestionItem> & {
-    id: string;
-    general_question_id: string;
-    item_number: number;
-    title: string;
+function normalizeCityAnswerSummaries(value: unknown): CityAnswerSummary[] {
+  if (!Array.isArray(value)) {
+    return [];
   }
-): GeneralQuestionItem {
+
+  return value.flatMap((entry) => {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+      return [];
+    }
+
+    const summary = (entry as { summary?: unknown }).summary;
+    const sourceUtteranceId = (entry as { source_utterance_id?: unknown })
+      .source_utterance_id;
+
+    if (typeof summary !== "string" || summary.trim().length === 0) {
+      return [];
+    }
+
+    if (
+      typeof sourceUtteranceId !== "string" ||
+      sourceUtteranceId.trim().length === 0
+    ) {
+      return [];
+    }
+
+    return [{ summary, source_utterance_id: sourceUtteranceId }];
+  });
+}
+
+function normalizeStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value.filter((entry): entry is string => typeof entry === "string");
+}
+
+function normalizeGeneralQuestionItem(item: {
+  id: string;
+  general_question_id: string;
+  item_number: number;
+  title: string;
+  sub_items?: unknown;
+  city_answer_summaries?: unknown;
+  confirmed_facts?: unknown;
+}): GeneralQuestionItem {
   return {
     id: item.id,
     general_question_id: item.general_question_id,
     item_number: item.item_number,
     title: item.title,
-    sub_items: Array.isArray(item.sub_items) ? item.sub_items : [],
-    confirmed_facts: Array.isArray(item.confirmed_facts)
-      ? item.confirmed_facts
-      : [],
+    sub_items: normalizeStringArray(item.sub_items),
+    city_answer_summaries: normalizeCityAnswerSummaries(
+      item.city_answer_summaries
+    ),
+    confirmed_facts: normalizeStringArray(item.confirmed_facts),
   };
 }
 
@@ -61,6 +101,7 @@ export async function findPublishedGeneralQuestionsBySessionSlug(
         item_number,
         title,
         sub_items,
+        city_answer_summaries,
         confirmed_facts
       )
     `

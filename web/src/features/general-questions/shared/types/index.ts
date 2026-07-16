@@ -1,9 +1,15 @@
+export type CityAnswerSummary = {
+  summary: string;
+  source_utterance_id: string;
+};
+
 export type GeneralQuestionItem = {
   id: string;
   general_question_id: string;
   item_number: number;
   title: string;
   sub_items: string[];
+  city_answer_summaries: CityAnswerSummary[];
   confirmed_facts: string[];
 };
 
