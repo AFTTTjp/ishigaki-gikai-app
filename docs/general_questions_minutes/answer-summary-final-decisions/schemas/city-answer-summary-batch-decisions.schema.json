@@ -1,0 +1,405 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://afttt.jp/schemas/city-answer-summary-batch-decisions.schema.json",
+  "title": "City Answer Summary Batch Decisions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "session",
+    "diet_session_slug",
+    "artifact_type",
+    "artifact_origin",
+    "review_status",
+    "batch",
+    "sources",
+    "summary",
+    "selection_policy",
+    "candidates"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "city-answer-summary-batch-decisions.v1"
+    },
+    "session": {
+      "type": "string",
+      "minLength": 1
+    },
+    "diet_session_slug": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact_type": {
+      "const": "city_answer_summary_batch_decisions"
+    },
+    "artifact_origin": {
+      "const": "hand_authored_reviewer_decision"
+    },
+    "review_status": {
+      "const": "reviewer_only"
+    },
+    "batch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_id",
+        "reviewed_at",
+        "reviewed_from_commit"
+      ],
+      "properties": {
+        "batch_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewed_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewed_from_commit": {
+          "type": "string",
+          "minLength": 7
+        }
+      }
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_total",
+        "approve_as_written_total",
+        "approve_with_revision_total",
+        "hold_total",
+        "reject_total",
+        "selected_for_batch_total",
+        "selected_final_summary_total",
+        "batch_1_overlap_total",
+        "confirmed_fact_duplicate_total",
+        "duplicate_selected_summary_total",
+        "empty_final_summary_total",
+        "public_json_changed",
+        "production_import_executed",
+        "revalidation_executed"
+      ],
+      "properties": {
+        "candidate_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "approve_as_written_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "approve_with_revision_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hold_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reject_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "selected_for_batch_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "selected_final_summary_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "batch_1_overlap_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "confirmed_fact_duplicate_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicate_selected_summary_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "empty_final_summary_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "public_json_changed": {
+          "const": false
+        },
+        "production_import_executed": {
+          "const": false
+        },
+        "revalidation_executed": {
+          "const": false
+        }
+      }
+    },
+    "selection_policy": {
+      "type": "object"
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/candidate"
+      }
+    }
+  },
+  "$defs": {
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_id",
+        "candidate_id",
+        "question_id",
+        "council_member",
+        "item_number",
+        "item_title",
+        "source_utterance_id",
+        "source_speaker",
+        "source_speaker_role",
+        "source_location",
+        "source_excerpt",
+        "surrounding_context",
+        "candidate_summary",
+        "final_summary",
+        "decision",
+        "selected_for_batch_2",
+        "attribution_confidence",
+        "item_match_confidence",
+        "source_confidence",
+        "confirmed_fact_overlap",
+        "batch_1_overlap",
+        "duplicate_check",
+        "risk_flags",
+        "rationale",
+        "rejection_or_hold_reason"
+      ],
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "candidate_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "council_member": {
+          "type": "string",
+          "minLength": 1
+        },
+        "item_number": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "item_title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_utterance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_speaker": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_speaker_role": {
+          "type": "string",
+          "enum": [
+            "executive",
+            "city"
+          ]
+        },
+        "source_location": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_excerpt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "surrounding_context": {
+          "type": "string",
+          "minLength": 1
+        },
+        "candidate_summary": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "final_summary": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "approve_as_written",
+            "approve_with_revision",
+            "hold",
+            "reject"
+          ]
+        },
+        "selected_for_batch_2": {
+          "type": "boolean"
+        },
+        "attribution_confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unresolved"
+          ]
+        },
+        "item_match_confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unresolved"
+          ]
+        },
+        "source_confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "confirmed_fact_overlap": {
+          "type": "string",
+          "enum": [
+            "none",
+            "partial",
+            "duplicate"
+          ]
+        },
+        "batch_1_overlap": {
+          "type": "string",
+          "enum": [
+            "none",
+            "partial",
+            "duplicate"
+          ]
+        },
+        "duplicate_check": {
+          "type": "string",
+          "enum": [
+            "none",
+            "selected_duplicate",
+            "external_duplicate"
+          ]
+        },
+        "risk_flags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rejection_or_hold_reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "selected_for_batch_2": {
+                "const": true
+              }
+            },
+            "required": [
+              "selected_for_batch_2"
+            ]
+          },
+          "then": {
+            "properties": {
+              "decision": {
+                "enum": [
+                  "approve_as_written",
+                  "approve_with_revision"
+                ]
+              },
+              "final_summary": {
+                "type": "string",
+                "minLength": 1
+              },
+              "confirmed_fact_overlap": {
+                "enum": [
+                  "none",
+                  "partial"
+                ]
+              },
+              "batch_1_overlap": {
+                "const": "none"
+              },
+              "duplicate_check": {
+                "const": "none"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "decision": {
+                "enum": [
+                  "hold",
+                  "reject"
+                ]
+              }
+            },
+            "required": [
+              "decision"
+            ]
+          },
+          "then": {
+            "properties": {
+              "final_summary": {
+                "type": "null"
+              },
+              "selected_for_batch_2": {
+                "const": false
+              },
+              "rejection_or_hold_reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

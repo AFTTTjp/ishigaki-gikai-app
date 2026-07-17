@@ -71,3 +71,15 @@ final decision artifact は、その候補を人間レビューでどう扱う�
 - approve 3件の attribution confidence と item match confidence が `high` であること
 - candidate ID / question ID / item number / utterance ID が source candidate artifact と一致すること
 - local absolute path を混ぜないこと
+
+## Batch Decision Artifacts
+
+Batch 2以降の追加候補レビューは、既存の初回final decision artifactを
+上書きせず、batch-specific artifactとして保存します。
+
+- `r8-dai4-teireikai.city-answer-summaries-batch-2-decisions.json`
+- schema:
+  `schemas/city-answer-summary-batch-decisions.schema.json`
+
+Batch decision artifact は reviewer-only です。public General Questions
+JSON、DB、import、revalidation、UIには接続しません。
