@@ -56,6 +56,11 @@ function writeFixture({ fullText }) {
                 title: "テスト項目について",
                 sub_items: [],
               },
+              {
+                item_number: 2,
+                title: "追加項目について",
+                sub_items: [],
+              },
             ],
           },
         ],
@@ -84,6 +89,65 @@ function writeFixture({ fullText }) {
 }
 
 describe("build-utterance-index speaker attribution provenance", () => {
+  test("uses a swallowed explicit role/name cue as the next utterance boundary", () => {
+    const payload = writeFixture({
+      fullText: [
+        "会計監査吉村吉君",
+        "テスト太郎議員の1項目目、テスト項目についてお答えします。",
+        "以上です。",
+        "企画部長 菅沼博彦",
+        "テスト太郎議員の2項目目、追加項目についてお答えします。",
+      ].join("\n"),
+    });
+
+    expect(payload.utterances).toHaveLength(2);
+    expect(payload.utterances[0].text).not.toContain("企画部長 菅沼博彦");
+    expect(payload.utterances[0]).toMatchObject({
+      speaker_hint: "会計監査吉村吉",
+      speaker_role_hint: "unknown",
+    });
+    expect(payload.utterances[1]).toMatchObject({
+      speaker_hint: "企画部長 菅沼博彦",
+      speaker_role_hint: "executive",
+      speaker_attribution: {
+        raw_cue: "企画部長 菅沼博彦",
+        normalized_name: "企画部長 菅沼博彦",
+        normalized_role: "executive",
+        method: "explicit",
+        confidence: "explicit",
+        unresolved_reason: null,
+      },
+    });
+    expect(payload.utterances[1].speaker_attribution.evidence).toEqual([
+      {
+        kind: "speaker_cue",
+        text: "企画部長 菅沼博彦",
+        line_number: 4,
+      },
+    ]);
+  });
+
+  test("does not treat role words inside ordinary prose as a speaker cue", () => {
+    const payload = writeFixture({
+      fullText: [
+        "テスト太郎議員の1項目目、テスト項目について質問します。",
+        "市長の見解を伺います。",
+      ].join("\n"),
+    });
+
+    expect(payload.utterances).toHaveLength(1);
+    expect(payload.utterances[0].text).toContain("市長の見解を伺います。");
+    expect(payload.utterances[0]).toMatchObject({
+      speaker_hint: "テスト太郎",
+      speaker_role_hint: "questioner",
+      speaker_attribution: {
+        raw_cue: null,
+        method: "explicit",
+        confidence: "explicit",
+      },
+    });
+  });
+
   test("records explicit executive cue without changing speaker fields", () => {
     const payload = writeFixture({
       fullText: [
