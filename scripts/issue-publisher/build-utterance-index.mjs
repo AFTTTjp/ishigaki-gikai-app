@@ -245,17 +245,62 @@ function detectSpeakerCue(normalizedLine) {
   return normalizedLine;
 }
 
+function buildSpeakerAttribution(speakerContext) {
+  const method = speakerContext?.speaker_attribution_method ?? "unknown";
+  const confidence =
+    speakerContext?.speaker_attribution_confidence ?? "unknown";
+  return {
+    raw_cue: speakerContext?.raw_speaker_cue ?? null,
+    normalized_name: speakerContext?.speaker_hint ?? null,
+    normalized_role: speakerContext?.speaker_role_hint ?? "unknown",
+    method,
+    confidence,
+    evidence: speakerContext?.speaker_attribution_evidence ?? [],
+    unresolved_reason:
+      method === "unknown"
+        ? (speakerContext?.speaker_attribution_unresolved_reason ??
+          "speaker cue could not be resolved by the existing parser")
+        : null,
+  };
+}
+
+function buildCueEvidence({ rawSpeakerCue, speakerCueLineNumber }) {
+  const evidence = [];
+  if (rawSpeakerCue) {
+    evidence.push({
+      kind: "speaker_cue",
+      text: rawSpeakerCue,
+      line_number: speakerCueLineNumber ?? null,
+    });
+  }
+  return evidence;
+}
+
 function detectSpeakerContext({
   speakerCue,
+  rawSpeakerCue = null,
+  speakerCueLineNumber = null,
   memberNameRaw,
 }) {
   if (!speakerCue) return null;
 
   const memberName = normalizeText(memberNameRaw);
+  const cueEvidence = buildCueEvidence({
+    rawSpeakerCue,
+    speakerCueLineNumber,
+  });
+  const explicitAttribution = {
+    raw_speaker_cue: rawSpeakerCue ?? speakerCue,
+    speaker_attribution_method: "explicit",
+    speaker_attribution_confidence: "explicit",
+    speaker_attribution_evidence: cueEvidence,
+    speaker_attribution_unresolved_reason: null,
+  };
   if (speakerCue.includes(memberName) || speakerCue.includes(`${memberName}議員`)) {
     return {
       speaker_hint: memberNameRaw,
       speaker_role_hint: "questioner",
+      ...explicitAttribution,
     };
   }
 
@@ -263,6 +308,7 @@ function detectSpeakerContext({
     return {
       speaker_hint: speakerCue.replace(/君$/, ""),
       speaker_role_hint: "chair",
+      ...explicitAttribution,
     };
   }
 
@@ -270,12 +316,19 @@ function detectSpeakerContext({
     return {
       speaker_hint: speakerCue.replace(/君$/, ""),
       speaker_role_hint: "executive",
+      ...explicitAttribution,
     };
   }
 
   return {
     speaker_hint: speakerCue.replace(/君$/, ""),
     speaker_role_hint: "unknown",
+    raw_speaker_cue: rawSpeakerCue ?? speakerCue,
+    speaker_attribution_method: "unknown",
+    speaker_attribution_confidence: "unknown",
+    speaker_attribution_evidence: cueEvidence,
+    speaker_attribution_unresolved_reason:
+      "speaker cue did not match questioner, chair, or executive role patterns",
   };
 }
 
@@ -308,6 +361,17 @@ function inferProceduralSpeakerContext(line, fallbackContext) {
     return {
       speaker_hint: null,
       speaker_role_hint: "chair",
+      raw_speaker_cue: line.text,
+      speaker_attribution_method: "explicit",
+      speaker_attribution_confidence: "explicit",
+      speaker_attribution_evidence: [
+        {
+          kind: "procedural_chair_cue",
+          text: line.text,
+          line_number: line.lineNumber,
+        },
+      ],
+      speaker_attribution_unresolved_reason: null,
     };
   }
 
@@ -403,6 +467,7 @@ function startBlock({
     lines: [line.text],
     speaker_hint: speakerContext?.speaker_hint ?? null,
     speaker_role_hint: speakerContext?.speaker_role_hint ?? null,
+    speaker_attribution: buildSpeakerAttribution(speakerContext),
     speech_kind: speechKind,
     confidence:
       speechKind === "answer" || speechKind === "question_item"
@@ -433,6 +498,7 @@ function finalizeBlock(block) {
     normalized_text: normalizedText,
     speaker_hint: block.speaker_hint,
     speaker_role_hint: block.speaker_role_hint,
+    speaker_attribution: block.speaker_attribution,
     speech_kind: block.speech_kind,
     confidence: block.confidence,
     review_flags: [...new Set(block.review_flags)],
@@ -452,6 +518,17 @@ function buildUtterancesForQuestion({ question, minutesFilePath, minutesRoot }) 
   let currentSpeakerContext = {
     speaker_hint: question.member_name_raw,
     speaker_role_hint: "questioner",
+    raw_speaker_cue: null,
+    speaker_attribution_method: "explicit",
+    speaker_attribution_confidence: "explicit",
+    speaker_attribution_evidence: [
+      {
+        kind: "question_metadata",
+        text: question.member_name_raw,
+        line_number: null,
+      },
+    ],
+    speaker_attribution_unresolved_reason: null,
   };
   let currentBlock = null;
 
@@ -471,6 +548,8 @@ function buildUtterancesForQuestion({ question, minutesFilePath, minutesRoot }) 
       currentSpeakerContext =
         detectSpeakerContext({
           speakerCue,
+          rawSpeakerCue: line.text,
+          speakerCueLineNumber: line.lineNumber,
           memberNameRaw: question.member_name_raw,
         }) ?? currentSpeakerContext;
       continue;
