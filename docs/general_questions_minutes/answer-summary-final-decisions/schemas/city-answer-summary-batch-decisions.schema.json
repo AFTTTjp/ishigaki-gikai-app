@@ -120,6 +120,10 @@
           "type": "integer",
           "minimum": 0
         },
+        "batch_2_overlap_total": {
+          "type": "integer",
+          "minimum": 0
+        },
         "confirmed_fact_duplicate_total": {
           "type": "integer",
           "minimum": 0
@@ -173,7 +177,6 @@
         "candidate_summary",
         "final_summary",
         "decision",
-        "selected_for_batch_2",
         "attribution_confidence",
         "item_match_confidence",
         "source_confidence",
@@ -262,6 +265,9 @@
         "selected_for_batch_2": {
           "type": "boolean"
         },
+        "selected_for_batch_3": {
+          "type": "boolean"
+        },
         "attribution_confidence": {
           "type": "string",
           "enum": [
@@ -304,6 +310,14 @@
             "duplicate"
           ]
         },
+        "batch_2_overlap": {
+          "type": "string",
+          "enum": [
+            "none",
+            "partial",
+            "duplicate"
+          ]
+        },
         "duplicate_check": {
           "type": "string",
           "enum": [
@@ -331,16 +345,42 @@
           "minLength": 1
         }
       },
+      "anyOf": [
+        {
+          "required": [
+            "selected_for_batch_2"
+          ]
+        },
+        {
+          "required": [
+            "selected_for_batch_3"
+          ]
+        }
+      ],
       "allOf": [
         {
           "if": {
-            "properties": {
-              "selected_for_batch_2": {
-                "const": true
+            "anyOf": [
+              {
+                "properties": {
+                  "selected_for_batch_2": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "selected_for_batch_2"
+                ]
+              },
+              {
+                "properties": {
+                  "selected_for_batch_3": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "selected_for_batch_3"
+                ]
               }
-            },
-            "required": [
-              "selected_for_batch_2"
             ]
           },
           "then": {
@@ -362,6 +402,9 @@
                 ]
               },
               "batch_1_overlap": {
+                "const": "none"
+              },
+              "batch_2_overlap": {
                 "const": "none"
               },
               "duplicate_check": {
@@ -390,6 +433,9 @@
                 "type": "null"
               },
               "selected_for_batch_2": {
+                "const": false
+              },
+              "selected_for_batch_3": {
                 "const": false
               },
               "rejection_or_hold_reason": {
