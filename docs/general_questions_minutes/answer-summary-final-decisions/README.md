@@ -78,8 +78,14 @@ Batch 2以降の追加候補レビューは、既存の初回final decision arti
 上書きせず、batch-specific artifactとして保存します。
 
 - `r8-dai4-teireikai.city-answer-summaries-batch-2-decisions.json`
+- `r8-dai4-teireikai.city-answer-summaries-batch-3-decisions.json`
 - schema:
   `schemas/city-answer-summary-batch-decisions.schema.json`
 
 Batch decision artifact は reviewer-only です。public General Questions
 JSON、DB、import、revalidation、UIには接続しません。
+
+Batch 3では、Batch 2でholdまたはrejectにした候補を再確認し、
+3件を `approve_with_revision` として選定しました。Batch 3 artifactも
+public JSONへの直接反映ではなく、別PR・別承認・別検証のための
+reviewer-only decision recordです。
