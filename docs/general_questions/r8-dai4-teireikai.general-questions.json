@@ -56,6 +56,12 @@
           "title": "バスケットコート設置について",
           "sub_items": [
             "進捗状況"
+          ],
+          "city_answer_summaries": [
+            {
+              "summary": "バスケットコート設置について、市は市まちづくり支援寄付金活用事業を用いて整備を進めており、2026年4月に実施設計業務を発注し、実施設計完了後に工事へ着手して2026年度内の完成を目指すとしている。",
+              "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-tomoyose-eizo.u0013"
+            }
           ]
         },
         {
@@ -248,6 +254,12 @@
           "title": "ハーリー広場整備について",
           "sub_items": [
             "ハーリー広場遊具設置について"
+          ],
+          "city_answer_summaries": [
+            {
+              "summary": "ハーリー広場の遊具について、市は既存遊具を老朽化・腐食により撤去済みで、近隣の子ども園へのアンケート結果を踏まえ、新たな遊具設置と補助事業活用に向けて調整を進めているとしている。",
+              "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0010"
+            }
           ]
         }
       ]
@@ -424,6 +436,12 @@
           "sub_items": [
             "ユーグレナモールのバリアフリートイレの現状認識について",
             "関係機関との連携及び今後の利用環境改善に向けた取組について"
+          ],
+          "city_answer_summaries": [
+            {
+              "summary": "ユーグレナモールのバリアフリートイレについて、市は2か所設置されていると説明し、公設市場内設備の一部故障については関係者と修繕に向けた調整を進めているとしている。",
+              "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-omichi-natsuyo.u0009"
+            }
           ]
         }
       ]
