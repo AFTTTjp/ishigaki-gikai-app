@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mirai-gikai.example/schemas/utterance-index.schema.json",
+  "title": "General Question Utterance Index",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "diet_session_slug",
+    "source_kind",
+    "generated_at",
+    "generated_from",
+    "utterances"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "issue-publisher-utterance-index.v1"
+    },
+    "diet_session_slug": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_kind": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "generated_from": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "utterances": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/utterance"
+      }
+    }
+  },
+  "$defs": {
+    "nullableString": {
+      "type": ["string", "null"]
+    },
+    "speakerAttribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raw_cue",
+        "normalized_name",
+        "normalized_role",
+        "method",
+        "confidence",
+        "evidence",
+        "unresolved_reason"
+      ],
+      "properties": {
+        "raw_cue": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "normalized_name": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "normalized_role": {
+          "type": "string",
+          "enum": ["questioner", "chair", "executive", "unknown"]
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "explicit",
+            "role_name_dictionary",
+            "contextual_inheritance",
+            "chair_nomination",
+            "manual_review",
+            "unknown"
+          ]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "explicit",
+            "contextual_high",
+            "contextual_low",
+            "unknown"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "text", "line_number"],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "minLength": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "line_number": {
+                "type": ["integer", "null"],
+                "minimum": 1
+              }
+            }
+          }
+        },
+        "unresolved_reason": {
+          "$ref": "#/$defs/nullableString"
+        }
+      }
+    },
+    "utterance": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "utterance_id",
+        "question_slug",
+        "speaker_hint",
+        "speaker_role_hint",
+        "speaker_attribution",
+        "text"
+      ],
+      "properties": {
+        "utterance_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question_slug": {
+          "type": "string",
+          "minLength": 1
+        },
+        "speaker_hint": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "speaker_role_hint": {
+          "type": ["string", "null"],
+          "enum": ["questioner", "chair", "executive", "unknown", null]
+        },
+        "speaker_attribution": {
+          "$ref": "#/$defs/speakerAttribution"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
