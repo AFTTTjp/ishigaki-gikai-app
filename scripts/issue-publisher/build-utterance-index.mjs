@@ -41,6 +41,8 @@ const SPEAKER_ROLE_EXECUTIVE_PATTERNS = [
   "主幹",
   "担当",
 ];
+const TRAILING_SPEAKER_CUE_ROLE_NAME_REGEX =
+  /^([一-龥ぁ-んァ-ンー・]{0,16}(?:市長|副市長|教育長|部長|課長|次長|局長|参事|室長|主幹|担当|会計管理者))\s+([一-龥ぁ-んァ-ンー・\s]{2,16})$/;
 
 function parseArgs(argv) {
   const options = {
@@ -239,10 +241,40 @@ function buildMinutesMap(minutesFiles) {
 }
 
 function detectSpeakerCue(normalizedLine) {
-  if (!normalizedLine.endsWith("君")) {
+  return normalizedLine.endsWith("君") ? normalizedLine : null;
+}
+
+function detectTrailingSpeakerCue(normalizedLine) {
+  const roleNameCue = normalizedLine.match(TRAILING_SPEAKER_CUE_ROLE_NAME_REGEX);
+  if (!roleNameCue) {
     return null;
   }
+
+  const [, roleLikeToken, nameLikeToken] = roleNameCue;
+  if (
+    /[のをにへがはもと]|伺います|質問します|お願いします|求めます|どうでしょうか|いかがでしょうか/.test(
+      nameLikeToken
+    )
+  ) {
+    return null;
+  }
+
+  if (
+    !SPEAKER_ROLE_EXECUTIVE_PATTERNS.some((pattern) =>
+      roleLikeToken.includes(pattern)
+    )
+  ) {
+    return null;
+  }
+
   return normalizedLine;
+}
+
+function endsWithAnswerClosure(block) {
+  const lastLine = normalizeText(block?.lines?.at(-1) ?? "");
+  return /^(以上です|以上でございます|以上であります|以上となります)[。.]?$/.test(
+    lastLine
+  );
 }
 
 function buildSpeakerAttribution(speakerContext) {
@@ -548,6 +580,21 @@ function buildUtterancesForQuestion({ question, minutesFilePath, minutesRoot }) 
       currentSpeakerContext =
         detectSpeakerContext({
           speakerCue,
+          rawSpeakerCue: line.text,
+          speakerCueLineNumber: line.lineNumber,
+          memberNameRaw: question.member_name_raw,
+        }) ?? currentSpeakerContext;
+      continue;
+    }
+
+    const trailingSpeakerCue = endsWithAnswerClosure(currentBlock)
+      ? detectTrailingSpeakerCue(line.normalized)
+      : null;
+    if (trailingSpeakerCue) {
+      pushCurrentBlock();
+      currentSpeakerContext =
+        detectSpeakerContext({
+          speakerCue: trailingSpeakerCue,
           rawSpeakerCue: line.text,
           speakerCueLineNumber: line.lineNumber,
           memberNameRaw: question.member_name_raw,
