@@ -5,7 +5,7 @@
   "artifact_type": "answer_summary_candidates",
   "artifact_origin": "generated_from_candidate_inventory",
   "review_status": "reviewer_only",
-  "generated_at": "2026-07-14T14:15:38.082Z",
+  "generated_at": "2026-07-19T05:06:40.755Z",
   "generated_from": [
     "docs/general_questions_minutes/candidate-inventory/r8-dai4-teireikai.candidate-inventory.json",
     "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
@@ -13,8 +13,8 @@
   ],
   "source_inventory_summary": {
     "entries": 108,
-    "direct_item_answer_anchors": 91,
-    "unknown_answer_like": 7,
+    "direct_item_answer_anchors": 92,
+    "unknown_answer_like": 6,
     "city_answer_missing": 10,
     "recoverable_answer_entries": 2,
     "recoverable_answer_candidates": 3,
@@ -22,23 +22,23 @@
     "speaker_role_unknown_warnings": 53
   },
   "summary": {
-    "source_entry_count": 9,
-    "generated_entry_count": 9,
-    "source_candidate_count": 10,
-    "generated_candidate_count": 10,
+    "source_entry_count": 8,
+    "generated_entry_count": 8,
+    "source_candidate_count": 9,
+    "generated_candidate_count": 9,
     "summaries_generated": 3,
-    "summaries_held_or_null": 7,
+    "summaries_held_or_null": 6,
     "review_status_counts": {
-      "hold_attribution": 7,
+      "hold_attribution": 6,
       "pending_review": 3
     },
     "recommended_action_counts": {
-      "resolve_speaker_role": 7,
+      "resolve_speaker_role": 6,
       "review_for_city_answer_summary": 3
     },
     "risk_flag_counts": {
-      "answer_role_unknown": 7,
-      "speaker_role_unknown": 7,
+      "answer_role_unknown": 6,
+      "speaker_role_unknown": 6,
       "target_topic_uncertain": 2,
       "city_answer_missing": 3,
       "item_match_uncertain": 3,
@@ -249,9 +249,9 @@
           "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
           "source_speaker_name": "会計監査吉村吉",
           "source_speaker_role": "unknown",
-          "source_text": "中峰忠史議員の1項目目のご質問について2点順をお答えいたします\n1点目 各資金の詳細についてお答えいたします\n本市の基金につきましては 各条例の定めに基づいて\n特定の目的のために資金を積み立て または定額の資金を運用するために基金が設置されており\n会計課では財政調整基金をはじめ 28種類の基金を保管しております\n本年5月末現在基金残高の総計は\n53億6635万8174円となっております\n2点目の各式金の活用並びに運用状況についてお答えいたします\n各式金は当該課が条例を定めるところにより\n特定の目的に応じ活用しておりますが\nうち東原養生小学基金 東原養生高等学校小学基金\nまちづくり支援基金においては 一部は再建として運用しております\nまた会計課では一般会計における 金融機関からの一時借り入れ以外に\n一時的な資金不足時に財政調整基金と まちづくり支援基金から\n各々の条例に基づき 繰り返し運用を行っているところです\n以上です\n企画部長 菅沼博彦",
+          "source_text": "中峰忠史議員の1項目目のご質問について2点順をお答えいたします\n1点目 各資金の詳細についてお答えいたします\n本市の基金につきましては 各条例の定めに基づいて\n特定の目的のために資金を積み立て または定額の資金を運用するために基金が設置されており\n会計課では財政調整基金をはじめ 28種類の基金を保管しております\n本年5月末現在基金残高の総計は\n53億6635万8174円となっております\n2点目の各式金の活用並びに運用状況についてお答えいたします\n各式金は当該課が条例を定めるところにより\n特定の目的に応じ活用しておりますが\nうち東原養生小学基金 東原養生高等学校小学基金\nまちづくり支援基金においては 一部は再建として運用しております\nまた会計課では一般会計における 金融機関からの一時借り入れ以外に\n一時的な資金不足時に財政調整基金と まちづくり支援基金から\n各々の条例に基づき 繰り返し運用を行っているところです\n以上です",
           "source_line_start": 27,
-          "source_line_end": 43,
+          "source_line_end": 42,
           "anchor_type": "unknown_answer_like",
           "answer_confidence": "medium",
           "fallback_used": false,
@@ -264,59 +264,6 @@
           "item_match_confidence": "high",
           "item_match_basis": "source utteranceが「1項目目、基金管理について」と明示している。",
           "item_match_review_notes": "item 1との対応は直接確認できる。",
-          "candidate_summary": null,
-          "candidate_review_status": "hold_attribution",
-          "recommended_action": "resolve_speaker_role",
-          "risk_flags": [
-            "answer_role_unknown",
-            "speaker_role_unknown"
-          ],
-          "review_notes": "speaker attribution remains medium; keep summary null until role/name is confirmed."
-        }
-      ]
-    },
-    {
-      "entry_id": "ishigaki-r8-dai4-ippan-nakamine-tadashi.item02",
-      "question_id": "ishigaki-r8-dai4-ippan-nakamine-tadashi",
-      "question_order": 4,
-      "questioner_name": "仲嶺忠師",
-      "item_index": 2,
-      "item_title": "物価高騰対策について",
-      "question_text": "物価高騰対策について: 観光事業者支援について",
-      "inventory_answer_state": {
-        "answer_anchor_source": "unknown_answer_like",
-        "answer_anchor_confidence": "medium",
-        "city_answer_missing": false
-      },
-      "entry_risk_flags": [
-        "answer_role_unknown",
-        "speaker_role_unknown"
-      ],
-      "review_status": "hold_attribution",
-      "recommended_action": "resolve_speaker_role",
-      "review_notes": "confirmed_facts phase close 後の reviewer-only answer summary 候補です。公開反映の承認データではありません。",
-      "candidates": [
-        {
-          "candidate_id": "ishigaki-r8-dai4-ippan-nakamine-tadashi.item02::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0007::unknown_answer_like",
-          "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0007",
-          "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
-          "source_speaker_name": "会計監査吉村吉",
-          "source_speaker_role": "unknown",
-          "source_text": "中峰忠史議員のご質問の2項目目\n物価高騰対策の観光事業者支援についてお答えします\n観光事業者の範囲としては、宿泊事業者、バス、タクシー、レンタカー、クルーズ船関連事業者、離島フェリー関連事業者、旅行代理店、観光施設、お土産施設関連、マリンレジャー、体験施設、体験アクティビティ事業者、リゾートウェディング、\nその他、観光客に対して提供するサービス・商品等を有する事業を営む事業者など、多岐に及ぶものと承知しています。\n物価高騰によるコスト増は、観光需要が回復傾向にある中において、収益へ影響を及ぼす要因になります。\nまた、事業者側だけでなく、旅行者側の消費行動や旅行動機への影響も懸念されます。\n国の物価高騰対応重点支援地方創生臨時交付金の推奨事業メニューには、地域公共交通、物流事業者や地域観光事業者等へのエネルギー価格高騰に対する影響緩和、省エネ対策、地域に不可欠な交通手段の確保、地域特性を踏まえた生産性向上に向けた取組などの支援が対象として挙げられています。\nしかしながら、交付金の配分額や上限もあり、これまで観光事業者に特化した直接的な支援は行っていません。\n他に現在、国が観光事業者や中小事業者向けに行っている補助金としては、省力化・交付化価値化を対象とする傾向があります。\nその中で、小規模事業者持続化補助金は、販路開拓を対象としますが、燃費向上につながる掃除導入も生産性向上、コスト削減による経営持続化のための設備投資として認められる場合があると承知しています。\n面的な観光事業者支援として、寮から出入りの転換という課題もありますが、一定の寮の確保として、換算機対策、観光事業の平準化に取り組んでいくことで、観光事業の市場形成を支援していきたいと考えています。\n以上です。",
-          "source_line_start": 44,
-          "source_line_end": 55,
-          "anchor_type": "unknown_answer_like",
-          "answer_confidence": "medium",
-          "fallback_used": false,
-          "summary_basis": null,
-          "reviewed_speaker_name": "企画部長 菅沼博彦",
-          "reviewed_speaker_role": "executive",
-          "attribution_confidence": "medium",
-          "attribution_basis": "source utteranceは仲嶺忠師議員のitem 2「物価高騰対策について」に回答している。直前utterance末尾に「企画部長 菅沼博彦」とあるが、当該source metadataは別speaker名のままであり、発話境界とspeaker attributionに不確実性が残る。",
-          "attribution_review_notes": "市側答弁性は高いが、発話者の確定には原文再確認が必要。",
-          "item_match_confidence": "high",
-          "item_match_basis": "source utteranceが「2項目目 物価高騰対策について」と明示している。",
-          "item_match_review_notes": "item 2との対応は直接確認できる。",
           "candidate_summary": null,
           "candidate_review_status": "hold_attribution",
           "recommended_action": "resolve_speaker_role",
