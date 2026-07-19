@@ -39,17 +39,35 @@ export function GeneralQuestionCard({ question }: Props) {
                     {item.title}
                   </span>
                 </div>
+                {item.normal_description && (
+                  <p className="ml-5 text-xs leading-relaxed text-mirai-text-secondary">
+                    {item.normal_description}
+                  </p>
+                )}
+                {item.detailed_description && (
+                  <details className="ml-5 text-xs leading-relaxed text-mirai-text-muted">
+                    <summary className="cursor-pointer font-semibold text-mirai-text-secondary">
+                      詳しい内容を見る
+                    </summary>
+                    <p className="mt-1">{item.detailed_description}</p>
+                  </details>
+                )}
                 {item.sub_items.length > 0 && (
-                  <ul className="ml-5 flex flex-col gap-1 border-l-2 border-mirai-border pl-3">
-                    {item.sub_items.map((sub, idx) => (
-                      <li
-                        key={`${item.id}-sub-${idx}`}
-                        className="text-xs leading-relaxed text-mirai-text-muted"
-                      >
-                        {sub}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="ml-5 border-l-2 border-mirai-border pl-3">
+                    <p className="text-xs font-semibold text-mirai-text-secondary">
+                      質問の小項目
+                    </p>
+                    <ul className="mt-1 flex flex-col gap-1">
+                      {item.sub_items.map((sub, idx) => (
+                        <li
+                          key={`${item.id}-sub-${idx}`}
+                          className="text-xs leading-relaxed text-mirai-text-muted"
+                        >
+                          {sub}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
                 {item.city_answer_summaries.length > 0 && (
                   <div className="ml-5 rounded-xl bg-mirai-surface-grouped px-3 py-3">

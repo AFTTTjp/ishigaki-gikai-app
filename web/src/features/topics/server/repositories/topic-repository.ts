@@ -53,11 +53,21 @@ function normalizeStringArray(value: unknown): string[] {
   return value.filter((entry): entry is string => typeof entry === "string");
 }
 
+function normalizeOptionalString(value: unknown): string | null {
+  if (typeof value !== "string" || value.trim().length === 0) {
+    return null;
+  }
+
+  return value.trim();
+}
+
 function normalizeGeneralQuestionItem(item: {
   id: string;
   general_question_id: string;
   item_number: number;
   title: string;
+  normal_description?: unknown;
+  detailed_description?: unknown;
   sub_items?: unknown;
   city_answer_summaries?: unknown;
   confirmed_facts?: unknown;
@@ -67,6 +77,8 @@ function normalizeGeneralQuestionItem(item: {
     general_question_id: item.general_question_id,
     item_number: item.item_number,
     title: item.title,
+    normal_description: normalizeOptionalString(item.normal_description),
+    detailed_description: normalizeOptionalString(item.detailed_description),
     sub_items: normalizeStringArray(item.sub_items),
     city_answer_summaries: normalizeCityAnswerSummaries(
       item.city_answer_summaries
@@ -257,6 +269,8 @@ export async function findRelatedPublishedGeneralQuestionsByTopicId(
         general_question_id,
         item_number,
         title,
+        normal_description,
+        detailed_description,
         sub_items,
         city_answer_summaries,
         confirmed_facts
