@@ -12,13 +12,13 @@
   "summary": {
     "reviewed_total": 10,
     "approve_as_written_total": 2,
-    "approve_with_revision_total": 1,
-    "hold_attribution_total": 7,
+    "approve_with_revision_total": 2,
+    "hold_attribution_total": 6,
     "reject_total": 0,
-    "final_summary_non_null_total": 3,
-    "final_summary_null_total": 7,
-    "approved_for_public_json_total": 0,
-    "not_approved_total": 10
+    "final_summary_non_null_total": 4,
+    "final_summary_null_total": 6,
+    "approved_for_public_json_total": 3,
+    "not_approved_total": 7
   },
   "decisions": [
     {
@@ -94,22 +94,22 @@
       "review_notes": "item 1への答弁性は高いが、speaker表記が文字起こし上崩れており、正確な役職・氏名を確定できないためsummary化を保留する。"
     },
     {
-      "decision_id": "r8-dai4-teireikai::ishigaki-r8-dai4-ippan-nakamine-tadashi.item02::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0007::unknown_answer_like::answer-summary-decision-v1",
-      "candidate_id": "ishigaki-r8-dai4-ippan-nakamine-tadashi.item02::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0007::unknown_answer_like",
+      "decision_id": "r8-dai4-teireikai::ishigaki-r8-dai4-ippan-nakamine-tadashi.item02::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0007::direct_item_match::answer-summary-decision-v1",
+      "candidate_id": "ishigaki-r8-dai4-ippan-nakamine-tadashi.item02::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0007::direct_item_match",
       "question_id": "ishigaki-r8-dai4-ippan-nakamine-tadashi",
       "item_number": 2,
       "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0007",
-      "decision": "hold_attribution",
-      "final_summary": null,
-      "revision_reason": null,
-      "attribution_confidence": "medium",
+      "decision": "approve_with_revision",
+      "final_summary": "物価高騰対策について、市は、観光事業者の範囲は宿泊、交通、旅行代理店、観光施設、土産品、マリンレジャーなど多岐に及ぶとしたうえで、これまで観光事業者に特化した直接的な支援は行っていないと説明している。",
+      "revision_reason": "speaker attribution修正により企画部長による直接答弁と確認され、旧hold理由は解消した。source末尾に文字起こしノイズがあるため、その部分を避けて要約を作成した。",
+      "attribution_confidence": "high",
       "item_match_confidence": "high",
-      "speaker_name": "会計監査吉村吉",
-      "speaker_role": "unknown",
-      "evidence_excerpt": "物価高騰対策の観光事業者支援についてお答えします。観光事業者の範囲としては宿泊事業者、バス、タクシー、レンタカーなど多岐に及ぶものと承知しています。",
+      "speaker_name": "企画部長 菅沼博彦",
+      "speaker_role": "executive",
+      "evidence_excerpt": "観光事業者の範囲としては、宿泊事業者、バス、タクシー、レンタカー、旅行代理店、観光施設、お土産施設関連、マリンレジャーなど多岐に及ぶものと承知しています。これまで観光事業者に特化した直接的な支援は行っていません。",
       "confirmed_facts_overlap": "none",
       "final_approval_status": "not_approved",
-      "review_notes": "reviewed_speaker_name は候補artifact上で補助的に記録されているが、source_speaker_nameとの不一致が残るため、public向けsummary化は保留する。"
+      "review_notes": "summary_verdict=approve_with_revision。previous decision was held because attribution was unresolved; Phase 2 attribution correction resolved the speaker and role, and this was re-reviewed as a direct executive answer. Public reflection remains not approved."
     },
     {
       "decision_id": "r8-dai4-teireikai::ishigaki-r8-dai4-ippan-taira-hideyuki.item05::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0012::null_item_proximity::answer-summary-decision-v1",
