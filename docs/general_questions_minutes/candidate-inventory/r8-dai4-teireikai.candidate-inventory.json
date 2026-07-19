@@ -2,7 +2,7 @@
   "schema_version": "candidate-inventory.v1",
   "session": "令和8年第4回定例会",
   "diet_session_slug": "ishigaki-r8-dai4-teireikai",
-  "generated_at": "2026-07-10T08:09:15.322Z",
+  "generated_at": "2026-07-19T05:06:33.272Z",
   "generated_from": [
     "docs/general_questions/r8-dai4-teireikai.general-questions.json",
     "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json"
@@ -18,10 +18,10 @@
       "general_question_only": 76
     },
     "risk_flag_counts": {
-      "question_anchor_fallback_used": 30,
+      "question_anchor_fallback_used": 31,
       "speaker_role_unknown": 53,
       "target_topic_uncertain": 22,
-      "answer_role_unknown": 7,
+      "answer_role_unknown": 6,
       "question_anchor_missing": 9,
       "city_answer_missing": 10,
       "question_only": 10
@@ -918,7 +918,7 @@
         "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
         "speaker": "会計監査吉村吉",
         "speaker_role": "unknown",
-        "line_or_time_hint": "L27-L43"
+        "line_or_time_hint": "L27-L42"
       },
       "city_answer_excerpt": "中峰忠史議員の1項目目のご質問について2点順をお答えいたします 1点目 各資金の詳細についてお答えいたします 本市の基金につきましては 各条例の定めに基づいて 特定の目的のために資金を積み立て または定額の資金を運用するために基金が設置されており 会計課では財政調整基金をはじめ 28種類の基金を保管しております 本年5月末現在基金残高の総計は 53億6635万8174円となっております 2点目の…",
       "city_answer_missing": false,
@@ -960,20 +960,19 @@
       "city_answer_anchor": {
         "utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0007",
         "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
-        "speaker": "会計監査吉村吉",
-        "speaker_role": "unknown",
+        "speaker": "企画部長 菅沼博彦",
+        "speaker_role": "executive",
         "line_or_time_hint": "L44-L55"
       },
       "city_answer_excerpt": "中峰忠史議員のご質問の2項目目 物価高騰対策の観光事業者支援についてお答えします 観光事業者の範囲としては、宿泊事業者、バス、タクシー、レンタカー、クルーズ船関連事業者、離島フェリー関連事業者、旅行代理店、観光施設、お土産施設関連、マリンレジャー、体験施設、体験アクティビティ事業者、リゾートウェディング、 その他、観光客に対して提供するサービス・商品等を有する事業を営む事業者など、多岐に及ぶもの…",
       "city_answer_missing": false,
-      "answer_anchor_confidence": "medium",
-      "answer_anchor_source": "unknown_answer_like",
+      "answer_anchor_confidence": "high",
+      "answer_anchor_source": "direct_item_match",
       "recoverable_answer_candidates": [],
       "confirmed_fact_candidates": [],
       "confirmed_facts": [],
       "unconfirmed_or_not_decided": [
-        "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。",
-        "city/executive 側答弁 anchor は unknown answer-like として抽出しており、人間確認が必要です。"
+        "question 側 anchor の speaker role が unresolved のため、人間確認が必要です。"
       ],
       "recommended_reflection": {
         "type": "general_question_only",
@@ -982,14 +981,14 @@
         "reason": "市側答弁 anchor はあるが、item 単位で既存 Topic への exact target は未確定のため、まず一般質問側の整理候補として扱います。"
       },
       "risk_flags": [
-        "speaker_role_unknown",
-        "answer_role_unknown"
+        "question_anchor_fallback_used",
+        "speaker_role_unknown"
       ],
       "anchor": {
         "source_file": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
-        "quote_or_excerpt": "中峰忠史議員のご質問の2項目目 物価高騰対策の観光事業者支援についてお答えします 観光事業者の範囲としては、宿泊事業者、バス、タクシー、レンタカー、クルーズ船関連事業者、離島フェリー関連事業者、旅行代理店、観光施設、お土産施設関連、マリンレジャー、体験施設、体験アクティビティ事業者、リゾートウェディング、 その他、観光客に対して提供するサービス・商品等を有…",
-        "speaker": "会計監査吉村吉",
-        "line_or_time_hint": "L44-L55"
+        "quote_or_excerpt": "こんにちは それでは通告いたしました項目につきまして 質疑に提言いたしますので わかりやすく簡潔なご答弁を願います",
+        "speaker": "中峰忠史",
+        "line_or_time_hint": "L3-L6"
       },
       "confidence": "low"
     },
