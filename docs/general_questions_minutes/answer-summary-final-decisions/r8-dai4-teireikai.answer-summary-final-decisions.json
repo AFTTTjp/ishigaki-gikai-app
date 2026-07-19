@@ -17,8 +17,8 @@
     "reject_total": 0,
     "final_summary_non_null_total": 4,
     "final_summary_null_total": 6,
-    "approved_for_public_json_total": 3,
-    "not_approved_total": 7
+    "approved_for_public_json_total": 4,
+    "not_approved_total": 6
   },
   "decisions": [
     {
@@ -100,16 +100,16 @@
       "item_number": 2,
       "source_utterance_id": "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nakamine-tadashi.u0007",
       "decision": "approve_with_revision",
-      "final_summary": "物価高騰対策について、市は、観光事業者の範囲は宿泊、交通、旅行代理店、観光施設、土産品、マリンレジャーなど多岐に及ぶとしたうえで、これまで観光事業者に特化した直接的な支援は行っていないと説明している。",
-      "revision_reason": "speaker attribution修正により企画部長による直接答弁と確認され、旧hold理由は解消した。source末尾に文字起こしノイズがあるため、その部分を避けて要約を作成した。",
+      "final_summary": "物価高騰対策について、市は、観光事業者は宿泊事業者、交通関連事業者、旅行代理店、観光施設、土産品関連、マリンレジャーなど多岐に及ぶとしたうえで、これまで観光事業者に特化した直接的な支援は行っていないと説明している。",
+      "revision_reason": "speaker attribution修正により企画部長による直接答弁と確認され、旧hold理由は解消した。source末尾に文字起こしノイズがあるため、その部分を避け、source fidelityを高めた最終公開文言に調整した。",
       "attribution_confidence": "high",
       "item_match_confidence": "high",
       "speaker_name": "企画部長 菅沼博彦",
       "speaker_role": "executive",
       "evidence_excerpt": "観光事業者の範囲としては、宿泊事業者、バス、タクシー、レンタカー、旅行代理店、観光施設、お土産施設関連、マリンレジャーなど多岐に及ぶものと承知しています。これまで観光事業者に特化した直接的な支援は行っていません。",
       "confirmed_facts_overlap": "none",
-      "final_approval_status": "not_approved",
-      "review_notes": "summary_verdict=approve_with_revision。previous decision was held because attribution was unresolved; Phase 2 attribution correction resolved the speaker and role, and this was re-reviewed as a direct executive answer. Public reflection remains not approved."
+      "final_approval_status": "approved_for_public_json",
+      "review_notes": "summary_verdict=approve_with_revision。previous decision was held because attribution was unresolved; Phase 2 attribution correction resolved the speaker and role, and this was re-reviewed as a direct executive answer. Public wording was refined for source fidelity, ASR-noisy末尾はsummaryから除外し、subsequent public JSON reflectionを承認する。"
     },
     {
       "decision_id": "r8-dai4-teireikai::ishigaki-r8-dai4-ippan-taira-hideyuki.item05::ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-taira-hideyuki.u0012::null_item_proximity::answer-summary-decision-v1",
