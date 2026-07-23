@@ -101,6 +101,12 @@ if (DRY_RUN) {
     );
     for (const item of q.items) {
       console.log(`       ${item.item_number}. ${item.title}`);
+      if (item.normal_description) {
+        console.log(`          説明: ${item.normal_description}`);
+      }
+      if (item.detailed_description) {
+        console.log(`          詳細: ${item.detailed_description}`);
+      }
       for (const sub of item.sub_items) {
         console.log(`          - ${sub}`);
       }
@@ -214,6 +220,8 @@ for (const q of questions) {
     general_question_id: generalQuestionId,
     item_number: item.item_number,
     title: item.title,
+    normal_description: item.normal_description,
+    detailed_description: item.detailed_description,
     sub_items: item.sub_items,
     confirmed_facts: item.confirmed_facts,
     city_answer_summaries: item.city_answer_summaries,

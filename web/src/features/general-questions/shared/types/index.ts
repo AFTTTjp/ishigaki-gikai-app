@@ -8,6 +8,8 @@ export type GeneralQuestionItem = {
   general_question_id: string;
   item_number: number;
   title: string;
+  normal_description: string | null;
+  detailed_description: string | null;
   sub_items: string[];
   city_answer_summaries: CityAnswerSummary[];
   confirmed_facts: string[];

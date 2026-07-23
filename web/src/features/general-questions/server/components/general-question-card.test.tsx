@@ -5,9 +5,13 @@ import type { CityAnswerSummary, GeneralQuestion } from "../../shared/types";
 import { GeneralQuestionCard } from "./general-question-card";
 
 function makeQuestion({
+  normalDescription = null,
+  detailedDescription = null,
   cityAnswerSummaries = [],
   confirmedFacts = [],
 }: {
+  normalDescription?: string | null;
+  detailedDescription?: string | null;
   cityAnswerSummaries?: CityAnswerSummary[];
   confirmedFacts?: string[];
 } = {}): GeneralQuestion {
@@ -28,6 +32,8 @@ function makeQuestion({
         general_question_id: "question-1",
         item_number: 1,
         title: "市営住宅について",
+        normal_description: normalDescription,
+        detailed_description: detailedDescription,
         sub_items: ["現状について", "支援策について"],
         city_answer_summaries: cityAnswerSummaries,
         confirmed_facts: confirmedFacts,
@@ -37,6 +43,49 @@ function makeQuestion({
 }
 
 describe("GeneralQuestionCard", () => {
+  it("description fields が空なら説明と詳細開閉を表示しない", () => {
+    render(<GeneralQuestionCard question={makeQuestion()} />);
+
+    expect(screen.queryByText("詳しい内容を見る")).toBeNull();
+    expect(screen.getByText("質問の小項目")).toBeTruthy();
+    expect(screen.getByText("現状について")).toBeTruthy();
+    expect(screen.getByText("支援策について")).toBeTruthy();
+  });
+
+  it("normal_description があるときだけタイトル直下に表示する", () => {
+    render(
+      <GeneralQuestionCard
+        question={makeQuestion({
+          normalDescription: "市営住宅の入居支援について問います。",
+        })}
+      />
+    );
+
+    expect(
+      screen.getByText("市営住宅の入居支援について問います。")
+    ).toBeTruthy();
+    expect(screen.queryByText("詳しい内容を見る")).toBeNull();
+  });
+
+  it("detailed_description があるときnative disclosureで表示する", () => {
+    render(
+      <GeneralQuestionCard
+        question={makeQuestion({
+          normalDescription: "市営住宅の入居支援について問います。",
+          detailedDescription:
+            "住宅確保に困る世帯への支援や、市営住宅の入居枠について確認する質問です。",
+        })}
+      />
+    );
+
+    expect(screen.getByText("詳しい内容を見る")).toBeTruthy();
+    expect(
+      screen.getByText(
+        "住宅確保に困る世帯への支援や、市営住宅の入居枠について確認する質問です。"
+      )
+    ).toBeTruthy();
+  });
+
   it("confirmed_facts が空ならセクションを表示しない", () => {
     render(<GeneralQuestionCard question={makeQuestion()} />);
 

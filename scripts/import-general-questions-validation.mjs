@@ -2,6 +2,38 @@ function isNonEmptyString(value) {
   return typeof value === "string" && value.trim().length > 0;
 }
 
+const DESCRIPTION_LIMITS = {
+  normal_description: 80,
+  detailed_description: 400,
+};
+
+const CONTROL_CHARACTER_PATTERN = /[\u0000-\u001F\u007F]/u;
+
+function validateOptionalDescription(value, fieldPath, maxLength) {
+  if (value === undefined) {
+    return null;
+  }
+
+  if (typeof value !== "string") {
+    throw new Error(`${fieldPath} must be a string when present`);
+  }
+
+  const trimmed = value.trim();
+  if (trimmed.length === 0) {
+    throw new Error(`${fieldPath} must not be empty or whitespace-only`);
+  }
+
+  if (CONTROL_CHARACTER_PATTERN.test(trimmed)) {
+    throw new Error(`${fieldPath} must not contain control characters`);
+  }
+
+  if ([...trimmed].length > maxLength) {
+    throw new Error(`${fieldPath} must be ${maxLength} characters or fewer`);
+  }
+
+  return trimmed;
+}
+
 function validateStringArray(value, fieldPath) {
   if (!Array.isArray(value)) {
     throw new Error(`${fieldPath} must be an array`);
@@ -119,6 +151,27 @@ export function validateAndNormalizeGeneralQuestionsDocument(raw, jsonPath) {
         throw new Error(`${itemPath}.title must be a non-empty string`);
       }
 
+      const normalDescription = validateOptionalDescription(
+        item.normal_description,
+        `${itemPath}.normal_description`,
+        DESCRIPTION_LIMITS.normal_description
+      );
+      const detailedDescription = validateOptionalDescription(
+        item.detailed_description,
+        `${itemPath}.detailed_description`,
+        DESCRIPTION_LIMITS.detailed_description
+      );
+
+      if (
+        normalDescription !== null &&
+        detailedDescription !== null &&
+        normalDescription === detailedDescription
+      ) {
+        throw new Error(
+          `${itemPath}.normal_description and detailed_description must not be identical`
+        );
+      }
+
       const subItems = validateStringArray(item.sub_items, `${itemPath}.sub_items`);
 
       const confirmedFactsRaw = item.confirmed_facts;
@@ -138,6 +191,8 @@ export function validateAndNormalizeGeneralQuestionsDocument(raw, jsonPath) {
 
       return {
         ...item,
+        normal_description: normalDescription,
+        detailed_description: detailedDescription,
         sub_items: subItems,
         confirmed_facts: confirmedFacts,
         city_answer_summaries: cityAnswerSummaries,

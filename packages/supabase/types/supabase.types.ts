@@ -478,9 +478,11 @@ export type Database = {
           city_answer_summaries: Json
           confirmed_facts: string[]
           created_at: string
+          detailed_description: string | null
           general_question_id: string
           id: string
           item_number: number
+          normal_description: string | null
           sub_items: string[]
           title: string
           updated_at: string
@@ -489,9 +491,11 @@ export type Database = {
           city_answer_summaries?: Json
           confirmed_facts?: string[]
           created_at?: string
+          detailed_description?: string | null
           general_question_id: string
           id?: string
           item_number: number
+          normal_description?: string | null
           sub_items?: string[]
           title: string
           updated_at?: string
@@ -500,9 +504,11 @@ export type Database = {
           city_answer_summaries?: Json
           confirmed_facts?: string[]
           created_at?: string
+          detailed_description?: string | null
           general_question_id?: string
           id?: string
           item_number?: number
+          normal_description?: string | null
           sub_items?: string[]
           title?: string
           updated_at?: string
