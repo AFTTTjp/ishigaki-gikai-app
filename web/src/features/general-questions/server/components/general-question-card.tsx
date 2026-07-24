@@ -1,7 +1,9 @@
+import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
 import type { GeneralQuestion } from "../../shared/types";
 
 type Props = {
   question: GeneralQuestion;
+  currentDifficulty: DifficultyLevelEnum;
 };
 
 const SEAT_TYPE_LABEL: Record<"floor" | "seat", string> = {
@@ -9,7 +11,7 @@ const SEAT_TYPE_LABEL: Record<"floor" | "seat", string> = {
   seat: "自席",
 };
 
-export function GeneralQuestionCard({ question }: Props) {
+export function GeneralQuestionCard({ question, currentDifficulty }: Props) {
   return (
     <div className="rounded-2xl border border-mirai-border bg-white p-5 shadow-sm">
       <div className="flex flex-col gap-4">
@@ -29,85 +31,86 @@ export function GeneralQuestionCard({ question }: Props) {
 
         {question.items.length > 0 && (
           <ol className="flex flex-col gap-3">
-            {question.items.map((item) => (
-              <li key={item.id} className="flex flex-col gap-1.5">
-                <div className="flex items-start gap-2">
-                  <span className="mt-0.5 shrink-0 text-sm font-bold text-mirai-text-muted">
-                    {item.item_number}.
-                  </span>
-                  <span className="text-sm font-medium leading-snug text-mirai-text">
-                    {item.title}
-                  </span>
-                </div>
-                {item.normal_description && (
-                  <p className="ml-5 text-xs leading-relaxed text-mirai-text-secondary">
-                    {item.normal_description}
-                  </p>
-                )}
-                {item.detailed_description && (
-                  <details className="ml-5 text-xs leading-relaxed text-mirai-text-muted">
-                    <summary className="cursor-pointer font-semibold text-mirai-text-secondary">
-                      詳しい内容を見る
-                    </summary>
-                    <p className="mt-1">{item.detailed_description}</p>
-                  </details>
-                )}
-                {item.sub_items.length > 0 && (
-                  <div className="ml-5 border-l-2 border-mirai-border pl-3">
-                    <p className="text-xs font-semibold text-mirai-text-secondary">
-                      質問の小項目
-                    </p>
-                    <ul className="mt-1 flex flex-col gap-1">
-                      {item.sub_items.map((sub, idx) => (
-                        <li
-                          key={`${item.id}-sub-${idx}`}
-                          className="text-xs leading-relaxed text-mirai-text-muted"
-                        >
-                          {sub}
-                        </li>
-                      ))}
-                    </ul>
+            {question.items.map((item) => {
+              const description =
+                currentDifficulty === "hard"
+                  ? (item.detailed_description ?? item.normal_description)
+                  : item.normal_description;
+
+              return (
+                <li key={item.id} className="flex flex-col gap-1.5">
+                  <div className="flex items-start gap-2">
+                    <span className="mt-0.5 shrink-0 text-sm font-bold text-mirai-text-muted">
+                      {item.item_number}.
+                    </span>
+                    <span className="text-sm font-medium leading-snug text-mirai-text">
+                      {item.title}
+                    </span>
                   </div>
-                )}
-                {item.city_answer_summaries.length > 0 && (
-                  <div className="ml-5 rounded-xl bg-mirai-surface-grouped px-3 py-3">
-                    <p className="text-xs font-semibold tracking-[0.02em] text-mirai-text">
-                      市の答弁要旨
+                  {description && (
+                    <p className="ml-5 text-xs leading-relaxed text-mirai-text-secondary">
+                      {description}
                     </p>
-                    <p className="mt-1 text-xs leading-relaxed text-mirai-text-muted">
-                      議会での市側答弁を要約しています。
-                    </p>
-                    <ul className="mt-2 flex list-disc flex-col gap-1 pl-4">
-                      {item.city_answer_summaries.map((answerSummary, idx) => (
-                        <li
-                          key={`${item.id}-answer-summary-${idx}`}
-                          className="text-xs leading-relaxed text-mirai-text-secondary"
-                        >
-                          {answerSummary.summary}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                {item.confirmed_facts.length > 0 && (
-                  <div className="ml-5 rounded-xl bg-mirai-surface-grouped px-3 py-3">
-                    <p className="text-xs font-semibold tracking-[0.02em] text-mirai-text">
-                      市の答弁で確認できたこと
-                    </p>
-                    <ul className="mt-2 flex list-disc flex-col gap-1 pl-4">
-                      {item.confirmed_facts.map((fact, idx) => (
-                        <li
-                          key={`${item.id}-fact-${idx}`}
-                          className="text-xs leading-relaxed text-mirai-text-secondary"
-                        >
-                          {fact}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </li>
-            ))}
+                  )}
+                  {item.sub_items.length > 0 && (
+                    <div className="ml-5 border-l-2 border-mirai-border pl-3">
+                      <p className="text-xs font-semibold text-mirai-text-secondary">
+                        質問の小項目
+                      </p>
+                      <ul className="mt-1 flex flex-col gap-1">
+                        {item.sub_items.map((sub, idx) => (
+                          <li
+                            key={`${item.id}-sub-${idx}`}
+                            className="text-xs leading-relaxed text-mirai-text-muted"
+                          >
+                            {sub}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {item.city_answer_summaries.length > 0 && (
+                    <div className="ml-5 rounded-xl bg-mirai-surface-grouped px-3 py-3">
+                      <p className="text-xs font-semibold tracking-[0.02em] text-mirai-text">
+                        市の答弁要旨
+                      </p>
+                      <p className="mt-1 text-xs leading-relaxed text-mirai-text-muted">
+                        議会での市側答弁を要約しています。
+                      </p>
+                      <ul className="mt-2 flex list-disc flex-col gap-1 pl-4">
+                        {item.city_answer_summaries.map(
+                          (answerSummary, idx) => (
+                            <li
+                              key={`${item.id}-answer-summary-${idx}`}
+                              className="text-xs leading-relaxed text-mirai-text-secondary"
+                            >
+                              {answerSummary.summary}
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  )}
+                  {item.confirmed_facts.length > 0 && (
+                    <div className="ml-5 rounded-xl bg-mirai-surface-grouped px-3 py-3">
+                      <p className="text-xs font-semibold tracking-[0.02em] text-mirai-text">
+                        市の答弁で確認できたこと
+                      </p>
+                      <ul className="mt-2 flex list-disc flex-col gap-1 pl-4">
+                        {item.confirmed_facts.map((fact, idx) => (
+                          <li
+                            key={`${item.id}-fact-${idx}`}
+                            className="text-xs leading-relaxed text-mirai-text-secondary"
+                          >
+                            {fact}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </li>
+              );
+            })}
           </ol>
         )}
       </div>
