@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
 import type { CityAnswerSummary, GeneralQuestion } from "../../shared/types";
 import { GeneralQuestionCard } from "./general-question-card";
 
@@ -42,9 +43,21 @@ function makeQuestion({
   };
 }
 
+function renderCard(
+  question: GeneralQuestion,
+  currentDifficulty: DifficultyLevelEnum = "normal"
+) {
+  return render(
+    <GeneralQuestionCard
+      question={question}
+      currentDifficulty={currentDifficulty}
+    />
+  );
+}
+
 describe("GeneralQuestionCard", () => {
-  it("description fields が空なら説明と詳細開閉を表示しない", () => {
-    render(<GeneralQuestionCard question={makeQuestion()} />);
+  it("description fields が空なら説明を表示しない", () => {
+    renderCard(makeQuestion());
 
     expect(screen.queryByText("詳しい内容を見る")).toBeNull();
     expect(screen.getByText("質問の小項目")).toBeTruthy();
@@ -52,13 +65,54 @@ describe("GeneralQuestionCard", () => {
     expect(screen.getByText("支援策について")).toBeTruthy();
   });
 
-  it("normal_description があるときだけタイトル直下に表示する", () => {
-    render(
-      <GeneralQuestionCard
-        question={makeQuestion({
-          normalDescription: "市営住宅の入居支援について問います。",
-        })}
-      />
+  it("normal difficultyではnormal_descriptionだけ表示する", () => {
+    renderCard(
+      makeQuestion({
+        normalDescription: "市営住宅の入居支援について問います。",
+        detailedDescription:
+          "住宅確保に困る世帯への支援や、市営住宅の入居枠について確認する質問です。",
+      }),
+      "normal"
+    );
+
+    expect(
+      screen.getByText("市営住宅の入居支援について問います。")
+    ).toBeTruthy();
+    expect(
+      screen.queryByText(
+        "住宅確保に困る世帯への支援や、市営住宅の入居枠について確認する質問です。"
+      )
+    ).toBeNull();
+    expect(screen.queryByText("詳しい内容を見る")).toBeNull();
+  });
+
+  it("hard difficultyではdetailed_descriptionだけ表示する", () => {
+    renderCard(
+      makeQuestion({
+        normalDescription: "市営住宅の入居支援について問います。",
+        detailedDescription:
+          "住宅確保に困る世帯への支援や、市営住宅の入居枠について確認する質問です。",
+      }),
+      "hard"
+    );
+
+    expect(
+      screen.getByText(
+        "住宅確保に困る世帯への支援や、市営住宅の入居枠について確認する質問です。"
+      )
+    ).toBeTruthy();
+    expect(
+      screen.queryByText("市営住宅の入居支援について問います。")
+    ).toBeNull();
+    expect(screen.queryByText("詳しい内容を見る")).toBeNull();
+  });
+
+  it("hard difficultyでdetailed_descriptionがない場合はnormal_descriptionへfallbackする", () => {
+    renderCard(
+      makeQuestion({
+        normalDescription: "市営住宅の入居支援について問います。",
+      }),
+      "hard"
     );
 
     expect(
@@ -67,27 +121,25 @@ describe("GeneralQuestionCard", () => {
     expect(screen.queryByText("詳しい内容を見る")).toBeNull();
   });
 
-  it("detailed_description があるときnative disclosureで表示する", () => {
-    render(
-      <GeneralQuestionCard
-        question={makeQuestion({
-          normalDescription: "市営住宅の入居支援について問います。",
-          detailedDescription:
-            "住宅確保に困る世帯への支援や、市営住宅の入居枠について確認する質問です。",
-        })}
-      />
+  it("normal difficultyでnormal_descriptionがない場合はdetailed_descriptionを表示しない", () => {
+    renderCard(
+      makeQuestion({
+        detailedDescription:
+          "住宅確保に困る世帯への支援や、市営住宅の入居枠について確認する質問です。",
+      }),
+      "normal"
     );
 
-    expect(screen.getByText("詳しい内容を見る")).toBeTruthy();
     expect(
-      screen.getByText(
+      screen.queryByText(
         "住宅確保に困る世帯への支援や、市営住宅の入居枠について確認する質問です。"
       )
-    ).toBeTruthy();
+    ).toBeNull();
+    expect(screen.queryByText("詳しい内容を見る")).toBeNull();
   });
 
   it("confirmed_facts が空ならセクションを表示しない", () => {
-    render(<GeneralQuestionCard question={makeQuestion()} />);
+    renderCard(makeQuestion());
 
     expect(screen.queryByText("市の答弁で確認できたこと")).toBeNull();
     expect(screen.getByText("現状について")).toBeTruthy();
@@ -95,15 +147,13 @@ describe("GeneralQuestionCard", () => {
   });
 
   it("confirmed_facts があるときだけセクションと箇条書きを表示する", () => {
-    render(
-      <GeneralQuestionCard
-        question={makeQuestion({
-          confirmedFacts: [
-            "点数評価方式案を本議会に上程している。",
-            "居住支援協議会の設立に向けた取組を進めている。",
-          ],
-        })}
-      />
+    renderCard(
+      makeQuestion({
+        confirmedFacts: [
+          "点数評価方式案を本議会に上程している。",
+          "居住支援協議会の設立に向けた取組を進めている。",
+        ],
+      })
     );
 
     expect(screen.getByText("市の答弁で確認できたこと")).toBeTruthy();
@@ -118,24 +168,22 @@ describe("GeneralQuestionCard", () => {
   });
 
   it("city_answer_summaries が空なら答弁要旨セクションを表示しない", () => {
-    render(<GeneralQuestionCard question={makeQuestion()} />);
+    renderCard(makeQuestion());
 
     expect(screen.queryByText("市の答弁要旨")).toBeNull();
     expect(screen.queryByText("議会での市側答弁を要約しています。")).toBeNull();
   });
 
   it("city_answer_summaries があるときだけ見出し、補足、要旨を表示する", () => {
-    render(
-      <GeneralQuestionCard
-        question={makeQuestion({
-          cityAnswerSummaries: [
-            {
-              summary: "市は制度の利用状況を説明した。",
-              source_utterance_id: "utterance-1",
-            },
-          ],
-        })}
-      />
+    renderCard(
+      makeQuestion({
+        cityAnswerSummaries: [
+          {
+            summary: "市は制度の利用状況を説明した。",
+            source_utterance_id: "utterance-1",
+          },
+        ],
+      })
     );
 
     expect(screen.getByText("市の答弁要旨")).toBeTruthy();
@@ -145,21 +193,19 @@ describe("GeneralQuestionCard", () => {
   });
 
   it("city_answer_summaries が複数あるとき順序どおり表示する", () => {
-    render(
-      <GeneralQuestionCard
-        question={makeQuestion({
-          cityAnswerSummaries: [
-            {
-              summary: "第一の答弁要旨。",
-              source_utterance_id: "utterance-1",
-            },
-            {
-              summary: "第二の答弁要旨。",
-              source_utterance_id: "utterance-2",
-            },
-          ],
-        })}
-      />
+    renderCard(
+      makeQuestion({
+        cityAnswerSummaries: [
+          {
+            summary: "第一の答弁要旨。",
+            source_utterance_id: "utterance-1",
+          },
+          {
+            summary: "第二の答弁要旨。",
+            source_utterance_id: "utterance-2",
+          },
+        ],
+      })
     );
 
     const summaries = screen.getAllByText(/第[一二]の答弁要旨。/);
@@ -170,18 +216,16 @@ describe("GeneralQuestionCard", () => {
   });
 
   it("city_answer_summaries と confirmed_facts を同時に表示する", () => {
-    render(
-      <GeneralQuestionCard
-        question={makeQuestion({
-          cityAnswerSummaries: [
-            {
-              summary: "市は今後の対応方針を説明した。",
-              source_utterance_id: "utterance-1",
-            },
-          ],
-          confirmedFacts: ["点数評価方式案を本議会に上程している。"],
-        })}
-      />
+    renderCard(
+      makeQuestion({
+        cityAnswerSummaries: [
+          {
+            summary: "市は今後の対応方針を説明した。",
+            source_utterance_id: "utterance-1",
+          },
+        ],
+        confirmedFacts: ["点数評価方式案を本議会に上程している。"],
+      })
     );
 
     expect(screen.getByText("市の答弁要旨")).toBeTruthy();

@@ -58,6 +58,7 @@ export function GeneralQuestionsPage({
                   key={date}
                   date={date}
                   questions={qs}
+                  currentDifficulty={currentDifficulty}
                 />
               ))}
             </div>
