@@ -8,7 +8,7 @@
 
 /**
  * DifficultySelectorを表示するページかどうかを判定
- * isMainPage に加えて /kokkai/[slug]/bills も含む
+ * 主要コンテンツが normal / hard で切り替わるページだけに限定する
  */
 export function isDifficultyTogglePage(pathname: string): boolean {
   if (isMainPage(pathname)) return true;
@@ -27,8 +27,6 @@ export function isMainPage(pathname: string): boolean {
   if (/\/bills\/[^/]+$/.test(pathname)) return true;
   // Topics詳細ページ（/topics/[slug]）
   if (/\/topics\/[^/]+$/.test(pathname)) return true;
-  // 議員名簿ページ
-  if (pathname === "/members") return true;
   return false;
 }
 
