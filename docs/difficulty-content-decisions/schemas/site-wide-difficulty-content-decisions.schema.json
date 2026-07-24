@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Site-wide difficulty content decisions",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "review_status",
+    "source_commit",
+    "summary",
+    "decisions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "site-wide-difficulty-content-decisions.v1"
+    },
+    "artifact_type": {
+      "const": "site_wide_difficulty_content_decisions"
+    },
+    "review_status": {
+      "const": "reviewer_only"
+    },
+    "source_commit": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "object"
+    },
+    "decisions": {
+      "type": "object",
+      "required": [
+        "topics",
+        "general_questions",
+        "bills_missing_content",
+        "bills_identical_content_quality"
+      ],
+      "properties": {
+        "topics": {
+          "type": "array"
+        },
+        "general_questions": {
+          "type": "array"
+        },
+        "bills_missing_content": {
+          "type": "array"
+        },
+        "bills_identical_content_quality": {
+          "type": "array"
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}
