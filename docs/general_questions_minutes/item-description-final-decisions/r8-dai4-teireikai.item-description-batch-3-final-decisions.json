@@ -1,0 +1,943 @@
+{
+  "schema_version": "item-description-final-decisions.v1",
+  "session": "令和8年第4回定例会",
+  "diet_session_slug": "ishigaki-r8-dai4-teireikai",
+  "artifact_type": "item_description_final_decisions",
+  "artifact_origin": "hand_authored_reviewer_decision",
+  "review_status": "reviewer_only",
+  "batch": {
+    "batch_id": "item_descriptions_batch_3",
+    "reviewed_at": "2026-07-24",
+    "reviewed_from_commit": "4bab09bdf0f097dca67b84462091eb1db34c711b"
+  },
+  "sources": {
+    "candidate_inventory": "docs/general_questions_minutes/item-description-candidates/r8-dai4-teireikai.item-description-candidates.json",
+    "utterance_index": "docs/general_questions_minutes/utterance-index/r8-dai4-teireikai.utterances.json",
+    "public_general_questions_json": "docs/general_questions/r8-dai4-teireikai.general-questions.json",
+    "canonical_minutes": "docs/general_questions_minutes/r8-dai4-teireikai.canonical.json",
+    "review_packet": "Codex Batch 3 item-description content review on 2026-07-24"
+  },
+  "summary": {
+    "target_item_total": 22,
+    "approve_as_written_total": 0,
+    "approve_with_revision_total": 16,
+    "hold_total": 6,
+    "reject_total": 0,
+    "approved_normal_total": 16,
+    "approved_detailed_total": 16,
+    "public_json_changed": false,
+    "production_import_executed": false,
+    "revalidation_executed": false
+  },
+  "official_wording_audits": [
+    {
+      "topic": "東内原とも子 item05 登山道整備の山名表記",
+      "source_wording": [
+        "utterance index questioner text: 尾本岳登山道整備",
+        "utterance index executive text: おもとだけ登山道整備",
+        "canonical minutes include mixed OCR/transcription variants: 尾本岳, おもとだけ, 元だけ, お元だけ"
+      ],
+      "public_json_title": "登山道整備の進捗状況について",
+      "candidate_artifact_wording": "登山道整備の進捗状況について",
+      "approved_description_wording": "登山道整備",
+      "finding": "Repository sources support the reading おもとだけ, but do not provide a stable in-repository kanji form for 於茂登岳. The approved public candidate avoids the unconfirmed mountain name.",
+      "public_json_title_fix_needed": false,
+      "separate_follow_up": "If a later source-normalization pass confirms the official kanji, update source artifacts and any public wording in a separate PR."
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "item-descriptions-batch-3::higashiuchihara-tomoko.item01",
+      "questioner": "東内原とも子",
+      "question_id": "ishigaki-r8-dai4-ippan-higashiuchihara-tomoko",
+      "item_id": "item01",
+      "item_number": 1,
+      "item_title": "不登校児童生徒への支援体制について",
+      "candidate_recommendation": "review_ready",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "不登校児童生徒への校内外の支援体制を確認しています。",
+      "approved_detailed_description": "校内教育支援センターのパイロット校での成果や設置状況を踏まえ、不登校児童生徒が学校内外でどのような支援を受けられるのかを確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0002"
+      ],
+      "source_support": {
+        "status": "supported",
+        "evidence_summary": "質問者が不登校児童生徒への支援体制、校内教育支援センターパイロット校の成果、設置状況を質問している。"
+      },
+      "revision_notes": [
+        "Generated wording was shortened and made less like a sub-item list.",
+        "Public wording does not include city answer results."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_public_json_and_source",
+        "notes": "校内教育支援センター is stable in public JSON and source."
+      },
+      "ocr_risk": {
+        "status": "low",
+        "notes": "Source has パイロット校 OCR noise, but approved wording avoids the noisy fragment."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No executive answer result is included."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "All elements are supported by the questioner utterance."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::higashiuchihara-tomoko.item02",
+      "questioner": "東内原とも子",
+      "question_id": "ishigaki-r8-dai4-ippan-higashiuchihara-tomoko",
+      "item_id": "item02",
+      "item_number": 2,
+      "item_title": "幼児の弱視早期発見について",
+      "candidate_recommendation": "review_ready",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "幼児の弱視を早期に見つける検査と支援を確認しています。",
+      "approved_detailed_description": "幼児期の弱視について、検査の実施状況と、早期発見・早期治療につなげるための取組を確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0003"
+      ],
+      "source_support": {
+        "status": "supported",
+        "evidence_summary": "質問者が幼児の弱視早期発見、実施状況、早期発見・早期治療に向けた取組を質問している。"
+      },
+      "revision_notes": [
+        "Removed generic city-response framing.",
+        "Kept wording limited to the questioner's listed issues."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_public_json_and_source",
+        "notes": "弱視, 早期発見, 早期治療 are stable."
+      },
+      "ocr_risk": {
+        "status": "low",
+        "notes": "No material OCR risk in approved wording."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No city answer content is included."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "All elements are supported by source."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::higashiuchihara-tomoko.item03",
+      "questioner": "東内原とも子",
+      "question_id": "ishigaki-r8-dai4-ippan-higashiuchihara-tomoko",
+      "item_id": "item03",
+      "item_number": 3,
+      "item_title": "保育施設のICT導入による業務効率化について",
+      "candidate_recommendation": "review_ready",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "保育施設でのICT導入と保育士の負担軽減を確認しています。",
+      "approved_detailed_description": "保育施設でのICT導入について、導入の進捗、保育士の業務負担軽減、今後の取組を確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0004"
+      ],
+      "source_support": {
+        "status": "supported",
+        "evidence_summary": "質問者が保育施設ICT導入の進捗、保育士の業務負担軽減、今後の取組を質問している。"
+      },
+      "revision_notes": [
+        "Confirmed fact about 大川保育所 is not repeated.",
+        "Detailed wording is question-scope only."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_public_json_and_source",
+        "notes": "ICT, 保育施設, 保育士 are stable."
+      },
+      "ocr_risk": {
+        "status": "low",
+        "notes": "No material OCR risk in approved wording."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "The existing confirmed fact is not included."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "All elements are supported by questioner text."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::higashiuchihara-tomoko.item04",
+      "questioner": "東内原とも子",
+      "question_id": "ishigaki-r8-dai4-ippan-higashiuchihara-tomoko",
+      "item_id": "item04",
+      "item_number": 4,
+      "item_title": "畜産農家の衛生環境の改善と母牛改良への支援策について",
+      "candidate_recommendation": "review_ready",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "畜産農家の衛生環境改善と母牛改良支援を確認しています。",
+      "approved_detailed_description": "堆肥処理や運搬体制、害虫対策、家畜焼却炉、受精卵移植への補助などを取り上げ、畜産農家の衛生環境改善と母牛改良支援のあり方を確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0005"
+      ],
+      "source_support": {
+        "status": "supported_with_ocr_normalization",
+        "evidence_summary": "質問者が畜産農家の衛生環境、堆肥処理・運搬体制、害虫対策、家畜焼却炉、母牛改良、受精卵移植補助を質問している。"
+      },
+      "revision_notes": [
+        "OCR-noisy phrases were normalized to public JSON/sub-item wording.",
+        "No executive answer result or future city commitment is included."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_public_json_and_sub_items",
+        "notes": "母牛改良, 堆肥処理, 家畜焼却炉, 受精卵移植 are taken from public JSON/sub_items."
+      },
+      "ocr_risk": {
+        "status": "medium",
+        "notes": "Source contains OCR noise such as 補給改良, 大変処理, 大秘, 家畜消化工業. Approved wording uses stable public JSON wording."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "City answer outcomes are excluded."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "All public wording elements are supported by public JSON and questioner utterance."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::higashiuchihara-tomoko.item05",
+      "questioner": "東内原とも子",
+      "question_id": "ishigaki-r8-dai4-ippan-higashiuchihara-tomoko",
+      "item_id": "item05",
+      "item_number": 5,
+      "item_title": "登山道整備の進捗状況について",
+      "candidate_recommendation": "review_ready",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "登山道整備の進み具合を確認しています。",
+      "approved_detailed_description": "登山道について、整備がどこまで進んでいるのかを確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0006"
+      ],
+      "source_support": {
+        "status": "supported_with_official_wording_caveat",
+        "evidence_summary": "質問者が登山道整備の進捗状況を質問している。山名の漢字表記はrepository内原資料だけでは確定しない。"
+      },
+      "revision_notes": [
+        "Avoided the unconfirmed mountain-name kanji in public candidate fields.",
+        "Generated/review wording that used 尾本岳 was not carried into approved public fields."
+      ],
+      "official_wording_check": {
+        "status": "proper_noun_avoided",
+        "notes": "Public JSON title is 登山道整備の進捗状況について. Source artifacts contain 尾本岳, おもとだけ, 元だけ, お元だけ. No stable in-repository kanji form for 於茂登岳 was found."
+      },
+      "ocr_risk": {
+        "status": "high",
+        "notes": "Mountain-name transcription varies across source artifacts. Public candidate avoids the variant."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No city answer timeline or planning status is included."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "Approved wording uses only the public JSON title concept and questioner utterance."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::higashiuchihara-tomoko.item06",
+      "questioner": "東内原とも子",
+      "question_id": "ishigaki-r8-dai4-ippan-higashiuchihara-tomoko",
+      "item_id": "item06",
+      "item_number": 6,
+      "item_title": "白保中学校前バス停上屋設置に向けた取組について",
+      "candidate_recommendation": "review_ready",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "白保中学校前バス停の上屋設置に向けた進捗を確認しています。",
+      "approved_detailed_description": "白保中学校前バス停への上屋設置について、現在の進捗と設置に向けた取組を確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0007"
+      ],
+      "source_support": {
+        "status": "supported_with_ocr_normalization",
+        "evidence_summary": "質問者が白保中学校前バス停上屋設置に向けた取組と現在の進捗状況を質問している。"
+      },
+      "revision_notes": [
+        "Removed unsupported terms such as 利用環境, 利便性, and 安全性.",
+        "Kept wording to progress and installation effort only."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_public_json",
+        "notes": "Public JSON title supplies 白保中学校前バス停上屋."
+      },
+      "ocr_risk": {
+        "status": "medium",
+        "notes": "Source contains 白宇宙学校 and ワイヤー OCR noise; approved wording follows public JSON title."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No answer-side installation status is included."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "All approved elements are source-supported."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::higashiuchihara-tomoko.item07",
+      "questioner": "東内原とも子",
+      "question_id": "ishigaki-r8-dai4-ippan-higashiuchihara-tomoko",
+      "item_id": "item07",
+      "item_number": 7,
+      "item_title": "多良間田保存管理等のスケジュールについて",
+      "candidate_recommendation": "review_ready",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "多良間田の保存管理の現状と今後の予定を確認しています。",
+      "approved_detailed_description": "多良間田の保存管理について、現在の管理状況と、今後の保存管理スケジュールを確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-higashiuchihara-tomoko.u0008"
+      ],
+      "source_support": {
+        "status": "supported_with_ocr_normalization",
+        "evidence_summary": "質問者が多良間田保存管理等のスケジュール、現在の保存管理状況、今後の保存管理スケジュールを質問している。"
+      },
+      "revision_notes": [
+        "Avoided generic city-response language.",
+        "Detailed description remains close to the source because source background is limited."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_public_json",
+        "notes": "Public JSON title provides 多良間田."
+      },
+      "ocr_risk": {
+        "status": "medium",
+        "notes": "Source contains ただまだ OCR noise; approved wording follows public JSON."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No city answer schedule is included."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "All elements are supported."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::inoue-michiko.item01",
+      "questioner": "井上美智子",
+      "question_id": "ishigaki-r8-dai4-ippan-inoue-michiko",
+      "item_id": "item01",
+      "item_number": 1,
+      "item_title": "自衛隊配備問題について",
+      "candidate_recommendation": "review_ready",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "自衛隊配備をめぐる説明会や学校広報のあり方を確認しています。",
+      "approved_detailed_description": "日米共同訓練・演習、電子戦部隊の配備、住民説明会、中学校への広報活動を取り上げ、自衛隊配備をめぐる情報提供や説明のあり方を確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0002",
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0003"
+      ],
+      "source_support": {
+        "status": "supported",
+        "evidence_summary": "質問者が日米共同訓練・演習、電子戦部隊配備、住民説明会、中学校への広報活動を質問している。"
+      },
+      "revision_notes": [
+        "Removed evaluative wording from the questioner speech.",
+        "Kept the neutral information-provision frame."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_public_json_and_source",
+        "notes": "日米共同訓練・演習, 電子戦部隊, 住民説明会, 中学校への広報活動 are source-supported."
+      },
+      "ocr_risk": {
+        "status": "medium",
+        "notes": "Source includes some ASR noise around exercise details; approved wording avoids noisy details."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No executive answer position is included."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "All elements are present in questioner utterances."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::inoue-michiko.item02",
+      "questioner": "井上美智子",
+      "question_id": "ishigaki-r8-dai4-ippan-inoue-michiko",
+      "item_id": "item02",
+      "item_number": 2,
+      "item_title": "国民保護計画について",
+      "candidate_recommendation": "review_ready",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "国民保護計画での避難支援と補償の考え方を確認しています。",
+      "approved_detailed_description": "避難実施要領の中で、要配慮者、畜産農家、自営業者などがどのように避難できるのか、避難に伴う補償や生活・事業への影響をどう扱うのかを確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0004",
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0005"
+      ],
+      "source_support": {
+        "status": "supported",
+        "evidence_summary": "質問者が要支援者を要配慮者へ訂正し、避難実施要領、要配慮者、畜産農家、自営業者、避難及び補償を質問している。"
+      },
+      "revision_notes": [
+        "Used 要配慮者 based on the correction in source.",
+        "Avoided treating questioner concerns as confirmed facts."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_source_correction",
+        "notes": "要配慮者 is explicitly corrected by the questioner."
+      },
+      "ocr_risk": {
+        "status": "low",
+        "notes": "No material OCR risk in approved wording."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No city answer is included."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "All elements are questioner-supported."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::inoue-michiko.item03",
+      "questioner": "井上美智子",
+      "question_id": "ishigaki-r8-dai4-ippan-inoue-michiko",
+      "item_id": "item03",
+      "item_number": 3,
+      "item_title": "会計年度任用職員について",
+      "candidate_recommendation": "review_ready",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "会計年度任用職員の退職状況と行政運営への影響を確認しています。",
+      "approved_detailed_description": "会計年度任用職員の退職者数と退職理由を取り上げ、行政運営や職員の働き方への影響を確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0006",
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0007"
+      ],
+      "source_support": {
+        "status": "supported",
+        "evidence_summary": "質問者が会計年度任用職員の退職者数・退職理由と、行政運営や働き方への影響を質問している。"
+      },
+      "revision_notes": [
+        "Removed the questioner's emotional evaluation.",
+        "No unverified retirement count is used in the public candidate."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_public_json_and_source",
+        "notes": "会計年度任用職員 is stable."
+      },
+      "ocr_risk": {
+        "status": "low",
+        "notes": "No material OCR risk in approved wording."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No answer-side staffing conclusion is included."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "All public elements are source-supported."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::inoue-michiko.item04",
+      "questioner": "井上美智子",
+      "question_id": "ishigaki-r8-dai4-ippan-inoue-michiko",
+      "item_id": "item04",
+      "item_number": 4,
+      "item_title": "教育行政について",
+      "candidate_recommendation": "review_ready",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "学校図書館や生理用品、プール移動の教育環境を確認しています。",
+      "approved_detailed_description": "学校図書館の図書費、生理用品の設置、他校プール利用時の移動手段を取り上げ、児童生徒の学習環境や学校生活に関わる支援を確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0008",
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0009"
+      ],
+      "source_support": {
+        "status": "supported",
+        "evidence_summary": "質問者が学校図書館の図書費、生理用品設置、他校プール利用時の移動手段を質問している。"
+      },
+      "revision_notes": [
+        "Questioner evaluation is not copied.",
+        "Detailed wording consolidates the three source-supported subtopics."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_public_json_and_source",
+        "notes": "学校図書館, 生理用品, プール are source-supported."
+      },
+      "ocr_risk": {
+        "status": "low",
+        "notes": "No material OCR risk in approved wording."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No city answer content is included."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "All approved elements are source-supported."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::inoue-michiko.item05",
+      "questioner": "井上美智子",
+      "question_id": "ishigaki-r8-dai4-ippan-inoue-michiko",
+      "item_id": "item05",
+      "item_number": 5,
+      "item_title": "水道行政について",
+      "candidate_recommendation": "review_ready",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "水道水のPFAS対策と安全確保の取組を確認しています。",
+      "approved_detailed_description": "PFAS検出に関する報道や要望書の提出を背景に、水道水への影響と安全確保に向けた対策について、市の対応を確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0010",
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0011"
+      ],
+      "source_support": {
+        "status": "supported_with_ocr_caveat",
+        "evidence_summary": "質問者がPFAS検出に関する報道、要望書提出、水道水への対策を質問している。"
+      },
+      "revision_notes": [
+        "OCR-noisy numeric details are excluded from public candidate fields.",
+        "The candidate keeps the focus on water-supply response and safety."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_public_json_and_source",
+        "notes": "PFAS and 水道水 are stable enough for public wording."
+      },
+      "ocr_risk": {
+        "status": "high",
+        "notes": "Source numeric text contains ASR/OCR noise, so no numeric value is used."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No city response conclusion is included."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "報道, 要望書, 水道水への対策 are source-supported."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::inoue-michiko.item06",
+      "questioner": "井上美智子",
+      "question_id": "ishigaki-r8-dai4-ippan-inoue-michiko",
+      "item_id": "item06",
+      "item_number": 6,
+      "item_title": "北部振興策について",
+      "candidate_recommendation": "review_ready",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "北部の幼稚園跡地をどう活用するか確認しています。",
+      "approved_detailed_description": "北部の幼稚園が認定こども園へ統合された後の跡地について、公共施設としての利活用の可能性を確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0012",
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-inoue-michiko.u0013"
+      ],
+      "source_support": {
+        "status": "supported",
+        "evidence_summary": "質問者が北部の幼稚園跡地の利活用、認定こども園への統合、公共施設としての利用を質問している。"
+      },
+      "revision_notes": [
+        "Removed the questioner's evaluative phrase まだまだ利活用可能.",
+        "Kept the public wording neutral."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_public_json_and_source",
+        "notes": "北部振興策 and 幼稚園跡地 are source-supported."
+      },
+      "ocr_risk": {
+        "status": "medium",
+        "notes": "Some place/facility names in source are noisy, so they are not listed."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No city answer status is included."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "All approved elements are source-supported."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::nagayama-ieyasu.item01",
+      "questioner": "長山家康",
+      "question_id": "ishigaki-r8-dai4-ippan-nagayama-ieyasu",
+      "item_id": "item01",
+      "item_number": 1,
+      "item_title": "ウェルビーイングのまちづくりについて",
+      "candidate_recommendation": "review_ready_with_note",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "市政にウェルビーイングをどう取り入れるか確認しています。",
+      "approved_detailed_description": "市民の幸福度や暮らしの満足度を把握する指標、障がい者・高齢者が生きがいを持って暮らせる地域づくり、公民館の役割などを通じて、ウェルビーイングを市政運営にどう位置付けるかを確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagayama-ieyasu.u0004"
+      ],
+      "source_support": {
+        "status": "supported_with_speaker_note",
+        "evidence_summary": "質問者発話としてウェルビーイング指標、市政運営、幸福度・満足度、障がい者・高齢者、公民館の役割を質問している。"
+      },
+      "revision_notes": [
+        "Shortened the generated normal description.",
+        "Kept the detailed description to source-supported themes."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_public_json_and_source",
+        "notes": "ウェルビーイング is stable in public JSON; source has ウェルビーング ASR variation."
+      },
+      "ocr_risk": {
+        "status": "medium",
+        "notes": "Speaker name/role and ウェルビーイング spelling have ASR variation; approved wording follows public JSON."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No city answer content is included."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "All approved elements are in the questioner utterance."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::nagayama-ieyasu.item03",
+      "questioner": "長山家康",
+      "question_id": "ishigaki-r8-dai4-ippan-nagayama-ieyasu",
+      "item_id": "item03",
+      "item_number": 3,
+      "item_title": "持続可能な地域づくりと人材確保について",
+      "candidate_recommendation": "review_ready_with_note",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "産業や介護福祉分野の人材確保策を確認しています。",
+      "approved_detailed_description": "市内各産業の人手不足、介護・福祉分野の人材確保、ケアマネジャー不足、アクティブシニアの活躍、住宅不足の影響を取り上げ、持続可能な地域づくりに必要な人材確保策を確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagayama-ieyasu.u0005"
+      ],
+      "source_support": {
+        "status": "supported_with_speaker_note",
+        "evidence_summary": "質問者が市内各産業の人手不足、介護・福祉分野、人材確保、ケアマネジャー不足、アクティブシニア、住宅不足の影響を質問している。"
+      },
+      "revision_notes": [
+        "Existing confirmed fact about 2024年度の介護研修 is not repeated.",
+        "ASR variant ケアマネージャー is normalized to ケアマネジャー based on public JSON sub_items."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_public_json_and_source",
+        "notes": "Public JSON sub_items provide ケアマネジャー and アクティブシニア."
+      },
+      "ocr_risk": {
+        "status": "medium",
+        "notes": "Speaker attribution remains questioner_unresolved_attribution in artifact, but content is clearly item-specific question text."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "Confirmed fact and executive answer content are excluded."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "All elements are source-supported."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::nagayama-ieyasu.item04",
+      "questioner": "長山家康",
+      "question_id": "ishigaki-r8-dai4-ippan-nagayama-ieyasu",
+      "item_id": "item04",
+      "item_number": 4,
+      "item_title": "持続可能な行政運営について",
+      "candidate_recommendation": "review_ready_with_note",
+      "decision": "approve_with_revision",
+      "approved_normal_description": "職員の時間外勤務と行政運営上の課題を確認しています。",
+      "approved_detailed_description": "職員の時間外勤務の実態、時間外勤務手当、代休取得、時間外勤務に係る課題認識を通じて、持続可能な行政運営のための職員負担や労務管理上の課題を確認しています。",
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagayama-ieyasu.u0006"
+      ],
+      "source_support": {
+        "status": "supported_with_speaker_note",
+        "evidence_summary": "質問者が職員の時間外勤務の実態、時間外勤務手当及び代休取得、時間外勤務に係る課題認識を質問している。"
+      },
+      "revision_notes": [
+        "Removed answer-side numerical details.",
+        "Detailed description keeps to the listed question scope."
+      ],
+      "official_wording_check": {
+        "status": "verified_from_public_json_and_source",
+        "notes": "Public JSON sub_items provide 時間外勤務手当 and 代休取得."
+      },
+      "ocr_risk": {
+        "status": "medium",
+        "notes": "Source has 代給 OCR variation; approved wording follows public JSON."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No executive answer numbers or conclusions are included."
+      },
+      "unsupported_inference_check": {
+        "unsupported": false,
+        "notes": "All approved elements are source-supported."
+      },
+      "recovery_requirements": null
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::miyara-misao.item01",
+      "questioner": "宮良操",
+      "question_id": "ishigaki-r8-dai4-ippan-miyara-misao",
+      "item_id": "item01",
+      "item_number": 1,
+      "item_title": "定期航路事業について",
+      "candidate_recommendation": "hold_item_match_ambiguous",
+      "decision": "hold_item_match_ambiguous",
+      "approved_normal_description": null,
+      "approved_detailed_description": null,
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-miyara-misao.u0041",
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-miyara-misao.u0044"
+      ],
+      "source_support": {
+        "status": "not_approved",
+        "evidence_summary": "Linked evidence is mainly later debate/re-question fragments, not a clean item-opening question source."
+      },
+      "revision_notes": [],
+      "official_wording_check": {
+        "status": "not_verified_for_public_description",
+        "notes": "Terms such as 第三セクター, 補正予算, プロポーザル appear in related discussion, but item-level source boundary is unresolved."
+      },
+      "ocr_risk": {
+        "status": "medium",
+        "notes": "Speaker attribution and transcript fragments include noisy names."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No approved public candidate is stored."
+      },
+      "unsupported_inference_check": {
+        "unsupported": true,
+        "notes": "Public wording should wait for item-boundary recovery."
+      },
+      "recovery_requirements": {
+        "ambiguity_reason": "source-item match is low confidence and linked utterances are not the clean item statement.",
+        "needed_confirmation": "Locate the item01 question-opening utterance or original transcript section that lists all sub_items.",
+        "recovery_likelihood": "needs_manual_transcript_review"
+      }
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::miyara-misao.item02",
+      "questioner": "宮良操",
+      "question_id": "ishigaki-r8-dai4-ippan-miyara-misao",
+      "item_id": "item02",
+      "item_number": 2,
+      "item_title": "畜産行政について",
+      "candidate_recommendation": "hold_item_match_ambiguous",
+      "decision": "hold_item_match_ambiguous",
+      "approved_normal_description": null,
+      "approved_detailed_description": null,
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-miyara-misao.u0002"
+      ],
+      "source_support": {
+        "status": "not_approved",
+        "evidence_summary": "Fallback source block does not cleanly isolate item02 from other item material."
+      },
+      "revision_notes": [],
+      "official_wording_check": {
+        "status": "not_verified_for_public_description",
+        "notes": "Sub-item wording should be confirmed against a clean transcript before approval."
+      },
+      "ocr_risk": {
+        "status": "medium",
+        "notes": "Questioner name and item segmentation are noisy."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No approved public candidate is stored."
+      },
+      "unsupported_inference_check": {
+        "unsupported": true,
+        "notes": "Source-item support is insufficient for public wording."
+      },
+      "recovery_requirements": {
+        "ambiguity_reason": "item number or direct item phrase is not clearly recovered in the linked source.",
+        "needed_confirmation": "Manually review original transcript around the question-opening block for item02.",
+        "recovery_likelihood": "needs_manual_transcript_review"
+      }
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::miyara-misao.item03",
+      "questioner": "宮良操",
+      "question_id": "ishigaki-r8-dai4-ippan-miyara-misao",
+      "item_id": "item03",
+      "item_number": 3,
+      "item_title": "農業行政について",
+      "candidate_recommendation": "hold_item_match_ambiguous",
+      "decision": "hold_item_match_ambiguous",
+      "approved_normal_description": null,
+      "approved_detailed_description": null,
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-miyara-misao.u0002"
+      ],
+      "source_support": {
+        "status": "not_approved",
+        "evidence_summary": "Fallback source block is too broad and may mix item03 with other question topics."
+      },
+      "revision_notes": [],
+      "official_wording_check": {
+        "status": "not_verified_for_public_description",
+        "notes": "Agricultural subtopic wording requires manual source-item recovery."
+      },
+      "ocr_risk": {
+        "status": "medium",
+        "notes": "Item segmentation and source attribution are not clean."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No public candidate is approved."
+      },
+      "unsupported_inference_check": {
+        "unsupported": true,
+        "notes": "Current evidence is insufficient for public JSON reflection."
+      },
+      "recovery_requirements": {
+        "ambiguity_reason": "item03 source is derived from fallback matching.",
+        "needed_confirmation": "Find exact questioner utterance listing item03 and sub_items.",
+        "recovery_likelihood": "needs_manual_transcript_review"
+      }
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::miyara-misao.item04",
+      "questioner": "宮良操",
+      "question_id": "ishigaki-r8-dai4-ippan-miyara-misao",
+      "item_id": "item04",
+      "item_number": 4,
+      "item_title": "スポーツ行政について",
+      "candidate_recommendation": "hold_item_match_ambiguous",
+      "decision": "hold_item_match_ambiguous",
+      "approved_normal_description": null,
+      "approved_detailed_description": null,
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-miyara-misao.u0002"
+      ],
+      "source_support": {
+        "status": "not_approved",
+        "evidence_summary": "離島甲子園 is a known item theme, but the linked opening source is not cleanly item-bound."
+      },
+      "revision_notes": [],
+      "official_wording_check": {
+        "status": "not_verified_for_public_description",
+        "notes": "離島甲子園大会派遣 wording requires a clean item source before approval."
+      },
+      "ocr_risk": {
+        "status": "medium",
+        "notes": "Fallback source has item-boundary risk."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No approved public candidate is stored."
+      },
+      "unsupported_inference_check": {
+        "unsupported": true,
+        "notes": "Public wording is deferred until source-item match is recovered."
+      },
+      "recovery_requirements": {
+        "ambiguity_reason": "candidate is likely recoverable but currently lacks clean item-opening source.",
+        "needed_confirmation": "Confirm exact item04 source segment for 離島甲子園大会派遣.",
+        "recovery_likelihood": "likely_recoverable"
+      }
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::miyara-misao.item05",
+      "questioner": "宮良操",
+      "question_id": "ishigaki-r8-dai4-ippan-miyara-misao",
+      "item_id": "item05",
+      "item_number": 5,
+      "item_title": "旧県立八重山病院跡地利用計画について",
+      "candidate_recommendation": "hold_item_match_ambiguous",
+      "decision": "hold_item_match_ambiguous",
+      "approved_normal_description": null,
+      "approved_detailed_description": null,
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-miyara-misao.u0002"
+      ],
+      "source_support": {
+        "status": "not_approved",
+        "evidence_summary": "Fallback source block does not show a clear item05 title or sub-item statement."
+      },
+      "revision_notes": [],
+      "official_wording_check": {
+        "status": "not_verified_for_public_description",
+        "notes": "旧県立八重山病院跡地利用計画 title is stable in public JSON, but source support needs recovery."
+      },
+      "ocr_risk": {
+        "status": "medium",
+        "notes": "Source-item segmentation is uncertain."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No approved public candidate is stored."
+      },
+      "unsupported_inference_check": {
+        "unsupported": true,
+        "notes": "Current evidence is insufficient."
+      },
+      "recovery_requirements": {
+        "ambiguity_reason": "linked fallback does not isolate item05.",
+        "needed_confirmation": "Find exact questioner item05 segment or original notice text.",
+        "recovery_likelihood": "needs_manual_transcript_review"
+      }
+    },
+    {
+      "decision_id": "item-descriptions-batch-3::nagayama-ieyasu.item02",
+      "questioner": "長山家康",
+      "question_id": "ishigaki-r8-dai4-ippan-nagayama-ieyasu",
+      "item_id": "item02",
+      "item_number": 2,
+      "item_title": "離島医療と患者支援について",
+      "candidate_recommendation": "hold_item_match_ambiguous",
+      "decision": "hold_item_match_ambiguous",
+      "approved_normal_description": null,
+      "approved_detailed_description": null,
+      "source_utterance_ids": [
+        "ishigaki-r8-dai4-teireikai.gq.ishigaki-r8-dai4-ippan-nagayama-ieyasu.u0004"
+      ],
+      "source_support": {
+        "status": "not_approved",
+        "evidence_summary": "u0004 contains item01 and then item02 material; the item02 boundary is present but not cleanly separated."
+      },
+      "revision_notes": [],
+      "official_wording_check": {
+        "status": "verified_from_public_json_but_item_boundary_unresolved",
+        "notes": "Public JSON title and sub_items are stable, but source segmentation should be recovered first."
+      },
+      "ocr_risk": {
+        "status": "medium",
+        "notes": "Source contains 理等 for 離島 and is bundled with prior item text."
+      },
+      "answer_content_check": {
+        "mixed": false,
+        "notes": "No approved public candidate is stored."
+      },
+      "unsupported_inference_check": {
+        "unsupported": true,
+        "notes": "Public wording should wait for a clean item02 source boundary."
+      },
+      "recovery_requirements": {
+        "ambiguity_reason": "item02 is appended to item01 source utterance, creating item-boundary ambiguity.",
+        "needed_confirmation": "Split or anchor the item02 section from u0004, then re-review against sub_items.",
+        "recovery_likelihood": "likely_recoverable"
+      }
+    }
+  ]
+}
