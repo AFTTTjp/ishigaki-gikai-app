@@ -42,17 +42,16 @@ describe("isMainPage", () => {
     expect(isMainPage("/topics")).toBe(false);
   });
 
-  it("returns true for the members page", () => {
-    expect(isMainPage("/members")).toBe(true);
+  it("returns false for the members page", () => {
+    expect(isMainPage("/members")).toBe(false);
   });
 });
 
 describe("isDifficultyTogglePage", () => {
-  it("returns true for all isMainPage paths", () => {
+  it("returns true for routes with difficulty-aware main content", () => {
     expect(isDifficultyTogglePage("/")).toBe(true);
     expect(isDifficultyTogglePage("/bills/abc-123")).toBe(true);
     expect(isDifficultyTogglePage("/topics/some-slug")).toBe(true);
-    expect(isDifficultyTogglePage("/members")).toBe(true);
   });
 
   it("returns true for /kokkai/[slug]/bills", () => {
@@ -76,6 +75,16 @@ describe("isDifficultyTogglePage", () => {
   it("returns false for unrelated paths", () => {
     expect(isDifficultyTogglePage("/about")).toBe(false);
     expect(isDifficultyTogglePage("/bills")).toBe(false);
+  });
+
+  it("returns false for pages without difficulty-aware main content", () => {
+    expect(isDifficultyTogglePage("/members")).toBe(false);
+    expect(isDifficultyTogglePage("/topics")).toBe(false);
+    expect(isDifficultyTogglePage("/faq")).toBe(false);
+    expect(isDifficultyTogglePage("/donate")).toBe(false);
+    expect(isDifficultyTogglePage("/privacy")).toBe(false);
+    expect(isDifficultyTogglePage("/terms")).toBe(false);
+    expect(isDifficultyTogglePage("/report/report-123")).toBe(false);
   });
 });
 
