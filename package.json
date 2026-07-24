@@ -20,7 +20,7 @@
     "seed:csv": "dotenv -e .env -- pnpm --filter @mirai-gikai/seed seed:csv",
     "test": "pnpm -r --parallel run test && pnpm test:scripts",
     "test:coverage": "pnpm -r --parallel run test:coverage && pnpm test:scripts",
-    "test:scripts": "vitest run scripts/validate-difficulty-coverage.test.mjs",
+    "test:scripts": "vitest run scripts/validate-difficulty-coverage.test.mjs scripts/validate-site-wide-difficulty-content-decisions.test.mjs",
     "validate:difficulty-coverage": "node scripts/validate-difficulty-coverage.mjs",
     "test:issue-publisher": "node scripts/issue-publisher/check-negative-samples.mjs",
     "test:integration": "dotenv -e .env -- vitest run --config tests/supabase/vitest.config.mts && pnpm -r run test:integration",
@@ -30,7 +30,9 @@
     "typecheck": "pnpm -r run typecheck",
     "lint": "biome format . && biome lint .",
     "lint:fix": "biome format --write . && biome lint --write .",
-    "postinstall": "npx simple-git-hooks"
+    "postinstall": "npx simple-git-hooks",
+    "validate:difficulty-content-decisions": "node scripts/validate-site-wide-difficulty-content-decisions.mjs",
+    "test:difficulty-content-decisions": "vitest run scripts/validate-site-wide-difficulty-content-decisions.test.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.11",
