@@ -41,11 +41,10 @@ function createBill(id: string, title: string): BillWithContent {
 
 describe("HomeDietSessionBillsSection", () => {
   it("公開議案を全件1回ずつ表示し、会期詳細と一般質問への導線を残す", () => {
-    const bills = [
-      createBill("bill-36", "議案第36号"),
-      createBill("bill-37", "議案第37号"),
-      createBill("bill-38", "議案第38号"),
-    ];
+    const bills = Array.from({ length: 17 }, (_, index) => {
+      const billNumber = index + 36;
+      return createBill(`bill-${billNumber}`, `議案第${billNumber}号`);
+    });
 
     render(
       <HomeDietSessionBillsSection
@@ -56,14 +55,17 @@ describe("HomeDietSessionBillsSection", () => {
     );
 
     const list = screen.getByTestId("current-session-bill-list");
-    expect(within(list).getAllByRole("link")).toHaveLength(bills.length);
-    for (const bill of bills) {
-      expect(
-        within(list)
-          .getByRole("link", { name: new RegExp(bill.name) })
-          .getAttribute("href")
-      ).toBe(`/bills/${bill.id}`);
-    }
+    const billLinks = within(list).getAllByRole("link");
+    expect(billLinks).toHaveLength(17);
+    expect(list.className).toBe("flex flex-col gap-4");
+    expect(list.className).not.toContain("grid");
+    expect(list.className).not.toContain("lg:grid-cols-2");
+    expect(billLinks.map((link) => link.getAttribute("href"))).toEqual(
+      bills.map((bill) => `/bills/${bill.id}`)
+    );
+    expect(
+      new Set(billLinks.map((link) => link.getAttribute("href"))).size
+    ).toBe(17);
 
     expect(
       screen
