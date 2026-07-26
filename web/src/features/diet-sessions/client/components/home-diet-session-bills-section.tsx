@@ -57,7 +57,7 @@ export function HomeDietSessionBillsSection({ session, bills, closed }: Props) {
             </p>
           ) : (
             <div
-              className="grid gap-5 lg:grid-cols-2"
+              className="flex flex-col gap-4"
               data-testid="current-session-bill-list"
             >
               {bills.map((bill) => (
