@@ -89,5 +89,10 @@ describe("HomeDietSessionBillsSection", () => {
     expect(screen.getByText("閉会")).toBeTruthy();
     expect(screen.getByText("公開中 1件")).toBeTruthy();
     expect(screen.getByText("2026.6.1〜2026.6.30")).toBeTruthy();
+    expect(
+      screen.queryByText(
+        "この会期で公開されている議案を、議案番号順に掲載しています。気になるカードから内容や審議結果を確認できます。"
+      )
+    ).toBeNull();
   });
 });

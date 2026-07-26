@@ -45,9 +45,6 @@ export function HomeDietSessionBillsSection({ session, bills, closed }: Props) {
                 {formatDateWithDots(session.start_date)}〜
                 {formatDateWithDots(session.end_date)}
               </p>
-              <p className="max-w-2xl text-sm leading-relaxed text-mirai-text-secondary">
-                この会期で公開されている議案を、議案番号順に掲載しています。気になるカードから内容や審議結果を確認できます。
-              </p>
             </div>
           </div>
 
