@@ -10,7 +10,7 @@ create temp table _site_wide_difficulty_bill_contents_source (
   session_slug text not null,
   session_name text not null,
   official_bill_name text not null,
-  difficulty_level text not null,
+  difficulty_level difficulty_level_enum not null,
   title text not null,
   summary text not null,
   content text not null
