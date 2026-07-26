@@ -1,0 +1,517 @@
+{
+  "schema_version": "bill-title-editorial-review.v1",
+  "artifact_type": "bill_title_editorial_review",
+  "review_status": "reviewer_only",
+  "source_commit": "814d1b13313c35434d69e0e81215385c6196a88e",
+  "created_at": "2026-07-26",
+  "session": {
+    "slug": "ishigaki-r8-dai4-teireikai",
+    "name": "令和8年第4回定例会",
+    "bill_number_range": "36-52"
+  },
+  "policy": {
+    "normal_title": "市民が議案の内容を一読で理解できる平易な題名",
+    "hard_title": "石垣市公式「提出議案一覧」に掲載された議案名",
+    "source_priority": {
+      "hard_title": [
+        "石垣市公式「提出議案一覧」の議案名",
+        "production bill.name及びsource SQLとの一致確認",
+        "個別議案PDFによる内容・対象の裏付け"
+      ],
+      "normal_title": [
+        "個別議案PDF本文",
+        "石垣市公式「提出議案一覧」の概要",
+        "既存summary及びcontent"
+      ]
+    },
+    "source_role_note": "個別議案PDFの文書表題と公式提出議案一覧の公開上の議案名は役割が異なるため、文字列の完全一致をhard title承認の必須条件とはしない。第48号から第51号は、公式提出議案一覧が取得対象付きで区別している名称をhard titleの正本とする。",
+    "constraints": [
+      "法的意味、対象、制度名、会計名、取得対象を落とさない",
+      "煽り、評価、推測、根拠のない情報を加えない",
+      "見た目を変えるためだけの不自然な言い換えをしない",
+      "第42号は原則として現状を維持する"
+    ]
+  },
+  "summary": {
+    "total_reviewed": 17,
+    "normal_change_proposed": 11,
+    "hard_change_proposed": 6,
+    "no_change_records": 1,
+    "approve_as_written": 1,
+    "approve_with_revision": 16,
+    "hold": 0,
+    "reject": 0,
+    "blocking_findings": 0,
+    "sql_reflection_candidate_records": 16,
+    "json_source_updated": false,
+    "application_code_changed": false,
+    "db_write_executed": false,
+    "revalidation_executed": false
+  },
+  "common_sources": {
+    "official_bill_listing": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html",
+    "production_db_verification": "Production bill and bill_contents rows verified read-only on 2026-07-26 for project sjjesaheibvpteoytbpy.",
+    "baseline_sql": "docs/20260620_第4回定例会_議案本文整備第2弾_最小本文SQL.sql"
+  },
+  "decisions": [
+    {
+      "bill_number": 36,
+      "bill_id": "af3d7d0d-e943-42c1-b78e-1df1663cef57",
+      "bill_content_ids": {
+        "normal": "f73818fe-ba01-4368-991e-9464336fff91",
+        "hard": "4ca92022-3fcc-4c01-a384-2c4754c3e6e8"
+      },
+      "official_bill_name": "議案第36号 石垣市宿泊税基金条例",
+      "current_normal_title": "石垣市宿泊税基金条例",
+      "proposed_normal_title": "宿泊税の税収を管理し観光振興に活用する基金の新設",
+      "current_hard_title": "石垣市宿泊税基金条例",
+      "proposed_hard_title": "石垣市宿泊税基金条例",
+      "normal_change": true,
+      "hard_change": false,
+      "change_rationale": "normalは条例名だけでは分かりにくい基金の原資と目的を示し、hardは正式名称を維持する。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260623_第4回定例会_議案36本文差し替えSQL.sql"
+        ],
+        "evidence_summary": "開会日の議案説明と現行summaryは、宿泊税収を基金で管理し、観光振興施策に活用するための新設条例であることを示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "low",
+        "note": "normalでは条例名を省くが、宿泊税、基金、新設、管理・活用目的を保持する。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 37,
+      "bill_id": "eacc3ff7-8158-42e2-8cd6-d24aaf7610ab",
+      "bill_content_ids": {
+        "normal": "ede76acd-4b51-4079-aa79-2b3aaca05b91",
+        "hard": "53442250-c7a4-42ae-b899-e4aefa4969ac"
+      },
+      "official_bill_name": "議案第37号 石垣市火葬場の設置及び管理に関する条例",
+      "current_normal_title": "石垣市火葬場の設置及び管理に関する条例",
+      "proposed_normal_title": "火葬場に指定管理者制度を導入するための条例改正",
+      "current_hard_title": "石垣市火葬場の設置及び管理に関する条例",
+      "proposed_hard_title": "石垣市火葬場の設置及び管理に関する条例",
+      "normal_change": true,
+      "hard_change": false,
+      "change_rationale": "normalは全部改正の中心である指定管理者制度導入を示し、hardは正式名称を維持する。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260624_第4回定例会_議案37本文差し替えSQL.sql"
+        ],
+        "evidence_summary": "開会日の議案説明と現行summaryは、火葬場への指定管理者制度導入に伴う条例の全部改正であることを示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "low",
+        "note": "指定管理者の決定済みや民営化とは述べず、制度導入のための条例改正に限定する。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 38,
+      "bill_id": "f6485217-fd51-4f67-8780-6ec3cddd5e72",
+      "bill_content_ids": {
+        "normal": "a03eb839-c049-42c4-9afa-8531f80a0e77",
+        "hard": "aad8cd49-b0dd-4984-8458-d94df430b70e"
+      },
+      "official_bill_name": "議案第38号 石垣市母子及び父子家庭等医療費助成に関する条例の一部を改正する条例",
+      "current_normal_title": "石垣市母子及び父子家庭等医療費助成に関する条例の一部を改正する条例",
+      "proposed_normal_title": "ひとり親家庭などの医療費助成における児童の定義見直し",
+      "current_hard_title": "石垣市母子及び父子家庭等医療費助成に関する条例の一部を改正する条例",
+      "proposed_hard_title": "石垣市母子及び父子家庭等医療費助成に関する条例の一部を改正する条例",
+      "normal_change": true,
+      "hard_change": false,
+      "change_rationale": "normalは助成制度全体の変更と誤解されないよう、改正対象が児童の定義であることを明示する。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260624_第4回定例会_議案38本文差し替えSQL.sql"
+        ],
+        "evidence_summary": "開会日の議案説明と現行summaryは、医療費助成条例の児童定義を見直す改正であり、助成額や所得制限の変更は確認されていないことを示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "medium",
+        "note": "normalでは年齢要件の詳細を省くが、制度、対象、改正点を保持し、対象拡大とは断定しない。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 39,
+      "bill_id": "887473f9-3877-4583-bfc9-272394b678ef",
+      "bill_content_ids": {
+        "normal": "28809dbf-f2d8-4f5f-bc02-0fb69c15e877",
+        "hard": "f0d9adaf-d1c6-448f-9341-fee02c62b819"
+      },
+      "official_bill_name": "議案第39号 石垣市下水道条例の一部を改正する条例",
+      "current_normal_title": "石垣市下水道条例の一部を改正する条例",
+      "proposed_normal_title": "災害時の下水道復旧工事を担う工事店の範囲拡大",
+      "current_hard_title": "石垣市下水道条例の一部を改正する条例",
+      "proposed_hard_title": "石垣市下水道条例の一部を改正する条例",
+      "normal_change": true,
+      "hard_change": false,
+      "change_rationale": "normalは料金改定ではなく、非常時の復旧工事を担える指定工事店の範囲を広げる改正であることを示す。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260625_第4回定例会_議案39本文差し替えSQL.sql"
+        ],
+        "evidence_summary": "開会日の議案説明と現行summaryは、災害等の非常時に他市町村指定の工事店も復旧工事を行えるようにする改正であることを示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "low",
+        "note": "対象を下水道復旧工事と工事店の範囲に限定し、発動条件の詳細は補完しない。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 40,
+      "bill_id": "00f6cac1-3ec1-4545-9d58-d553d3576336",
+      "bill_content_ids": {
+        "normal": "5d086568-c9ff-4985-b56f-5713f6f55136",
+        "hard": "77c61f74-ae7e-42fc-b7d7-e4e9bf6c6a8e"
+      },
+      "official_bill_name": "議案第40号 石垣市営住宅の設置及び管理に関する条例の一部を改正する条例",
+      "current_normal_title": "石垣市営住宅の設置及び管理に関する条例の一部を改正する条例",
+      "proposed_normal_title": "市営住宅の入居選考見直しと子育て世帯向け期限付き入居制度の新設",
+      "current_hard_title": "石垣市営住宅の設置及び管理に関する条例の一部を改正する条例",
+      "proposed_hard_title": "石垣市営住宅の設置及び管理に関する条例の一部を改正する条例",
+      "normal_change": true,
+      "hard_change": false,
+      "change_rationale": "normalは点数評価方式の導入と子育て世帯向け期限付き入居制度の新設という二つの主要改正を保持する。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260623_第4回定例会_議案40本文差し替えSQL.sql"
+        ],
+        "evidence_summary": "開会日の議案説明と現行summaryは、入居選考への点数評価方式導入と子育て世帯向け期限付き入居制度の新設を示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "low",
+        "note": "対象要件や期間の数値は省くが、二つの主要改正をどちらも明示する。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 41,
+      "bill_id": "f00da203-9d45-40c8-a054-c6c0c7558d1c",
+      "bill_content_ids": {
+        "normal": "a4b5feaa-6cde-42bf-8e3a-2ec9d7403528",
+        "hard": "71e24e24-b3ff-41a9-a481-2d4fb5389f55"
+      },
+      "official_bill_name": "議案第41号 桃原用昇奨学基金条例及び桃原用昇高等学校奨学基金条例の特例並びに廃止に関する条例",
+      "current_normal_title": "桃原用昇奨学基金条例及び桃原用昇高等学校奨学基金条例の特例並びに廃止に関する条例",
+      "proposed_normal_title": "2つの奨学基金事業を新設財団へ引き継ぐための条例整備",
+      "current_hard_title": "桃原用昇奨学基金条例及び桃原用昇高等学校奨学基金条例の特例並びに廃止に関する条例",
+      "proposed_hard_title": "桃原用昇奨学基金条例及び桃原用昇高等学校奨学基金条例の特例並びに廃止に関する条例",
+      "normal_change": true,
+      "hard_change": false,
+      "change_rationale": "normalは二つの基金事業を新設財団へ継承するための特例と条例廃止という目的を平易にまとめる。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260625_第4回定例会_議案41本文差し替えSQL.sql"
+        ],
+        "evidence_summary": "開会日の議案説明と現行summaryは、二基金を財団設立費用に充てる特例を設け、財団設立後に基金条例を廃止することを示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "medium",
+        "note": "normalの「条例整備」は特例と廃止を包括するため、詳細はsummaryで補う必要がある。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 42,
+      "bill_id": "ed91cc68-3154-49e7-8075-89938057fe0f",
+      "bill_content_ids": {
+        "normal": "398d3cd0-744f-447b-926b-e92e4839722a",
+        "hard": "42926f5c-d916-49cf-98d8-f7fe641f3116"
+      },
+      "official_bill_name": "議案第42号 令和8年度石垣市一般会計補正予算（第1号）",
+      "current_normal_title": "令和8年度石垣市一般会計補正予算（第1号）とは",
+      "proposed_normal_title": "令和8年度石垣市一般会計補正予算（第1号）とは",
+      "current_hard_title": "令和8年度石垣市一般会計補正予算（第1号）",
+      "proposed_hard_title": "令和8年度石垣市一般会計補正予算（第1号）",
+      "normal_change": false,
+      "hard_change": false,
+      "change_rationale": "normalは「とは」を付けた入口、hardは正式名称で既に役割が分かれており、変更の必要がない。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260610_第4回定例会_議案本文整備第1弾SQL.sql"
+        ],
+        "evidence_summary": "正式議案名、現行normal/hard summary、production表示でdifficulty別titleの切替が確認されている。"
+      },
+      "meaning_loss_risk": {
+        "level": "low",
+        "note": "現状維持。表示utilityがhard title末尾の号数表記を除く挙動は本artifactの対象外。"
+      },
+      "reviewer_decision": "approve_as_written"
+    },
+    {
+      "bill_number": 43,
+      "bill_id": "c7472bf2-22b9-4b4a-9a4b-deb723bfda25",
+      "bill_content_ids": {
+        "normal": "7aaba7af-95d3-4211-90e9-8ea022899896",
+        "hard": "9be4e357-fa95-48d9-b118-4c169b900cf0"
+      },
+      "official_bill_name": "議案第43号 令和8年度石垣都市計画土地区画整理事業特別会計補正予算（第1号）",
+      "current_normal_title": "土地区画整理事業特別会計の補正予算",
+      "proposed_normal_title": "土地区画整理事業特別会計の補正予算",
+      "current_hard_title": "土地区画整理事業特別会計の補正予算",
+      "proposed_hard_title": "令和8年度石垣都市計画土地区画整理事業特別会計補正予算（第1号）",
+      "normal_change": false,
+      "hard_change": true,
+      "change_rationale": "normalは会計種別を保った平易な題名として十分で、hardは年度、市、正式会計名、補正回次を復元する。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260724_site-wide_normal-hard_bill_contents_completion.sql"
+        ],
+        "evidence_summary": "正式議案名と現行summary/contentは、土地区画整理事業特別会計の令和8年度第1号補正であることを示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "low",
+        "note": "normalは年度と回次を省くが会計種別を保持し、hardで正式情報を復元する。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 44,
+      "bill_id": "1358ebc5-ffe7-4362-b9e4-f3c09925abe5",
+      "bill_content_ids": {
+        "normal": "5e4d669f-0fa0-4fd1-a844-371bf91737fe",
+        "hard": "3666bc34-bd3f-4ce1-9ee3-4c266d7357fa"
+      },
+      "official_bill_name": "議案第44号 令和8年度石垣市港湾事業特別会計補正予算（第1号）",
+      "current_normal_title": "港湾事業特別会計の補正予算",
+      "proposed_normal_title": "港湾事業特別会計の補正予算",
+      "current_hard_title": "港湾事業特別会計の補正予算",
+      "proposed_hard_title": "令和8年度石垣市港湾事業特別会計補正予算（第1号）",
+      "normal_change": false,
+      "hard_change": true,
+      "change_rationale": "normalは会計種別を保った平易な題名として十分で、hardは年度、市、正式会計名、補正回次を復元する。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260724_site-wide_normal-hard_bill_contents_completion.sql"
+        ],
+        "evidence_summary": "正式議案名と現行summary/contentは、港湾事業特別会計の令和8年度第1号補正であることを示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "low",
+        "note": "normalは年度と回次を省くが会計種別を保持し、hardで正式情報を復元する。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 45,
+      "bill_id": "3083e8b4-1895-4b98-814d-fd6be2b68591",
+      "bill_content_ids": {
+        "normal": "179803a8-97bc-40b2-b2d7-18c2cd1a8795",
+        "hard": "b3967ccf-6a5d-458a-9fd4-0662269d2766"
+      },
+      "official_bill_name": "議案第45号 中華民国基隆市との国際友好都市提携について",
+      "current_normal_title": "中華民国基隆市との国際友好都市提携について",
+      "proposed_normal_title": "台湾・基隆市との国際友好都市提携",
+      "current_hard_title": "中華民国基隆市との国際友好都市提携について",
+      "proposed_hard_title": "中華民国基隆市との国際友好都市提携について",
+      "normal_change": true,
+      "hard_change": false,
+      "change_rationale": "normalは現行summaryでも用いられる「台湾」を使い、相手都市と提携内容を保ったまま平易にする。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260622_第4回定例会_議案45本文差し替えSQL.sql"
+        ],
+        "evidence_summary": "正式議案名、開会日の提案説明、現行summaryは、石垣市と台湾の基隆市との国際友好都市提携を議会に諮る内容を示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "low",
+        "note": "normalでは正式国名表記を「台湾」に平易化するが、相手都市と提携種別を保持する。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 46,
+      "bill_id": "aa3babc3-334a-475f-8662-f735a7d1fd17",
+      "bill_content_ids": {
+        "normal": "2875f958-1879-4f8a-9446-b5c3df8ed2c0",
+        "hard": "a9c75008-dcda-4bd2-8be8-1ca300cf8b62"
+      },
+      "official_bill_name": "議案第46号 八重山広域市町村圏事務組合規約の変更について",
+      "current_normal_title": "八重山広域市町村圏事務組合規約の変更",
+      "proposed_normal_title": "介護認定審査会事務を共同処理から外す八重山広域市町村圏事務組合の規約変更",
+      "current_hard_title": "八重山広域市町村圏事務組合規約の変更",
+      "proposed_hard_title": "八重山広域市町村圏事務組合規約の変更について",
+      "normal_change": true,
+      "hard_change": true,
+      "change_rationale": "normalは規約変更の対象事務を示し、hardは正式議案名を復元する。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260724_site-wide_normal-hard_bill_contents_completion.sql"
+        ],
+        "evidence_summary": "正式議案名と現行summary/contentは、介護認定審査会事務を組合の共同処理事務から削るための規約変更であることを示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "medium",
+        "note": "normalでは組合名を短縮するが、八重山広域組合、対象事務、規約変更を保持する。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 47,
+      "bill_id": "29064eb3-8ece-4a8d-b251-329e701f8958",
+      "bill_content_ids": {
+        "normal": "376ec95c-dc1a-46e4-93b0-7fb787ef7b9f",
+        "hard": "65042ce2-1b6f-47fc-960e-10497bc4e4a2"
+      },
+      "official_bill_name": "議案第47号 訴えの提起について",
+      "current_normal_title": "市営住宅の明渡し等を求める訴え",
+      "proposed_normal_title": "市営住宅の明渡し等を求める訴え",
+      "current_hard_title": "市営住宅の明渡し等を求める訴え",
+      "proposed_hard_title": "訴えの提起について",
+      "normal_change": false,
+      "hard_change": true,
+      "change_rationale": "normalは既に対象と法的手続を平易に示す。hardは石垣市公式「提出議案一覧」の議案名をそのまま使用する。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260724_site-wide_normal-hard_bill_contents_completion.sql"
+        ],
+        "evidence_summary": "正式議案名と現行summary/contentは、市営住宅の長期家賃滞納に対して明渡し等を求める訴えを提起する議案であることを示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "low",
+        "note": "normalで対象を説明し、hardには説明的補足を加えず公式議案名を保持する。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 48,
+      "bill_id": "59c68afe-bc47-41f5-b293-3fb7bc28ad91",
+      "bill_content_ids": {
+        "normal": "8b299050-3e7a-4b19-b6ae-9abfc4dbf3d5",
+        "hard": "1f4e5e32-1f83-46c1-afc0-161d45e99110"
+      },
+      "official_bill_name": "議案第48号 財産の取得について［石垣市学習者用GIGA端末］",
+      "current_normal_title": "児童生徒用GIGA端末の取得",
+      "proposed_normal_title": "児童生徒用GIGA端末の取得",
+      "current_hard_title": "児童生徒用GIGA端末の取得",
+      "proposed_hard_title": "財産の取得について［石垣市学習者用GIGA端末］",
+      "normal_change": false,
+      "hard_change": true,
+      "change_rationale": "normalは利用者と取得対象が明確で、hardは財産取得議案としての正式名称を復元する。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260724_site-wide_normal-hard_bill_contents_completion.sql"
+        ],
+        "evidence_summary": "正式議案名と現行summary/contentは、石垣市学習者用GIGA端末を取得する財産取得議案であることを示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "low",
+        "note": "normalは「学習者用」を児童生徒用と平易化し、GIGA端末と取得行為を保持する。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 49,
+      "bill_id": "bb78e020-e6f2-4b2d-a9ce-0ffc2c691565",
+      "bill_content_ids": {
+        "normal": "67ead6e1-189b-43e6-a6fd-23746fdffd5c",
+        "hard": "2e551fd7-dca7-4caf-b7dc-70007e99b296"
+      },
+      "official_bill_name": "議案第49号 財産の取得について［石垣市指導者用GIGA端末］",
+      "current_normal_title": "教員用GIGA端末の取得",
+      "proposed_normal_title": "教員用GIGA端末の取得",
+      "current_hard_title": "教員用GIGA端末の取得",
+      "proposed_hard_title": "財産の取得について［石垣市指導者用GIGA端末］",
+      "normal_change": false,
+      "hard_change": true,
+      "change_rationale": "normalは利用者と取得対象が明確で、hardは財産取得議案としての正式名称を復元する。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260724_site-wide_normal-hard_bill_contents_completion.sql"
+        ],
+        "evidence_summary": "正式議案名と現行summary/contentは、石垣市指導者用GIGA端末を取得する財産取得議案であることを示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "low",
+        "note": "normalは「指導者用」を教員用と平易化し、GIGA端末と取得行為を保持する。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 50,
+      "bill_id": "a38b88bd-c27e-4486-bbf1-cff49871d08b",
+      "bill_content_ids": {
+        "normal": "eb92fa3f-9b44-4477-87b6-c8e3259643e0",
+        "hard": "aba9fa07-aeac-4fac-a48e-806828faed8d"
+      },
+      "official_bill_name": "議案第50号 財産の取得について［救助工作車］",
+      "current_normal_title": "財産の取得について［救助工作車］",
+      "proposed_normal_title": "救助工作車1台の取得",
+      "current_hard_title": "財産の取得について［救助工作車］",
+      "proposed_hard_title": "財産の取得について［救助工作車］",
+      "normal_change": true,
+      "hard_change": false,
+      "change_rationale": "normalは取得対象と台数を直接示し、hardは財産取得議案としての正式名称を維持する。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260624_第4回定例会_議案50本文差し替えSQL.sql"
+        ],
+        "evidence_summary": "開会日の議案説明と現行summaryは、救助工作車1台の取得について議決を求める議案であることを示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "low",
+        "note": "車両の用途や配備先を補完せず、確認済みの品名、台数、取得に限定する。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 51,
+      "bill_id": "1e76df71-9e50-4d01-a21e-ced0601be4f9",
+      "bill_content_ids": {
+        "normal": "57f46aa8-a3d4-4203-8c1b-4bf800610e4e",
+        "hard": "c24d36ed-6411-4ee8-a264-a3d83b5d8e4a"
+      },
+      "official_bill_name": "議案第51号 財産の取得について［高規格救急自動車］",
+      "current_normal_title": "財産の取得について［高規格救急自動車］",
+      "proposed_normal_title": "高規格救急自動車1台の取得",
+      "current_hard_title": "財産の取得について［高規格救急自動車］",
+      "proposed_hard_title": "財産の取得について［高規格救急自動車］",
+      "normal_change": true,
+      "hard_change": false,
+      "change_rationale": "normalは取得対象と台数を直接示し、hardは財産取得議案としての正式名称を維持する。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260624_第4回定例会_議案51本文差し替えSQL.sql"
+        ],
+        "evidence_summary": "開会日の議案説明と現行summaryは、高規格救急自動車1台の取得について議決を求める議案であることを示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "low",
+        "note": "具体的用途や配備先を補完せず、確認済みの品名、台数、取得に限定する。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    },
+    {
+      "bill_number": 52,
+      "bill_id": "722564a1-2e89-4589-a3b2-f6614f10c200",
+      "bill_content_ids": {
+        "normal": "aabc6e96-c38b-443a-881f-cddc06d7dab9",
+        "hard": "f8b0acf4-998b-40df-8a3e-eed191928133"
+      },
+      "official_bill_name": "議案第52号 石垣市ハラスメント調査に関する第三者委員会設置条例の一部を改正する条例",
+      "current_normal_title": "石垣市ハラスメント調査に関する第三者委員会設置条例の一部を改正する条例",
+      "proposed_normal_title": "ハラスメント調査の第三者委員会委員報酬等の見直し",
+      "current_hard_title": "石垣市ハラスメント調査に関する第三者委員会設置条例の一部を改正する条例",
+      "proposed_hard_title": "石垣市ハラスメント調査に関する第三者委員会設置条例の一部を改正する条例",
+      "normal_change": true,
+      "hard_change": false,
+      "change_rationale": "normalは条例改正の中心である第三者委員会の委員報酬等の見直しを示し、hardは正式名称を維持する。",
+      "source_evidence": {
+        "repository_sources": [
+          "docs/20260624_第4回定例会_議案52本文差し替えSQL.sql"
+        ],
+        "evidence_summary": "開会日の議案説明と現行summaryは、第三者委員会の委員報酬と遠隔地加算を見直す条例改正であることを示す。"
+      },
+      "meaning_loss_risk": {
+        "level": "low",
+        "note": "個別事案や報酬額をtitleへ持ち込まず、調査主体と改正対象を保持する。"
+      },
+      "reviewer_decision": "approve_with_revision"
+    }
+  ]
+}
