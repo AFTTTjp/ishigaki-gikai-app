@@ -113,28 +113,65 @@ describe("正本JSON（実データ）", () => {
     }
   });
 
-  it("井上美智子の party_group の矛盾が source_discrepancies に記録され、日本共産党が採用されている", () => {
-    const inoue = doc.persons.find((p) => p.name === "井上 美智子").member_id;
-    expect(doc.source_discrepancies).toHaveLength(1);
-    expect(doc.source_discrepancies[0]).toMatchObject({
-      member_id: inoue,
-      field: "party_group",
-      resolved_value: "日本共産党",
-    });
-    const entry = doc.affiliation_entries.find((e) => e.member_id === inoue);
+  it("source_discrepancies: 井上美智子の会派（日本共産党採用）と田村博孝の表記違いが記録されている", () => {
+    expect(doc.source_discrepancies).toHaveLength(2);
+    const idOf = (name) => doc.persons.find((p) => p.name === name).member_id;
+    const inoue = doc.source_discrepancies.find((d) => d.member_id === idOf("井上 美智子"));
+    expect(inoue).toMatchObject({ field: "party_group", resolved_value: "日本共産党" });
+    expect(inoue.observations.map((o) => o.value)).toEqual(["無会派", "日本共産党"]);
+    const tamura = doc.source_discrepancies.find((d) => d.member_id === idOf("田村 博孝"));
+    expect(tamura).toMatchObject({ field: "name", resolved_value: "田村 博孝" });
+    const entry = doc.affiliation_entries.find((e) => e.member_id === idOf("井上 美智子"));
     expect(entry).toMatchObject({ party: "日本共産党", party_group: "日本共産党" });
   });
 
-  it("無会派は照合結果として明示記録され、公明石垣の結成日は 2026-09-29", () => {
-    const mukaiha = doc.affiliation_entries.filter((e) => e.party_group === "無会派");
-    expect(mukaiha).toHaveLength(5);
-    for (const entry of mukaiha) {
+  it('明示的な「無会派」は公式名簿に会派として明記された田村博孝・大浜雅史・大道夏代の3人だけ', () => {
+    const nameOf = (id) => doc.persons.find((p) => p.member_id === id).name;
+    const explicit = doc.affiliation_entries
+      .filter((e) => e.party_group === "無会派")
+      .map((e) => nameOf(e.member_id))
+      .sort();
+    expect(explicit).toEqual(["大浜 雅史", "大道 夏代", "田村 博孝"].sort());
+    for (const entry of doc.affiliation_entries.filter((e) => e.party_group === "無会派")) {
       expect(entry.party_group_basis).toBeTruthy();
       expect(entry.caucus_formed_on).toBeNull();
     }
+  });
+
+  it("後上里厚司・箕底用一は会派不明(null)のまま hold で、観測日も持たない", () => {
+    for (const name of ["後上里 厚司", "箕底 用一"]) {
+      const id = doc.persons.find((p) => p.name === name).member_id;
+      const entry = doc.affiliation_entries.find((e) => e.member_id === id);
+      expect(entry.party_group).toBeNull();
+      expect(entry.party_group_observed_on).toBeNull();
+      expect(entry.party_group_basis).toContain("無会派とは断定せず");
+      expect(entry.status).toBe("hold");
+    }
+  });
+
+  it("公明石垣の結成日は 2026-09-29", () => {
     const komei = doc.affiliation_entries.filter((e) => e.party_group === "公明石垣");
     expect(komei).toHaveLength(2);
     for (const entry of komei) expect(entry.caucus_formed_on).toBe("2026-09-29");
+  });
+
+  it("2022-2026 の議会任期は 7037 の通知を直接 source にし、補選通知は新里の member_term の source", () => {
+    const sourceIdOf = (url) => doc.sources.find((s) => s.url.endsWith(url)).id;
+    const old = doc.council_terms.find((t) => t.start_date === "2022-09-28");
+    expect(old.source_ids).toEqual([sourceIdOf("kouhoujyouhoukoukai/7037.html")]);
+    const shinzato = doc.persons.find((p) => p.name === "新里 裕樹").member_id;
+    const term = doc.member_terms.find(
+      (t) => t.council_term_key === "2022-2026" && t.member_id === shinzato
+    );
+    expect(term.source_ids).toEqual([sourceIdOf("kouhoujyouhoukoukai/11368.html")]);
+  });
+
+  it("実装セッションで取得できなかった出典は retrieved_on を持たない（取得した事実を偽らない）", () => {
+    for (const url of ["11269.html", "11368.html"]) {
+      const source = doc.sources.find((s) => s.url.endsWith(url));
+      expect(source.retrieved_on).toBeNull();
+      expect(source.verification_note).toContain("独立レビュー");
+    }
   });
 
   it("Production gate は blocked", () => {
@@ -358,6 +395,37 @@ describe("fail-closed 検証", () => {
       }),
       "party_group_basis"
     );
+  });
+
+  it("所属: 会派不明(null)も根拠なしでは書けず、観測日を持てない", () => {
+    hasError(
+      errorsAfter((d) => {
+        const e = d.affiliation_entries.find((x) => x.party_group === null);
+        delete e.party_group_basis;
+      }),
+      "party_group_basis"
+    );
+    hasError(
+      errorsAfter((d) => {
+        const e = d.affiliation_entries.find((x) => x.party_group === null);
+        e.party_group_observed_on = "2026-09-30";
+      }),
+      "party_group_observed_on: must be null"
+    );
+  });
+
+  it("source_discrepancies: 各項目の必須項目を fail-closed で検証する", () => {
+    const first = (d) => d.source_discrepancies[0];
+    hasError(errorsAfter((d) => delete first(d).member_id), "unknown member_id");
+    hasError(errorsAfter((d) => (first(d).member_id = "00000000-0000-4000-8000-000000000000")), "unknown member_id");
+    for (const field of ["field", "resolved_value", "resolution"]) {
+      hasError(errorsAfter((d) => delete first(d)[field]), `${field}: required`);
+    }
+    hasError(errorsAfter((d) => (first(d).observations = [first(d).observations[0]])), "at least 2 observations");
+    hasError(errorsAfter((d) => delete first(d).observations), "at least 2 observations");
+    hasError(errorsAfter((d) => (first(d).observations[0].source_id = "unknown")), "unknown source id");
+    hasError(errorsAfter((d) => delete first(d).observations[0].value), "value: required");
+    hasError(errorsAfter((d) => (first(d).observations[0].extra = 1)), 'unknown key "extra"');
   });
 
   it("所属: hold には理由が必須", () => {

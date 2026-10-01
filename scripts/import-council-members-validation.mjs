@@ -592,9 +592,19 @@ export function collectCouncilMembersErrors(raw) {
       }
       entryKeys.add(key);
     }
-    if (entry.party_group === "無会派" && !isNonEmptyString(entry.party_group_basis)) {
+    // 「無会派」も「会派不明(null)」も、根拠の記録なしには書けない（自動既定値にしない）
+    if (
+      (entry.party_group === "無会派" || entry.party_group === null) &&
+      !isNonEmptyString(entry.party_group_basis)
+    ) {
       errors.push(
-        `${path}.party_group_basis: "無会派" must record the cross-check basis (not an automatic default)`
+        `${path}.party_group_basis: "無会派" and null party_group must record the basis (never an automatic default)`
+      );
+    }
+    // 値が無い(null)のに「観測した日」を持たない（観測日は値が実在する場合のみ）
+    if (entry.party_group === null && entry.party_group_observed_on) {
+      errors.push(
+        `${path}.party_group_observed_on: must be null when party_group is null`
       );
     }
     if (entry.status === "hold" && !isNonEmptyString(entry.hold_reason)) {
@@ -641,17 +651,36 @@ export function collectCouncilMembersErrors(raw) {
       checkKeys(errors, item, allowed, `${name}[${index}]`);
     });
   }
-  (raw.source_discrepancies ?? []).forEach((item, index) => {
-    if (!personsById.has(item?.member_id)) {
-      errors.push(`source_discrepancies[${index}].member_id: unknown member_id`);
+  // source_discrepancies は「黙って補正しない」ための記録なので、各項目を厳密に検証する
+  raw.source_discrepancies.forEach((item, index) => {
+    const path = `source_discrepancies[${index}]`;
+    if (!isPlainObject(item)) return;
+    if (!personsById.has(item.member_id)) {
+      errors.push(`${path}.member_id: unknown member_id`);
     }
-    for (const [obsIndex, obs] of (item?.observations ?? []).entries()) {
-      if (!sourceIds.has(obs?.source_id)) {
-        errors.push(
-          `source_discrepancies[${index}].observations[${obsIndex}]: unknown source id`
-        );
+    for (const field of ["field", "resolved_value", "resolution"]) {
+      if (!isNonEmptyString(item[field])) {
+        errors.push(`${path}.${field}: required`);
       }
     }
+    if (!Array.isArray(item.observations) || item.observations.length < 2) {
+      errors.push(`${path}.observations: at least 2 observations are required`);
+      return;
+    }
+    item.observations.forEach((obs, obsIndex) => {
+      const obsPath = `${path}.observations[${obsIndex}]`;
+      if (!isPlainObject(obs)) {
+        errors.push(`${obsPath}: must be an object`);
+        return;
+      }
+      checkKeys(errors, obs, ["source_id", "value"], obsPath);
+      if (!sourceIds.has(obs.source_id)) {
+        errors.push(`${obsPath}.source_id: unknown source id`);
+      }
+      if (!isNonEmptyString(obs.value)) {
+        errors.push(`${obsPath}.value: required`);
+      }
+    });
   });
 
   return errors;

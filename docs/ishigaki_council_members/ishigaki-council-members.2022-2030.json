@@ -12,8 +12,8 @@
       "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/giinnmeibo/1691.html",
       "page_updated_on": "2026-09-30",
       "as_of": null,
-      "retrieved_on": "2026-10-01",
-      "verification_note": "WebFetch(要約)で取得。実装時に原本ページと再照合すること"
+      "retrieved_on": "2026-10-02",
+      "verification_note": "原本HTMLを直接取得し、22席の議席・氏名・ふりがな・当選回数・所属政党・会派欄・新人4人の住所と生年を機械的に再照合済み(2026-10-02)。議席14・15(後上里厚司・箕底用一)の行には会派欄そのものが掲載されていない"
     },
     {
       "id": "official-caucus-20260930",
@@ -21,26 +21,35 @@
       "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/giinnmeibo/441.html",
       "page_updated_on": "2026-09-30",
       "as_of": "2026-09-29",
-      "retrieved_on": "2026-10-01",
-      "verification_note": "会派名簿は2026-09-29時点。WebFetch(要約)で取得。実装時に原本ページと再照合すること"
+      "retrieved_on": "2026-10-02",
+      "verification_note": "原本HTMLを直接取得して再照合済み(2026-10-02)。会派名簿は令和8年9月29日時点。結成日は会派ごとの日付で、各議員の加入日は掲載されていない"
     },
     {
       "id": "official-byelection-notice-20250817",
       "label": "新議員のお知らせ(令和7年8月17日執行 石垣市議会議員補欠選挙)",
       "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/kouhoujyouhoukoukai/11368.html",
-      "page_updated_on": null,
-      "as_of": null,
+      "page_updated_on": "2025-08-20",
+      "as_of": "2025-08-17",
       "retrieved_on": null,
-      "verification_note": "検索結果で得たURL。2026-10-02時点でWebFetchはHTTP 404。日付(2025-08-17就任)は運用者確認済みの事実。URLの到達性は未確認"
+      "verification_note": "独立レビュー(2026-10-02)が公式ページを正常取得し、更新日2025-08-20・2025-08-17執行の補欠選挙・任期2025-08-17〜2026-09-27の記載を確認したと報告(page_updated_on / as_of はこの報告による)。実装セッションからの取得(curl / WebFetch, 2026-10-02)は原本がHTTP 404のため、実装セッションでは原本未確認。検索結果の要約には同内容の記載あり"
     },
     {
       "id": "official-resignation-notice-20250729",
       "label": "石垣市議会議員の辞職の許可について",
       "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/kouhoujyouhoukoukai/11269.html",
-      "page_updated_on": null,
-      "as_of": null,
+      "page_updated_on": "2025-07-29",
+      "as_of": "2025-07-29",
       "retrieved_on": null,
-      "verification_note": "検索結果で得たURL。2026-10-02時点でWebFetchはHTTP 404。日付(2025-07-29辞職)は運用者確認済みの事実。URLの到達性は未確認"
+      "verification_note": "独立レビュー(2026-10-02)が公式ページを正常取得し、更新日2025-07-29・2025-07-29付で辞職許可の記載を確認したと報告(page_updated_on / as_of はこの報告による)。実装セッションからの取得(curl / WebFetch, 2026-10-02)は原本がHTTP 404のため、実装セッションでは原本未確認。検索結果の要約には同内容の記載あり"
+    },
+    {
+      "id": "official-election-notice-2022-url7037",
+      "label": "新議員のお知らせ(令和4年9月11日執行 石垣市議会議員選挙)",
+      "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/kouhoujyouhoukoukai/7037.html",
+      "page_updated_on": "2022-09-28",
+      "as_of": null,
+      "retrieved_on": "2026-10-02",
+      "verification_note": "独立レビューは、このURLを令和4年9月11日執行の通知(更新日2022-09-28、任期2022-09-28〜2026-09-27)として確認したと報告し、検索エンジンの索引も同じタイトル・内容で表示する。一方、実装セッションが2026-10-02にHTTP 200で直接取得したHTML(ページ内の更新日表示は2022-09-28のまま)は令和8年9月13日執行の通知(任期2026-09-28〜2030-09-27、本文の新人表記は「田村博隆」、写真キャプションは「田村博孝」)に置き換わっていた。同URLの内容が取得元で食い違うため、2022任期の開始日の原本としては当時のページの保存版での再確認が必要"
     }
   ],
   "council_terms": [
@@ -49,7 +58,7 @@
       "start_date": "2022-09-28",
       "end_date": "2026-09-27",
       "source_ids": [
-        "official-byelection-notice-20250817"
+        "official-election-notice-2022-url7037"
       ]
     },
     {
@@ -834,7 +843,7 @@
       ],
       "status": "hold",
       "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない",
-      "party_group_basis": "議員名簿が無会派と記載し、会派の構成(2026-09-29時点)にも掲載がないことを照合して記録"
+      "party_group_basis": "議員名簿(2026-09-30)に「無会派」と明記。会派の構成(2026-09-29時点)にも掲載なし(矛盾なし)"
     },
     {
       "council_term_key": "2026-2030",
@@ -853,7 +862,7 @@
       ],
       "status": "hold",
       "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない",
-      "party_group_basis": "議員名簿が無会派と記載し、会派の構成(2026-09-29時点)にも掲載がないことを照合して記録"
+      "party_group_basis": "議員名簿(2026-09-30)に「無会派」と明記。会派の構成(2026-09-29時点)にも掲載なし(矛盾なし)"
     },
     {
       "council_term_key": "2026-2030",
@@ -1008,7 +1017,7 @@
       ],
       "status": "hold",
       "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない",
-      "party_group_basis": "議員名簿が無会派と記載し、会派の構成(2026-09-29時点)にも掲載がないことを照合して記録"
+      "party_group_basis": "議員名簿(2026-09-30)に「無会派」と明記。会派の構成(2026-09-29時点)にも掲載なし(矛盾なし)"
     },
     {
       "council_term_key": "2026-2030",
@@ -1048,9 +1057,9 @@
       "council_term_key": "2026-2030",
       "member_id": "76d6fcfc-f552-4272-914a-a381aa7a226b",
       "party": "無所属",
-      "party_group": "無会派",
+      "party_group": null,
       "party_observed_on": "2026-09-30",
-      "party_group_observed_on": "2026-09-29",
+      "party_group_observed_on": null,
       "caucus_formed_on": null,
       "effective_from": null,
       "effective_to": null,
@@ -1060,16 +1069,16 @@
         "official-caucus-20260930"
       ],
       "status": "hold",
-      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない",
-      "party_group_basis": "議員名簿が無会派と記載し、会派の構成(2026-09-29時点)にも掲載がないことを照合して記録"
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない。加えて party_group の値そのものが公式に記載されていない",
+      "party_group_basis": "議員名簿に会派の記載欄なし。会派の構成にも掲載なし。無会派とは断定せず未確定として保持"
     },
     {
       "council_term_key": "2026-2030",
       "member_id": "1672bf78-0505-4041-b301-75a22616edc4",
       "party": "無所属",
-      "party_group": "無会派",
+      "party_group": null,
       "party_observed_on": "2026-09-30",
-      "party_group_observed_on": "2026-09-29",
+      "party_group_observed_on": null,
       "caucus_formed_on": null,
       "effective_from": null,
       "effective_to": null,
@@ -1079,8 +1088,8 @@
         "official-caucus-20260930"
       ],
       "status": "hold",
-      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない",
-      "party_group_basis": "議員名簿が無会派と記載し、会派の構成(2026-09-29時点)にも掲載がないことを照合して記録"
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない。加えて party_group の値そのものが公式に記載されていない",
+      "party_group_basis": "議員名簿に会派の記載欄なし。会派の構成にも掲載なし。無会派とは断定せず未確定として保持"
     },
     {
       "council_term_key": "2026-2030",
@@ -1218,6 +1227,22 @@
       ],
       "resolved_value": "日本共産党",
       "resolution": "source precedence: party_groupは専用「会派の構成」を優先。補正ではなく矛盾として記録する"
+    },
+    {
+      "member_id": "d7e48fa7-8a59-4356-b6f5-643398c3630a",
+      "field": "name",
+      "observations": [
+        {
+          "source_id": "official-roster-20260930",
+          "value": "田村 博孝"
+        },
+        {
+          "source_id": "official-election-notice-2022-url7037",
+          "value": "田村博隆（本文）/ 田村博孝（写真キャプション）"
+        }
+      ],
+      "resolved_value": "田村 博孝",
+      "resolution": "source precedence: 氏名・プロフィールは議員名簿を優先。新議員通知ページ本文の表記違いは補正せず記録"
     }
   ],
   "holds": [
@@ -1267,8 +1292,15 @@
       "scope": "2022-2026 member_affiliations",
       "subject": "新里 裕樹 / 砥板 芳行",
       "field": "party / party_group / election_count / seat_number",
-      "reason": "補選就任時・辞職時点の所属と当選回数は未確認",
+      "reason": "補選就任時・辞職時点の所属と当選回数は未確認。検索結果の要約に新里裕樹の2025-08-21付の会派加入(自由民主石垣)の記載があるが、原本は未確認",
       "needed_source": "当時の公式会派ページ・議員名簿の版、または会議録等で有効日が確認できる一次資料"
+    },
+    {
+      "scope": "2026-2030 member_affiliations",
+      "subject": "後上里 厚司 / 箕底 用一",
+      "field": "party_group",
+      "reason": "議員名簿に会派欄なし、会派の構成にも掲載なし。無会派とは断定せず未確定として保持",
+      "needed_source": "公式の追記・訂正、または会派届出に関する公式資料"
     },
     {
       "scope": "2022-2026 member_terms",
