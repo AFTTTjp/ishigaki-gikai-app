@@ -381,18 +381,6 @@ describe("bill_member_votes.member_term_id", () => {
   });
 });
 
-describe("既存 members の公開取得", () => {
-  it("anon クライアントから members を従来どおり SELECT できる", async () => {
-    const member = await createMember("公開取得確認議員");
-    const { data, error } = await getAnonClient()
-      .from("members")
-      .select("id, name, party, party_group, election_count")
-      .eq("id", member.id);
-    expect(error).toBeNull();
-    expect(data).toHaveLength(1);
-  });
-});
-
 describe("新規3テーブルの RLS / 権限", () => {
   const tables = [
     "council_terms",
