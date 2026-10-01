@@ -1,7 +1,12 @@
 const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 function assertIsoDate(value: string): void {
-  if (!ISO_DATE_PATTERN.test(value)) {
+  const parsed = new Date(`${value}T00:00:00Z`);
+  const isRealDate =
+    ISO_DATE_PATTERN.test(value) &&
+    !Number.isNaN(parsed.getTime()) &&
+    parsed.toISOString().startsWith(value);
+  if (!isRealDate) {
     throw new Error(`日付は YYYY-MM-DD 形式で指定してください: ${value}`);
   }
 }

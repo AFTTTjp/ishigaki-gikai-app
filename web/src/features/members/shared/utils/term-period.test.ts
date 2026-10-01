@@ -39,6 +39,15 @@ describe("isDateInPeriod", () => {
     );
   });
 
+  it("存在しない日付はエラーにする", () => {
+    expect(() => isDateInPeriod("2030-13-45", "2030-01-01", null)).toThrow(
+      /YYYY-MM-DD/
+    );
+    expect(() => isDateInPeriod("2029-02-29", "2029-01-01", null)).toThrow(
+      /YYYY-MM-DD/
+    );
+  });
+
   it("YYYY-MM-DD 以外の形式はエラーにする", () => {
     expect(() => isDateInPeriod("2030/01/01", "2030-01-01", null)).toThrow();
     expect(() => isDateInPeriod("2030-01-01", "20300101", null)).toThrow();
