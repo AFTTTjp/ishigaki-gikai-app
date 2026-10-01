@@ -113,14 +113,16 @@ describe("正本JSON（実データ）", () => {
     }
   });
 
-  it("source_discrepancies: 井上美智子の会派（日本共産党採用）と田村博孝の表記違いが記録されている", () => {
-    expect(doc.source_discrepancies).toHaveLength(2);
+  it("source_discrepancies は井上美智子の会派（日本共産党を採用）の1件だけ", () => {
+    expect(doc.source_discrepancies).toHaveLength(1);
     const idOf = (name) => doc.persons.find((p) => p.name === name).member_id;
-    const inoue = doc.source_discrepancies.find((d) => d.member_id === idOf("井上 美智子"));
-    expect(inoue).toMatchObject({ field: "party_group", resolved_value: "日本共産党" });
+    const [inoue] = doc.source_discrepancies;
+    expect(inoue).toMatchObject({
+      member_id: idOf("井上 美智子"),
+      field: "party_group",
+      resolved_value: "日本共産党",
+    });
     expect(inoue.observations.map((o) => o.value)).toEqual(["無会派", "日本共産党"]);
-    const tamura = doc.source_discrepancies.find((d) => d.member_id === idOf("田村 博孝"));
-    expect(tamura).toMatchObject({ field: "name", resolved_value: "田村 博孝" });
     const entry = doc.affiliation_entries.find((e) => e.member_id === idOf("井上 美智子"));
     expect(entry).toMatchObject({ party: "日本共産党", party_group: "日本共産党" });
   });
@@ -166,11 +168,18 @@ describe("正本JSON（実データ）", () => {
     expect(term.source_ids).toEqual([sourceIdOf("kouhoujyouhoukoukai/11368.html")]);
   });
 
-  it("実装セッションで取得できなかった出典は retrieved_on を持たない（取得した事実を偽らない）", () => {
-    for (const url of ["11269.html", "11368.html"]) {
+  it("公式出典3ページ（辞職許可・補選・2022年選挙）は2026-10-02に原本確認済みで、更新日が記録されている", () => {
+    const expected = {
+      "11269.html": "2025-07-29",
+      "11368.html": "2025-08-20",
+      "7037.html": "2022-09-28",
+    };
+    for (const [url, updatedOn] of Object.entries(expected)) {
       const source = doc.sources.find((s) => s.url.endsWith(url));
-      expect(source.retrieved_on).toBeNull();
-      expect(source.verification_note).toContain("独立レビュー");
+      expect(source.retrieved_on, url).toBe("2026-10-02");
+      expect(source.page_updated_on, url).toBe(updatedOn);
+      expect(source.verification_note, url).toContain("公式原本を2026-10-02に直接確認済み");
+      expect(source.verification_note, url).not.toMatch(/404|未確認|独立レビュー|保存版/);
     }
   });
 

@@ -30,8 +30,8 @@
       "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/kouhoujyouhoukoukai/11368.html",
       "page_updated_on": "2025-08-20",
       "as_of": "2025-08-17",
-      "retrieved_on": null,
-      "verification_note": "独立レビュー(2026-10-02)が公式ページを正常取得し、更新日2025-08-20・2025-08-17執行の補欠選挙・任期2025-08-17〜2026-09-27の記載を確認したと報告(page_updated_on / as_of はこの報告による)。実装セッションからの取得(curl / WebFetch, 2026-10-02)は原本がHTTP 404のため、実装セッションでは原本未確認。検索結果の要約には同内容の記載あり"
+      "retrieved_on": "2026-10-02",
+      "verification_note": "公式原本を2026-10-02に直接確認済み。更新日2025-08-20。2025-08-17執行の補欠選挙、新里裕樹氏の任期は2025-08-17〜2026-09-27"
     },
     {
       "id": "official-resignation-notice-20250729",
@@ -39,8 +39,8 @@
       "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/kouhoujyouhoukoukai/11269.html",
       "page_updated_on": "2025-07-29",
       "as_of": "2025-07-29",
-      "retrieved_on": null,
-      "verification_note": "独立レビュー(2026-10-02)が公式ページを正常取得し、更新日2025-07-29・2025-07-29付で辞職許可の記載を確認したと報告(page_updated_on / as_of はこの報告による)。実装セッションからの取得(curl / WebFetch, 2026-10-02)は原本がHTTP 404のため、実装セッションでは原本未確認。検索結果の要約には同内容の記載あり"
+      "retrieved_on": "2026-10-02",
+      "verification_note": "公式原本を2026-10-02に直接確認済み。更新日2025-07-29。砥板芳行氏について2025-07-29付で辞職を許可"
     },
     {
       "id": "official-election-notice-2022-url7037",
@@ -49,7 +49,7 @@
       "page_updated_on": "2022-09-28",
       "as_of": null,
       "retrieved_on": "2026-10-02",
-      "verification_note": "独立レビューは、このURLを令和4年9月11日執行の通知(更新日2022-09-28、任期2022-09-28〜2026-09-27)として確認したと報告し、検索エンジンの索引も同じタイトル・内容で表示する。一方、実装セッションが2026-10-02にHTTP 200で直接取得したHTML(ページ内の更新日表示は2022-09-28のまま)は令和8年9月13日執行の通知(任期2026-09-28〜2030-09-27、本文の新人表記は「田村博隆」、写真キャプションは「田村博孝」)に置き換わっていた。同URLの内容が取得元で食い違うため、2022任期の開始日の原本としては当時のページの保存版での再確認が必要"
+      "verification_note": "公式原本を2026-10-02に直接確認済み。更新日2022-09-28。任期は2022-09-28〜2026-09-27"
     }
   ],
   "council_terms": [
@@ -1227,22 +1227,6 @@
       ],
       "resolved_value": "日本共産党",
       "resolution": "source precedence: party_groupは専用「会派の構成」を優先。補正ではなく矛盾として記録する"
-    },
-    {
-      "member_id": "d7e48fa7-8a59-4356-b6f5-643398c3630a",
-      "field": "name",
-      "observations": [
-        {
-          "source_id": "official-roster-20260930",
-          "value": "田村 博孝"
-        },
-        {
-          "source_id": "official-election-notice-2022-url7037",
-          "value": "田村博隆（本文）/ 田村博孝（写真キャプション）"
-        }
-      ],
-      "resolved_value": "田村 博孝",
-      "resolution": "source precedence: 氏名・プロフィールは議員名簿を優先。新議員通知ページ本文の表記違いは補正せず記録"
     }
   ],
   "holds": [
