@@ -272,6 +272,15 @@ describe("CLI (scripts/import-council-members.mjs)", () => {
     expect(result.stderr).toContain("production_import_gate=blocked");
   });
 
+  it("localhost を含むだけのリモートホストは local 扱いにならない（--prod 必須のまま）", () => {
+    const result = run(["--execute"], {
+      SUPABASE_URL: "https://localhost.example.com",
+      SUPABASE_SERVICE_ROLE_KEY: "dummy",
+    });
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("--prod");
+  });
+
   it("不正な JSON は検証エラーで停止する", () => {
     expect(() =>
       execFileSync("node", [script, "--input", "package.json"], {

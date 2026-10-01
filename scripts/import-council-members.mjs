@@ -75,7 +75,20 @@ console.log("");
 const url = process.env.SUPABASE_URL;
 const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const hasDb = Boolean(url && key);
-const isLocal = hasDb && (url.includes("localhost") || url.includes("127.0.0.1"));
+function isLocalHost(rawUrl) {
+  try {
+    const host = new URL(rawUrl).hostname;
+    return (
+      host === "localhost" ||
+      host === "127.0.0.1" ||
+      host === "[::1]" ||
+      host.endsWith(".localhost")
+    );
+  } catch {
+    return false;
+  }
+}
+const isLocal = hasDb && isLocalHost(url);
 
 if (EXECUTE) {
   if (!hasDb) fail("--execute には SUPABASE_URL と SUPABASE_SERVICE_ROLE_KEY が必要です");
@@ -102,6 +115,10 @@ if (hasDb) {
   const read = async (table, columns) => {
     const { data, error } = await client.from(table).select(columns);
     if (error) fail(`${table} の取得に失敗しました: ${error.message}`);
+    // ページングは未対応。1000件以上は取りこぼすため中止する
+    if ((data ?? []).length >= 1000) {
+      fail(`${table} が1000件以上あり、照合できません（ページング未対応）`);
+    }
     return data ?? [];
   };
   dbState = {

@@ -24,6 +24,9 @@ DB スキーマと凍結ルールは [docs/ai/members-terms-model.md](../ai/memb
 | `holds` | 未確認事項（旧任期の所属履歴など）と、確認に必要な一次資料 |
 | `production_import_gate` | `blocked` の間は Production への書き込みをスクリプトが拒否する |
 
+**現時点（Phase 2A）では所属スナップショット22件はすべて `hold` で、`member_affiliations` に入る行は 0 件。**
+各議員の所属開始日（`effective_from`）を一次資料で確認できていないため。DBに所属データが入るのは、有効日が確定した後の別PRから。
+
 ## ルール
 
 1. **人物は `member_id`（UUID）でのみ識別する。** 氏名による照合・補完・ID 生成をしない。importer は既存人物の氏名を「完全一致の安全確認」にだけ使い、一致しなければ中止する

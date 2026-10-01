@@ -167,6 +167,8 @@ export function collectCouncilMembersErrors(raw) {
     "persons",
     "member_terms",
     "affiliation_entries",
+    "source_discrepancies",
+    "holds",
   ]) {
     if (!Array.isArray(raw[key])) {
       errors.push(`${key}: must be an array`);
@@ -337,6 +339,7 @@ export function collectCouncilMembersErrors(raw) {
 
   // --- member_terms ---
   const memberTermKeys = new Set();
+  const memberTermsByPair = new Map();
   const memberTermsByCouncilKey = new Map();
   raw.member_terms.forEach((term, index) => {
     const path = `member_terms[${index}]`;
@@ -363,6 +366,7 @@ export function collectCouncilMembersErrors(raw) {
       );
     }
     memberTermKeys.add(pairKey);
+    memberTermsByPair.set(pairKey, term);
 
     checkRequiredDate(errors, term.start_date, `${path}.start_date`);
     checkOptionalDate(errors, term.end_date, `${path}.end_date`);
@@ -558,6 +562,27 @@ export function collectCouncilMembersErrors(raw) {
       ) {
         errors.push(`${path}: effective_from must be <= effective_to`);
       }
+      const memberTerm = memberTermsByPair.get(
+        `${entry.council_term_key}::${entry.member_id}`
+      );
+      const councilTerm = councilTermsByKey.get(entry.council_term_key);
+      if (
+        memberTerm &&
+        councilTerm &&
+        isRealIsoDate(entry.effective_from) &&
+        isRealIsoDate(memberTerm.start_date)
+      ) {
+        const termEnd = memberTerm.end_date ?? councilTerm.end_date;
+        if (entry.effective_from < memberTerm.start_date || entry.effective_from > termEnd) {
+          errors.push(`${path}.effective_from: outside the member term period`);
+        }
+        if (
+          isRealIsoDate(entry.effective_to) &&
+          (entry.effective_to < memberTerm.start_date || entry.effective_to > termEnd)
+        ) {
+          errors.push(`${path}.effective_to: outside the member term period`);
+        }
+      }
       if (!isHttpsUrl(entry.source_url)) {
         errors.push(`${path}.source_url: ready entries require an https source_url`);
       }
@@ -566,6 +591,11 @@ export function collectCouncilMembersErrors(raw) {
         errors.push(`${path}: duplicate effective_from for the same member term`);
       }
       entryKeys.add(key);
+    }
+    if (entry.party_group === "無会派" && !isNonEmptyString(entry.party_group_basis)) {
+      errors.push(
+        `${path}.party_group_basis: "無会派" must record the cross-check basis (not an automatic default)`
+      );
     }
     if (entry.status === "hold" && !isNonEmptyString(entry.hold_reason)) {
       errors.push(`${path}.hold_reason: required for hold entries`);

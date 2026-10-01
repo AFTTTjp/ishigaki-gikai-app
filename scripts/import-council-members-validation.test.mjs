@@ -350,6 +350,16 @@ describe("fail-closed 検証", () => {
     );
   });
 
+  it("所属: 無会派は照合の根拠（party_group_basis）なしでは書けない", () => {
+    hasError(
+      errorsAfter((d) => {
+        const e = d.affiliation_entries.find((x) => x.party_group === "無会派");
+        delete e.party_group_basis;
+      }),
+      "party_group_basis"
+    );
+  });
+
   it("所属: hold には理由が必須", () => {
     hasError(
       errorsAfter((d) => delete d.affiliation_entries[0].hold_reason),
@@ -372,6 +382,39 @@ describe("fail-closed 検証", () => {
       }),
       "overlapping ready periods"
     );
+  });
+
+  it("所属: ready の期間が member_term の在職期間の外なら拒否", () => {
+    const ready = (e, from, to) => ({
+      ...e,
+      status: "ready",
+      effective_from: from,
+      effective_to: to,
+      source_url: "https://example.com/x",
+    });
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_entries[0] = ready(d.affiliation_entries[0], "2026-09-27", null);
+      }),
+      "effective_from: outside the member term period"
+    );
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_entries[0] = ready(d.affiliation_entries[0], "2026-09-28", "2030-09-28");
+      }),
+      "effective_to: outside the member term period"
+    );
+    // 在職期間内なら通る
+    expect(
+      errorsAfter((d) => {
+        d.affiliation_entries[0] = ready(d.affiliation_entries[0], "2026-09-29", "2030-09-27");
+      })
+    ).toEqual([]);
+  });
+
+  it("source_discrepancies / holds は必須（省略できない）", () => {
+    hasError(errorsAfter((d) => delete d.source_discrepancies), "source_discrepancies: must be an array");
+    hasError(errorsAfter((d) => delete d.holds), "holds: must be an array");
   });
 
   it("所属: member_term が無い議員への所属は拒否", () => {
