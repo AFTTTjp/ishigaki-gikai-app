@@ -18,6 +18,13 @@ function indexBy(rows, keyFn) {
   return map;
 }
 
+/** 期間 [aFrom, aTo] と [bFrom, bTo] の重複（to が null なら終了なし） */
+function periodsOverlap(aFrom, aTo, bFrom, bTo) {
+  return (
+    aFrom <= (bTo ?? "9999-12-31") && bFrom <= (aTo ?? "9999-12-31")
+  );
+}
+
 function sameValues(a, b, fields) {
   return fields.every((field) => (a[field] ?? null) === (b[field] ?? null));
 }
@@ -189,7 +196,26 @@ export function buildImportPlan(doc, dbState) {
       ? dbAffiliationByKey.get(`${termId}::${row.valid_from}`)
       : undefined;
     if (!dbRow) {
-      affiliationsToInsert.push(row);
+      // DB は期間の重複を防がないため、同じ member_term の既存所属との重複をここで拒否する
+      const overlapping = termId
+        ? dbState.memberAffiliations.find(
+            (existing) =>
+              existing.member_term_id === termId &&
+              periodsOverlap(
+                existing.valid_from,
+                existing.valid_to ?? null,
+                row.valid_from,
+                row.valid_to
+              )
+          )
+        : undefined;
+      if (overlapping) {
+        errors.push(
+          `member_affiliation ${row.member_id}::${row.valid_from}: overlaps an existing DB affiliation starting ${overlapping.valid_from}`
+        );
+      } else {
+        affiliationsToInsert.push(row);
+      }
     } else if (
       sameValues(dbRow, row, ["party", "party_group", "valid_to", "source_url"])
     ) {

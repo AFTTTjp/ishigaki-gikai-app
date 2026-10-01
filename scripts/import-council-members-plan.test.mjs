@@ -248,6 +248,42 @@ describe("executeImportPlan", () => {
     });
   });
 
+  it("既存の所属と期間が重なる ready 所属は、valid_from が違っても拒否する", async () => {
+    const doc = loadDoc();
+    const target = doc.affiliation_entries[0];
+    Object.assign(target, {
+      status: "ready",
+      effective_from: "2026-09-29",
+      source_url: "https://example.com/evidence",
+    });
+    const client = fakeClient(legacyDbState(doc));
+    await executeImportPlan(buildImportPlan(doc, legacyDbState(doc)), client);
+    expect(client.tables.member_affiliations).toHaveLength(1);
+
+    // DB に 2026-09-29〜 継続中の所属がある member_term へ、別の valid_from(2027-01-01) を追加しようとする
+    const later = loadDoc();
+    Object.assign(later.affiliation_entries[0], {
+      status: "ready",
+      effective_from: "2027-01-01",
+      source_url: "https://example.com/evidence2",
+    });
+    const memberTermIdOf = (memberId) =>
+      client.tables.member_terms.find(
+        (t) => t.member_id === memberId && t.start_date === "2026-09-28"
+      ).id;
+    const plan = buildImportPlan(later, {
+      members: client.tables.members,
+      councilTerms: client.tables.council_terms,
+      memberTerms: client.tables.member_terms,
+      memberAffiliations: client.tables.member_affiliations.map((a) => ({
+        ...a,
+        member_term_id: memberTermIdOf(target.member_id),
+      })),
+    });
+    expect(plan.errors.join()).toContain("overlaps an existing DB affiliation");
+    expect(plan.affiliations.readyInsert).toHaveLength(0);
+  });
+
   it("エラーのある計画は実行しない", async () => {
     const doc = loadDoc();
     const db = legacyDbState(doc);
