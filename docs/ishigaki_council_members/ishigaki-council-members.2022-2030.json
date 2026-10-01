@@ -1,0 +1,1281 @@
+{
+  "schema_version": "council-members/v1",
+  "description": "石垣市議会の議員・議会任期・任期別在職・所属スナップショットの正本。DBへはscripts/import-council-members.mjs経由でのみ反映する。legacy列(members.party/party_group/election_count)は書き込まない。",
+  "production_import_gate": {
+    "status": "blocked",
+    "reason": "members へ新人4人と砥板芳行を追加すると、現行UI(getMembers: 全件取得)が退任者を含む27人を現任として表示する。UI互換PR(Phase 3)をProductionへdeployするまでProduction書き込みは禁止。"
+  },
+  "sources": [
+    {
+      "id": "official-roster-20260930",
+      "label": "石垣市議会 議員名簿",
+      "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/giinnmeibo/1691.html",
+      "page_updated_on": "2026-09-30",
+      "as_of": null,
+      "retrieved_on": "2026-10-01",
+      "verification_note": "WebFetch(要約)で取得。実装時に原本ページと再照合すること"
+    },
+    {
+      "id": "official-caucus-20260930",
+      "label": "石垣市議会 会派の構成",
+      "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/giinnmeibo/441.html",
+      "page_updated_on": "2026-09-30",
+      "as_of": "2026-09-29",
+      "retrieved_on": "2026-10-01",
+      "verification_note": "会派名簿は2026-09-29時点。WebFetch(要約)で取得。実装時に原本ページと再照合すること"
+    },
+    {
+      "id": "official-byelection-notice-20250817",
+      "label": "新議員のお知らせ(令和7年8月17日執行 石垣市議会議員補欠選挙)",
+      "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/kouhoujyouhoukoukai/11368.html",
+      "page_updated_on": null,
+      "as_of": null,
+      "retrieved_on": null,
+      "verification_note": "検索結果で得たURL。2026-10-02時点でWebFetchはHTTP 404。日付(2025-08-17就任)は運用者確認済みの事実。URLの到達性は未確認"
+    },
+    {
+      "id": "official-resignation-notice-20250729",
+      "label": "石垣市議会議員の辞職の許可について",
+      "url": "https://www.city.ishigaki.okinawa.jp/soshiki/gikai/kouhoujyouhoukoukai/11269.html",
+      "page_updated_on": null,
+      "as_of": null,
+      "retrieved_on": null,
+      "verification_note": "検索結果で得たURL。2026-10-02時点でWebFetchはHTTP 404。日付(2025-07-29辞職)は運用者確認済みの事実。URLの到達性は未確認"
+    }
+  ],
+  "council_terms": [
+    {
+      "key": "2022-2026",
+      "start_date": "2022-09-28",
+      "end_date": "2026-09-27",
+      "source_ids": [
+        "official-byelection-notice-20250817"
+      ]
+    },
+    {
+      "key": "2026-2030",
+      "start_date": "2026-09-28",
+      "end_date": "2030-09-27",
+      "source_ids": [
+        "official-roster-20260930"
+      ]
+    }
+  ],
+  "persons": [
+    {
+      "member_id": "0374f5bb-bde4-4fc6-9cb0-598d4b58d37a",
+      "kind": "existing",
+      "name": "石垣 達也",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "936cd874-ec02-4b48-b1aa-c6b50dad6bc5",
+      "kind": "existing",
+      "name": "石川 勇作",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "9f6ee646-5814-482d-8f91-57293a905602",
+      "kind": "existing",
+      "name": "井上 美智子",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "4db2ea1a-51ea-4f20-8ec2-ed55063c1752",
+      "kind": "existing",
+      "name": "伊良部 和摩",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "dddcef9f-e32a-4ccc-a2bf-8c80e7080aa2",
+      "kind": "existing",
+      "name": "内原 英聡",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "b4251917-a7f3-477f-be4d-abbca211cde7",
+      "kind": "existing",
+      "name": "大道 夏代",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "2986e72e-ab8a-465f-b826-6118687ab673",
+      "kind": "existing",
+      "name": "我喜屋 隆次",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "76d6fcfc-f552-4272-914a-a381aa7a226b",
+      "kind": "existing",
+      "name": "後上里 厚司",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "70fa0ad2-210f-40fa-9f34-0640839a40ff",
+      "kind": "existing",
+      "name": "新里 裕樹",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "dfd899e1-26bf-4d16-b353-28a96a067a7b",
+      "kind": "existing",
+      "name": "平良 秀之",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "7fe932ed-df1e-44aa-b5cc-f0a2cc6f713b",
+      "kind": "existing",
+      "name": "髙良 宗矩",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "83c86ab6-afc9-471d-9811-714a6ac248bd",
+      "kind": "existing",
+      "name": "田盛 英伸",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "71dfb79c-1092-47ef-8bce-37c9a8ee3b06",
+      "kind": "existing",
+      "name": "登野城 このみ",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "141916de-d2b8-406d-9457-ad7057332ff1",
+      "kind": "existing",
+      "name": "友寄 永三",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "0faca1b2-4ed6-4b71-bff6-39cfb5edca7d",
+      "kind": "existing",
+      "name": "長浜 信夫",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "dec9dc59-70e9-4372-96bd-9b26150d0646",
+      "kind": "existing",
+      "name": "仲間 均",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "c3cc242e-d8a7-4a1a-8740-1ff522ea43a2",
+      "kind": "existing",
+      "name": "仲嶺 忠師",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "fafc35f8-8a5b-457f-b63d-a4cc1421de53",
+      "kind": "existing",
+      "name": "長山 家康",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "a30c4e98-585a-43bc-b8f7-1dddbe7426bf",
+      "kind": "existing",
+      "name": "花谷 史郎",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "2538eb08-aa41-41f0-8ec1-713ef7e26697",
+      "kind": "existing",
+      "name": "東内原 とも子",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "1672bf78-0505-4041-b301-75a22616edc4",
+      "kind": "existing",
+      "name": "箕底 用一",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "33422421-3897-4b09-81c2-8fb91bfdebfa",
+      "kind": "existing",
+      "name": "宮良 操",
+      "legacy_source": "docs/20260407_members_本番反映SQL.sql"
+    },
+    {
+      "member_id": "d7e48fa7-8a59-4356-b6f5-643398c3630a",
+      "kind": "newcomer",
+      "name": "田村 博孝",
+      "name_kana": "たむら ひろたか",
+      "address": "平得",
+      "birth_year_label": "昭和43年",
+      "source_ids": [
+        "official-roster-20260930"
+      ]
+    },
+    {
+      "member_id": "3c240ed5-7b35-46dd-b8c6-184d60f0d92a",
+      "kind": "newcomer",
+      "name": "大浜 雅史",
+      "name_kana": "おおはま まさし",
+      "address": "大浜",
+      "birth_year_label": "平成7年",
+      "source_ids": [
+        "official-roster-20260930"
+      ]
+    },
+    {
+      "member_id": "e69bee2f-7fd0-423a-8145-24626f0b4ae1",
+      "kind": "newcomer",
+      "name": "徳村 政倫",
+      "name_kana": "とくむら まさつぐ",
+      "address": "登野城",
+      "birth_year_label": "平成4年",
+      "source_ids": [
+        "official-roster-20260930"
+      ]
+    },
+    {
+      "member_id": "6f6226eb-0e77-4342-81ec-323936940f1a",
+      "kind": "newcomer",
+      "name": "﨑山 英輔",
+      "name_kana": "さきやま えいすけ",
+      "address": "新川",
+      "birth_year_label": "昭和61年",
+      "source_ids": [
+        "official-roster-20260930"
+      ]
+    },
+    {
+      "member_id": "e3a81ad2-5d07-4fb2-8644-2840da2bd11f",
+      "kind": "historical",
+      "name": "砥板 芳行",
+      "source_ids": [
+        "official-resignation-notice-20250729"
+      ]
+    }
+  ],
+  "member_terms": [
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "0374f5bb-bde4-4fc6-9cb0-598d4b58d37a",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "936cd874-ec02-4b48-b1aa-c6b50dad6bc5",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "9f6ee646-5814-482d-8f91-57293a905602",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "4db2ea1a-51ea-4f20-8ec2-ed55063c1752",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "dddcef9f-e32a-4ccc-a2bf-8c80e7080aa2",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "b4251917-a7f3-477f-be4d-abbca211cde7",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "2986e72e-ab8a-465f-b826-6118687ab673",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "76d6fcfc-f552-4272-914a-a381aa7a226b",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "70fa0ad2-210f-40fa-9f34-0640839a40ff",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2025-08-17",
+      "end_date": null,
+      "source_ids": [
+        "official-byelection-notice-20250817"
+      ],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "dfd899e1-26bf-4d16-b353-28a96a067a7b",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "7fe932ed-df1e-44aa-b5cc-f0a2cc6f713b",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "83c86ab6-afc9-471d-9811-714a6ac248bd",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "71dfb79c-1092-47ef-8bce-37c9a8ee3b06",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "141916de-d2b8-406d-9457-ad7057332ff1",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "0faca1b2-4ed6-4b71-bff6-39cfb5edca7d",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "dec9dc59-70e9-4372-96bd-9b26150d0646",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "c3cc242e-d8a7-4a1a-8740-1ff522ea43a2",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "fafc35f8-8a5b-457f-b63d-a4cc1421de53",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "a30c4e98-585a-43bc-b8f7-1dddbe7426bf",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "2538eb08-aa41-41f0-8ec1-713ef7e26697",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "1672bf78-0505-4041-b301-75a22616edc4",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "33422421-3897-4b09-81c2-8fb91bfdebfa",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": null,
+      "source_ids": [],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2022-2026",
+      "member_id": "e3a81ad2-5d07-4fb2-8644-2840da2bd11f",
+      "seat_number": null,
+      "election_count": null,
+      "start_date": "2022-09-28",
+      "end_date": "2025-07-29",
+      "source_ids": [
+        "official-resignation-notice-20250729"
+      ],
+      "holds": [
+        "seat_number",
+        "election_count"
+      ]
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "d7e48fa7-8a59-4356-b6f5-643398c3630a",
+      "seat_number": 1,
+      "election_count": 1,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "3c240ed5-7b35-46dd-b8c6-184d60f0d92a",
+      "seat_number": 2,
+      "election_count": 1,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "e69bee2f-7fd0-423a-8145-24626f0b4ae1",
+      "seat_number": 3,
+      "election_count": 1,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "6f6226eb-0e77-4342-81ec-323936940f1a",
+      "seat_number": 4,
+      "election_count": 1,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "70fa0ad2-210f-40fa-9f34-0640839a40ff",
+      "seat_number": 5,
+      "election_count": 2,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "7fe932ed-df1e-44aa-b5cc-f0a2cc6f713b",
+      "seat_number": 6,
+      "election_count": 2,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "71dfb79c-1092-47ef-8bce-37c9a8ee3b06",
+      "seat_number": 7,
+      "election_count": 2,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "0374f5bb-bde4-4fc6-9cb0-598d4b58d37a",
+      "seat_number": 8,
+      "election_count": 3,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "fafc35f8-8a5b-457f-b63d-a4cc1421de53",
+      "seat_number": 9,
+      "election_count": 4,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "4db2ea1a-51ea-4f20-8ec2-ed55063c1752",
+      "seat_number": 10,
+      "election_count": 3,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "b4251917-a7f3-477f-be4d-abbca211cde7",
+      "seat_number": 11,
+      "election_count": 3,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "9f6ee646-5814-482d-8f91-57293a905602",
+      "seat_number": 12,
+      "election_count": 4,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "a30c4e98-585a-43bc-b8f7-1dddbe7426bf",
+      "seat_number": 13,
+      "election_count": 4,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "76d6fcfc-f552-4272-914a-a381aa7a226b",
+      "seat_number": 14,
+      "election_count": 3,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "1672bf78-0505-4041-b301-75a22616edc4",
+      "seat_number": 15,
+      "election_count": 5,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "dddcef9f-e32a-4ccc-a2bf-8c80e7080aa2",
+      "seat_number": 16,
+      "election_count": 3,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "0faca1b2-4ed6-4b71-bff6-39cfb5edca7d",
+      "seat_number": 17,
+      "election_count": 5,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "dec9dc59-70e9-4372-96bd-9b26150d0646",
+      "seat_number": 18,
+      "election_count": 9,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "141916de-d2b8-406d-9457-ad7057332ff1",
+      "seat_number": 19,
+      "election_count": 4,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "2538eb08-aa41-41f0-8ec1-713ef7e26697",
+      "seat_number": 20,
+      "election_count": 5,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "2986e72e-ab8a-465f-b826-6118687ab673",
+      "seat_number": 21,
+      "election_count": 5,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "dfd899e1-26bf-4d16-b353-28a96a067a7b",
+      "seat_number": 22,
+      "election_count": 7,
+      "start_date": "2026-09-28",
+      "end_date": null,
+      "source_ids": [
+        "official-roster-20260930"
+      ],
+      "holds": []
+    }
+  ],
+  "affiliation_entries": [
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "d7e48fa7-8a59-4356-b6f5-643398c3630a",
+      "party": "無所属",
+      "party_group": "無会派",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": null,
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-roster-20260930",
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない",
+      "party_group_basis": "議員名簿が無会派と記載し、会派の構成(2026-09-29時点)にも掲載がないことを照合して記録"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "3c240ed5-7b35-46dd-b8c6-184d60f0d92a",
+      "party": "無所属",
+      "party_group": "無会派",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": null,
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-roster-20260930",
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない",
+      "party_group_basis": "議員名簿が無会派と記載し、会派の構成(2026-09-29時点)にも掲載がないことを照合して記録"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "e69bee2f-7fd0-423a-8145-24626f0b4ae1",
+      "party": "参政党",
+      "party_group": "参政党石垣",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "6f6226eb-0e77-4342-81ec-323936940f1a",
+      "party": "無所属",
+      "party_group": "自由民主石垣",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "70fa0ad2-210f-40fa-9f34-0640839a40ff",
+      "party": "無所属",
+      "party_group": "自由民主石垣",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "7fe932ed-df1e-44aa-b5cc-f0a2cc6f713b",
+      "party": "無所属",
+      "party_group": "自由民主石垣",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "71dfb79c-1092-47ef-8bce-37c9a8ee3b06",
+      "party": "無所属",
+      "party_group": "自由民主石垣",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "0374f5bb-bde4-4fc6-9cb0-598d4b58d37a",
+      "party": "公明党",
+      "party_group": "公明石垣",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-29",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "fafc35f8-8a5b-457f-b63d-a4cc1421de53",
+      "party": "自由民主党",
+      "party_group": "自由民主石垣",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "4db2ea1a-51ea-4f20-8ec2-ed55063c1752",
+      "party": "無所属",
+      "party_group": "自由民主石垣",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "b4251917-a7f3-477f-be4d-abbca211cde7",
+      "party": "無所属",
+      "party_group": "無会派",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": null,
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-roster-20260930",
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない",
+      "party_group_basis": "議員名簿が無会派と記載し、会派の構成(2026-09-29時点)にも掲載がないことを照合して記録"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "9f6ee646-5814-482d-8f91-57293a905602",
+      "party": "日本共産党",
+      "party_group": "日本共産党",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "a30c4e98-585a-43bc-b8f7-1dddbe7426bf",
+      "party": "無所属",
+      "party_group": "会派ゆがふ",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "76d6fcfc-f552-4272-914a-a381aa7a226b",
+      "party": "無所属",
+      "party_group": "無会派",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": null,
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-roster-20260930",
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない",
+      "party_group_basis": "議員名簿が無会派と記載し、会派の構成(2026-09-29時点)にも掲載がないことを照合して記録"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "1672bf78-0505-4041-b301-75a22616edc4",
+      "party": "無所属",
+      "party_group": "無会派",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": null,
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-roster-20260930",
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない",
+      "party_group_basis": "議員名簿が無会派と記載し、会派の構成(2026-09-29時点)にも掲載がないことを照合して記録"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "dddcef9f-e32a-4ccc-a2bf-8c80e7080aa2",
+      "party": "無所属",
+      "party_group": "会派ゆがふ",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "0faca1b2-4ed6-4b71-bff6-39cfb5edca7d",
+      "party": "立憲民主党",
+      "party_group": "バガスマ風の会",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "dec9dc59-70e9-4372-96bd-9b26150d0646",
+      "party": "無所属",
+      "party_group": "自由民主石垣",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "141916de-d2b8-406d-9457-ad7057332ff1",
+      "party": "無所属",
+      "party_group": "自由民主石垣",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "2538eb08-aa41-41f0-8ec1-713ef7e26697",
+      "party": "無所属",
+      "party_group": "自由民主石垣",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "2986e72e-ab8a-465f-b826-6118687ab673",
+      "party": "自由民主党",
+      "party_group": "自由民主石垣",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-28",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "dfd899e1-26bf-4d16-b353-28a96a067a7b",
+      "party": "公明党",
+      "party_group": "公明石垣",
+      "party_observed_on": "2026-09-30",
+      "party_group_observed_on": "2026-09-29",
+      "caucus_formed_on": "2026-09-29",
+      "effective_from": null,
+      "effective_to": null,
+      "party_source_id": "official-roster-20260930",
+      "party_group_source_ids": [
+        "official-caucus-20260930"
+      ],
+      "status": "hold",
+      "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    }
+  ],
+  "source_discrepancies": [
+    {
+      "member_id": "9f6ee646-5814-482d-8f91-57293a905602",
+      "field": "party_group",
+      "observations": [
+        {
+          "source_id": "official-roster-20260930",
+          "value": "無会派"
+        },
+        {
+          "source_id": "official-caucus-20260930",
+          "value": "日本共産党"
+        }
+      ],
+      "resolved_value": "日本共産党",
+      "resolution": "source precedence: party_groupは専用「会派の構成」を優先。補正ではなく矛盾として記録する"
+    }
+  ],
+  "holds": [
+    {
+      "scope": "2022-2026 member_affiliations",
+      "subject": "全議員",
+      "field": "party / party_group",
+      "reason": "legacyのmembers.party/party_groupは2022-2026任期中のどの時点の値かが不明。旧任期の所属履歴はPhase 2Bで確認する",
+      "needed_source": "当時の公式会派ページ・議員名簿の版、または会議録等で有効日が確認できる一次資料"
+    },
+    {
+      "scope": "2022-2026 member_affiliations",
+      "subject": "長浜 信夫",
+      "field": "party",
+      "reason": "2025-08-25時点は無所属、2026-07-31時点は立憲民主党。変更日は未確認",
+      "needed_source": "当時の公式会派ページ・議員名簿の版、または会議録等で有効日が確認できる一次資料"
+    },
+    {
+      "scope": "2022-2026 member_affiliations",
+      "subject": "仲間 均",
+      "field": "party",
+      "reason": "legacyは自由民主党、2026-09-30名簿は無所属。変更日は未確認",
+      "needed_source": "当時の公式会派ページ・議員名簿の版、または会議録等で有効日が確認できる一次資料"
+    },
+    {
+      "scope": "2022-2026 member_affiliations",
+      "subject": "後上里 厚司 / 箕底 用一",
+      "field": "party_group",
+      "reason": "legacyは未来、2026-09-30は無会派。離脱日・解散日は未確認",
+      "needed_source": "当時の公式会派ページ・議員名簿の版、または会議録等で有効日が確認できる一次資料"
+    },
+    {
+      "scope": "2022-2026 member_affiliations",
+      "subject": "友寄 永三",
+      "field": "party_group",
+      "reason": "legacyは自由民主実現、2026-09-30は自由民主石垣。移行日は未確認",
+      "needed_source": "当時の公式会派ページ・議員名簿の版、または会議録等で有効日が確認できる一次資料"
+    },
+    {
+      "scope": "2022-2026 member_affiliations",
+      "subject": "内原 英聡 / 花谷 史郎",
+      "field": "party_group",
+      "reason": "legacyは「ゆがふ」、2026は「会派ゆがふ」。同一会派の継続か新会派かは未確認",
+      "needed_source": "当時の公式会派ページ・議員名簿の版、または会議録等で有効日が確認できる一次資料"
+    },
+    {
+      "scope": "2022-2026 member_affiliations",
+      "subject": "新里 裕樹 / 砥板 芳行",
+      "field": "party / party_group / election_count / seat_number",
+      "reason": "補選就任時・辞職時点の所属と当選回数は未確認",
+      "needed_source": "当時の公式会派ページ・議員名簿の版、または会議録等で有効日が確認できる一次資料"
+    },
+    {
+      "scope": "2022-2026 member_terms",
+      "subject": "全23行",
+      "field": "seat_number / election_count",
+      "reason": "旧任期の議席・当選回数を一次資料で確認できないためNULL。票ごとの議席は bill_member_votes.seat_number が保持",
+      "needed_source": "任期中の議員名簿の版"
+    }
+  ]
+}
