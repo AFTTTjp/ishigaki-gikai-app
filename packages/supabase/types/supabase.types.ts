@@ -80,6 +80,7 @@ export type Database = {
           bill_id: string
           created_at: string
           member_id: string
+          member_term_id: string | null
           seat_number: number
           source_label: string | null
           source_url: string | null
@@ -90,6 +91,7 @@ export type Database = {
           bill_id: string
           created_at?: string
           member_id: string
+          member_term_id?: string | null
           seat_number: number
           source_label?: string | null
           source_url?: string | null
@@ -100,6 +102,7 @@ export type Database = {
           bill_id?: string
           created_at?: string
           member_id?: string
+          member_term_id?: string | null
           seat_number?: number
           source_label?: string | null
           source_url?: string | null
@@ -120,6 +123,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "members"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bill_member_votes_member_term_member_fkey"
+            columns: ["member_term_id", "member_id"]
+            isOneToOne: false
+            referencedRelation: "member_terms"
+            referencedColumns: ["id", "member_id"]
           },
         ]
       }
@@ -403,6 +413,30 @@ export type Database = {
           source_url?: string | null
           status?: string
           title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      council_terms: {
+        Row: {
+          created_at: string
+          end_date: string
+          id: string
+          start_date: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          end_date: string
+          id?: string
+          start_date: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          end_date?: string
+          id?: string
+          start_date?: string
           updated_at?: string
         }
         Relationships: []
@@ -863,6 +897,50 @@ export type Database = {
           },
         ]
       }
+      member_affiliations: {
+        Row: {
+          created_at: string
+          id: string
+          member_term_id: string
+          party: string | null
+          party_group: string | null
+          source_url: string | null
+          updated_at: string
+          valid_from: string
+          valid_to: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          member_term_id: string
+          party?: string | null
+          party_group?: string | null
+          source_url?: string | null
+          updated_at?: string
+          valid_from: string
+          valid_to?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          member_term_id?: string
+          party?: string | null
+          party_group?: string | null
+          source_url?: string | null
+          updated_at?: string
+          valid_from?: string
+          valid_to?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "member_affiliations_member_term_id_fkey"
+            columns: ["member_term_id"]
+            isOneToOne: false
+            referencedRelation: "member_terms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       member_links: {
         Row: {
           created_at: string
@@ -897,6 +975,57 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "member_links_member_id_fkey"
+            columns: ["member_id"]
+            isOneToOne: false
+            referencedRelation: "members"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      member_terms: {
+        Row: {
+          council_term_id: string
+          created_at: string
+          election_count: number | null
+          end_date: string | null
+          id: string
+          member_id: string
+          seat_number: number | null
+          start_date: string
+          updated_at: string
+        }
+        Insert: {
+          council_term_id: string
+          created_at?: string
+          election_count?: number | null
+          end_date?: string | null
+          id?: string
+          member_id: string
+          seat_number?: number | null
+          start_date: string
+          updated_at?: string
+        }
+        Update: {
+          council_term_id?: string
+          created_at?: string
+          election_count?: number | null
+          end_date?: string | null
+          id?: string
+          member_id?: string
+          seat_number?: number | null
+          start_date?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "member_terms_council_term_id_fkey"
+            columns: ["council_term_id"]
+            isOneToOne: false
+            referencedRelation: "council_terms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "member_terms_member_id_fkey"
             columns: ["member_id"]
             isOneToOne: false
             referencedRelation: "members"
