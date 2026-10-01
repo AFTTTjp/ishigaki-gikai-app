@@ -122,7 +122,7 @@ if (hasDb) {
     return data ?? [];
   };
   dbState = {
-    members: await read("members", "id, name"),
+    members: await read("members", "id, name, name_kana, address"),
     councilTerms: await read("council_terms", "id, start_date, end_date"),
     memberTerms: await read(
       "member_terms",

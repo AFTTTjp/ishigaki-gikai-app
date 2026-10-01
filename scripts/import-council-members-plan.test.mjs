@@ -149,6 +149,32 @@ describe("buildImportPlan (online)", () => {
     expect(second.memberTerms.unchanged).toHaveLength(45);
   });
 
+  it("既に存在する新人・砥板の行で name_kana / address が JSON と違う場合はエラー（成功扱いにしない）", async () => {
+    const doc = loadDoc();
+    const client = fakeClient(legacyDbState(doc));
+    await executeImportPlan(buildImportPlan(doc, legacyDbState(doc)), client);
+    const dbState = () => ({
+      members: client.tables.members,
+      councilTerms: client.tables.council_terms,
+      memberTerms: client.tables.member_terms,
+      memberAffiliations: [],
+    });
+    expect(buildImportPlan(doc, dbState()).errors).toEqual([]);
+
+    const tamura = client.tables.members.find((m) => m.name === "田村 博孝");
+    tamura.address = "石垣市字平得";
+    expect(buildImportPlan(doc, dbState()).errors.join()).toContain(
+      "DB address differs from source"
+    );
+    tamura.address = "平得";
+
+    client.tables.members.find((m) => m.name === "砥板 芳行").name_kana =
+      "とのいた";
+    expect(buildImportPlan(doc, dbState()).errors.join()).toContain(
+      "DB name_kana differs from source"
+    );
+  });
+
   it("DB の既存行と値が違う場合は上書きせずエラー", async () => {
     const doc = loadDoc();
     const client = fakeClient(legacyDbState(doc));

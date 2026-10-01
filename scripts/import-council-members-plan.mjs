@@ -77,7 +77,17 @@ export function buildImportPlan(doc, dbState) {
     // newcomer / historical
     if (dbRow) {
       if (dbRow.name === person.name) {
-        membersAlreadyPresent.push(person.member_id);
+        // create-only のため、insert する項目が DB と違えば成功扱いにしない
+        const stale = ["name_kana", "address"].filter(
+          (field) => (dbRow[field] ?? null) !== (person[field] ?? null)
+        );
+        if (stale.length > 0) {
+          errors.push(
+            `member ${person.member_id} (${person.name}): DB ${stale.join(", ")} differs from source (create-only importer does not overwrite)`
+          );
+        } else {
+          membersAlreadyPresent.push(person.member_id);
+        }
       } else {
         errors.push(
           `member ${person.member_id}: DB name "${dbRow.name}" differs from source "${person.name}"`
