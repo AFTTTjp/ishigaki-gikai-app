@@ -201,6 +201,7 @@ prod へデータ import を行う場合は、必ず以下の順で実施する�
 
 > **test 環境が未整備の場合**: `.env.test` が無ければ `:test` script は使えない。その場合は test で確認せず、**prod で対象ファイルを明示した dry-run（手順3）で対象を限定してから**手順4に進む（対象外の更新が出たら停止）。
 
+- **議員の任期・所属履歴**: `members.party` / `party_group` / `election_count` は legacy snapshot のため改選後も更新しない。退任議員は削除しない。詳細は [docs/ai/members-terms-model.md](docs/ai/members-terms-model.md) を参照。
 - **キャッシュタグの同期**: 新しいキャッシュタグを追加したら、`web/src/lib/cache-tags.ts` の `CACHE_TAGS` と `scripts/revalidate.mjs` の `ALL_TAGS` の **両方** を更新すること。片方だけだと `node scripts/revalidate.mjs --all` でそのタグが revalidate されない。
 
 ## ドキュメント作成ルール
