@@ -626,16 +626,72 @@ describe("正本JSON v2: affiliation_snapshots（観測スナップショット�
     });
   });
 
-  it("件数: ちょうど 22 件でなければ拒否（不足・過剰・重複）", () => {
-    hasError(errorsAfter((d) => d.affiliation_snapshots.pop()), "expected 22 snapshots");
+  it("完全性: 現任期の snapshot に登場する議員は 22 人ちょうど（不足は拒否）", () => {
+    hasError(
+      errorsAfter((d) => d.affiliation_snapshots.pop()),
+      "expected 22 distinct members with a snapshot"
+    );
     hasError(errorsAfter((d) => d.affiliation_snapshots.pop()), "has no snapshot");
+  });
+
+  it("同一 (council_term_key, member_id, observed_on) の重複は拒否される", () => {
     hasError(
       errorsAfter((d) => d.affiliation_snapshots.push({ ...d.affiliation_snapshots[0] })),
       "duplicate snapshot"
     );
+  });
+
+  it("現在の正本は snapshot 22 行・distinct な議員 22 人（22 行固定は validator の恒久仕様ではない）", () => {
+    expect(doc.affiliation_snapshots).toHaveLength(22);
+    expect(new Set(doc.affiliation_snapshots.map((s) => s.member_id)).size).toBe(22);
+  });
+
+  it("append-only: 同じ議員に新しい observed_on の snapshot を追加しても検証に通る（総行数 23・議員は 22 人）", () => {
+    const appended = loadDoc();
+    appended.affiliation_snapshots.push({
+      ...appended.affiliation_snapshots[0],
+      observed_on: "2027-04-01",
+    });
+    expect(appended.affiliation_snapshots).toHaveLength(23);
+    expect(new Set(appended.affiliation_snapshots.map((s) => s.member_id)).size).toBe(22);
+    expect(collectCouncilMembersErrors(appended)).toEqual([]);
+  });
+
+  it("append-only: 複数の議員・複数回の追加（observed_on が異なる）も検証に通る", () => {
+    const appended = loadDoc();
+    for (const [index, observedOn] of [
+      [0, "2027-04-01"],
+      [0, "2027-10-01"],
+      [5, "2027-04-01"],
+    ]) {
+      appended.affiliation_snapshots.push({
+        ...appended.affiliation_snapshots[index],
+        observed_on: observedOn,
+      });
+    }
+    expect(appended.affiliation_snapshots).toHaveLength(25);
+    expect(collectCouncilMembersErrors(appended)).toEqual([]);
+  });
+
+  it("append した snapshot も、同じ議員・同じ observed_on の重複は拒否される", () => {
     hasError(
-      errorsAfter((d) => d.affiliation_snapshots.push({ ...d.affiliation_snapshots[0] })),
-      "expected 22 snapshots"
+      errorsAfter((d) => {
+        const added = { ...d.affiliation_snapshots[0], observed_on: "2027-04-01" };
+        d.affiliation_snapshots.push(added, { ...added });
+      }),
+      "duplicate snapshot"
+    );
+  });
+
+  it("append した snapshot にも日付の整合チェックは効く（任期外の observed_on は拒否）", () => {
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots.push({
+          ...d.affiliation_snapshots[0],
+          observed_on: "2030-09-28",
+        });
+      }),
+      "observed_on: outside council term"
     );
   });
 

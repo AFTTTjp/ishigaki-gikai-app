@@ -20,7 +20,7 @@ DB スキーマと凍結ルールは [docs/ai/members-terms-model.md](../ai/memb
 | `persons` | 人物27人。`existing` 22（既存UUIDを明示）/ `newcomer` 4 / `historical` 1（砥板芳行） |
 | `member_terms` | 旧任期23行 + 新任期22行。NULL の項目は `holds` で明示 |
 | `affiliation_entries` | **所属履歴候補（effective-dated affiliation candidate）。** `status: ready`（`effective_from` が一次資料で確定）だけが `member_affiliations` の行になる。現在は22件すべて `hold` |
-| `affiliation_snapshots` | **観測スナップショット。** 「`observed_on` 時点の資料ではこの所属だった」という記録で、所属の開始日ではない。`member_affiliation_snapshots` の行になる（現任期22件）。出典は root `sources` の id で参照し、import 時に URL へ解決する |
+| `affiliation_snapshots` | **観測スナップショット。** 「`observed_on` 時点の資料ではこの所属だった」という記録で、所属の開始日ではない。`member_affiliation_snapshots` の行になる（初回の正本は現任期の22議員分で22行。将来の追加で増えてよい）。出典は root `sources` の id で参照し、import 時に URL へ解決する |
 | `source_discrepancies` | 公式ページ間の矛盾（補正せず記録） |
 | `holds` | 未確認事項（旧任期の所属履歴など）と、確認に必要な一次資料 |
 | `production_import_gate` | `blocked` の間は Production への書き込みをスクリプトが拒否する |
@@ -30,10 +30,11 @@ DB スキーマと凍結ルールは [docs/ai/members-terms-model.md](../ai/memb
 | 正本 JSON | DB | 意味 |
 |---|---|---|
 | `affiliation_entries` | `member_affiliations` | 有効期間つきの所属**履歴**。`valid_from` が一次資料で確定したものだけが DB 行になる（`ready`）。現時点は ready 0 / hold 22 で、DB 行は 0 件 |
-| `affiliation_snapshots` | `member_affiliation_snapshots` | **観測**された所属。開始日が不明でも保存できる。現任期22件。append-only |
+| `affiliation_snapshots` | `member_affiliation_snapshots` | **観測**された所属。開始日が不明でも保存できる。初回の正本は22行（現任期の議員22人分）。append-only で、同じ議員に新しい `observed_on` の行を追加できる |
 
 - `affiliation_entries` を「スナップショット」と呼ばない。観測スナップショットは `affiliation_snapshots` だけ
 - snapshot を履歴（ready な所属）に変換しない。観測日（`observed_on`、`*_observed_on`）や会派の結成日を `valid_from` に代用しない
+- 現任期の完全性は「snapshot の行数」ではなく「現任期の `member_terms` の議員22人全員が、少なくとも1件の snapshot を持つ（snapshot に登場する distinct な議員の集合が `member_terms` の集合と一致する）」で判定する。初回の正本は22行だが、将来は同じ議員に新しい `observed_on` の snapshot を追加（append）してよい（総行数は22を超えてよい。同一議員・同一 `observed_on` の重複は不可）
 - 初回 snapshot の `observed_on` は 2026-10-02（Phase 2A で正本の内容を確認した基準日。所属の開始日ではない）
 - `party_group` が null は「公式資料で確定できない/記載がない」（null を「無会派」に変換しない）。「無会派」は公式資料が明記した場合だけ文字列で保持する
 - 議員名簿が「無会派」と明記した3人（田村博孝・大浜雅史・大道夏代）の snapshot は、出典を議員名簿、`party_group_observed_on` を議員名簿の更新日（2026-09-30）としている（`affiliation_entries` の 2026-09-29 は会派名簿の時点で、値の出所が違うため）。

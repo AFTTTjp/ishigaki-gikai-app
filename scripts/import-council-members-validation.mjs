@@ -18,7 +18,8 @@ export const PHASE_2A_EXPECTED = Object.freeze({
   ],
   memberTermsByCouncilTerm: { "2022-09-28": 23, "2026-09-28": 22 },
   currentSeatCount: 22,
-  currentSnapshotCount: 22,
+  // 現任期の議員数。snapshot は append-only なので、総行数ではなく「snapshot を持つ distinct な議員」の数で判定する
+  currentMemberCount: 22,
   councilSeatCapacity: 22,
 });
 
@@ -776,12 +777,13 @@ export function collectCouncilMembersErrors(raw) {
       (term) => term.member_id
     );
     const snapshotMemberIds = snapshotMemberIdsByCouncilKey.get(currentTerm.key) ?? [];
-    if (snapshotMemberIds.length !== PHASE_2A_EXPECTED.currentSnapshotCount) {
+    const snapshotSet = new Set(snapshotMemberIds);
+    // 同じ議員に複数の observed_on の snapshot があってよい（append-only）。総行数は固定しない
+    if (snapshotSet.size !== PHASE_2A_EXPECTED.currentMemberCount) {
       errors.push(
-        `affiliation_snapshots: expected ${PHASE_2A_EXPECTED.currentSnapshotCount} snapshots for the current term, got ${snapshotMemberIds.length}`
+        `affiliation_snapshots: expected ${PHASE_2A_EXPECTED.currentMemberCount} distinct members with a snapshot for the current term, got ${snapshotSet.size}`
       );
     }
-    const snapshotSet = new Set(snapshotMemberIds);
     const memberTermSet = new Set(currentMemberIds);
     for (const id of memberTermSet) {
       if (!snapshotSet.has(id)) {
