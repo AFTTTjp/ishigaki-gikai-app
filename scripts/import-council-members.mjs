@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * 議員・議会任期データ(council-members/v1)の検証・dry-run・import
+ * 議員・議会任期データ(council-members/v2)の検証・dry-run・import
  *
  * 既定は dry-run（検証 + DB照合のread-only。書き込みなし）。
  *
@@ -67,7 +67,8 @@ console.log("議員・議会任期データ import");
 console.log("=".repeat(60));
 console.log(`入力          : ${jsonPath}`);
 console.log(`検証          : OK（人物 ${doc.persons.length} / 議会任期 ${doc.council_terms.length} / member_terms ${doc.member_terms.length}）`);
-console.log(`所属エントリ  : ${doc.affiliation_entries.length}（ready ${ready.length} / hold ${hold.length}）`);
+console.log(`所属履歴候補  : ${doc.affiliation_entries.length}（ready ${ready.length} / hold ${hold.length}）`);
+console.log(`観測snapshot  : ${doc.affiliation_snapshots.length}`);
 console.log(`source矛盾    : ${doc.source_discrepancies.length} 件`);
 console.log(`Production gate: ${doc.production_import_gate.status}`);
 console.log("");
@@ -132,6 +133,10 @@ if (hasDb) {
       "member_affiliations",
       "member_term_id, party, party_group, valid_from, valid_to, source_url"
     ),
+    memberAffiliationSnapshots: await read(
+      "member_affiliation_snapshots",
+      "id, member_term_id, party, party_group, party_observed_on, party_group_observed_on, party_source_url, party_group_source_url, observed_on"
+    ),
   };
 } else {
   console.log("接続先        : なし（offline: DB照合は行いません）");
@@ -151,5 +156,5 @@ if (!EXECUTE) {
 
 const result = await executeImportPlan(plan, client);
 console.log(
-  `完了: members ${result.members} / council_terms ${result.councilTerms} / member_terms ${result.memberTerms} / member_affiliations ${result.affiliations} 件を追加しました`
+  `完了: members ${result.members} / council_terms ${result.councilTerms} / member_terms ${result.memberTerms} / member_affiliations ${result.affiliations} / member_affiliation_snapshots ${result.snapshots} 件を追加しました`
 );

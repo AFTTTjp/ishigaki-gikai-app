@@ -25,6 +25,7 @@ function legacyDbState(doc) {
     councilTerms: [],
     memberTerms: [],
     memberAffiliations: [],
+    memberAffiliationSnapshots: [],
   };
 }
 
@@ -34,6 +35,7 @@ function fakeClient(initial) {
     council_terms: [],
     member_terms: [],
     member_affiliations: [],
+    member_affiliation_snapshots: [],
   };
   const calls = [];
   return {
@@ -72,7 +74,7 @@ describe("buildImportPlan (offline)", () => {
     expect(plan.councilTerms.insert).toHaveLength(2);
     expect(plan.memberTerms.insert).toHaveLength(45);
     expect(plan.affiliations).toMatchObject({
-      snapshotTotal: 22,
+      candidateTotal: 22,
       holdCount: 22,
     });
     expect(plan.affiliations.readyInsert).toHaveLength(0);
@@ -141,6 +143,7 @@ describe("buildImportPlan (online)", () => {
       councilTerms: client.tables.council_terms,
       memberTerms: client.tables.member_terms,
       memberAffiliations: client.tables.member_affiliations,
+      memberAffiliationSnapshots: client.tables.member_affiliation_snapshots,
     });
     expect(second.errors).toEqual([]);
     expect(second.members.insert).toHaveLength(0);
@@ -158,6 +161,7 @@ describe("buildImportPlan (online)", () => {
       councilTerms: client.tables.council_terms,
       memberTerms: client.tables.member_terms,
       memberAffiliations: [],
+      memberAffiliationSnapshots: client.tables.member_affiliation_snapshots,
     });
     expect(buildImportPlan(doc, dbState()).errors).toEqual([]);
 
@@ -185,6 +189,7 @@ describe("buildImportPlan (online)", () => {
       councilTerms: client.tables.council_terms,
       memberTerms: client.tables.member_terms,
       memberAffiliations: [],
+      memberAffiliationSnapshots: client.tables.member_affiliation_snapshots,
     });
     expect(plan.errors.join()).toContain("create-only importer does not overwrite");
   });
@@ -198,11 +203,53 @@ describe("executeImportPlan", () => {
       buildImportPlan(doc, legacyDbState(doc)),
       client
     );
-    expect(result).toEqual({ members: 5, councilTerms: 2, memberTerms: 45, affiliations: 0 });
+    expect(result).toEqual({
+      members: 5,
+      councilTerms: 2,
+      memberTerms: 45,
+      affiliations: 0,
+      snapshots: 22,
+    });
     expect(client.calls.every((c) => ["insert", "select"].includes(c.op))).toBe(true);
     expect(client.tables.members).toHaveLength(27);
     expect(client.tables.member_terms).toHaveLength(45);
     expect(client.tables.member_affiliations).toHaveLength(0);
+    expect(client.tables.member_affiliation_snapshots).toHaveLength(22);
+  });
+
+  it("insert の順序は members → council_terms → member_terms → snapshots（member_affiliations は ready 0 件のため無し）", async () => {
+    const doc = loadDoc();
+    const client = fakeClient(legacyDbState(doc));
+    await executeImportPlan(buildImportPlan(doc, legacyDbState(doc)), client);
+    const insertOrder = client.calls
+      .filter((c) => c.op === "insert")
+      .map((c) => c.table);
+    expect(insertOrder).toEqual([
+      "members",
+      "council_terms",
+      "member_terms",
+      "member_affiliation_snapshots",
+    ]);
+  });
+
+  it("ready の所属がある場合の順序は …→ member_terms → member_affiliations → snapshots", async () => {
+    const doc = loadDoc();
+    Object.assign(doc.affiliation_entries[0], {
+      status: "ready",
+      effective_from: "2026-09-29",
+      source_url: "https://example.com/evidence",
+    });
+    const client = fakeClient(legacyDbState(doc));
+    await executeImportPlan(buildImportPlan(doc, legacyDbState(doc)), client);
+    expect(
+      client.calls.filter((c) => c.op === "insert").map((c) => c.table)
+    ).toEqual([
+      "members",
+      "council_terms",
+      "member_terms",
+      "member_affiliations",
+      "member_affiliation_snapshots",
+    ]);
   });
 
   it("既存 members 行には触れず、新規行に legacy列を入れない", async () => {
@@ -288,6 +335,7 @@ describe("executeImportPlan", () => {
       members: client.tables.members,
       councilTerms: client.tables.council_terms,
       memberTerms: client.tables.member_terms,
+      memberAffiliationSnapshots: client.tables.member_affiliation_snapshots,
       memberAffiliations: client.tables.member_affiliations.map((a) => ({
         ...a,
         member_term_id: memberTermIdOf(target.member_id),
@@ -305,6 +353,175 @@ describe("executeImportPlan", () => {
     const client = fakeClient(db);
     await expect(executeImportPlan(plan, client)).rejects.toThrow("refusing");
     expect(client.calls).toHaveLength(0);
+  });
+});
+
+describe("観測スナップショット（member_affiliation_snapshots）の計画と実行", () => {
+  const dbStateOf = (client) => ({
+    members: client.tables.members,
+    councilTerms: client.tables.council_terms,
+    memberTerms: client.tables.member_terms,
+    memberAffiliations: client.tables.member_affiliations,
+    memberAffiliationSnapshots: client.tables.member_affiliation_snapshots,
+  });
+  const importedClient = async (doc) => {
+    const client = fakeClient(legacyDbState(doc));
+    await executeImportPlan(buildImportPlan(doc, legacyDbState(doc)), client);
+    return client;
+  };
+
+  it("空の DB（Phase 1 直後）では 22 件を追加予定にする", () => {
+    const doc = loadDoc();
+    const plan = buildImportPlan(doc, legacyDbState(doc));
+    expect(plan.errors).toEqual([]);
+    expect(plan.snapshots.sourceTotal).toBe(22);
+    expect(plan.snapshots.insert).toHaveLength(22);
+    expect(plan.snapshots.unchanged).toHaveLength(0);
+    expect(formatPlanSummary(plan)).toContain(
+      "member_affiliation_snapshots（観測スナップショット）: ソース 22 / 追加予定 22 / 変更なし 0"
+    );
+    expect(formatPlanSummary(plan)).toContain(
+      "member_affiliations（所属履歴候補）: 候補 22 / ready(DB行になる) 0 / hold(DB行にならない) 22"
+    );
+  });
+
+  it("offline でも 22 件を追加予定にする（DB照合なし）", () => {
+    const plan = buildImportPlan(loadDoc(), null);
+    expect(plan.snapshots.insert).toHaveLength(22);
+  });
+
+  it("出典 id は root sources の URL に解決され、source id は DB 行に入らない", async () => {
+    const doc = loadDoc();
+    const roster = doc.sources.find((x) => x.id === "official-roster-20260930").url;
+    const caucus = doc.sources.find((x) => x.id === "official-caucus-20260930").url;
+    const client = await importedClient(doc);
+    const rows = client.tables.member_affiliation_snapshots;
+    expect(rows).toHaveLength(22);
+
+    const nameOf = (termId) =>
+      doc.persons.find(
+        (p) => p.member_id === client.tables.member_terms.find((t) => t.id === termId).member_id
+      ).name;
+    const byName = (name) => rows.find((r) => nameOf(r.member_term_id) === name);
+
+    // 会派ページ由来の会派
+    expect(byName("長山 家康")).toMatchObject({
+      party_source_url: roster,
+      party_group: "自由民主石垣",
+      party_group_source_url: caucus,
+      party_group_observed_on: "2026-09-29",
+    });
+    // 議員名簿が明記した「無会派」
+    expect(byName("田村 博孝")).toMatchObject({
+      party_group: "無会派",
+      party_group_source_url: roster,
+      party_group_observed_on: "2026-09-30",
+    });
+    // 会派不明（null）は出典も基準日も持たない
+    expect(byName("後上里 厚司")).toMatchObject({
+      party_group: null,
+      party_group_source_url: null,
+      party_group_observed_on: null,
+    });
+    for (const row of rows) {
+      expect(row.observed_on).toBe("2026-10-02");
+      expect(Object.keys(row).sort()).toEqual(
+        [
+          "member_term_id",
+          "observed_on",
+          "party",
+          "party_group",
+          "party_group_observed_on",
+          "party_group_source_url",
+          "party_observed_on",
+          "party_source_url",
+        ].sort()
+      );
+    }
+  });
+
+  it("既存の snapshot が全て同じ値なら unchanged 22 で、何も追加しない（idempotent）", async () => {
+    const doc = loadDoc();
+    const client = await importedClient(doc);
+    const plan = buildImportPlan(doc, dbStateOf(client));
+    expect(plan.errors).toEqual([]);
+    expect(plan.snapshots.unchanged).toHaveLength(22);
+    expect(plan.snapshots.insert).toHaveLength(0);
+  });
+
+  it("同じ (member_term, observed_on) で1項目でも違えばエラーにし、UPDATE で直さない", async () => {
+    const doc = loadDoc();
+    for (const [field, value] of [
+      ["party", "別の政党"],
+      ["party_group", "別の会派"],
+      ["party_observed_on", "2026-10-01"],
+      ["party_group_observed_on", "2026-10-01"],
+      ["party_source_url", "https://example.com/other"],
+      ["party_group_source_url", "https://example.com/other"],
+    ]) {
+      const client = await importedClient(doc);
+      // 会派・会派の基準日・出典を持つ行（自由民主石垣の議員）を書き換える
+      const target = client.tables.member_affiliation_snapshots.find(
+        (r) => r.party_group === "自由民主石垣"
+      );
+      target[field] = value;
+      const plan = buildImportPlan(doc, dbStateOf(client));
+      expect(plan.errors.join(), field).toContain(
+        `DB ${field} differs from source (append-only`
+      );
+      expect(plan.snapshots.insert, field).toHaveLength(0);
+    }
+  });
+
+  it("同じ member_term で observed_on が違う既存 snapshot があっても、新しい observed_on は追加される（append）", async () => {
+    const doc = loadDoc();
+    const client = await importedClient(doc);
+    for (const row of client.tables.member_affiliation_snapshots) {
+      row.observed_on = "2026-09-30";
+    }
+    const plan = buildImportPlan(doc, dbStateOf(client));
+    expect(plan.errors).toEqual([]);
+    expect(plan.snapshots.insert).toHaveLength(22);
+    expect(plan.snapshots.unchanged).toHaveLength(0);
+  });
+
+  it("member_term が解決できない snapshot は実行時に失敗する", async () => {
+    const doc = loadDoc();
+    const plan = buildImportPlan(doc, legacyDbState(doc));
+    plan.snapshots.insert.push({
+      ...plan.snapshots.insert[0],
+      member_id: "00000000-0000-4000-8000-000000000000",
+    });
+    const client = fakeClient(legacyDbState(doc));
+    await expect(executeImportPlan(plan, client)).rejects.toThrow(
+      "member_term not found"
+    );
+    // snapshot は member_terms の後に処理されるため、解決失敗時に snapshot は1件も入らない
+    expect(client.tables.member_affiliation_snapshots).toHaveLength(0);
+  });
+
+  it("snapshot の insert が失敗したらエラーを表面化する", async () => {
+    const doc = loadDoc();
+    const base = fakeClient(legacyDbState(doc));
+    const failing = {
+      from(table) {
+        if (table !== "member_affiliation_snapshots") return base.from(table);
+        return {
+          insert: async () => ({ error: { message: "boom" } }),
+          select: async () => ({ data: [], error: null }),
+        };
+      },
+    };
+    await expect(
+      executeImportPlan(buildImportPlan(doc, legacyDbState(doc)), failing)
+    ).rejects.toThrow("member_affiliation_snapshots insert failed: boom");
+  });
+
+  it("snapshot から member_affiliations（履歴）の行は作られない", async () => {
+    const doc = loadDoc();
+    const client = await importedClient(doc);
+    expect(client.tables.member_affiliations).toHaveLength(0);
+    expect(client.tables.member_affiliation_snapshots).toHaveLength(22);
   });
 });
 

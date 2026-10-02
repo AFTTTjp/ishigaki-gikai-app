@@ -1,5 +1,5 @@
 /**
- * 議員・議会任期データ(council-members/v1)の検証と、DB行への変換（純粋関数）。
+ * 議員・議会任期データ(council-members/v2)の検証と、DB行への変換（純粋関数）。
  *
  * 方針:
  * - fail-closed: 1件でも問題があれば import しない
@@ -7,7 +7,7 @@
  * - effective_from が一次資料で確定していない所属は DB行に変換しない（hold）
  */
 
-export const SCHEMA_VERSION = "council-members/v1";
+export const SCHEMA_VERSION = "council-members/v2";
 
 /** Phase 2A で確定している完全性の期待値 */
 export const PHASE_2A_EXPECTED = Object.freeze({
@@ -18,6 +18,7 @@ export const PHASE_2A_EXPECTED = Object.freeze({
   ],
   memberTermsByCouncilTerm: { "2022-09-28": 23, "2026-09-28": 22 },
   currentSeatCount: 22,
+  currentSnapshotCount: 22,
   councilSeatCapacity: 22,
 });
 
@@ -38,6 +39,7 @@ const ALLOWED_KEYS = {
     "persons",
     "member_terms",
     "affiliation_entries",
+    "affiliation_snapshots",
     "source_discrepancies",
     "holds",
   ],
@@ -89,6 +91,18 @@ const ALLOWED_KEYS = {
     "status",
     "hold_reason",
     "source_url",
+  ],
+  // 観測スナップショット（member_affiliation_snapshots に対応）。出典は root sources の id で参照する
+  snapshot: [
+    "council_term_key",
+    "member_id",
+    "observed_on",
+    "party",
+    "party_observed_on",
+    "party_source_id",
+    "party_group",
+    "party_group_observed_on",
+    "party_group_source_id",
   ],
   discrepancy: ["member_id", "field", "observations", "resolved_value", "resolution"],
   hold: ["scope", "subject", "field", "reason", "needed_source"],
@@ -158,7 +172,9 @@ export function collectCouncilMembersErrors(raw) {
   checkKeys(errors, raw, ALLOWED_KEYS.root, "document");
 
   if (raw.schema_version !== SCHEMA_VERSION) {
-    errors.push(`schema_version: must be "${SCHEMA_VERSION}"`);
+    errors.push(
+      `schema_version: must be "${SCHEMA_VERSION}" (older versions are not interpreted as v2)`
+    );
   }
 
   for (const key of [
@@ -167,6 +183,7 @@ export function collectCouncilMembersErrors(raw) {
     "persons",
     "member_terms",
     "affiliation_entries",
+    "affiliation_snapshots",
     "source_discrepancies",
     "holds",
   ]) {
@@ -196,6 +213,7 @@ export function collectCouncilMembersErrors(raw) {
 
   // --- sources ---
   const sourceIds = new Set();
+  const sourcesById = new Map();
   raw.sources.forEach((source, index) => {
     const path = `sources[${index}]`;
     if (!isPlainObject(source)) {
@@ -209,6 +227,7 @@ export function collectCouncilMembersErrors(raw) {
       errors.push(`${path}.id: duplicate source id "${source.id}"`);
     } else {
       sourceIds.add(source.id);
+      sourcesById.set(source.id, source);
     }
     if (!isNonEmptyString(source.label)) errors.push(`${path}.label: required`);
     if (!isHttpsUrl(source.url)) errors.push(`${path}.url: must be an https URL`);
@@ -633,6 +652,132 @@ export function collectCouncilMembersErrors(raw) {
     }
   }
 
+  // --- affiliation_snapshots（観測スナップショット。所属履歴候補 affiliation_entries とは別物） ---
+  const snapshotKeys = new Set();
+  const snapshotMemberIdsByCouncilKey = new Map();
+  raw.affiliation_snapshots.forEach((snapshot, index) => {
+    const path = `affiliation_snapshots[${index}]`;
+    if (!isPlainObject(snapshot)) {
+      errors.push(`${path}: must be an object`);
+      return;
+    }
+    checkKeys(errors, snapshot, ALLOWED_KEYS.snapshot, path);
+    // 全キーを明示させる（欠落と null を区別し、typo を黙って無視しない）
+    for (const key of ALLOWED_KEYS.snapshot) {
+      if (!Object.hasOwn(snapshot, key)) {
+        errors.push(`${path}.${key}: required (use null for no value)`);
+      }
+    }
+
+    const councilTerm = councilTermsByKey.get(snapshot.council_term_key);
+    const memberTerm = memberTermsByPair.get(
+      `${snapshot.council_term_key}::${snapshot.member_id}`
+    );
+    if (!councilTerm) {
+      errors.push(`${path}.council_term_key: unknown council term`);
+    }
+    if (!personsById.has(snapshot.member_id)) {
+      errors.push(`${path}.member_id: unknown member_id`);
+    } else if (councilTerm && !memberTerm) {
+      errors.push(`${path}: no member_term for member ${snapshot.member_id} in "${snapshot.council_term_key}"`);
+    }
+
+    const dedupeKey = `${snapshot.council_term_key}::${snapshot.member_id}::${snapshot.observed_on}`;
+    if (snapshotKeys.has(dedupeKey)) {
+      errors.push(`${path}: duplicate snapshot (council_term_key, member_id, observed_on)`);
+    }
+    snapshotKeys.add(dedupeKey);
+    const memberSet = snapshotMemberIdsByCouncilKey.get(snapshot.council_term_key) ?? [];
+    memberSet.push(snapshot.member_id);
+    snapshotMemberIdsByCouncilKey.set(snapshot.council_term_key, memberSet);
+
+    checkRequiredDate(errors, snapshot.observed_on, `${path}.observed_on`);
+
+    // 値(party / party_group)と、その基準日・出典 id は、あるときは全て揃い、無いときは全て null
+    for (const [valueKey, observedKey, sourceKey] of [
+      ["party", "party_observed_on", "party_source_id"],
+      ["party_group", "party_group_observed_on", "party_group_source_id"],
+    ]) {
+      const value = snapshot[valueKey];
+      const observedOn = snapshot[observedKey];
+      const sourceId = snapshot[sourceKey];
+      if (value !== null && !isNonEmptyString(value)) {
+        errors.push(`${path}.${valueKey}: must be null or a non-blank string`);
+        continue;
+      }
+      if (value === null) {
+        if (observedOn !== null) errors.push(`${path}.${observedKey}: must be null when ${valueKey} is null`);
+        if (sourceId !== null) errors.push(`${path}.${sourceKey}: must be null when ${valueKey} is null`);
+        continue;
+      }
+      checkRequiredDate(errors, observedOn, `${path}.${observedKey}`);
+      if (!isNonEmptyString(sourceId)) {
+        errors.push(`${path}.${sourceKey}: required when ${valueKey} is set`);
+      } else if (!sourceIds.has(sourceId)) {
+        errors.push(`${path}.${sourceKey}: unknown source id "${sourceId}"`);
+      } else if (!isHttpsUrl(sourcesById.get(sourceId).url)) {
+        errors.push(`${path}.${sourceKey}: source URL must be https`);
+      }
+    }
+
+    // 日付の整合（DBはcross-tableの日付を検証しないため、ここで fail-closed に検証する）
+    if (councilTerm && isRealIsoDate(snapshot.observed_on)) {
+      if (!inRange(snapshot.observed_on, councilTerm.start_date, councilTerm.end_date)) {
+        errors.push(`${path}.observed_on: outside council term "${snapshot.council_term_key}"`);
+      }
+    }
+    if (memberTerm && councilTerm && isRealIsoDate(memberTerm.start_date)) {
+      const termEnd = memberTerm.end_date ?? councilTerm.end_date;
+      const withinMemberTerm = (date) => inRange(date, memberTerm.start_date, termEnd);
+      if (isRealIsoDate(snapshot.observed_on) && !withinMemberTerm(snapshot.observed_on)) {
+        errors.push(`${path}.observed_on: outside the member term period`);
+      }
+      for (const observedKey of ["party_observed_on", "party_group_observed_on"]) {
+        const date = snapshot[observedKey];
+        if (!isRealIsoDate(date)) continue;
+        if (!inRange(date, councilTerm.start_date, councilTerm.end_date)) {
+          errors.push(`${path}.${observedKey}: outside council term "${snapshot.council_term_key}"`);
+        } else if (!withinMemberTerm(date)) {
+          errors.push(`${path}.${observedKey}: outside the member term period`);
+        }
+        if (isRealIsoDate(snapshot.observed_on) && date > snapshot.observed_on) {
+          errors.push(`${path}.${observedKey}: must be on or before observed_on`);
+        }
+      }
+    }
+  });
+
+  // 現任期: スナップショットは現任期の member_terms と過不足なく一致する（順序は無関係。集合で比較）
+  if (currentTerm) {
+    const currentMemberIds = (memberTermsByCouncilKey.get(currentTerm.key) ?? []).map(
+      (term) => term.member_id
+    );
+    const snapshotMemberIds = snapshotMemberIdsByCouncilKey.get(currentTerm.key) ?? [];
+    if (snapshotMemberIds.length !== PHASE_2A_EXPECTED.currentSnapshotCount) {
+      errors.push(
+        `affiliation_snapshots: expected ${PHASE_2A_EXPECTED.currentSnapshotCount} snapshots for the current term, got ${snapshotMemberIds.length}`
+      );
+    }
+    const snapshotSet = new Set(snapshotMemberIds);
+    const memberTermSet = new Set(currentMemberIds);
+    for (const id of memberTermSet) {
+      if (!snapshotSet.has(id)) {
+        errors.push(`affiliation_snapshots: current member ${id} has no snapshot`);
+      }
+    }
+    for (const id of snapshotSet) {
+      if (!memberTermSet.has(id)) {
+        errors.push(`affiliation_snapshots: snapshot for ${id} who has no current member_term`);
+      }
+    }
+    // Phase 3 の切替条件の前提: 現任期の snapshot の party は全員 非NULL
+    for (const snapshot of raw.affiliation_snapshots) {
+      if (snapshot?.council_term_key === currentTerm.key && snapshot.party === null) {
+        errors.push(`affiliation_snapshots: current term party must not be null (member ${snapshot.member_id})`);
+      }
+    }
+  }
+
   // --- source_discrepancies / holds（構造のみ） ---
   for (const [name, allowed] of [
     ["source_discrepancies", ALLOWED_KEYS.discrepancy],
@@ -720,4 +865,28 @@ export function splitAffiliationEntries(doc) {
     }
   }
   return { ready, hold };
+}
+
+/**
+ * 観測スナップショットを DB 行（member_affiliation_snapshots）に変換する。
+ * 出典 id は root sources の URL に解決する（source id 自体は DB に保存しない）。
+ * member_term_id の解決は import 時（council_term_key + member_id から）。
+ */
+export function buildSnapshotRows(doc) {
+  const urlBySourceId = new Map(doc.sources.map((source) => [source.id, source.url]));
+  return doc.affiliation_snapshots.map((snapshot) => ({
+    council_term_key: snapshot.council_term_key,
+    member_id: snapshot.member_id,
+    observed_on: snapshot.observed_on,
+    party: snapshot.party,
+    party_group: snapshot.party_group,
+    party_observed_on: snapshot.party_observed_on,
+    party_group_observed_on: snapshot.party_group_observed_on,
+    party_source_url:
+      snapshot.party_source_id === null ? null : urlBySourceId.get(snapshot.party_source_id),
+    party_group_source_url:
+      snapshot.party_group_source_id === null
+        ? null
+        : urlBySourceId.get(snapshot.party_group_source_id),
+  }));
 }

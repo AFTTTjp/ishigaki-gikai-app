@@ -1,5 +1,5 @@
 /**
- * council-members/v1 の import 計画（純粋関数）と実行（クライアント注入）。
+ * council-members/v2 の import 計画（純粋関数）と実行（クライアント注入）。
  *
  * 方針:
  * - create-only: 無い行だけ insert。既存行と値が違えばエラー（上書き・削除は一切しない）
@@ -10,7 +10,10 @@
  *   （氏名で人物を探したり、ID を補ったりしない）
  */
 
-import { splitAffiliationEntries } from "./import-council-members-validation.mjs";
+import {
+  buildSnapshotRows,
+  splitAffiliationEntries,
+} from "./import-council-members-validation.mjs";
 
 function indexBy(rows, keyFn) {
   const map = new Map();
@@ -30,12 +33,13 @@ function sameValues(a, b, fields) {
 }
 
 /**
- * @param {object} doc 検証済みの council-members/v1
+ * @param {object} doc 検証済みの council-members/v2
  * @param {null | {
  *   members: Array<{id: string, name: string}>,
  *   councilTerms: Array<{id: string, start_date: string, end_date: string}>,
  *   memberTerms: Array<object>,
  *   memberAffiliations: Array<object>,
+ *   memberAffiliationSnapshots: Array<object>,
  * }} dbState null なら DB 照合なし（offline）
  */
 export function buildImportPlan(doc, dbState) {
@@ -244,6 +248,46 @@ export function buildImportPlan(doc, dbState) {
     }
   }
 
+  // --- 観測スナップショット（member_affiliation_snapshots）。append-only のため create-only ---
+  // 論理キーは member_term_id + observed_on。値が1項目でも違えば、UPDATE では直さずエラーにする
+  const snapshotRows = buildSnapshotRows(doc);
+  const snapshotsToInsert = [];
+  const snapshotsUnchanged = [];
+  const snapshotCompareFields = [
+    "party",
+    "party_group",
+    "party_observed_on",
+    "party_group_observed_on",
+    "party_source_url",
+    "party_group_source_url",
+    "observed_on",
+  ];
+  const dbSnapshotByKey = online
+    ? indexBy(
+        dbState.memberAffiliationSnapshots ?? [],
+        (row) => `${row.member_term_id}::${row.observed_on}`
+      )
+    : null;
+  for (const row of snapshotRows) {
+    const start = councilStartByKey.get(row.council_term_key);
+    const termId = dbMemberTermIdByKey?.get(`${start}::${row.member_id}`);
+    const dbRow = termId
+      ? dbSnapshotByKey.get(`${termId}::${row.observed_on}`)
+      : undefined;
+    if (!dbRow) {
+      snapshotsToInsert.push(row);
+    } else if (sameValues(dbRow, row, snapshotCompareFields)) {
+      snapshotsUnchanged.push(`${row.member_id}::${row.observed_on}`);
+    } else {
+      const differing = snapshotCompareFields.filter(
+        (field) => (dbRow[field] ?? null) !== (row[field] ?? null)
+      );
+      errors.push(
+        `member_affiliation_snapshot ${row.member_id}::${row.observed_on}: DB ${differing.join(", ")} differs from source (append-only: add a new observed_on snapshot instead of updating)`
+      );
+    }
+  }
+
   return {
     mode: online ? "online" : "offline",
     errors,
@@ -257,11 +301,18 @@ export function buildImportPlan(doc, dbState) {
     },
     councilTerms: { insert: councilTermsToInsert, unchanged: councilTermsUnchanged },
     memberTerms: { insert: memberTermsToInsert, unchanged: memberTermsUnchanged },
+    // 所属履歴候補（affiliation_entries）。ready だけが member_affiliations の行になる
     affiliations: {
-      snapshotTotal: doc.affiliation_entries.length,
+      candidateTotal: doc.affiliation_entries.length,
       readyInsert: affiliationsToInsert,
       readyUnchanged: affiliationsUnchanged,
       holdCount: hold.length,
+    },
+    // 観測スナップショット（affiliation_snapshots）。member_affiliation_snapshots の行になる
+    snapshots: {
+      sourceTotal: snapshotRows.length,
+      insert: snapshotsToInsert,
+      unchanged: snapshotsUnchanged,
     },
   };
 }
@@ -273,7 +324,8 @@ export function formatPlanSummary(plan) {
     `members: 人物 ${plan.members.total} 件 / 追加予定 ${plan.members.insert.length} / DB確認済み(既存) ${plan.members.verified.length} / 既に存在 ${plan.members.alreadyPresent.length} / 未照合 ${plan.members.unverified.length}`,
     `council_terms: 追加予定 ${plan.councilTerms.insert.length} / 変更なし ${plan.councilTerms.unchanged.length}`,
     `member_terms: 追加予定 ${plan.memberTerms.insert.length} / 変更なし ${plan.memberTerms.unchanged.length}`,
-    `member_affiliations: スナップショット ${plan.affiliations.snapshotTotal} / ready(DB行になる) ${plan.affiliations.readyInsert.length + plan.affiliations.readyUnchanged.length} / hold(DB行にならない) ${plan.affiliations.holdCount}`,
+    `member_affiliations（所属履歴候補）: 候補 ${plan.affiliations.candidateTotal} / ready(DB行になる) ${plan.affiliations.readyInsert.length + plan.affiliations.readyUnchanged.length} / hold(DB行にならない) ${plan.affiliations.holdCount}`,
+    `member_affiliation_snapshots（観測スナップショット）: ソース ${plan.snapshots.sourceTotal} / 追加予定 ${plan.snapshots.insert.length} / 変更なし ${plan.snapshots.unchanged.length}`,
     `エラー: ${plan.errors.length} 件`,
   ];
   for (const error of plan.errors) lines.push(`  ✗ ${error}`);
@@ -331,24 +383,35 @@ export async function executeImportPlan(plan, client) {
   });
   await insertRows(client, "member_terms", memberTermRows);
 
-  if (plan.affiliations.readyInsert.length > 0) {
+  // member_terms の insert 後に DB から id を取り直して解決する
+  let termIdByPair = new Map();
+  if (
+    plan.affiliations.readyInsert.length > 0 ||
+    plan.snapshots.insert.length > 0
+  ) {
     const termRows = await selectRows(
       client,
       "member_terms",
       "id, council_term_id, member_id"
     );
-    const termIdByPair = new Map(
+    termIdByPair = new Map(
       termRows.map((r) => [`${r.council_term_id}::${r.member_id}`, r.id])
     );
+  }
+  const resolveMemberTermId = (row) => {
+    const termId = termIdByPair.get(
+      `${councilIdByKey(row.council_term_key)}::${row.member_id}`
+    );
+    if (!termId) {
+      throw new Error(`member_term not found for ${row.member_id}`);
+    }
+    return termId;
+  };
+
+  if (plan.affiliations.readyInsert.length > 0) {
     const affiliationRows = plan.affiliations.readyInsert.map((row) => {
-      const termId = termIdByPair.get(
-        `${councilIdByKey(row.council_term_key)}::${row.member_id}`
-      );
-      if (!termId) {
-        throw new Error(`member_term not found for ${row.member_id}`);
-      }
       return {
-        member_term_id: termId,
+        member_term_id: resolveMemberTermId(row),
         party: row.party,
         party_group: row.party_group,
         valid_from: row.valid_from,
@@ -359,10 +422,24 @@ export async function executeImportPlan(plan, client) {
     await insertRows(client, "member_affiliations", affiliationRows);
   }
 
+  // 最後に観測スナップショット（append-only。insert のみ）
+  const snapshotDbRows = plan.snapshots.insert.map((row) => ({
+    member_term_id: resolveMemberTermId(row),
+    party: row.party,
+    party_group: row.party_group,
+    party_observed_on: row.party_observed_on,
+    party_group_observed_on: row.party_group_observed_on,
+    party_source_url: row.party_source_url,
+    party_group_source_url: row.party_group_source_url,
+    observed_on: row.observed_on,
+  }));
+  await insertRows(client, "member_affiliation_snapshots", snapshotDbRows);
+
   return {
     members: plan.members.insert.length,
     councilTerms: plan.councilTerms.insert.length,
     memberTerms: memberTermRows.length,
     affiliations: plan.affiliations.readyInsert.length,
+    snapshots: snapshotDbRows.length,
   };
 }
