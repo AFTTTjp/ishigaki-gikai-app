@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import {
   getAnonClient,
   getAuthenticatedClient,
@@ -28,6 +28,7 @@ const tables = [
   "council_terms",
   "member_terms",
   "member_affiliations",
+  "member_affiliation_snapshots",
 ] as const;
 
 describe("RLS default deny（全テーブル共通）", () => {

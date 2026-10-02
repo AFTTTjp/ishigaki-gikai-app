@@ -897,6 +897,56 @@ export type Database = {
           },
         ]
       }
+      member_affiliation_snapshots: {
+        Row: {
+          created_at: string
+          id: string
+          member_term_id: string
+          observed_on: string
+          party: string | null
+          party_group: string | null
+          party_group_observed_on: string | null
+          party_group_source_url: string | null
+          party_observed_on: string | null
+          party_source_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          member_term_id: string
+          observed_on: string
+          party?: string | null
+          party_group?: string | null
+          party_group_observed_on?: string | null
+          party_group_source_url?: string | null
+          party_observed_on?: string | null
+          party_source_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          member_term_id?: string
+          observed_on?: string
+          party?: string | null
+          party_group?: string | null
+          party_group_observed_on?: string | null
+          party_group_source_url?: string | null
+          party_observed_on?: string | null
+          party_source_url?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "member_affiliation_snapshots_member_term_id_fkey"
+            columns: ["member_term_id"]
+            isOneToOne: false
+            referencedRelation: "member_terms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       member_affiliations: {
         Row: {
           created_at: string
