@@ -45,6 +45,36 @@
 - `service_role` のみ SELECT / INSERT / UPDATE / DELETE を明示 grant（`member_affiliation_snapshots` だけは append-only のため SELECT / INSERT のみ）。アクセスは `createAdminClient()` 経由。
 - 既存の `members` / `member_links` の公開 read policy は変更していない。
 
+## 議員一覧・詳細の mode（Phase 3）
+
+`/members` と `/members/[id]` は、新モデルのデータが**完全に揃ったときだけ** current mode で表示し、揃っていなければ legacy mode（従来表示）を維持する。判定は `web/src/features/members/shared/utils/member-roster.ts`（純粋関数）、データ取得は `web/src/features/members/server/repositories/member-repository.ts`（server-only・admin client）。
+
+| mode | 条件 | 一覧 | 政党・会派・当選回数の出所 |
+|---|---|---|---|
+| legacy | 下の gate を満たさない（Phase 3 deploy 直後の Production はこの状態） | `members.election_count` が非 NULL の人だけ（旧22人。**members 全件ではない**） | `members` の legacy 列（従来どおり） |
+| current | 下の gate をすべて満たす | 在職中の議員（現任期の `member_terms`） | 当選回数 = `member_terms.election_count`、政党・会派 = 基準日以前の最新 `member_affiliation_snapshots`（**legacy 列は使わない**） |
+
+**current mode の gate**（1つでも欠けたら legacy。partial な名簿を出さない）
+1. 基準日（日本時間の今日）を含む `council_terms` がちょうど1件（0件は legacy、2件以上は**データ不整合としてエラー**）
+2. 初回名簿（議会任期の開始日に就任した `member_terms`）が席 1..22 を過不足なく埋めている（欠員が出て在職者が21人になっても、初回名簿が揃っていれば current のまま）
+3. 在職中の各議員に、当選回数（非 NULL）、`members` 行、基準日以前の最新 snapshot（`party` が非 NULL）がある。`party_group` の NULL は可（「会派不明」。「無会派」の文字列とは区別して表示する）
+4. 同じ議員の `member_terms` が現任期に重複していない（重複はエラー）
+
+- 基準日より後の `observed_on` の snapshot は現在値に使わない。同じ `member_term` に複数 snapshot があれば `observed_on` が最新のものを使う
+- legacy が `election_count IS NOT NULL` で旧22人に限定できるのは、Phase 2A の importer が新人・歴史上の人物（砥板芳行）の `members` 行に `election_count` を書かないため。**`members.election_count` を後から誰かが書かないこと**（書くと legacy 一覧に混ざる）
+
+**議員詳細**
+- 名簿（current または legacy）に載っている議員は、その mode の値で表示
+- current mode で名簿に載っていない議員は、`members` に存在すれば**前議員として表示**（404にしない。過去の採決などからのリンクを維持するため）。前議員では legacy の政党・会派・当選回数を現在の情報として出さず、在任期間だけを `member_terms` と議会任期から表示する
+- 存在しない ID は 404
+
+**Phase 3 では変更していないもの**: 採決表示（まだ `members.party / party_group` を JOIN）、`bill_member_votes.member_term_id` の backfill、所属履歴（`member_affiliations`）。新任期の最初の採決を取り込む前に、採決表示を `member_term_id` と snapshot の as-of に切り替えること。
+
+**Production import 前後の read-only 確認**（Production への書き込みなし。SQL は参照のみ）
+- import 前: `select count(*) from members where election_count is not null;` が旧22人（22）であること。新人・歴史上の人物がまだ無いか、あっても `election_count` が NULL であること
+- import 前: `select count(*) from council_terms;` が 0（未投入）なら legacy mode の想定。投入途中（partial）で legacy に戻った場合は、サーバーログに `[members] current roster is incomplete; using legacy roster: <理由>` が出る
+- import 後: `/members` が新任期22人（新人4人を含み、退任者4人を含まない）になっていること。ならなければログの理由を確認する
+
 ## 次フェーズ（未実施）
 
 - 2022-2026 任期の backfill（`member_terms` / `member_affiliations` / 既存票の `member_term_id`）

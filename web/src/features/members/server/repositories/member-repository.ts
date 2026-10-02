@@ -1,215 +1,125 @@
 import "server-only";
 
-import { createClient } from "@supabase/supabase-js";
-import { env } from "@/lib/env";
-import type { Member, MemberLink } from "../../shared/types";
+import { cache } from "react";
+import { createAdminClient } from "@mirai-gikai/supabase";
+import type { Member, MemberDetail } from "../../shared/types";
+import {
+  buildMemberDetail,
+  buildMemberRoster,
+  type MemberRosterState,
+  todayInJst,
+} from "../../shared/utils/member-roster";
 
-type MembersDatabase = {
-  public: {
-    Tables: {
-      members: {
-        Row: Member;
-      };
-      member_links: {
-        Row: MemberLink;
-      };
-    };
-  };
-};
+/**
+ * 議員名簿のデータ取得（server-only）。
+ *
+ * - 新モデル（council_terms / member_terms / member_affiliation_snapshots）は RLS default-deny のため、
+ *   必ず service role の admin client で読む。ブラウザには露出しない
+ * - current mode / legacy mode の判定と Member の組み立ては shared/utils/member-roster.ts（純粋関数）で行う
+ */
 
-type MemberRow = {
-  id: string;
-  name: string;
-  name_kana: string | null;
-  party: string | null;
-  party_group: string | null;
-  election_count: number | null;
-  birth_date: string | null;
-  address: string | null;
-  image_url: string | null;
-  website_url?: string | null;
-  twitter_url?: string | null;
-  facebook_url?: string | null;
-  instagram_url?: string | null;
-  threads_url?: string | null;
-  youtube_url?: string | null;
-  line_url?: string | null;
-};
+type DbError = { code?: string; message: string };
 
-type MemberLinkRow = {
-  id: string;
-  member_id: string;
-  service: string;
-  label: string | null;
-  url: string;
-  sort_order: number;
-};
-
-function getSupabaseTargetLabel(url: string) {
-  try {
-    const hostname = new URL(url).hostname;
-
-    if (
-      hostname === "127.0.0.1" ||
-      hostname === "localhost" ||
-      hostname.endsWith(".local")
-    ) {
-      return "local";
-    }
-
-    return "cloud";
-  } catch {
-    return "unknown";
-  }
+/** テーブルが存在しない（migration 未適用の環境）エラー */
+function isMissingTable(error: DbError, table: string): boolean {
+  return (
+    error.code === "PGRST205" ||
+    error.code === "42P01" ||
+    error.message.includes(`Could not find the table 'public.${table}'`) ||
+    error.message.includes(`relation "public.${table}" does not exist`)
+  );
 }
 
-export async function getMembers(): Promise<Member[]> {
-  const targetInfo = {
-    url: env.supabaseUrl,
-    target: getSupabaseTargetLabel(env.supabaseUrl),
+/** 議員名簿に必要な状態を読む。1リクエスト内ではキャッシュして重複取得しない */
+const loadMemberRosterState = cache(async (): Promise<MemberRosterState> => {
+  const supabase = createAdminClient();
+
+  const [members, memberLinks, councilTerms, memberTerms, snapshots] =
+    await Promise.all([
+      supabase
+        .from("members")
+        .select("*")
+        .order("name_kana", { ascending: true, nullsFirst: false })
+        .order("name", { ascending: true }),
+      supabase
+        .from("member_links")
+        .select("id, member_id, service, label, url, sort_order")
+        .order("sort_order", { ascending: true })
+        .order("created_at", { ascending: true }),
+      supabase.from("council_terms").select("id, start_date, end_date"),
+      supabase
+        .from("member_terms")
+        .select(
+          "id, council_term_id, member_id, seat_number, election_count, start_date, end_date"
+        ),
+      supabase
+        .from("member_affiliation_snapshots")
+        .select("member_term_id, observed_on, party, party_group"),
+    ]);
+
+  // members が無い環境は従来どおり空の名簿にする。それ以外のエラーは握りつぶさない
+  if (members.error && !isMissingTable(members.error, "members")) {
+    throw new Error(`Failed to fetch members: ${members.error.message}`);
+  }
+  if (memberLinks.error && !isMissingTable(memberLinks.error, "member_links")) {
+    throw new Error(
+      `Failed to fetch member links: ${memberLinks.error.message}`
+    );
+  }
+
+  // 新モデルのテーブルが無い環境は「新任期データ未投入」と同じ扱い（legacy mode）にする
+  const optional = <T>(
+    result: { data: T[] | null; error: DbError | null },
+    table: string
+  ): T[] => {
+    if (result.error) {
+      if (isMissingTable(result.error, table)) return [];
+      throw new Error(`Failed to fetch ${table}: ${result.error.message}`);
+    }
+    return result.data ?? [];
   };
 
-  console.log("[members] Supabase target:", {
-    ...targetInfo,
-  });
-
-  const supabase = createClient<MembersDatabase>(
-    env.supabaseUrl,
-    env.supabaseAnonKey
-  );
-
-  const queryWithSocialLinks = () =>
-    supabase
-      .from("members")
-      .select(
-        "id, name, name_kana, party, party_group, election_count, birth_date, address, image_url, website_url, twitter_url, facebook_url, instagram_url, threads_url, youtube_url, line_url"
-      )
-      .order("name_kana", { ascending: true, nullsFirst: false })
-      .order("name", { ascending: true });
-
-  const fallbackQuery = () =>
-    supabase
-      .from("members")
-      .select(
-        "id, name, name_kana, party, party_group, election_count, birth_date, address, image_url"
-      )
-      .order("name_kana", { ascending: true, nullsFirst: false })
-      .order("name", { ascending: true });
-
-  let { data, error } = await queryWithSocialLinks();
-
-  const isMissingSocialLinkColumn =
-    error &&
-    (error.message.includes("website_url") ||
-      error.message.includes("facebook_url") ||
-      error.message.includes("twitter_url") ||
-      error.message.includes("instagram_url") ||
-      error.message.includes("threads_url") ||
-      error.message.includes("youtube_url") ||
-      error.message.includes("line_url") ||
-      error.message.includes("column members.website_url does not exist") ||
-      error.message.includes("column members.twitter_url does not exist") ||
-      error.message.includes("column members.facebook_url does not exist") ||
-      error.message.includes("column members.instagram_url does not exist") ||
-      error.message.includes("column members.threads_url does not exist") ||
-      error.message.includes("column members.youtube_url does not exist") ||
-      error.message.includes("column members.line_url does not exist"));
-
-  if (isMissingSocialLinkColumn) {
-    ({ data, error } = await fallbackQuery());
-  }
-
-  if (error) {
-    console.error("[members] Failed to fetch members:", {
-      ...targetInfo,
-      error: error.message,
-    });
-
-    const isMissingMembersTable =
-      error.message.includes("Could not find the table 'public.members'") ||
-      error.message.includes('relation "public.members" does not exist');
-
-    if (isMissingMembersTable) {
-      return [];
-    }
-
-    throw new Error(
-      `Failed to fetch members: ${error.message} (target=${targetInfo.target}, url=${targetInfo.url})`
-    );
-  }
-
-  const { data: memberLinksData, error: memberLinksError } = await supabase
-    .from("member_links")
-    .select("id, member_id, service, label, url, sort_order")
-    .order("sort_order", { ascending: true })
-    .order("created_at", { ascending: true });
-
-  const isMissingMemberLinksTable =
-    memberLinksError &&
-    (memberLinksError.message.includes("public.member_links") ||
-      memberLinksError.message.includes(
-        'relation "public.member_links" does not exist'
-      ) ||
-      memberLinksError.message.includes(
-        "Could not find the table 'public.member_links'"
-      ));
-
-  if (memberLinksError && !isMissingMemberLinksTable) {
-    throw new Error(
-      `Failed to fetch member links: ${memberLinksError.message}`
-    );
-  }
-
-  const memberLinksByMemberId = new Map<string, MemberLink[]>();
-
-  for (const link of (memberLinksData ?? []) as MemberLinkRow[]) {
-    const normalizedLink: MemberLink = {
+  return {
+    members: members.data ?? [],
+    memberLinks: (memberLinks.data ?? []).map((link) => ({
       id: link.id,
       member_id: link.member_id,
       service: link.service,
       label: link.label,
       url: link.url,
       sort_order: link.sort_order ?? 0,
-    };
+    })),
+    councilTerms: optional(councilTerms, "council_terms"),
+    memberTerms: optional(memberTerms, "member_terms"),
+    snapshots: optional(snapshots, "member_affiliation_snapshots"),
+  };
+});
 
-    const existingLinks = memberLinksByMemberId.get(link.member_id);
+/**
+ * 議員一覧。
+ * 新任期データが完全に揃っている場合だけ現任期の議員（current mode）を返し、
+ * 欠けている間は従来どおり legacy 名簿（members.election_count が非 NULL の旧22人）を返す。
+ */
+export async function getMembers(): Promise<Member[]> {
+  const state = await loadMemberRosterState();
+  const roster = buildMemberRoster(state, todayInJst(new Date()));
 
-    if (existingLinks) {
-      existingLinks.push(normalizedLink);
-      continue;
-    }
-
-    memberLinksByMemberId.set(link.member_id, [normalizedLink]);
+  // 段階的な import の途中など、新モデルが不完全で legacy に戻ったときだけ記録する
+  if (roster.mode === "legacy" && roster.partial) {
+    console.warn(
+      `[members] current roster is incomplete; using legacy roster: ${roster.reason}`
+    );
   }
-
-  return ((data ?? []) as MemberRow[]).map((member) => ({
-    id: member.id,
-    name: member.name,
-    name_kana: member.name_kana,
-    party: member.party,
-    party_group: member.party_group,
-    election_count: member.election_count,
-    birth_date: member.birth_date,
-    address: member.address,
-    image_url: member.image_url,
-    website_url:
-      typeof member.website_url === "string" ? member.website_url : null,
-    twitter_url:
-      typeof member.twitter_url === "string" ? member.twitter_url : null,
-    facebook_url:
-      typeof member.facebook_url === "string" ? member.facebook_url : null,
-    instagram_url:
-      typeof member.instagram_url === "string" ? member.instagram_url : null,
-    threads_url:
-      typeof member.threads_url === "string" ? member.threads_url : null,
-    youtube_url:
-      typeof member.youtube_url === "string" ? member.youtube_url : null,
-    line_url: typeof member.line_url === "string" ? member.line_url : null,
-    links: memberLinksByMemberId.get(member.id) ?? [],
-  }));
+  return roster.members;
 }
 
-export async function getMemberById(memberId: string): Promise<Member | null> {
-  const members = await getMembers();
-  return members.find((member) => member.id === memberId) ?? null;
-}
+/**
+ * 議員詳細。
+ * current mode で名簿に載っていない議員（前議員）も、members に存在すれば返す（404 にしない）。
+ */
+export const getMemberById = cache(
+  async (memberId: string): Promise<MemberDetail | null> => {
+    const state = await loadMemberRosterState();
+    return buildMemberDetail(memberId, state, todayInJst(new Date()));
+  }
+);
