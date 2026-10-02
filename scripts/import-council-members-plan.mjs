@@ -126,10 +126,27 @@ export function buildImportPlan(doc, dbState) {
   for (const term of doc.council_terms) {
     const dbRow = dbCouncilByStart?.get(term.start_date);
     if (!dbRow) {
-      councilTermsToInsert.push({
-        start_date: term.start_date,
-        end_date: term.end_date,
-      });
+      // DB は期間の重複を防がないため、既存の議会任期との重複をここで拒否する
+      const overlapping = online
+        ? dbState.councilTerms.find((existing) =>
+            periodsOverlap(
+              existing.start_date,
+              existing.end_date,
+              term.start_date,
+              term.end_date
+            )
+          )
+        : undefined;
+      if (overlapping) {
+        errors.push(
+          `council_term ${term.start_date}: overlaps an existing DB council term ${overlapping.start_date} .. ${overlapping.end_date}`
+        );
+      } else {
+        councilTermsToInsert.push({
+          start_date: term.start_date,
+          end_date: term.end_date,
+        });
+      }
     } else if (dbRow.end_date === term.end_date) {
       councilTermsUnchanged.push(term.key);
     } else {

@@ -248,6 +248,19 @@ describe("executeImportPlan", () => {
     });
   });
 
+  it("既存の議会任期と期間が重なる任期は、start_date が違っても拒否する", () => {
+    const doc = loadDoc();
+    const db = legacyDbState(doc);
+    db.councilTerms.push({
+      id: "ct-existing",
+      start_date: "2026-10-01",
+      end_date: "2030-09-30",
+    });
+    const plan = buildImportPlan(doc, db);
+    expect(plan.errors.join()).toContain("overlaps an existing DB council term");
+    expect(plan.councilTerms.insert.map((t) => t.start_date)).toEqual(["2022-09-28"]);
+  });
+
   it("既存の所属と期間が重なる ready 所属は、valid_from が違っても拒否する", async () => {
     const doc = loadDoc();
     const target = doc.affiliation_entries[0];
