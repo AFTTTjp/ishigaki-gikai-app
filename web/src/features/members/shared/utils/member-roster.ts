@@ -371,9 +371,10 @@ export function listMemberTenures(
 /**
  * 議員詳細を組み立てる。
  * - 名簿（current / legacy）に載っている議員 → current
- * - current mode で名簿に載っていないが members に存在する議員 → former（404 にしない。
+ * - current mode で名簿に載っていない議員のうち、members に存在し、かつ member_terms
+ *   （過去・終了済みを含む）で在任実績を確認できる議員 → former（404 にしない。
  *   過去の採決などからのリンクを維持する）。legacy の政党・会派・当選回数は現在値として出さない
- * - どちらでもなければ null
+ * - members 行だけで member_terms が無い人物、存在しない ID → null（前議員とは断定しない）
  */
 export function buildMemberDetail(
   memberId: string,
@@ -392,6 +393,12 @@ export function buildMemberDetail(
 
   const row = state.members.find((member) => member.id === memberId);
   if (!row) {
+    return null;
+  }
+  // 「前議員」は公的な属性なので、members 行の存在だけでは断定しない。
+  // member_terms（過去・終了済みを含む）で在任実績を確認できる人だけを前議員にする
+  const hasTerm = state.memberTerms.some((term) => term.member_id === row.id);
+  if (!hasTerm) {
     return null;
   }
   const links = groupLinksByMember(state.memberLinks).get(row.id) ?? [];

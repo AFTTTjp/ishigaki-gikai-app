@@ -65,7 +65,7 @@
 
 **議員詳細**
 - 名簿（current または legacy）に載っている議員は、その mode の値で表示
-- current mode で名簿に載っていない議員は、`members` に存在すれば**前議員として表示**（404にしない。過去の採決などからのリンクを維持するため）。前議員では legacy の政党・会派・当選回数を現在の情報として出さず、在任期間だけを `member_terms` と議会任期から表示する
+- current mode で名簿に載っていない議員は、`members` に存在し、`member_terms`（過去・終了済みを含む）で在任実績を確認できれば**前議員として表示**（404にしない。過去の採決などからのリンクを維持するため）。`members` 行だけで `member_terms` が無い人物は、前議員とは断定せず404前議員では legacy の政党・会派・当選回数を現在の情報として出さず、在任期間だけを `member_terms` と議会任期から表示する
 - 存在しない ID は 404
 
 **Phase 3 では変更していないもの**: 採決表示（まだ `members.party / party_group` を JOIN）、`bill_member_votes.member_term_id` の backfill、所属履歴（`member_affiliations`）。新任期の最初の採決を取り込む前に、採決表示を `member_term_id` と snapshot の as-of に切り替えること。

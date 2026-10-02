@@ -593,6 +593,35 @@ describe("buildMemberDetail", () => {
     ).toHaveLength(1);
   });
 
+  it("current mode: members 行だけで member_terms が無い人物は前議員と断定せず null（404）", () => {
+    const state = completeState();
+    state.members.push(addedMember("ghost", 99)); // members 行だけの架空の人物
+    expect(buildMemberDetail("ghost", state, REFERENCE_DATE)).toBeNull();
+    // 名簿の一覧にも出ない
+    expect(
+      buildMemberRoster(state, REFERENCE_DATE).members.map((m) => m.id)
+    ).not.toContain("ghost");
+  });
+
+  it("current mode: 在任実績（member_terms）が1件でもあれば former になる（旧任期のみ・終了済み）", () => {
+    const state = completeState();
+    state.members.push(addedMember("past-only", 98));
+    state.memberTerms.push({
+      id: "mt-old-past-only",
+      council_term_id: councilOld.id,
+      member_id: "past-only",
+      seat_number: null,
+      election_count: null,
+      start_date: "2022-09-28",
+      end_date: "2023-03-31",
+    });
+    const detail = buildMemberDetail("past-only", state, REFERENCE_DATE);
+    expect(detail?.kind).toBe("former");
+    expect(detail?.tenures).toEqual([
+      { start_date: "2022-09-28", end_date: "2023-03-31" },
+    ]);
+  });
+
   it("存在しない ID は null（404）", () => {
     expect(
       buildMemberDetail(
