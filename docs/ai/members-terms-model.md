@@ -9,7 +9,8 @@
 | `members` | 人物マスター。`id` は任期をまたいで不変。退任議員も**削除しない** |
 | `council_terms` | 議会任期（開始日・終了日） |
 | `member_terms` | 議員 × 議会任期。同一人物が再選しても `members.id` は変えず、新しい行を作る |
-| `member_affiliations` | 任期内の政党・会派の履歴（期間付き）。政党・会派のマスターは持たない |
+| `member_affiliations` | 任期内の政党・会派の履歴（期間付き）。`valid_from`（所属の開始日）が一次資料で確定したときだけ使う。政党・会派のマスターは持たない |
+| `member_affiliation_snapshots` | 「ある時点の資料ではこの所属だった」という観測値。所属の開始日が不明でも保存できる。append-only |
 | `bill_member_votes.member_term_id` | 採決時点の議員任期。NULL は従来どおり有効 |
 
 ## 守るべきルール
@@ -24,10 +25,24 @@
 5. **期間のoverlapはDB制約にしていない**（extension が必要になるため）。任期・所属の投入時に validation する。
    期間判定は `web/src/features/members/shared/utils/term-period.ts`（開始日・終了日を含む、`end = null` は継続中）。
 
+## member_affiliation_snapshots の使い方
+
+- **スナップショットは所属の開始日を意味しない。** `observed_on`（記録の基準日）、`party_observed_on` / `party_group_observed_on`（各資料が示す基準日）を、`member_affiliations.valid_from` に流用しない
+- **append-only**: 値を書き換えず、新しい観測は新しい `observed_on` の行を追加する。`service_role` には SELECT / INSERT しか付与していない（UPDATE / DELETE は権限エラー）。訂正も新しい行の追加で行う。`updated_at` があっても通常のUPDATEで現在値を書き換えない
+- 「現在の所属」は、current な `member_term` の最新（`observed_on` が最大）のスナップショットを使う（取得ロジックは後続フェーズ）
+- `party_group` が NULL は「公式資料で確定できない/記載がない」。「無会派」は公式資料が明記した場合にだけ文字列で保存する
+- 開始日が一次資料で確定したら、`member_affiliations` に履歴行を作る（スナップショットは残す）
+- **日付の整合はDBでは検証しない**（cross-tableの日付検証triggerは作らない）。取り込み側（Phase 2A.2 の importer validator）で、次を fail-closed で検証すること（**TODO**）
+  - `observed_on` が、その `member_term` の在職期間内（`start_date` 〜 実効終了日）であること
+  - `observed_on` が、その議会任期（`council_terms`）の期間内であること
+  - `party_observed_on` / `party_group_observed_on` が対象任期と矛盾しないこと
+  - 出典URLが https であること（DBは空文字・空白だけを拒否するまで）
+- 親の `member_terms` を削除するとスナップショットも消える（`ON DELETE CASCADE`）。退任者の `member_terms` を消さないこと
+
 ## 権限（Phase 1）
 
-- 新規3テーブルは RLS 有効・policy なし。anon / authenticated には権限を付与しない。
-- `service_role` のみ SELECT / INSERT / UPDATE / DELETE を明示 grant。アクセスは `createAdminClient()` 経由。
+- 任期・所属系の新規テーブル（`council_terms` / `member_terms` / `member_affiliations` / `member_affiliation_snapshots`）は RLS 有効・policy なし。anon / authenticated には権限を付与しない。
+- `service_role` のみ SELECT / INSERT / UPDATE / DELETE を明示 grant（`member_affiliation_snapshots` だけは append-only のため SELECT / INSERT のみ）。アクセスは `createAdminClient()` 経由。
 - 既存の `members` / `member_links` の公開 read policy は変更していない。
 
 ## 次フェーズ（未実施）
