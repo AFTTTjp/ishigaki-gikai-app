@@ -107,7 +107,7 @@ describe("member_affiliation_snapshots: 作成と制約", () => {
     expect(error).toBeNull();
   });
 
-  it("party が NULL でも、根拠を持たない行として作成できる", async () => {
+  it("party / party_group がともに NULL（根拠なし）でも作成できる", async () => {
     const term = await createMemberTerm();
     const { error } = await adminClient
       .from("member_affiliation_snapshots")
@@ -166,8 +166,11 @@ describe("member_affiliation_snapshots: 作成と制約", () => {
     for (const override of [
       { party: "" },
       { party: "   " },
+      { party: "　" },
+      { party: " \t\n" },
       { party_group: "" },
       { party_group: "  " },
+      { party_group: "　　" },
     ]) {
       const { error } = await adminClient
         .from("member_affiliation_snapshots")
@@ -202,12 +205,35 @@ describe("member_affiliation_snapshots: 作成と制約", () => {
     }
   });
 
-  it("observed_on が各資料の基準日より前の場合は CHECK 違反になる", async () => {
+  it("observed_on が party の基準日より前の場合は CHECK 違反になる", async () => {
     const term = await createMemberTerm();
+    // party_observed_on = 2800-09-30、party_group_observed_on = 2800-09-29 のとき、
+    // observed_on = 2800-09-29 は party の基準日だけを下回る
     const { error } = await adminClient
       .from("member_affiliation_snapshots")
       .insert(validSnapshot(term.id, "2800-09-29"));
     expect(error?.code).toBe("23514");
+  });
+
+  it("observed_on が party_group の基準日より前の場合は CHECK 違反になる", async () => {
+    const term = await createMemberTerm();
+    // party の基準日(2800-09-01)は満たすが、party_group の基準日(2800-09-30)を下回る
+    const { error } = await adminClient
+      .from("member_affiliation_snapshots")
+      .insert({
+        ...validSnapshot(term.id, "2800-09-15"),
+        party_observed_on: "2800-09-01",
+        party_group_observed_on: "2800-09-30",
+      });
+    expect(error?.code).toBe("23514");
+  });
+
+  it("observed_on が各資料の基準日と同じ日なら作成できる（境界）", async () => {
+    const term = await createMemberTerm();
+    const { error } = await adminClient
+      .from("member_affiliation_snapshots")
+      .insert(validSnapshot(term.id, "2800-09-30"));
+    expect(error).toBeNull();
   });
 });
 
@@ -278,14 +304,13 @@ describe("member_affiliation_snapshots: RLS / 権限（append-only）", () => {
       .insert(validSnapshot(term.id));
 
     const anon = getAnonClient();
-    const { data } = await anon
-      .from("member_affiliation_snapshots")
-      .select("*");
-    expect(data ?? []).toEqual([]);
+    const select = await anon.from("member_affiliation_snapshots").select("*");
+    expect(select.error?.code).toBe("42501");
+    expect(select.data ?? []).toEqual([]);
 
     const insert = await anon
       .from("member_affiliation_snapshots")
       .insert(validSnapshot(term.id, "2800-11-01"));
-    expect(insert.error).not.toBeNull();
+    expect(insert.error?.code).toBe("42501");
   });
 });

@@ -24,11 +24,12 @@ create table if not exists public.member_affiliation_snapshots (
   constraint member_affiliation_snapshots_term_observed_on_key
     unique (member_term_id, observed_on),
 
-  -- 空文字は「値なし」と区別できないため禁止（値が無いなら NULL）
+  -- 空文字・空白だけの値は「値なし」と区別できないため禁止（値が無いなら NULL）。
+  -- 全角空白(U+3000)・タブ・改行も空白として扱う
   constraint member_affiliation_snapshots_party_not_blank_check
-    check (party is null or length(btrim(party)) > 0),
+    check (party is null or length(btrim(party, E' \t\r\n　')) > 0),
   constraint member_affiliation_snapshots_party_group_not_blank_check
-    check (party_group is null or length(btrim(party_group)) > 0),
+    check (party_group is null or length(btrim(party_group, E' \t\r\n　')) > 0),
 
   -- 値があるなら、根拠となる資料の基準日と出典URLが必要
   constraint member_affiliation_snapshots_party_evidence_check
@@ -74,6 +75,8 @@ comment on column public.member_affiliation_snapshots.updated_at is
 -- 最新snapshotの取得（member_term_id + observed_on の降順）は、
 -- unique制約の索引（member_term_id, observed_on）の逆順走査で足りるため、追加の索引は作らない。
 
+-- 注: service_role には UPDATE 権限が無いため、このトリガーは通常の運用では発火しない。
+-- DB管理者による保守用UPDATE（postgres 権限）でも updated_at を正しく保つための、repo共通の慣習に合わせた保険。
 drop trigger if exists update_member_affiliation_snapshots_updated_at
   on public.member_affiliation_snapshots;
 create trigger update_member_affiliation_snapshots_updated_at
