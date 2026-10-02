@@ -114,10 +114,6 @@ function isActiveOn(term: MemberTermRow, referenceDate: string): boolean {
   );
 }
 
-function isBlank(value: string | null | undefined): boolean {
-  return value == null || value.trim().length === 0;
-}
-
 function legacy(reason: string, partial: boolean): CurrentRosterResolution {
   return { status: "legacy", reason, partial };
 }
@@ -171,16 +167,13 @@ export function resolveCurrentRoster(input: {
     (term) => term.start_date === councilTerm.start_date
   );
   const foundingSeats = founding.map((term) => term.seat_number);
-  const expectedSeats = Array.from(
-    { length: COUNCIL_SEAT_CAPACITY },
-    (_, index) => index + 1
-  );
   const sortedSeats = foundingSeats
     .filter((seat): seat is number => seat !== null)
     .sort((a, b) => a - b);
   if (
     founding.length !== COUNCIL_SEAT_CAPACITY ||
-    JSON.stringify(sortedSeats) !== JSON.stringify(expectedSeats)
+    sortedSeats.length !== COUNCIL_SEAT_CAPACITY ||
+    !sortedSeats.every((seat, index) => seat === index + 1)
   ) {
     return legacy(
       `founding roster must fill seats 1..${COUNCIL_SEAT_CAPACITY} exactly (got ${founding.length} member_terms)`,
@@ -230,7 +223,8 @@ export function resolveCurrentRoster(input: {
         true
       );
     }
-    if (isBlank(latest.party)) {
+    const party = latest.party;
+    if (party == null || party.trim().length === 0) {
       return legacy(
         `latest snapshot has no party for member ${term.member_id}`,
         true
@@ -242,7 +236,7 @@ export function resolveCurrentRoster(input: {
       memberTermId: term.id,
       seatNumber: term.seat_number,
       electionCount: term.election_count,
-      party: latest.party as string,
+      party,
       // party_group の NULL は「記載なし/未確定」。「無会派」の文字列とは区別して、そのまま渡す
       partyGroup: latest.party_group,
     });
@@ -294,7 +288,9 @@ export function toMember(
 function groupLinksByMember(links: MemberLink[]): Map<string, MemberLink[]> {
   const grouped = new Map<string, MemberLink[]>();
   for (const link of links) {
-    grouped.set(link.member_id, [...(grouped.get(link.member_id) ?? []), link]);
+    const list = grouped.get(link.member_id);
+    if (list) list.push(link);
+    else grouped.set(link.member_id, [link]);
   }
   return grouped;
 }

@@ -71,6 +71,7 @@
 **Phase 3 では変更していないもの**: 採決表示（まだ `members.party / party_group` を JOIN）、`bill_member_votes.member_term_id` の backfill、所属履歴（`member_affiliations`）。新任期の最初の採決を取り込む前に、採決表示を `member_term_id` と snapshot の as-of に切り替えること。
 
 **Production import 前後の read-only 確認**（Production への書き込みなし。SQL は参照のみ）
+- **deploy 前（必須）**: `select count(*) from members;` と `select count(*) from members where election_count is not null;` がどちらも 22 であること。legacy 一覧は `election_count` が NULL の行を除くため、`members` に `election_count` が NULL の行が混ざっていると、Phase 3 の deploy で一覧から消える（従来は members 全件だった）
 - import 前: `select count(*) from members where election_count is not null;` が旧22人（22）であること。新人・歴史上の人物がまだ無いか、あっても `election_count` が NULL であること
 - import 前: `select count(*) from council_terms;` が 0（未投入）なら legacy mode の想定。投入途中（partial）で legacy に戻った場合は、サーバーログに `[members] current roster is incomplete; using legacy roster: <理由>` が出る
 - import 後: `/members` が新任期22人（新人4人を含み、退任者4人を含まない）になっていること。ならなければログの理由を確認する

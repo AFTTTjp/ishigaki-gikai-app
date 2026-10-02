@@ -30,6 +30,18 @@ function isMissingTable(error: DbError, table: string): boolean {
   );
 }
 
+/** 結果の行を返す。テーブルが無い環境は空配列。それ以外のエラーは握りつぶさず投げる */
+function rowsOrEmptyIfMissing<T>(
+  result: { data: T[] | null; error: DbError | null },
+  table: string
+): T[] {
+  if (result.error) {
+    if (isMissingTable(result.error, table)) return [];
+    throw new Error(`Failed to fetch ${table}: ${result.error.message}`);
+  }
+  return result.data ?? [];
+}
+
 /** 議員名簿に必要な状態を読む。1リクエスト内ではキャッシュして重複取得しない */
 const loadMemberRosterState = cache(async (): Promise<MemberRosterState> => {
   const supabase = createAdminClient();
@@ -67,18 +79,6 @@ const loadMemberRosterState = cache(async (): Promise<MemberRosterState> => {
     );
   }
 
-  // 新モデルのテーブルが無い環境は「新任期データ未投入」と同じ扱い（legacy mode）にする
-  const optional = <T>(
-    result: { data: T[] | null; error: DbError | null },
-    table: string
-  ): T[] => {
-    if (result.error) {
-      if (isMissingTable(result.error, table)) return [];
-      throw new Error(`Failed to fetch ${table}: ${result.error.message}`);
-    }
-    return result.data ?? [];
-  };
-
   return {
     members: members.data ?? [],
     memberLinks: (memberLinks.data ?? []).map((link) => ({
@@ -89,9 +89,10 @@ const loadMemberRosterState = cache(async (): Promise<MemberRosterState> => {
       url: link.url,
       sort_order: link.sort_order ?? 0,
     })),
-    councilTerms: optional(councilTerms, "council_terms"),
-    memberTerms: optional(memberTerms, "member_terms"),
-    snapshots: optional(snapshots, "member_affiliation_snapshots"),
+    // 新モデルのテーブルが無い環境は「新任期データ未投入」と同じ扱い（legacy mode）にする
+    councilTerms: rowsOrEmptyIfMissing(councilTerms, "council_terms"),
+    memberTerms: rowsOrEmptyIfMissing(memberTerms, "member_terms"),
+    snapshots: rowsOrEmptyIfMissing(snapshots, "member_affiliation_snapshots"),
   };
 });
 
