@@ -26,3 +26,22 @@ export interface Member {
   line_url?: string | null;
   links?: MemberLink[];
 }
+
+/** 議員の在任期間（member_terms と議会任期から導出。終了日は在職終了日または議会任期の終了日） */
+export interface MemberTenure {
+  start_date: string;
+  end_date: string;
+}
+
+/**
+ * 議員詳細の取得結果。
+ * - current: 現任の議員（現任期の名簿、またはlegacy表示時の名簿）
+ * - former: 現任期の名簿に載っていない議員（前議員）。
+ *   現在の政党・会派・当選回数として legacy 値を出さないよう、member の該当項目は null にする
+ */
+export interface MemberDetail {
+  kind: "current" | "former";
+  member: Member;
+  /** former のときだけ設定する（過去の在任期間。取得できなければ空） */
+  tenures: MemberTenure[];
+}

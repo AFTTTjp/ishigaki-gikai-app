@@ -4,13 +4,14 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, MapPin, Shield, Users } from "lucide-react";
+import { ArrowLeft, CalendarDays, MapPin, Shield, Users } from "lucide-react";
 import { Container } from "@/components/layouts/container";
 import { CompactBillCard } from "@/features/bills/client/components/bill-list/compact-bill-card";
 import { getBillsByProposerMember } from "@/features/bills/server/loaders/get-bills-by-proposer-member";
 import type { BillWithContent } from "@/features/bills/shared/types";
 import { formatBillDietSessionLabel } from "@/features/bills/shared/utils/diet-session-label";
 import { getMemberById } from "@/features/members/server/repositories/member-repository";
+import { formatTenureLabel } from "@/features/members/shared/utils/member-roster";
 import {
   getMemberLinkPresentation,
   getMemberLinks,
@@ -118,17 +119,21 @@ export async function generateMetadata({
   params,
 }: MemberDetailPageProps): Promise<Metadata> {
   const { id } = await params;
-  const member = await getMemberById(id);
+  const detail = await getMemberById(id);
 
-  if (!member) {
+  if (!detail) {
     return {
       title: "議員が見つかりません",
     };
   }
 
+  const { member, kind } = detail;
   return {
     title: `${member.name} | 議員名簿 | みらい議会@石垣市`,
-    description: `${member.name}議員の所属政党、会派、当選回数などの情報です。`,
+    description:
+      kind === "former"
+        ? `${member.name}さん（前議員）の情報です。`
+        : `${member.name}議員の所属政党、会派、当選回数などの情報です。`,
   };
 }
 
@@ -136,14 +141,23 @@ export default async function MemberDetailPage({
   params,
 }: MemberDetailPageProps) {
   const { id } = await params;
-  const [member, proposerBills] = await Promise.all([
+  const [detail, proposerBills] = await Promise.all([
     getMemberById(id),
     getBillsByProposerMember(id),
   ]);
 
-  if (!member) {
+  if (!detail) {
     notFound();
   }
+
+  // 現任期の名簿に載っていない前議員でも、過去の採決などからのリンクを維持するため表示する。
+  // 前議員には legacy の政党・会派・当選回数を「現在の情報」として出さない
+  const { member } = detail;
+  const isFormer = detail.kind === "former";
+  const tenureLabels = detail.tenures.flatMap((tenure) => {
+    const label = formatTenureLabel(tenure);
+    return label ? [label] : [];
+  });
 
   const proposerBillGroups = groupBillsByDietSession(proposerBills);
   const memberLinks = getMemberLinks(member);
@@ -170,7 +184,9 @@ export default async function MemberDetailPage({
               <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-3">
                   <div className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-bold text-slate-700 shadow-sm ring-1 ring-slate-200">
-                    {formatElectionCount(member.election_count)}
+                    {isFormer
+                      ? "前議員"
+                      : formatElectionCount(member.election_count)}
                   </div>
                   <div className="space-y-1">
                     <h1 className="text-3xl font-extrabold tracking-[0.02em] text-slate-900">
@@ -198,16 +214,28 @@ export default async function MemberDetailPage({
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            <MemberInfoItem
-              label="政党"
-              value={member.party || "未登録"}
-              icon={<Shield className="h-4 w-4" />}
-            />
-            <MemberInfoItem
-              label="会派"
-              value={member.party_group || "未登録"}
-              icon={<Users className="h-4 w-4" />}
-            />
+            {isFormer ? (
+              tenureLabels.length > 0 ? (
+                <MemberInfoItem
+                  label="在任期間"
+                  value={tenureLabels.join(" / ")}
+                  icon={<CalendarDays className="h-4 w-4" />}
+                />
+              ) : null
+            ) : (
+              <>
+                <MemberInfoItem
+                  label="政党"
+                  value={member.party || "未登録"}
+                  icon={<Shield className="h-4 w-4" />}
+                />
+                <MemberInfoItem
+                  label="会派"
+                  value={member.party_group || "未登録"}
+                  icon={<Users className="h-4 w-4" />}
+                />
+              </>
+            )}
             <MemberInfoItem
               label="住所"
               value={member.address || "未登録"}
