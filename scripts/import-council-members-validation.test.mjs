@@ -536,3 +536,452 @@ describe("splitAffiliationEntries", () => {
     expect(JSON.stringify(ready)).not.toContain(base.party_observed_on);
   });
 });
+
+describe("正本JSON v2: affiliation_snapshots（観測スナップショット）", () => {
+  const doc = loadDoc();
+  const idOf = (name) => doc.persons.find((p) => p.name === name).member_id;
+  const hasError = (errors, fragment) =>
+    expect(
+      errors.some((e) => e.includes(fragment)),
+      errors.join("\n")
+    ).toBe(true);
+  const snapshotOf = (d, name) =>
+    d.affiliation_snapshots.find((s) => s.member_id === idOf(name));
+
+  it("schema_version は v2 で、v1 は v2 として解釈されず拒否される", () => {
+    expect(doc.schema_version).toBe("council-members/v2");
+    hasError(
+      errorsAfter((d) => {
+        d.schema_version = "council-members/v1";
+      }),
+      "schema_version"
+    );
+  });
+
+  it("affiliation_snapshots は 22 件で、現任期の member_terms の member 集合と一致する（順序は無関係）", () => {
+    expect(doc.affiliation_snapshots).toHaveLength(22);
+    const snapshotIds = new Set(doc.affiliation_snapshots.map((s) => s.member_id));
+    const termIds = new Set(
+      doc.member_terms
+        .filter((t) => t.council_term_key === NEW_KEY)
+        .map((t) => t.member_id)
+    );
+    expect(snapshotIds).toEqual(termIds);
+    // 並び順を変えても検証は通る
+    expect(
+      errorsAfter((d) => d.affiliation_snapshots.reverse())
+    ).toEqual([]);
+  });
+
+  it("初回 snapshot の observed_on は 2026-10-02（正本を確認した基準日。所属開始日ではない）", () => {
+    for (const snapshot of doc.affiliation_snapshots) {
+      expect(snapshot.observed_on).toBe("2026-10-02");
+    }
+  });
+
+  it("所属履歴候補 affiliation_entries は従来どおり ready 0 / hold 22 のまま", () => {
+    const { ready, hold } = splitAffiliationEntries(doc);
+    expect(doc.affiliation_entries).toHaveLength(22);
+    expect(ready).toHaveLength(0);
+    expect(hold).toHaveLength(22);
+  });
+
+  it("snapshot の party / party_group は affiliation_entries の確定値をそのまま使っている（再解釈していない）", () => {
+    for (const entry of doc.affiliation_entries) {
+      const snapshot = doc.affiliation_snapshots.find(
+        (s) => s.member_id === entry.member_id
+      );
+      expect(snapshot.party, entry.member_id).toBe(entry.party);
+      expect(snapshot.party_group, entry.member_id).toBe(entry.party_group);
+      expect(snapshot.party_observed_on).toBe(entry.party_observed_on);
+    }
+  });
+
+  it("現任期の snapshot は party が全員 非NULL。明示的な無会派は3人、会派不明(null)は2人（null を無会派に変換していない）", () => {
+    expect(doc.affiliation_snapshots.every((s) => s.party !== null)).toBe(true);
+    const nameOf = (id) => doc.persons.find((p) => p.member_id === id).name;
+    expect(
+      doc.affiliation_snapshots
+        .filter((s) => s.party_group === "無会派")
+        .map((s) => nameOf(s.member_id))
+        .sort()
+    ).toEqual(["大浜 雅史", "大道 夏代", "田村 博孝"].sort());
+    expect(
+      doc.affiliation_snapshots
+        .filter((s) => s.party_group === null)
+        .map((s) => nameOf(s.member_id))
+        .sort()
+    ).toEqual(["後上里 厚司", "箕底 用一"].sort());
+    for (const s of doc.affiliation_snapshots.filter((x) => x.party_group === null)) {
+      expect(s.party_group_observed_on).toBeNull();
+      expect(s.party_group_source_id).toBeNull();
+    }
+  });
+
+  it("source discrepancy（井上美智子）は変わらず、snapshot は会派ページの値（日本共産党）を使う", () => {
+    expect(doc.source_discrepancies).toHaveLength(1);
+    expect(snapshotOf(doc, "井上 美智子")).toMatchObject({
+      party: "日本共産党",
+      party_group: "日本共産党",
+    });
+  });
+
+  it("完全性: 現任期の snapshot に登場する議員は 22 人ちょうど（不足は拒否）", () => {
+    hasError(
+      errorsAfter((d) => d.affiliation_snapshots.pop()),
+      "expected 22 distinct members with a snapshot"
+    );
+    hasError(errorsAfter((d) => d.affiliation_snapshots.pop()), "has no snapshot");
+  });
+
+  it("同一 (council_term_key, member_id, observed_on) の重複は拒否される", () => {
+    hasError(
+      errorsAfter((d) => d.affiliation_snapshots.push({ ...d.affiliation_snapshots[0] })),
+      "duplicate snapshot"
+    );
+  });
+
+  it("現在の正本は snapshot 22 行・distinct な議員 22 人（22 行固定は validator の恒久仕様ではない）", () => {
+    expect(doc.affiliation_snapshots).toHaveLength(22);
+    expect(new Set(doc.affiliation_snapshots.map((s) => s.member_id)).size).toBe(22);
+  });
+
+  it("append-only: 同じ議員に新しい observed_on の snapshot を追加しても検証に通る（総行数 23・議員は 22 人）", () => {
+    const appended = loadDoc();
+    appended.affiliation_snapshots.push({
+      ...appended.affiliation_snapshots[0],
+      observed_on: "2027-04-01",
+    });
+    expect(appended.affiliation_snapshots).toHaveLength(23);
+    expect(new Set(appended.affiliation_snapshots.map((s) => s.member_id)).size).toBe(22);
+    expect(collectCouncilMembersErrors(appended)).toEqual([]);
+  });
+
+  it("append-only: 複数の議員・複数回の追加（observed_on が異なる）も検証に通る", () => {
+    const appended = loadDoc();
+    for (const [index, observedOn] of [
+      [0, "2027-04-01"],
+      [0, "2027-10-01"],
+      [5, "2027-04-01"],
+    ]) {
+      appended.affiliation_snapshots.push({
+        ...appended.affiliation_snapshots[index],
+        observed_on: observedOn,
+      });
+    }
+    expect(appended.affiliation_snapshots).toHaveLength(25);
+    expect(collectCouncilMembersErrors(appended)).toEqual([]);
+  });
+
+  it("append した snapshot も、同じ議員・同じ observed_on の重複は拒否される", () => {
+    hasError(
+      errorsAfter((d) => {
+        const added = { ...d.affiliation_snapshots[0], observed_on: "2027-04-01" };
+        d.affiliation_snapshots.push(added, { ...added });
+      }),
+      "duplicate snapshot"
+    );
+  });
+
+  it("append した snapshot にも日付の整合チェックは効く（任期外の observed_on は拒否）", () => {
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots.push({
+          ...d.affiliation_snapshots[0],
+          observed_on: "2030-09-28",
+        });
+      }),
+      "observed_on: outside council term"
+    );
+  });
+
+  it("未知の member / 未知の議会任期 / 現任期の member_term が無い人物の snapshot は拒否", () => {
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].member_id = "00000000-0000-4000-8000-000000000000";
+      }),
+      "unknown member_id"
+    );
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].council_term_key = "2030-2034";
+      }),
+      "unknown council term"
+    );
+    // 退任者（新任期の member_term が無い）の snapshot
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].member_id = idOf("石川 勇作");
+      }),
+      "no member_term"
+    );
+  });
+
+  it("未知のキー・キーの欠落は拒否（typo を黙って無視しない）", () => {
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].party_grup = "typo";
+      }),
+      'unknown key "party_grup"'
+    );
+    hasError(
+      errorsAfter((d) => {
+        delete d.affiliation_snapshots[0].party_group;
+      }),
+      "party_group: required (use null for no value)"
+    );
+    hasError(
+      errorsAfter((d) => {
+        delete d.affiliation_snapshots[0].party_group_source_id;
+      }),
+      "party_group_source_id: required (use null for no value)"
+    );
+  });
+
+  it("observed_on: 実在しない日付 / member_term 開始前 / 実効終了後 / 議会任期の外 は拒否", () => {
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].observed_on = "2026-13-45";
+      }),
+      "observed_on: must be a real YYYY-MM-DD date"
+    );
+    // 2026-09-27 は議会任期(2026-09-28〜)の外であり、member_term の開始前でもある
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].observed_on = "2026-09-27";
+      }),
+      "observed_on: outside council term"
+    );
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].observed_on = "2026-09-27";
+      }),
+      "observed_on: outside the member term period"
+    );
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].observed_on = "2030-09-28";
+      }),
+      "observed_on: outside council term"
+    );
+  });
+
+  it("observed_on が member_term の実効終了日（end_date、無ければ議会任期の終了日）を過ぎている場合は拒否", () => {
+    const errors = errorsAfter((d) => {
+      const snapshot = d.affiliation_snapshots[0];
+      const term = d.member_terms.find(
+        (t) =>
+          t.council_term_key === NEW_KEY && t.member_id === snapshot.member_id
+      );
+      term.end_date = "2026-10-01";
+      snapshot.observed_on = "2026-10-02";
+    });
+    hasError(errors, "observed_on: outside the member term period");
+    // 境界: 実効終了日と同じ日は許可される
+    expect(
+      errorsAfter((d) => {
+        const snapshot = d.affiliation_snapshots[0];
+        const term = d.member_terms.find(
+          (t) =>
+            t.council_term_key === NEW_KEY && t.member_id === snapshot.member_id
+        );
+        term.end_date = "2026-10-02";
+      })
+    ).toEqual([]);
+  });
+
+  it("補欠・途中就任の member_term より前の観測日は拒否（新里裕樹の旧任期の例）", () => {
+    // 新里裕樹の旧任期（start 2025-08-17）に、就任前の observed_on の snapshot を足す
+    const errors = errorsAfter((d) => {
+      d.affiliation_snapshots.push({
+        ...d.affiliation_snapshots[0],
+        council_term_key: OLD_KEY,
+        member_id: idOf("新里 裕樹"),
+        observed_on: "2025-08-16",
+        party_observed_on: "2025-08-16",
+        party_group: null,
+        party_group_observed_on: null,
+        party_group_source_id: null,
+      });
+    });
+    hasError(errors, "observed_on: outside the member term period");
+  });
+
+  it("party_observed_on / party_group_observed_on: observed_on より後、任期外、実在しない日付は拒否", () => {
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].party_observed_on = "2026-10-03";
+      }),
+      "party_observed_on: must be on or before observed_on"
+    );
+    const withGroup = (d) =>
+      d.affiliation_snapshots.find((s) => s.party_group_observed_on !== null);
+    hasError(
+      errorsAfter((d) => {
+        withGroup(d).party_group_observed_on = "2026-10-03";
+      }),
+      "party_group_observed_on: must be on or before observed_on"
+    );
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].party_observed_on = "2026-09-27";
+      }),
+      "party_observed_on: outside council term"
+    );
+    hasError(
+      errorsAfter((d) => {
+        withGroup(d).party_group_observed_on = "2026-09-27";
+      }),
+      "party_group_observed_on: outside council term"
+    );
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].party_observed_on = "2026-02-30";
+      }),
+      "party_observed_on: must be a real YYYY-MM-DD date"
+    );
+  });
+
+  it("出典 id: 未知 / 空文字 / 必須（値があるのに無い）は拒否", () => {
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].party_source_id = "unknown-source";
+      }),
+      'unknown source id "unknown-source"'
+    );
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].party_source_id = "";
+      }),
+      "party_source_id: required when party is set"
+    );
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].party_source_id = null;
+      }),
+      "party_source_id: required when party is set"
+    );
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots.find((s) => s.party_group !== null).party_group_source_id = null;
+      }),
+      "party_group_source_id: required when party_group is set"
+    );
+  });
+
+  it("出典 URL が https でない場合は拒否（source id を解決した URL を検証）", () => {
+    const errors = errorsAfter((d) => {
+      const sourceId = d.affiliation_snapshots[0].party_source_id;
+      d.sources.find((s) => s.id === sourceId).url = "http://example.com/roster";
+    });
+    hasError(errors, "source URL must be https");
+  });
+
+  it("値があるのに基準日が無い（party / party_group）は拒否", () => {
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].party_observed_on = null;
+      }),
+      "party_observed_on: must be a real YYYY-MM-DD date"
+    );
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots.find((s) => s.party_group !== null).party_group_observed_on = null;
+      }),
+      "party_group_observed_on: must be a real YYYY-MM-DD date"
+    );
+  });
+
+  it("値が null なのに基準日・出典 id が残っている場合は拒否", () => {
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].party = null;
+      }),
+      "party_observed_on: must be null when party is null"
+    );
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].party = null;
+      }),
+      "party_source_id: must be null when party is null"
+    );
+    const nullGroup = (d) =>
+      d.affiliation_snapshots.find((s) => s.party_group === null);
+    hasError(
+      errorsAfter((d) => {
+        nullGroup(d).party_group_observed_on = "2026-09-29";
+      }),
+      "party_group_observed_on: must be null when party_group is null"
+    );
+    hasError(
+      errorsAfter((d) => {
+        nullGroup(d).party_group_source_id = "official-caucus-20260930";
+      }),
+      "party_group_source_id: must be null when party_group is null"
+    );
+  });
+
+  it("party / party_group の空文字・空白だけ（全角空白を含む）は拒否", () => {
+    for (const blank of ["", " ", "　", "\t\n"]) {
+      hasError(
+        errorsAfter((d) => {
+          d.affiliation_snapshots[0].party = blank;
+        }),
+        "party: must be null or a non-blank string"
+      );
+      hasError(
+        errorsAfter((d) => {
+          d.affiliation_snapshots.find((s) => s.party_group !== null).party_group = blank;
+        }),
+        "party_group: must be null or a non-blank string"
+      );
+    }
+  });
+
+  it("同じ基準日の観測値が affiliation_entries と食い違う snapshot は拒否（確定値を再解釈しない）", () => {
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].party = "別の政党";
+      }),
+      "differs from affiliation_entries for the same party_observed_on"
+    );
+    hasError(
+      errorsAfter((d) => {
+        const target = d.affiliation_snapshots.find((s) => s.party_group === "自由民主石垣");
+        target.party_group = "別の会派";
+      }),
+      "differs from affiliation_entries for the same party_group_observed_on"
+    );
+    // 会派不明(null)を「無会派」に変換することも、同じ観測(どちらも基準日 null)の食い違いとして拒否される
+    hasError(
+      errorsAfter((d) => {
+        const target = d.affiliation_snapshots.find((s) => s.party_group === null);
+        target.party_group = "無会派";
+        target.party_group_observed_on = null;
+        target.party_group_source_id = null;
+      }),
+      "party_group_source_id: required when party_group is set"
+    );
+  });
+
+  it("出典 URL に空白を含む場合は拒否", () => {
+    hasError(
+      errorsAfter((d) => {
+        d.sources[0].url = "https://example.com/a b";
+      }),
+      "must be an https URL"
+    );
+  });
+
+  it("現任期の snapshot は party が null の行を許さない（Phase 3 の切替条件の前提）", () => {
+    hasError(
+      errorsAfter((d) => {
+        const s = d.affiliation_snapshots[0];
+        s.party = null;
+        s.party_observed_on = null;
+        s.party_source_id = null;
+      }),
+      "current term party must not be null"
+    );
+  });
+});

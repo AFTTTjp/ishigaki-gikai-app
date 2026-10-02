@@ -1,5 +1,5 @@
 {
-  "schema_version": "council-members/v1",
+  "schema_version": "council-members/v2",
   "description": "石垣市議会の議員・議会任期・任期別在職・所属スナップショットの正本。DBへはscripts/import-council-members.mjs経由でのみ反映する。legacy列(members.party/party_group/election_count)は書き込まない。",
   "production_import_gate": {
     "status": "blocked",
@@ -1209,6 +1209,250 @@
       ],
       "status": "hold",
       "hold_reason": "effective_from を一次資料で確認できない。公式が示すのは会派の結成日と観測日時点の構成であり、各議員の所属開始日ではない"
+    }
+  ],
+  "affiliation_snapshots": [
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "d7e48fa7-8a59-4356-b6f5-643398c3630a",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "無会派",
+      "party_group_observed_on": "2026-09-30",
+      "party_group_source_id": "official-roster-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "3c240ed5-7b35-46dd-b8c6-184d60f0d92a",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "無会派",
+      "party_group_observed_on": "2026-09-30",
+      "party_group_source_id": "official-roster-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "e69bee2f-7fd0-423a-8145-24626f0b4ae1",
+      "observed_on": "2026-10-02",
+      "party": "参政党",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "参政党石垣",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "6f6226eb-0e77-4342-81ec-323936940f1a",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "自由民主石垣",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "70fa0ad2-210f-40fa-9f34-0640839a40ff",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "自由民主石垣",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "7fe932ed-df1e-44aa-b5cc-f0a2cc6f713b",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "自由民主石垣",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "71dfb79c-1092-47ef-8bce-37c9a8ee3b06",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "自由民主石垣",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "0374f5bb-bde4-4fc6-9cb0-598d4b58d37a",
+      "observed_on": "2026-10-02",
+      "party": "公明党",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "公明石垣",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "fafc35f8-8a5b-457f-b63d-a4cc1421de53",
+      "observed_on": "2026-10-02",
+      "party": "自由民主党",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "自由民主石垣",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "4db2ea1a-51ea-4f20-8ec2-ed55063c1752",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "自由民主石垣",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "b4251917-a7f3-477f-be4d-abbca211cde7",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "無会派",
+      "party_group_observed_on": "2026-09-30",
+      "party_group_source_id": "official-roster-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "9f6ee646-5814-482d-8f91-57293a905602",
+      "observed_on": "2026-10-02",
+      "party": "日本共産党",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "日本共産党",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "a30c4e98-585a-43bc-b8f7-1dddbe7426bf",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "会派ゆがふ",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "76d6fcfc-f552-4272-914a-a381aa7a226b",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": null,
+      "party_group_observed_on": null,
+      "party_group_source_id": null
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "1672bf78-0505-4041-b301-75a22616edc4",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": null,
+      "party_group_observed_on": null,
+      "party_group_source_id": null
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "dddcef9f-e32a-4ccc-a2bf-8c80e7080aa2",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "会派ゆがふ",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "0faca1b2-4ed6-4b71-bff6-39cfb5edca7d",
+      "observed_on": "2026-10-02",
+      "party": "立憲民主党",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "バガスマ風の会",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "dec9dc59-70e9-4372-96bd-9b26150d0646",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "自由民主石垣",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "141916de-d2b8-406d-9457-ad7057332ff1",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "自由民主石垣",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "2538eb08-aa41-41f0-8ec1-713ef7e26697",
+      "observed_on": "2026-10-02",
+      "party": "無所属",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "自由民主石垣",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "2986e72e-ab8a-465f-b826-6118687ab673",
+      "observed_on": "2026-10-02",
+      "party": "自由民主党",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "自由民主石垣",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
+    },
+    {
+      "council_term_key": "2026-2030",
+      "member_id": "dfd899e1-26bf-4d16-b353-28a96a067a7b",
+      "observed_on": "2026-10-02",
+      "party": "公明党",
+      "party_observed_on": "2026-09-30",
+      "party_source_id": "official-roster-20260930",
+      "party_group": "公明石垣",
+      "party_group_observed_on": "2026-09-29",
+      "party_group_source_id": "official-caucus-20260930"
     }
   ],
   "source_discrepancies": [
