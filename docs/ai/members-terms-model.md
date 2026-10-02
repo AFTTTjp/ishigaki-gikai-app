@@ -32,11 +32,16 @@
 - 「現在の所属」は、current な `member_term` の最新（`observed_on` が最大）のスナップショットを使う（取得ロジックは後続フェーズ）
 - `party_group` が NULL は「公式資料で確定できない/記載がない」。「無会派」は公式資料が明記した場合にだけ文字列で保存する
 - 開始日が一次資料で確定したら、`member_affiliations` に履歴行を作る（スナップショットは残す）
+- **日付の整合はDBでは検証しない**（cross-tableの日付検証triggerは作らない）。取り込み側（Phase 2A.2 の importer validator）で、次を fail-closed で検証すること（**TODO**）
+  - `observed_on` が、その `member_term` の在職期間内（`start_date` 〜 実効終了日）であること
+  - `observed_on` が、その議会任期（`council_terms`）の期間内であること
+  - `party_observed_on` / `party_group_observed_on` が対象任期と矛盾しないこと
+  - 出典URLが https であること（DBは空文字・空白だけを拒否するまで）
 - 親の `member_terms` を削除するとスナップショットも消える（`ON DELETE CASCADE`）。退任者の `member_terms` を消さないこと
 
 ## 権限（Phase 1）
 
-- 新規3テーブルは RLS 有効・policy なし。anon / authenticated には権限を付与しない。
+- 任期・所属系の新規テーブル（`council_terms` / `member_terms` / `member_affiliations` / `member_affiliation_snapshots`）は RLS 有効・policy なし。anon / authenticated には権限を付与しない。
 - `service_role` のみ SELECT / INSERT / UPDATE / DELETE を明示 grant（`member_affiliation_snapshots` だけは append-only のため SELECT / INSERT のみ）。アクセスは `createAdminClient()` 経由。
 - 既存の `members` / `member_links` の公開 read policy は変更していない。
 

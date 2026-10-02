@@ -31,6 +31,12 @@ create table if not exists public.member_affiliation_snapshots (
   constraint member_affiliation_snapshots_party_group_not_blank_check
     check (party_group is null or length(btrim(party_group, E' \t\r\n　')) > 0),
 
+  -- 出典URLも、空文字・空白だけは禁止（URLの形式検証はDBでは行わず、取り込み時のvalidationで行う）
+  constraint member_affiliation_snapshots_party_source_url_not_blank_check
+    check (party_source_url is null or length(btrim(party_source_url, E' \t\r\n　')) > 0),
+  constraint member_affiliation_snapshots_party_group_source_url_not_blank_check
+    check (party_group_source_url is null or length(btrim(party_group_source_url, E' \t\r\n　')) > 0),
+
   -- 値があるなら、根拠となる資料の基準日と出典URLが必要
   constraint member_affiliation_snapshots_party_evidence_check
     check (

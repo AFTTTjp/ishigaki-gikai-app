@@ -4,12 +4,13 @@ import { adminClient, getAnonClient } from "../utils";
 
 /**
  * member_affiliation_snapshots の制約・権限・append-only 方針を検証する。
- * 実データと衝突しないよう、任期は 2800 年代の架空の日付を使う。
+ * 実データと衝突しないよう、議会任期・在職期間は 2800 年の架空の日付（2800-01-01〜2800-12-31）を使う。
+ * snapshot の日付はすべてこの任期内に収める（任期外の snapshot を正常ケースにしない）。
  * snapshot 単体には DELETE 権限が無いため、後始末は親の member_terms を削除して
- * ON DELETE CASCADE で行う。
+ * ON DELETE CASCADE で行う（各テストの後始末で議会任期も削除するので、年は固定でよい）。
  */
 
-let yearCounter = 2800;
+const TERM_YEAR = 2800;
 
 const created = {
   memberIds: [] as string[],
@@ -17,7 +18,7 @@ const created = {
 };
 
 async function createMemberTerm() {
-  const year = yearCounter++;
+  const year = TERM_YEAR;
   const { data: councilTerm, error: councilError } = await adminClient
     .from("council_terms")
     .insert({ start_date: `${year}-01-01`, end_date: `${year}-12-31` })
@@ -143,7 +144,7 @@ describe("member_affiliation_snapshots: 作成と制約", () => {
       .insert([
         validSnapshot(term.id, "2800-10-02"),
         {
-          ...validSnapshot(term.id, "2801-04-01"),
+          ...validSnapshot(term.id, "2800-11-01"),
           party_group: "別の会派",
         },
       ]);
@@ -155,7 +156,7 @@ describe("member_affiliation_snapshots: 作成と制約", () => {
       .eq("member_term_id", term.id)
       .order("observed_on", { ascending: false });
     expect(data?.map((row) => row.observed_on)).toEqual([
-      "2801-04-01",
+      "2800-11-01",
       "2800-10-02",
     ]);
     expect(data?.[0].party_group).toBe("別の会派");
@@ -176,6 +177,21 @@ describe("member_affiliation_snapshots: 作成と制約", () => {
         .from("member_affiliation_snapshots")
         .insert({ ...validSnapshot(term.id), ...override });
       expect(error?.code, JSON.stringify(override)).toBe("23514");
+    }
+  });
+
+  it("出典URLが空文字・空白だけ（全角空白・タブ・改行を含む）の場合は CHECK 違反になる", async () => {
+    const term = await createMemberTerm();
+    for (const blank of ["", " ", "　", " \t\n"]) {
+      for (const column of [
+        "party_source_url",
+        "party_group_source_url",
+      ] as const) {
+        const { error } = await adminClient
+          .from("member_affiliation_snapshots")
+          .insert({ ...validSnapshot(term.id), [column]: blank });
+        expect(error?.code, `${column}=${JSON.stringify(blank)}`).toBe("23514");
+      }
     }
   });
 
