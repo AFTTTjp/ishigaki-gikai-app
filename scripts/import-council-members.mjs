@@ -97,6 +97,11 @@ if (EXECUTE) {
     if (!PROD_CONFIRMED) {
       fail("リモートDBへの書き込みには --prod が必要です");
     }
+    if (inputIndex >= 0) {
+      fail(
+        "リモートDBへの書き込みは、既定の正本JSON（--input なし）からのみ実行できます（別のJSONでgateを迂回できないようにするため）"
+      );
+    }
     if (doc.production_import_gate.status !== "open") {
       fail(
         `Production書き込みは禁止されています（production_import_gate=${doc.production_import_gate.status}）: ${doc.production_import_gate.reason}`

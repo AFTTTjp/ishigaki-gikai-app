@@ -36,6 +36,7 @@ DB スキーマと凍結ルールは [docs/ai/members-terms-model.md](../ai/memb
 - snapshot を履歴（ready な所属）に変換しない。観測日（`observed_on`、`*_observed_on`）や会派の結成日を `valid_from` に代用しない
 - 初回 snapshot の `observed_on` は 2026-10-02（Phase 2A で正本の内容を確認した基準日。所属の開始日ではない）
 - `party_group` が null は「公式資料で確定できない/記載がない」（null を「無会派」に変換しない）。「無会派」は公式資料が明記した場合だけ文字列で保持する
+- 議員名簿が「無会派」と明記した3人（田村博孝・大浜雅史・大道夏代）の snapshot は、出典を議員名簿、`party_group_observed_on` を議員名簿の更新日（2026-09-30）としている（`affiliation_entries` の 2026-09-29 は会派名簿の時点で、値の出所が違うため）。
 - snapshot の値は、既存の確定値（`affiliation_entries` と `sources` / `source_discrepancies`）をそのまま使う。このデータで現在の所属を再解釈・再収集しない
 - snapshot は append-only。値が違う行が DB にあっても importer は UPDATE せずエラーにする。新しい観測は新しい `observed_on` の snapshot として追加する
 

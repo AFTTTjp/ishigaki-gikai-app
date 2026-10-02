@@ -21,6 +21,17 @@ function indexBy(rows, keyFn) {
   return map;
 }
 
+/** DB の snapshot と JSON の snapshot を比べる項目（append-only のため、1項目でも違えばエラー） */
+const snapshotCompareFields = [
+  "party",
+  "party_group",
+  "party_observed_on",
+  "party_group_observed_on",
+  "party_source_url",
+  "party_group_source_url",
+  "observed_on",
+];
+
 /** 期間 [aFrom, aTo] と [bFrom, bTo] の重複（to が null なら終了なし） */
 function periodsOverlap(aFrom, aTo, bFrom, bTo) {
   return (
@@ -253,15 +264,6 @@ export function buildImportPlan(doc, dbState) {
   const snapshotRows = buildSnapshotRows(doc);
   const snapshotsToInsert = [];
   const snapshotsUnchanged = [];
-  const snapshotCompareFields = [
-    "party",
-    "party_group",
-    "party_observed_on",
-    "party_group_observed_on",
-    "party_source_url",
-    "party_group_source_url",
-    "observed_on",
-  ];
   const dbSnapshotByKey = online
     ? indexBy(
         dbState.memberAffiliationSnapshots ?? [],

@@ -1,5 +1,5 @@
 import { execFileSync, spawnSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
@@ -571,6 +571,23 @@ describe("CLI (scripts/import-council-members.mjs)", () => {
     });
     expect(result.status).toBe(1);
     expect(result.stderr).toContain("--prod");
+  });
+
+  it("リモートへの --execute は --input で別の JSON を指定しても受け付けない（gate の迂回防止）", () => {
+    const open = resolve(ROOT, "scripts/.tmp-open-gate.test.json");
+    const doc = JSON.parse(readFileSync(SOURCE_PATH, "utf-8"));
+    doc.production_import_gate.status = "open";
+    writeFileSync(open, JSON.stringify(doc));
+    try {
+      const result = run(
+        ["--execute", "--prod", "--confirm-ui-compat-deployed", "--input", open],
+        remote
+      );
+      expect(result.status).toBe(1);
+      expect(result.stderr).toContain("--input なし");
+    } finally {
+      rmSync(open, { force: true });
+    }
   });
 
   it("不正な JSON は検証エラーで停止する", () => {

@@ -882,6 +882,41 @@ describe("正本JSON v2: affiliation_snapshots（観測スナップショット�
     }
   });
 
+  it("同じ基準日の観測値が affiliation_entries と食い違う snapshot は拒否（確定値を再解釈しない）", () => {
+    hasError(
+      errorsAfter((d) => {
+        d.affiliation_snapshots[0].party = "別の政党";
+      }),
+      "differs from affiliation_entries for the same party_observed_on"
+    );
+    hasError(
+      errorsAfter((d) => {
+        const target = d.affiliation_snapshots.find((s) => s.party_group === "自由民主石垣");
+        target.party_group = "別の会派";
+      }),
+      "differs from affiliation_entries for the same party_group_observed_on"
+    );
+    // 会派不明(null)を「無会派」に変換することも、同じ観測(どちらも基準日 null)の食い違いとして拒否される
+    hasError(
+      errorsAfter((d) => {
+        const target = d.affiliation_snapshots.find((s) => s.party_group === null);
+        target.party_group = "無会派";
+        target.party_group_observed_on = null;
+        target.party_group_source_id = null;
+      }),
+      "party_group_source_id: required when party_group is set"
+    );
+  });
+
+  it("出典 URL に空白を含む場合は拒否", () => {
+    hasError(
+      errorsAfter((d) => {
+        d.sources[0].url = "https://example.com/a b";
+      }),
+      "must be an https URL"
+    );
+  });
+
   it("現任期の snapshot は party が null の行を許さない（Phase 3 の切替条件の前提）", () => {
     hasError(
       errorsAfter((d) => {

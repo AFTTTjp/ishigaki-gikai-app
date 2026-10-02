@@ -126,7 +126,7 @@ export function isRealIsoDate(value) {
 }
 
 function isHttpsUrl(value) {
-  if (!isNonEmptyString(value)) return false;
+  if (!isNonEmptyString(value) || /\s/u.test(value)) return false;
   try {
     return new URL(value).protocol === "https:";
   } catch {
@@ -687,9 +687,9 @@ export function collectCouncilMembersErrors(raw) {
       errors.push(`${path}: duplicate snapshot (council_term_key, member_id, observed_on)`);
     }
     snapshotKeys.add(dedupeKey);
-    const memberSet = snapshotMemberIdsByCouncilKey.get(snapshot.council_term_key) ?? [];
-    memberSet.push(snapshot.member_id);
-    snapshotMemberIdsByCouncilKey.set(snapshot.council_term_key, memberSet);
+    const memberIdsOfTerm = snapshotMemberIdsByCouncilKey.get(snapshot.council_term_key) ?? [];
+    memberIdsOfTerm.push(snapshot.member_id);
+    snapshotMemberIdsByCouncilKey.set(snapshot.council_term_key, memberIdsOfTerm);
 
     checkRequiredDate(errors, snapshot.observed_on, `${path}.observed_on`);
 
@@ -717,6 +717,29 @@ export function collectCouncilMembersErrors(raw) {
         errors.push(`${path}.${sourceKey}: unknown source id "${sourceId}"`);
       } else if (!isHttpsUrl(sourcesById.get(sourceId).url)) {
         errors.push(`${path}.${sourceKey}: source URL must be https`);
+      }
+    }
+
+    // 同じ資料の基準日で観測した値は、所属履歴候補（affiliation_entries）と同じでなければならない
+    // （snapshot は確定済みの値をそのまま使う。再解釈して値が食い違うことを許さない）
+    const entry = raw.affiliation_entries.find(
+      (candidate) =>
+        candidate?.council_term_key === snapshot.council_term_key &&
+        candidate.member_id === snapshot.member_id
+    );
+    if (entry) {
+      for (const [valueKey, observedKey] of [
+        ["party", "party_observed_on"],
+        ["party_group", "party_group_observed_on"],
+      ]) {
+        if (
+          entry[observedKey] === snapshot[observedKey] &&
+          entry[valueKey] !== snapshot[valueKey]
+        ) {
+          errors.push(
+            `${path}.${valueKey}: differs from affiliation_entries for the same ${observedKey} (snapshots must reuse the confirmed value)`
+          );
+        }
       }
     }
 
