@@ -2,10 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import {
-  isDifficultyTogglePage,
-  isInterviewSection,
-} from "@/lib/page-layout-utils";
+import { isChatSidebarPage, isInterviewSection } from "@/lib/page-layout-utils";
 import { cn } from "@/lib/utils";
 
 interface MainLayoutProps {
@@ -14,9 +11,9 @@ interface MainLayoutProps {
 
 export function MainLayout({ children }: MainLayoutProps) {
   const pathname = usePathname();
-  // チャットを右サイドバーとして表示するページ（TOP・議案詳細・Topic・議員名簿に
-  // 加え /kokkai/[slug]/bills も含む）でオフセットを付け、本文とチャットの重なりを防ぐ。
-  const useSidebarLayout = isDifficultyTogglePage(pathname);
+  // チャットを右サイドバーとして表示するページでオフセットを付け、
+  // 本文とチャットの重なりを防ぐ。
+  const useSidebarLayout = isChatSidebarPage(pathname);
   const isInterview = isInterviewSection(pathname);
   const isHome = pathname === "/";
 
