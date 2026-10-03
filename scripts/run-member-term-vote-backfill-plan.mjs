@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { planMemberTermVoteBackfill } from "./plan-member-term-vote-backfill.mjs";
+import { loadMemberTermVoteBackfillPlan } from "./member-term-vote-backfill-db.mjs";
 
 function requireEnv(name) {
   const value = process.env[name]?.trim();
@@ -7,29 +7,6 @@ function requireEnv(name) {
     throw new Error(`${name} is not set`);
   }
   return value;
-}
-
-async function selectAll(client, table, columns) {
-  const pageSize = 1000;
-  const rows = [];
-
-  for (let from = 0; ; from += pageSize) {
-    const { data, error } = await client
-      .from(table)
-      .select(columns)
-      .range(from, from + pageSize - 1);
-
-    if (error) {
-      throw new Error(`Failed to read ${table}: ${error.message}`);
-    }
-
-    const page = data ?? [];
-    rows.push(...page);
-
-    if (page.length < pageSize) {
-      return rows;
-    }
-  }
 }
 
 function countBy(items, keyFn) {
@@ -72,30 +49,14 @@ async function main() {
   console.log("モード        : READ ONLY（DB書き込み処理なし）");
   console.log("");
 
-  const [votes, bills, dietSessions, memberTerms, councilTerms] =
-    await Promise.all([
-      selectAll(
-        supabase,
-        "bill_member_votes",
-        "bill_id, member_id, member_term_id"
-      ),
-      selectAll(supabase, "bills", "id, diet_session_id"),
-      selectAll(supabase, "diet_sessions", "id, start_date, end_date"),
-      selectAll(
-        supabase,
-        "member_terms",
-        "id, member_id, council_term_id, start_date, end_date"
-      ),
-      selectAll(supabase, "council_terms", "id, end_date"),
-    ]);
-
-  const plan = planMemberTermVoteBackfill({
+  const {
     votes,
     bills,
     dietSessions,
     memberTerms,
     councilTerms,
-  });
+    plan,
+  } = await loadMemberTermVoteBackfillPlan(supabase);
 
   const nullCount = votes.filter((vote) => vote.member_term_id === null).length;
   const setCount = votes.length - nullCount;
