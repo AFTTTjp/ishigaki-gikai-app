@@ -2,8 +2,8 @@
   "schema_version": "council-members/v2",
   "description": "石垣市議会の議員・議会任期・任期別在職・所属スナップショットの正本。DBへはscripts/import-council-members.mjs経由でのみ反映する。legacy列(members.party/party_group/election_count)は書き込まない。",
   "production_import_gate": {
-    "status": "blocked",
-    "reason": "members へ新人4人と砥板芳行を追加すると、現行UI(getMembers: 全件取得)が退任者を含む27人を現任として表示する。UI互換PR(Phase 3)をProductionへdeployするまでProduction書き込みは禁止。"
+    "status": "open",
+    "reason": "Phase 3 UI互換PR #190をProductionへdeploy済み。2026-10-03にProductionでmembers 22件・legacy election_count非NULL 22件・新モデルデータ0件をread-only確認し、/membersのlegacy 22人表示も実機確認済み。Production書き込みには引き続き --execute --prod --confirm-ui-compat-deployed が必要。"
   },
   "sources": [
     {
