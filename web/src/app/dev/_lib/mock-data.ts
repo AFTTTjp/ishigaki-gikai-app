@@ -22,6 +22,7 @@ const baseBill: BillWithContent = {
   thumbnail_url: null,
   share_thumbnail_url: null,
   published_at: "2026-02-15",
+  result_date: null,
   publish_status: "published",
   shugiin_url: null,
   status_note: null,

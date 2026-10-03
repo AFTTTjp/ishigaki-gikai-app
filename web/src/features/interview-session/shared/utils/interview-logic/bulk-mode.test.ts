@@ -21,6 +21,7 @@ const makeBill = (
   diet_session_id: null,
   publish_status: "published",
   published_at: null,
+  result_date: null,
   share_thumbnail_url: null,
   status: "introduced",
   status_note: null,
