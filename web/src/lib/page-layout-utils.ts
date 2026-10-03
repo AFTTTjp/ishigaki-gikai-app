@@ -1,9 +1,8 @@
 /**
  * ページレイアウトに関するユーティリティ
  *
- * TOPページと議案詳細ページは「メインページ」として扱い、
- * - DifficultySelectorを表示
- * - チャットサイドバー用のオフセットレイアウトを使用
+ * TOPページと議案詳細ページは「メインページ」として扱い、DifficultySelectorを表示する。
+ * チャットサイドバー用のオフセットレイアウトは isChatSidebarPage で判定する。
  */
 
 /**
@@ -16,6 +15,19 @@ export function isDifficultyTogglePage(pathname: string): boolean {
   if (/\/kokkai\/[^/]+\/bills$/.test(pathname)) return true;
   // 一般質問ページ（/general-questions/[sessionSlug]）
   if (/\/general-questions\/[^/]+$/.test(pathname)) return true;
+  return false;
+}
+
+/**
+ * チャットを右サイドバーとして表示するページかどうかを判定
+ * pc 以上では ChatWindow が常時表示されるため、MainLayout が本文側に
+ * サイドバー分のオフセットを付ける。DifficultySelector の表示判定とは
+ * 独立させる（難易度切替が無くてもチャットを置くページがあるため）。
+ */
+export function isChatSidebarPage(pathname: string): boolean {
+  if (isDifficultyTogglePage(pathname)) return true;
+  // 議員名簿ページ（難易度切替は無いが PageChatClient を表示する）
+  if (pathname === "/members") return true;
   return false;
 }
 

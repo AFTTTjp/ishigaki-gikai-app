@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   extractBillIdFromPath,
+  isChatSidebarPage,
   isDifficultyTogglePage,
   isInterviewPage,
   isInterviewSection,
@@ -85,6 +86,40 @@ describe("isDifficultyTogglePage", () => {
     expect(isDifficultyTogglePage("/privacy")).toBe(false);
     expect(isDifficultyTogglePage("/terms")).toBe(false);
     expect(isDifficultyTogglePage("/report/report-123")).toBe(false);
+  });
+});
+
+describe("isChatSidebarPage", () => {
+  it("returns true for every difficulty toggle page", () => {
+    expect(isChatSidebarPage("/")).toBe(true);
+    expect(isChatSidebarPage("/bills/abc-123")).toBe(true);
+    expect(isChatSidebarPage("/topics/some-slug")).toBe(true);
+    expect(isChatSidebarPage("/kokkai/ishigaki-r8-dai4-teireikai/bills")).toBe(
+      true
+    );
+    expect(
+      isChatSidebarPage("/general-questions/ishigaki-r8-dai4-teireikai")
+    ).toBe(true);
+  });
+
+  it("returns true for the bill preview page, which reuses the bill detail chat", () => {
+    expect(isChatSidebarPage("/preview/bills/abc-123")).toBe(true);
+  });
+
+  it("returns true for the members page, which shows chat without a difficulty toggle", () => {
+    expect(isChatSidebarPage("/members")).toBe(true);
+  });
+
+  it("returns false for pages without chat", () => {
+    expect(isChatSidebarPage("/topics")).toBe(false);
+    expect(isChatSidebarPage("/members/member-123")).toBe(false);
+    expect(isChatSidebarPage("/bills")).toBe(false);
+    expect(isChatSidebarPage("/faq")).toBe(false);
+    expect(isChatSidebarPage("/donate")).toBe(false);
+    expect(isChatSidebarPage("/privacy")).toBe(false);
+    expect(isChatSidebarPage("/terms")).toBe(false);
+    expect(isChatSidebarPage("/bills/abc-123/interview")).toBe(false);
+    expect(isChatSidebarPage("/kokkai/ishigaki-r8-dai4-teireikai")).toBe(false);
   });
 });
 
