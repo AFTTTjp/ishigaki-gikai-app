@@ -85,9 +85,11 @@ export function MemberCard({ member }: { member: Member }) {
             </div>
           </div>
 
-          <div className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700">
-            {birthDate || "生年月日未登録"}
-          </div>
+          {birthDate ? (
+            <div className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700">
+              {birthDate}
+            </div>
+          ) : null}
 
           {memberLinks.length > 0 ? (
             <div className="flex flex-wrap items-center gap-3">
