@@ -9,9 +9,9 @@
 - `needs_review=true` や `confidence != high` の行は import 対象にしない
 - DBとの紐付けで fuzzy matching を使わない
 - 対象会期は artifact の `session.slug` と完全一致
-- 対象議案は DB の `bills.name` が
-  `${bill_number} ${bill_name}`
-  と完全一致し、かつ `document_type=bill` の行だけ
+- 対象議案は `document_type=bill` に限定し、原則として DB の `bills.name` が `${bill_number} ${bill_name}` と完全一致する行だけ
+- 公式HTMLの半角角括弧 `[]` と既存DBの全角角括弧 `［］` の差だけは、両側を半角角括弧へ限定正規化した後に完全一致を要求する
+- 空白・丸括弧・語句・表記ゆれ等は正規化しない
 - 既存の `result_date` が artifact と異なる場合は上書きせず停止する
 - artifact の日付が会期外なら停止する
 

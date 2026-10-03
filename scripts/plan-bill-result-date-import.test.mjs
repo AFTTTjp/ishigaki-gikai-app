@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  normalizeBillNameForExactMatch,
   planBillResultDateImport,
   validateVoteResultsArtifact,
 } from "./plan-bill-result-date-import.mjs";
@@ -83,6 +84,22 @@ describe("validateVoteResultsArtifact", () => {
   });
 });
 
+describe("normalizeBillNameForExactMatch", () => {
+  it("角括弧の全角/半角だけを同一視する", () => {
+    expect(
+      normalizeBillNameForExactMatch(
+        "議案第48号 財産の取得について［石垣市学習者用GIGA端末］"
+      )
+    ).toBe("議案第48号 財産の取得について[石垣市学習者用GIGA端末]");
+  });
+
+  it("空白や丸括弧など他の差異は正規化しない", () => {
+    expect(
+      normalizeBillNameForExactMatch("議案第1号  テスト（条例）")
+    ).toBe("議案第1号  テスト（条例）");
+  });
+});
+
 describe("planBillResultDateImport", () => {
   it("NULLのresult_dateだけupdate候補にする", () => {
     const plan = planBillResultDateImport({
@@ -115,7 +132,29 @@ describe("planBillResultDateImport", () => {
     expect(plan.unresolved).toHaveLength(0);
   });
 
-  it("DB名は完全一致だけを許可し、タイトル違いはunresolved", () => {
+  it("角括弧の幅だけ違うDB名は限定正規化後の完全一致として解決する", () => {
+    const doc = artifact();
+    doc.bills[0].bill_name = "財産の取得について[テスト端末]";
+
+    const plan = planBillResultDateImport({
+      artifact: doc,
+      dietSessions,
+      bills: [
+        bill({
+          name: "議案第1号 財産の取得について［テスト端末］",
+        }),
+      ],
+    });
+
+    expect(plan.unresolved).toHaveLength(0);
+    expect(plan.updates).toEqual([
+      expect.objectContaining({
+        match_mode: "exact_after_bracket_width_normalization",
+      }),
+    ]);
+  });
+
+  it("角括弧以外のタイトル違いはunresolved", () => {
     const plan = planBillResultDateImport({
       artifact: artifact(),
       dietSessions,

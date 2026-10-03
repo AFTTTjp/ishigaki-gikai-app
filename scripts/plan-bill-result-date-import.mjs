@@ -18,6 +18,10 @@ function isHttpsUrl(value) {
   }
 }
 
+export function normalizeBillNameForExactMatch(value) {
+  return value.replaceAll("［", "[").replaceAll("］", "]");
+}
+
 export function validateVoteResultsArtifact(doc) {
   if (!doc || typeof doc !== "object") {
     throw new Error("artifact must be an object");
@@ -142,10 +146,13 @@ export function planBillResultDateImport({
       continue;
     }
 
+    const normalizedExpectedName = normalizeBillNameForExactMatch(
+      target.expected_db_name
+    );
     const matches = sessionBills.filter(
       (bill) =>
-        bill.name === target.expected_db_name &&
-        bill.document_type === "bill"
+        bill.document_type === "bill" &&
+        normalizeBillNameForExactMatch(bill.name) === normalizedExpectedName
     );
 
     if (matches.length === 0) {
@@ -172,6 +179,10 @@ export function planBillResultDateImport({
         bill_name: bill.name,
         result_date: target.result_date,
         bill_number: target.bill_number,
+        match_mode:
+          bill.name === target.expected_db_name
+            ? "exact"
+            : "exact_after_bracket_width_normalization",
       });
       continue;
     }
@@ -182,6 +193,10 @@ export function planBillResultDateImport({
         bill_name: bill.name,
         result_date: bill.result_date,
         bill_number: target.bill_number,
+        match_mode:
+          bill.name === target.expected_db_name
+            ? "exact"
+            : "exact_after_bracket_width_normalization",
       });
       continue;
     }
