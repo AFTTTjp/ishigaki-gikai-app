@@ -68,7 +68,7 @@
 - current mode で名簿に載っていない議員は、`members` に存在し、`member_terms`（過去・終了済みを含む）で在任実績を確認できれば**前議員として表示**（404にしない。過去の採決などからのリンクを維持するため）。`members` 行だけで `member_terms` が無い人物は、前議員とは断定せず404前議員では legacy の政党・会派・当選回数を現在の情報として出さず、在任期間だけを `member_terms` と議会任期から表示する
 - 存在しない ID は 404
 
-**Phase 3 では変更していないもの**: 採決表示（まだ `members.party / party_group` を JOIN）、`bill_member_votes.member_term_id` の backfill、所属履歴（`member_affiliations`）。新任期の最初の採決を取り込む前に、採決表示を `member_term_id` と snapshot の as-of に切り替えること。
+**採決表示（Phase 4A）**: `bill_member_votes.member_term_id` を読み取り結果へ通し、採決一覧から legacy の `members.party / party_group` JOIN を外す。採決日を正本化するまでは、採決時点の所属を推測せず、氏名・採決時点の議席番号・賛否だけを表示する。既存票の `member_term_id` backfill と、snapshot / affiliation の as-of 表示は別フェーズで行う。
 
 **Production import 前後の read-only 確認**（Production への書き込みなし。SQL は参照のみ）
 - **deploy 前（必須）**: `select count(*) from members;` と `select count(*) from members where election_count is not null;` がどちらも 22 であること。legacy 一覧は `election_count` が NULL の行を除くため、`members` に `election_count` が NULL の行が混ざっていると、Phase 3 の deploy で一覧から消える（従来は members 全件だった）
@@ -76,8 +76,9 @@
 - import 前: `select count(*) from council_terms;` が 0（未投入）なら legacy mode の想定。投入途中（partial）で legacy に戻った場合は、サーバーログに `[members] current roster is incomplete; using legacy roster: <理由>` が出る
 - import 後: `/members` が新任期22人（新人4人を含み、退任者4人を含まない）になっていること。ならなければログの理由を確認する
 
-## 次フェーズ（未実施）
+## 次フェーズ
 
-- 2022-2026 任期の backfill（`member_terms` / `member_affiliations` / 既存票の `member_term_id`）
-- 2026-2030 任期データの投入
-- 名簿・採決表示の新モデルへの切り替え（**2026-2030 の `member_terms` 投入前に名簿を切り替えると一覧が空になる**）
+- 既存票の `member_term_id` を、既存の fail-closed planner で Production read-only 計画し、unresolved を監査する
+- 採決日の正本フィールドを決め、所属を「採決時点」で解決できるようにする
+- 採決日の根拠がある場合だけ `member_affiliations` / `member_affiliation_snapshots` から as-of 所属を表示する
+- 新任期の採決 import は `member_term_id` を必須にしてから行う
