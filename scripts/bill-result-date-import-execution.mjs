@@ -147,3 +147,21 @@ export async function executeBillResultDateImport(client, updates) {
 
   return updated;
 }
+
+/** result_date ごとの件数（日付の昇順）。例: { "2026-06-24": 17 } */
+export function countByResultDate(items) {
+  const counts = new Map();
+  for (const item of items) {
+    counts.set(item.result_date, (counts.get(item.result_date) ?? 0) + 1);
+  }
+  return Object.fromEntries(
+    [...counts.entries()].sort(([a], [b]) => a.localeCompare(b))
+  );
+}
+
+/** 実際の更新件数が計画の件数と一致しなければエラー文字列を返す（一致すれば null） */
+export function verifyUpdatedCount(updated, planned) {
+  return updated === planned
+    ? null
+    : `updated count mismatch: planned ${planned}, actually updated ${updated}`;
+}

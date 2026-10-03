@@ -5,8 +5,10 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createClient } from "@supabase/supabase-js";
 import {
+  countByResultDate,
   executeBillResultDateImport,
   validateBillResultDateExecutionPlan,
+  verifyUpdatedCount,
 } from "./bill-result-date-import-execution.mjs";
 import { planBillResultDateImport } from "./plan-bill-result-date-import.mjs";
 
@@ -162,10 +164,29 @@ if (gateErrors.length > 0) {
   fail("execution gate failed; no new writes started");
 }
 
+// 今回解決対象になっている（updates + alreadySet）result_date 別の件数を、書き込み前に表示する
+const resolvedDateCounts = countByResultDate([
+  ...before.plan.updates,
+  ...before.plan.alreadySet,
+]);
+console.log("result_date 別件数（updates + alreadySet）:");
+for (const [date, count] of Object.entries(resolvedDateCounts)) {
+  console.log(`  ${date}: ${count}`);
+}
+console.log("");
+
 const updated = await executeBillResultDateImport(
   client,
   before.plan.updates
 );
+
+// 更新件数が計画と一致しなければ成功扱いにしない（各UPDATEが1行である確認と事後planの検証は別に維持）
+const countError = verifyUpdatedCount(updated, before.plan.updates.length);
+if (countError) {
+  fail(
+    `${countError}. 再実行前に read-only plan で現在の状態を確認してください`
+  );
+}
 
 const after = await loadPlan(client, artifact);
 console.log(
@@ -197,7 +218,16 @@ if (after.plan.alreadySet.length !== EXPECTED_TOTAL) {
   );
 }
 
+const finalDateCounts = countByResultDate([
+  ...after.plan.updates,
+  ...after.plan.alreadySet,
+]);
+
 console.log("");
-console.log(
-  `完了: 今回 ${updated} 件更新 / alreadySet ${after.plan.alreadySet.length} / unresolved 0`
-);
+console.log("=".repeat(60));
+console.log(`actual updated   : ${updated}`);
+console.log(`final alreadySet : ${after.plan.alreadySet.length}`);
+console.log(`final unresolved : ${after.plan.unresolved.length}`);
+console.log(`result_date      : ${JSON.stringify(finalDateCounts)}`);
+console.log("判定: SUCCESS");
+console.log("=".repeat(60));
