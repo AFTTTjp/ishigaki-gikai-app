@@ -76,6 +76,11 @@ export function validateBillResultDateExecutionPlan({
     );
   }
 
+  const resolvedBillIds = resolved.map((item) => item.bill_id);
+  if (new Set(resolvedBillIds).size !== resolvedBillIds.length) {
+    errors.push("resolved bill_id values must be unique");
+  }
+
   const unexpectedMatchModes = [
     ...new Set(
       resolved
