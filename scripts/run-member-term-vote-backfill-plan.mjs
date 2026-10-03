@@ -10,13 +10,26 @@ function requireEnv(name) {
 }
 
 async function selectAll(client, table, columns) {
-  const { data, error } = await client.from(table).select(columns);
+  const pageSize = 1000;
+  const rows = [];
 
-  if (error) {
-    throw new Error(`Failed to read ${table}: ${error.message}`);
+  for (let from = 0; ; from += pageSize) {
+    const { data, error } = await client
+      .from(table)
+      .select(columns)
+      .range(from, from + pageSize - 1);
+
+    if (error) {
+      throw new Error(`Failed to read ${table}: ${error.message}`);
+    }
+
+    const page = data ?? [];
+    rows.push(...page);
+
+    if (page.length < pageSize) {
+      return rows;
+    }
   }
-
-  return data ?? [];
 }
 
 function countBy(items, keyFn) {
