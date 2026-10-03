@@ -3,6 +3,10 @@ import { createClient } from "@supabase/supabase-js";
 import { createAdminClient, type Database } from "@mirai-gikai/supabase";
 import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
 import type { BillMemberVote, BillProposerMember } from "../../shared/types";
+import {
+  normalizeBillMemberVoteRows,
+  type BillMemberVoteRow,
+} from "../../shared/utils/normalize-bill-member-votes";
 
 // ============================================================
 // Bills
@@ -272,6 +276,7 @@ type VoteDatabase = {
         Row: {
           bill_id: string;
           member_id: string;
+          member_term_id: string | null;
           seat_number: number;
           vote_type: "for" | "not_for" | "absent" | "left" | "chair";
           source_label: string | null;
@@ -282,8 +287,6 @@ type VoteDatabase = {
         Row: {
           id: string;
           name: string;
-          party: string | null;
-          party_group: string | null;
         };
       };
     };
@@ -306,15 +309,14 @@ export async function findBillMemberVotesByBillId(
     .select(
       `
       member_id,
+      member_term_id,
       seat_number,
       vote_type,
       source_label,
       source_url,
       members!inner (
         id,
-        name,
-        party,
-        party_group
+        name
       )
     `
     )
@@ -338,49 +340,8 @@ export async function findBillMemberVotesByBillId(
     return [];
   }
 
-  const voteRows = (data ?? []) as Array<{
-    seat_number: number;
-    vote_type: BillMemberVote["vote_type"];
-    source_label: string | null;
-    source_url: string | null;
-    members:
-      | {
-          id: string;
-          name: string;
-          party: string | null;
-          party_group: string | null;
-        }
-      | Array<{
-          id: string;
-          name: string;
-          party: string | null;
-          party_group: string | null;
-        }>
-      | null;
-  }>;
+  return normalizeBillMemberVoteRows((data ?? []) as BillMemberVoteRow[]);
 
-  return voteRows.flatMap((row) => {
-    const member = Array.isArray(row.members) ? row.members[0] : row.members;
-
-    if (!member) {
-      return [];
-    }
-
-    return [
-      {
-        vote_type: row.vote_type,
-        source_label: row.source_label,
-        source_url: row.source_url,
-        member: {
-          id: member.id,
-          name: member.name,
-          party: member.party,
-          party_group: member.party_group,
-          seat_number: row.seat_number,
-        },
-      },
-    ];
-  });
 }
 
 // ============================================================
