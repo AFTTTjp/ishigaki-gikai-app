@@ -723,7 +723,7 @@ insert into _r8fix_edits (bill_id, difficulty_level, old_content_md5, new_conten
 
 ## 関連リンク
 
-- [令和8年第4回定例会 提出議案とその結果](https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html)$r8fix$, 'f993812f52e30e3beba796d382c9f32b', $r8fix$令和8年度の石垣市一般会計予算を補正する第1号の議案です。今回の補正予算には離島甲子園への参加に関係する経費が含まれており、議会で審議され、2026年6月24日に採決され、修正案は否決され、原案が可決されました。$r8fix$),
+- [令和8年第4回定例会 提出議案とその結果](https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html)$r8fix$, 'f993812f52e30e3beba796d382c9f32b', $r8fix$令和8年度の石垣市一般会計予算を補正する第1号の議案です。今回の補正予算には離島甲子園への参加に関係する経費が含まれています。この議案は議会で審議され、2026年6月24日に採決され、修正案は否決され、原案が可決されました。$r8fix$),
   ('ed91cc68-3154-49e7-8075-89938057fe0f'::uuid, 'hard'::difficulty_level_enum, 'baded820bc4950672b74ceae13b91882', $r8fix$# 令和8年度石垣市一般会計補正予算（第1号）
 
 ## この議案のポイント
@@ -761,7 +761,7 @@ insert into _r8fix_edits (bill_id, difficulty_level, old_content_md5, new_conten
 
 ## 関連リンク
 
-- [令和8年第4回定例会 提出議案とその結果](https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html)$r8fix$, '153d2907a64cfb93c41b20bdbf32208a', $r8fix$令和8年度一般会計補正予算（第1号）を定める議案。今回の補正予算には離島甲子園への参加に関係する経費が含まれており、2026年6月24日に採決され、修正案は否決され、原案が可決されました。なお、議案全体は離島甲子園関連以外の項目も含む補正予算です。$r8fix$),
+- [令和8年第4回定例会 提出議案とその結果](https://www.city.ishigaki.okinawa.jp/soshiki/gikai/teireikairinnjikai/teisyutugianntokekka/reiwa8nen2026nen/12064.html)$r8fix$, '153d2907a64cfb93c41b20bdbf32208a', $r8fix$令和8年度一般会計補正予算（第1号）を定める議案。今回の補正予算には離島甲子園への参加に関係する経費が含まれています。この議案は2026年6月24日に採決され、修正案は否決され、原案が可決されました。なお、議案全体は離島甲子園関連以外の項目も含む補正予算です。$r8fix$),
   ('3083e8b4-1895-4b98-814d-fd6be2b68591'::uuid, 'normal'::difficulty_level_enum, 'c6bc4d35e531994f67458399c9120f17', $r8fix$# 基隆市との友好都市提携とは
 
 ## この議案は何を決める？
