@@ -78,7 +78,7 @@
 
 ## 次フェーズ
 
-- 既存票の `member_term_id` は `pnpm db:member-votes:term-backfill:plan:prod` で Production read-only 計画し、unresolved を監査する。このコマンドはSELECTのみで、UPDATE / INSERT / DELETEを行わない
+- 既存票の `member_term_id` は `pnpm db:member-votes:term-backfill:plan:prod` で Production read-only 計画し、unresolved を監査する。このコマンドはSELECTのみ。実更新は `pnpm db:member-votes:term-backfill:execute:prod -- --execute --prod --confirm-reviewed-plan --expected-total 308` の明示確認付きでのみ許可し、Production project ref・票総数・unresolved=0・解決総数を再検証してから、主キー一致かつ `member_term_id IS NULL` の行だけ更新する。事後に updates=0 / alreadySet=308 / unresolved=0 を再検証する
 - 採決日の正本フィールドを決め、所属を「採決時点」で解決できるようにする
 - 採決日の根拠がある場合だけ `member_affiliations` / `member_affiliation_snapshots` から as-of 所属を表示する
 - 新任期の採決 import は `member_term_id` を必須にしてから行う
