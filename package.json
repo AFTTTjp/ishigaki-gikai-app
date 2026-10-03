@@ -14,6 +14,7 @@
     "db:council-members:import": "dotenv -e .env -- node scripts/import-council-members.mjs",
     "db:council-members:import:test": "dotenv -e .env.test -- node scripts/import-council-members.mjs",
     "db:council-members:import:prod": "dotenv -e .env.prod -- node scripts/import-council-members.mjs",
+    "db:member-votes:term-backfill:plan:prod": "dotenv -e .env.prod -- node scripts/run-member-term-vote-backfill-plan.mjs",
     "db:general-questions:import": "dotenv -e .env -- node scripts/import-general-questions.mjs",
     "db:general-questions:import:dry": "dotenv -e .env -- node scripts/import-general-questions.mjs --dry-run",
     "db:general-questions:import:prod": "dotenv -e .env.prod -- node scripts/import-general-questions.mjs",
