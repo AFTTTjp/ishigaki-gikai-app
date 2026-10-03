@@ -17,6 +17,7 @@ const baseBill: Bill = {
   originating_house: "HR",
   publish_status: "published",
   published_at: null,
+  result_date: null,
   share_thumbnail_url: null,
   shugiin_url: null,
   status: "introduced",
