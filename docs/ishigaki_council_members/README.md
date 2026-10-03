@@ -23,7 +23,7 @@ DB スキーマと凍結ルールは [docs/ai/members-terms-model.md](../ai/memb
 | `affiliation_snapshots` | **観測スナップショット。** 「`observed_on` 時点の資料ではこの所属だった」という記録で、所属の開始日ではない。`member_affiliation_snapshots` の行になる（初回の正本は現任期の22議員分で22行。将来の追加で増えてよい）。出典は root `sources` の id で参照し、import 時に URL へ解決する |
 | `source_discrepancies` | 公式ページ間の矛盾（補正せず記録） |
 | `holds` | 未確認事項（旧任期の所属履歴など）と、確認に必要な一次資料 |
-| `production_import_gate` | `blocked` の間は Production への書き込みをスクリプトが拒否する |
+| `production_import_gate` | `blocked` の間は Production への書き込みをスクリプトが拒否する。Phase 3 の本番互換確認後は `open` とし、実行時フラグによる確認を残す |
 
 ### 用語の整理
 
@@ -62,9 +62,17 @@ pnpm db:council-members:import:prod     # .env.prod でread-only照合（既定�
 node scripts/import-council-members.mjs --execute
 ```
 
-## Production への書き込みは禁止（現時点）
+## Production import gate（open）
 
-`members` に新人4人と砥板芳行を追加すると、現行 UI（`getMembers()` は任期フィルタなしの全件取得）が
-退任者を含む27人を現任として表示する。Phase 3 の UI 互換 PR を Production に deploy するまで、
-`production_import_gate.status` は `blocked` のままとし、リモートへの `--execute` を拒否する。
-解除は Phase 3 の deploy 後に、この JSON の gate を `open` にする PR で行う。
+Phase 3 の UI 互換対応は Production へ deploy 済み。2026-10-03 に Production で以下を read-only 確認した。
+
+- `members`: 22 件
+- `members.election_count is not null`: 22 件
+- `council_terms` / `member_terms` / `member_affiliations` / `member_affiliation_snapshots`: データ行 0 件
+- Production の `/members`: legacy 22 人表示を維持
+
+この確認を受け、正本 JSON の `production_import_gate.status` は `open` とする。
+
+ただし gate が open でも Production 書き込みは自動では行わない。リモートへの実行には引き続き
+`--execute --prod --confirm-ui-compat-deployed` が必要で、`--input` による別 JSON からの実行も拒否する。
+Production 反映前には必ず read-only dry-run を行い、計画差分をレビューしてから明示承認を得る。
