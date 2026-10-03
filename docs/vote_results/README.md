@@ -40,5 +40,37 @@ docs/vote_results/r8-dai4-teireikai.vote-results.review.json
 
 ## Write phase
 
-Production write は別PR・別承認とする。read-only planner PRのmergeだけでは
-`bills.result_date` の既存データは変更しない。
+Production write は別PR・別承認とする。実行時には read-only plan を再計算し、
+以下をすべて満たさなければ書き込みを開始しない。
+
+- Production Supabase host が `sjjesaheibvpteoytbpy.supabase.co`
+- reviewed total = 17
+- reviewed session = `ishigaki-r8-dai4-teireikai`
+- reviewed result_date = `2026-06-24`
+- artifact bills = 17
+- unresolved = 0
+- updates + alreadySet = 17
+- match_mode は `exact` または `exact_after_bracket_width_normalization` のみ
+
+対象行は plan で確定した `bill_id` / `bill_name` / `document_type=bill` が一致し、
+かつ `result_date IS NULL` の行だけを1件ずつ更新する。既存の非NULL値は上書きしない。
+
+実行コマンド:
+
+```bash
+pnpm db:bill-result-dates:execute:prod -- \
+  --execute \
+  --prod \
+  --confirm-reviewed-plan \
+  --expected-total 17 \
+  --expected-session ishigaki-r8-dai4-teireikai \
+  --expected-result-date 2026-06-24
+```
+
+事後に同じartifactとDBを再読込し、次を要求する。
+
+- updates = 0
+- alreadySet = 17
+- unresolved = 0
+
+executor PRのmergeだけでは `bills.result_date` の既存データは変更しない。
