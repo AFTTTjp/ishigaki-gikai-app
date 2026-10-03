@@ -20,19 +20,23 @@ function artifact({
 }
 
 function plan({ updates = 17, alreadySet = 0, unresolved = [] } = {}) {
-  const make = (count) =>
-    Array.from({ length: count }, (_, index) => ({
-      bill_id: `bill-${index}`,
-      bill_name: `議案第${index + 1}号 テスト`,
-      result_date: "2026-06-24",
-      match_mode: index < 4
-        ? "exact_after_bracket_width_normalization"
-        : "exact",
-    }));
+  const make = (count, offset = 0) =>
+    Array.from({ length: count }, (_, index) => {
+      const itemIndex = offset + index;
+      return {
+        bill_id: `bill-${itemIndex}`,
+        bill_name: `議案第${itemIndex + 1}号 テスト`,
+        result_date: "2026-06-24",
+        match_mode:
+          itemIndex < 4
+            ? "exact_after_bracket_width_normalization"
+            : "exact",
+      };
+    });
 
   return {
     updates: make(updates),
-    alreadySet: make(alreadySet),
+    alreadySet: make(alreadySet, updates),
     unresolved,
   };
 }
