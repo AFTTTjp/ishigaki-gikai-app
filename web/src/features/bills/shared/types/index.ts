@@ -52,8 +52,6 @@ export type BillVoteType = "for" | "not_for" | "absent" | "left" | "chair";
 export type BillVoteMember = {
   id: string;
   name: string;
-  party: string | null;
-  party_group: string | null;
   seat_number: number;
 };
 
@@ -65,6 +63,7 @@ export type BillProposerMember = {
 };
 
 export type BillMemberVote = {
+  member_term_id: string | null;
   vote_type: BillVoteType;
   member: BillVoteMember;
   source_label: string | null;

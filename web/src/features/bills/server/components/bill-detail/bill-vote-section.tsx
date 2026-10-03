@@ -88,19 +88,14 @@ export function BillVoteSection({ bill }: { bill: BillWithContent }) {
                   className="rounded-xl bg-white px-4 py-3"
                 >
                   <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <Link
-                        href={routes.memberDetail(vote.member.id) as Route}
-                        className="font-semibold text-slate-900 underline-offset-2 hover:underline hover:text-slate-700"
-                      >
-                        {vote.member.name}
-                      </Link>
-                      <div className="text-sm text-slate-600">
-                        {vote.member.party || "政党未登録"}
-                      </div>
-                    </div>
+                    <Link
+                      href={routes.memberDetail(vote.member.id) as Route}
+                      className="font-semibold text-slate-900 underline-offset-2 hover:underline hover:text-slate-700"
+                    >
+                      {vote.member.name}
+                    </Link>
                     <div className="text-xs font-medium text-slate-500">
-                      {vote.member.party_group || "会派未登録"}
+                      議席番号 {vote.member.seat_number}
                     </div>
                   </div>
                 </li>
