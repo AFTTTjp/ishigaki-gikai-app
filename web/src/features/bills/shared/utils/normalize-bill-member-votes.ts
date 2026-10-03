@@ -1,7 +1,4 @@
-import type {
-  BillMemberVote,
-  BillVoteType,
-} from "../types";
+import type { BillMemberVote, BillVoteType } from "../types";
 
 export type BillMemberVoteRow = {
   member_term_id: string | null;
