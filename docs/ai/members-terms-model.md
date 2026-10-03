@@ -78,7 +78,7 @@
 
 ## 次フェーズ
 
-- 既存票の `member_term_id` を、既存の fail-closed planner で Production read-only 計画し、unresolved を監査する
+- 既存票の `member_term_id` は `pnpm db:member-votes:term-backfill:plan:prod` で Production read-only 計画し、unresolved を監査する。このコマンドはSELECTのみで、UPDATE / INSERT / DELETEを行わない
 - 採決日の正本フィールドを決め、所属を「採決時点」で解決できるようにする
 - 採決日の根拠がある場合だけ `member_affiliations` / `member_affiliation_snapshots` から as-of 所属を表示する
 - 新任期の採決 import は `member_term_id` を必須にしてから行う
