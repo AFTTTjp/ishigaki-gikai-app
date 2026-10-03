@@ -183,8 +183,8 @@ describe("正本JSON（実データ）", () => {
     }
   });
 
-  it("Production gate は blocked", () => {
-    expect(doc.production_import_gate.status).toBe("blocked");
+  it("Production gate は open", () => {
+    expect(doc.production_import_gate.status).toBe("open");
   });
 });
 

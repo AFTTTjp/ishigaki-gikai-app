@@ -538,7 +538,7 @@ describe("CLI (scripts/import-council-members.mjs)", () => {
     expect(result.status).toBe(0);
     expect(result.stdout).toContain("DRY RUN 完了（書き込みなし）");
     expect(result.stdout).toContain("ready 0 / hold 22");
-    expect(result.stdout).toContain("Production gate: blocked");
+    expect(result.stdout).toContain("Production gate: open");
   });
 
   it("DB接続情報なしの --execute は拒否される", () => {
@@ -558,10 +558,10 @@ describe("CLI (scripts/import-council-members.mjs)", () => {
     expect(result.stderr).toContain("--prod");
   });
 
-  it("--prod があっても gate=blocked の間は拒否される（接続前に停止）", () => {
-    const result = run(["--execute", "--prod", "--confirm-ui-compat-deployed"], remote);
+  it("gate=openでも --confirm-ui-compat-deployed が無ければ拒否される（接続前に停止）", () => {
+    const result = run(["--execute", "--prod"], remote);
     expect(result.status).toBe(1);
-    expect(result.stderr).toContain("production_import_gate=blocked");
+    expect(result.stderr).toContain("--confirm-ui-compat-deployed");
   });
 
   it("localhost を含むだけのリモートホストは local 扱いにならない（--prod 必須のまま）", () => {
