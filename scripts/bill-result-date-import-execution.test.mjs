@@ -91,6 +91,18 @@ describe("validateBillResultDateExecutionPlan", () => {
     );
   });
 
+  it("blocks duplicate bill ids in the resolved plan", () => {
+    const changedPlan = plan();
+    changedPlan.updates[1].bill_id = changedPlan.updates[0].bill_id;
+
+    expect(
+      validateBillResultDateExecutionPlan({
+        ...baseArgs,
+        plan: changedPlan,
+      })
+    ).toContainEqual(expect.stringContaining("bill_id values must be unique"));
+  });
+
   it("blocks a future unreviewed match mode", () => {
     const changedPlan = plan();
     changedPlan.updates[0].match_mode = "fuzzy";
