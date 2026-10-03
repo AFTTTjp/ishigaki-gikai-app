@@ -341,7 +341,6 @@ export async function findBillMemberVotesByBillId(
   }
 
   return normalizeBillMemberVoteRows((data ?? []) as BillMemberVoteRow[]);
-
 }
 
 // ============================================================
