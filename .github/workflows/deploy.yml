@@ -1,17 +1,89 @@
-name: Migrate DB
+name: Migrate DB (production, manual)
+
+# 本番 DB migration は、人間が明示的に起動したときだけ実行する（Issue #202）。
+# main への push / merge や PR では起動しない。merge の承認は本番 migration の承認を兼ねない。
+#
+# 起動前に確認すること（起動者）:
+#   - 対象 commit（main 上のレビュー済み SHA）と、適用する migration の一覧
+#   - 本番 project ref、backup / 復旧手順、実行の明示承認
+# 次のどれかに当たれば、secret を使う前、または適用前に止まる（fail closed）:
+#   - main 以外の ref、expected_sha と実行 commit の不一致、入力の形式違い
+#   - secret の project ref と expected_project_ref の不一致
+#   - 本番の未適用 migration が expected_pending_migrations と一致しない、
+#     migration list の出力が想定外、本番にだけある migration（drift）
+# 失敗しても自動で再実行しない。DB の巻き戻しは git revert では行えない。
+# "Re-run" も新しい起動と同じ扱いで、状態を確認したうえで別途の明示承認が要る。
+# この workflow の外（supabase_config_push.yml や手元の CLI）からの同時操作は防げない。
+# GitHub Environment `production` の保護設定はこの workflow の前提にしない。
 
 on:
-  push:
-    branches: [main, develop]
+  workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: "適用する main の commit SHA（40 桁）。実行 commit と一致しなければ止まる"
+        required: true
+        type: string
+      expected_project_ref:
+        description: "本番 Supabase の project ref。secret と一致しなければ止まる"
+        required: true
+        type: string
+      expected_pending_migrations:
+        description: "本番で未適用のはずの migration version（14 桁、カンマ区切り）。無ければ none"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-db-migration
+  cancel-in-progress: false
 
 jobs:
-  migrate-db:
+  preflight:
+    # secret も environment も使わない。ここで止まれば本番には接続しない。
     runs-on: ubuntu-latest
-    environment: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Preflight (no secrets)
+        run: node scripts/production-migration-guard.mjs preflight
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          EXPECTED_PROJECT_REF: ${{ inputs.expected_project_ref }}
+          EXPECTED_PENDING_MIGRATIONS: ${{ inputs.expected_pending_migrations }}
+
+  migrate-production:
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: production
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      # job をまたいだ前提に頼らず、secret を使う前にもう一度確かめる。
+      - name: Preflight again (no secrets)
+        run: node scripts/production-migration-guard.mjs preflight
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          EXPECTED_PROJECT_REF: ${{ inputs.expected_project_ref }}
+          EXPECTED_PENDING_MIGRATIONS: ${{ inputs.expected_pending_migrations }}
+
+      - name: Check production project ref
+        run: node scripts/production-migration-guard.mjs check-project
+        env:
+          EXPECTED_PROJECT_REF: ${{ inputs.expected_project_ref }}
+          SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
 
       - name: Setup Supabase CLI
         uses: supabase/setup-cli@ab058987d8d6c725971f6cf9d0b5c98467e30bd1 # v1.7.1
@@ -26,14 +98,33 @@ jobs:
           SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
           SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
 
-      - name: Show migration status
+      - name: Show migration status (before)
         run: |
-          supabase migration list --linked
+          set -euo pipefail
+          supabase migration list --linked 2>&1 | tee "$RUNNER_TEMP/migration-list-before.txt"
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
 
+      - name: Verify pending migrations match the request
+        id: pending
+        run: node scripts/production-migration-guard.mjs check-pending "$RUNNER_TEMP/migration-list-before.txt"
+        env:
+          EXPECTED_PENDING_MIGRATIONS: ${{ inputs.expected_pending_migrations }}
+
       - name: Apply pending migrations
+        if: steps.pending.outputs.apply == 'true'
         run: |
           supabase migration up --linked --include-all
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+
+      # 適用が失敗・中断した場合も、状態確認のために読み取りだけは行う（再適用はしない）。
+      - name: Read back migration status (after)
+        if: ${{ always() && steps.pending.outputs.apply == 'true' }}
+        run: |
+          set -euo pipefail
+          supabase migration list --linked 2>&1 | tee "$RUNNER_TEMP/migration-list-after.txt"
+          node scripts/production-migration-guard.mjs check-applied "$RUNNER_TEMP/migration-list-after.txt"
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          EXPECTED_PENDING_MIGRATIONS: ${{ inputs.expected_pending_migrations }}
