@@ -42,6 +42,20 @@ const SEPARATOR_RE = /^-+\|-+\|-+$/;
 const ROW_RE =
   /^(\d{14})?\s*\|\s*(\d{14})?\s*\|\s*(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})$/;
 
+/**
+ * 表の 1 行を正規化する。v2.106.0 の実際の出力（CI のログ）は両端に `|` の無い形
+ * （`Local | Remote | Time (UTC)`）だが、Markdown の表の形（`|Local|Remote|Time (UTC)|`）
+ * で出る版もありうる。両端の `|` が **両方** あるときだけ 1 組外し、その後は同じ
+ * 厳密な正規表現で判定する（片側だけの `|` は外さないので、解釈できずに止まる）。
+ */
+function normalizeTableLine(rawLine) {
+  const line = rawLine.trim();
+  if (line.length >= 2 && line.startsWith("|") && line.endsWith("|")) {
+    return line.slice(1, -1).trim();
+  }
+  return line;
+}
+
 /** 入力の migration 指定を読む。"none" か、14 桁の version のカンマ区切り。 */
 export function parseExpectedMigrations(raw) {
   const text = (raw ?? "").trim();
@@ -154,7 +168,7 @@ export function parseMigrationList(output) {
   const rows = [];
   let state = "before";
   for (const rawLine of lines) {
-    const line = rawLine.trim();
+    const line = normalizeTableLine(rawLine);
     if (state === "before") {
       if (HEADER_RE.test(line)) {
         state = "separator";

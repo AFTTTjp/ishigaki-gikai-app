@@ -205,6 +205,39 @@ describe("parseMigrationList（CLI 出力の厳密な読み取り）", () => {
     ]);
   });
 
+  it("両端に | の付いた Markdown 形の表も同じ厳密さで読める", () => {
+    const md = [
+      "Connecting to remote database...",
+      "",
+      "|Local|Remote|Time (UTC)|",
+      "|-|-|-|",
+      "|20250101000000|20250101000000|2025-01-01 00:00:00|",
+      "|20250102000000||2025-01-02 00:00:00|",
+      "",
+    ].join("\n");
+    expect(parseMigrationList(md)).toEqual([
+      { local: "20250101000000", remote: "20250101000000" },
+      { local: "20250102000000", remote: null },
+    ]);
+  });
+
+  it.each([
+    [
+      "|Local|Remote|Time (UTC)\n|-|-|-|\n|20250101000000|20250101000000|2025-01-01 00:00:00|\n",
+      "見出しの右端だけ | が無い",
+    ],
+    [
+      "|Local|Remote|Time (UTC)|\n|-|-|-|\n|20250101000000|20250101000000|2025-01-01 00:00:00\n",
+      "行の右端だけ | が無い",
+    ],
+    [
+      "|Local|Remote|Time (UTC)|\n|-|-|-|\n||20250101000000|20250101000000|2025-01-01 00:00:00||\n",
+      "| が二重",
+    ],
+  ])("Markdown 形でも崩れていれば止める: %s（%s）", (output) => {
+    expect(() => parseMigrationList(output)).toThrow(GuardError);
+  });
+
   it("CRLF でも読める", () => {
     expect(
       parseMigrationList(LIST_PENDING.replace(/\n/g, "\r\n"))
