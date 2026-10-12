@@ -451,6 +451,17 @@ describe("deploy.yml（本番 migration workflow）", () => {
     }
   });
 
+  it("secret と environment は migrate-production job の中にだけある（workflow / preflight job / job の env を含む）", () => {
+    const migIdx = lines.indexOf("  migrate-production:");
+    expect(migIdx).toBeGreaterThan(0);
+    const before = lines.slice(0, migIdx).join("\n");
+    expect(before).not.toContain("secrets.");
+    expect(before).not.toMatch(/^\s*environment:/m);
+    const envIdx = lines.findIndex((l) => /^\s+environment:/.test(l));
+    expect(envIdx).toBeGreaterThan(migIdx);
+    expect(lines.indexOf("env:")).toBe(-1);
+  });
+
   it("preflight job は secret を使わない", () => {
     const pre = steps().filter((s) => s.job === "preflight");
     expect(pre.length).toBeGreaterThan(0);

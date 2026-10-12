@@ -12,6 +12,8 @@ name: Migrate DB (production, manual)
 #   - 本番の未適用 migration が expected_pending_migrations と一致しない、
 #     migration list の出力が想定外、本番にだけある migration（drift）
 # 失敗しても自動で再実行しない。DB の巻き戻しは git revert では行えない。
+# "Re-run" も新しい起動と同じ扱いで、状態を確認したうえで別途の明示承認が要る。
+# この workflow の外（supabase_config_push.yml や手元の CLI）からの同時操作は防げない。
 # GitHub Environment `production` の保護設定はこの workflow の前提にしない。
 
 on:
